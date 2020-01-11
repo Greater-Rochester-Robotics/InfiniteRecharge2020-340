@@ -16,4 +16,85 @@ package frc.robot;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
+
+
+
+
+    // this is the new RobotMap  <<<<<<-----------------
+
+
+
+
+	//////////////////
+	// PWM CHANNELS //
+	//////////////////
+
+	/* Talons */
+    public static final int DRIVE_SPARK_LEFT_CHANNEL_A = 0;
+    public static final int DRIVE_SPARK_LEFT_CHANNEL_B = 0;
+	public static final int DRIVE_SPARK_RIGHT_CHANNEL_A = 1;
+    public static final int DRIVE_SPARK_RIGHT_CHANNEL_B = 1;
+
+	///////////////
+	// DIO PORTS //
+	///////////////
+
+	/* Encoders */
+	public static final int DRIVE_ENCODER_LEFT_CHANNEL_A = 8;
+	public static final int DRIVE_ENCODER_LEFT_CHANNEL_B = 9;
+	public static final int DRIVE_ENCODER_RIGHT_CHANNEL_A = 6;
+	public static final int DRIVE_ENCODER_RIGHT_CHANNEL_B = 7;
+
+	/* Sensors */
+
+
+
+	////////////////////////
+	// PNEUMATIC CHANNELS //
+	////////////////////////
+
+	/* Solenoids */
+
+
+    /* LEDs */
+	public static final int LED_PCM_CHANNEL = 7;
+
+	/////////////
+	// CAN IDs //
+	/////////////
+
+	/* TalonSRXs */
+
+	//Commented numbers are on prac bot. THEY ARE NOT NOT PERMANENT ON EITHER BOT
+
+
+	/* Spark MAXes */
+	public static final int ELEVATOR_A_MOTOR_CAN_ID = 13; //mid
+	public static final int ELEVATOR_B_MOTOR_CAN_ID = 12; //left
+	public static final int ELEVATOR_C_MOTOR_CAN_ID = 14; //right
+
+	/* Compressor/LED PCM */
+	public static final int SECONDARY_PCM_ID = 10;
+
+	///////////////
+	// CONSTANTS //
+	///////////////
+
+	/* C speed */
+
+
+	/* Elevator speed */
+
+	
+
+
+
+	/* The Titular Zero Speed */
+	public static final double ZERO_SPEED = 0.0;
+
+
+
+	/* Elevator heights */
+
+
 }
