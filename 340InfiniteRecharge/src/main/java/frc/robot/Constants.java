@@ -30,10 +30,7 @@ public final class Constants {
 	//////////////////
 
 	/* Talons */
-    public static final int DRIVE_SPARK_LEFT_CHANNEL_A = 0;
-    public static final int DRIVE_SPARK_LEFT_CHANNEL_B = 0;
-	public static final int DRIVE_SPARK_RIGHT_CHANNEL_A = 1;
-    public static final int DRIVE_SPARK_RIGHT_CHANNEL_B = 1;
+
 
 	///////////////
 	// DIO PORTS //
@@ -72,6 +69,10 @@ public final class Constants {
 	public static final int ELEVATOR_A_MOTOR_CAN_ID = 13; //mid
 	public static final int ELEVATOR_B_MOTOR_CAN_ID = 12; //left
 	public static final int ELEVATOR_C_MOTOR_CAN_ID = 14; //right
+	public static final int DRIVE_SPARK_LEFT_CHANNEL_A = 20; //front-left
+    public static final int DRIVE_SPARK_LEFT_CHANNEL_B = 21; //back-left
+	public static final int DRIVE_SPARK_RIGHT_CHANNEL_A = 22; //back-right
+    public static final int DRIVE_SPARK_RIGHT_CHANNEL_B = 23; //front-right
 
 	/* Compressor/LED PCM */
 	public static final int SECONDARY_PCM_ID = 10;
