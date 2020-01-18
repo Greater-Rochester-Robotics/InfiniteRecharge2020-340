@@ -10,9 +10,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
-import frc.robot.commands.ExampleCommand;
 import frc.robot.subsystems.Drive;
-import frc.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj.Joystick;
@@ -28,9 +26,8 @@ import frc.robot.commands.DriveXOne;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
-  private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
 
-  private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
+ 
   
   final Joystick driver = new Joystick(0);
   final Joystick coDriver = new Joystick(1);
@@ -88,7 +85,8 @@ public class RobotContainer {
   public RobotContainer() {
 
     drive  = new Drive();
-    compressor = new Compressor(Constants.SECONDARY_PCM_ID);
+    //TODO: Pneumatics system, set that up
+    //compressor = new Compressor(Constants.SECONDARY_PCM_ID);
     CommandScheduler.getInstance().setDefaultCommand(drive, new DriveXOne());
 
     
@@ -163,6 +161,6 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-    return m_autoCommand;
+    return null;
   }
 }

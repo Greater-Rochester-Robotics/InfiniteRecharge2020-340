@@ -38,6 +38,7 @@ public class DriveXOne extends CommandBase {
 
         // Dual-stick code from 2018 PowerUp
         // Gives precedence to LS, runs slower RS otherwise
+        
         if (Math.abs(Robot.robotContainer.getDriverAxis(Axis.LEFT_X)) >= .05
                 || Math.abs(Robot.robotContainer.getDriverAxis(Axis.LEFT_Y)) >= .05) {
             RobotContainer.drive.arcadeDrive(Robot.robotContainer.getDriverAxis(Axis.LEFT_Y) * .65,
@@ -65,7 +66,6 @@ public class DriveXOne extends CommandBase {
 
     @Override
     public Set<Subsystem> getRequirements() {
-        // TODO Auto-generated method stub
-        return null;
+        return m_requirements;
     }
 }

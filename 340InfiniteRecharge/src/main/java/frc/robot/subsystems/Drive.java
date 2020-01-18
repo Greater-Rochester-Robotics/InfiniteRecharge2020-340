@@ -7,9 +7,6 @@
 
 package frc.robot.subsystems;
 
-// import com.analog.adis16448.frc.ADIS16448_IMU;
-import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
@@ -48,7 +45,6 @@ public class Drive extends SubsystemBase {
 
 		gyro = new ADXRS450_Gyro();
 		gyro.calibrate();
-
 		encLeft = new Encoder(Constants.DRIVE_ENCODER_LEFT_CHANNEL_A, Constants.DRIVE_ENCODER_LEFT_CHANNEL_B);
 		encRight = new Encoder(Constants.DRIVE_ENCODER_RIGHT_CHANNEL_A, Constants.DRIVE_ENCODER_RIGHT_CHANNEL_B);
 
@@ -63,8 +59,9 @@ public class Drive extends SubsystemBase {
 		driveLeftB = new CANSparkMax(Constants.DRIVE_SPARK_LEFT_CHANNEL_B, MotorType.kBrushless);
 		driveRightA = new CANSparkMax(Constants.DRIVE_SPARK_RIGHT_CHANNEL_A, MotorType.kBrushless);
 		driveRightB = new CANSparkMax(Constants.DRIVE_SPARK_RIGHT_CHANNEL_B, MotorType.kBrushless);
-
-		led = new PCM_LED(Constants.SECONDARY_PCM_ID, Constants.LED_PCM_CHANNEL);
+		
+		//TODO: Commented out PCM LED due to null exception
+		//led = new PCM_LED(Constants.SECONDARY_PCM_ID, Constants.LED_PCM_CHANNEL);
 
 		//TODO: consider enslaving B motors to A motors
 

@@ -10,6 +10,7 @@ package frc.robot;
 import edu.wpi.first.hal.HAL;
 import edu.wpi.first.hal.FRCNetComm.tResourceType;
 import edu.wpi.first.wpilibj.Spark;
+import edu.wpi.first.wpilibj.smartdashboard.SendableRegistry;
 
 /**
  * Sparx MAX controlled via PWM<br>
@@ -45,6 +46,6 @@ public class PWMSparkMax extends Spark {
 		setZeroLatch();
 
 		HAL.report(tResourceType.kResourceType_RevSPARK, getChannel());
-		setName("Spark", getChannel());
+		SendableRegistry.setName(this, "Spark", getChannel());
 	}
 }
