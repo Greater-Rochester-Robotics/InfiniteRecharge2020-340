@@ -26,7 +26,7 @@ public class AutomatedAlignment extends CommandBase {
     //         usePIDOutput(output);
     //     }
     // };
-    // /** A source which calls {@link PIDCommand#returnPIDInput()} */
+    // /** A source which calls {@link PIDCommand#returnPIDInput()} */ w2
     // private PIDSource source = new PIDSource() {
 
     //     public double pidGet() {

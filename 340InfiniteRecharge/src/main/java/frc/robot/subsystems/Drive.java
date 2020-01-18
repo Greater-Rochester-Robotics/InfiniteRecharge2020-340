@@ -278,6 +278,6 @@ public class Drive extends SubsystemBase {
 		    }
 		}
 
-		setDriveBoth(leftSpeed * .6, rightSpeed * .6); //This new drivebase is too fast
+		setDriveBoth(leftSpeed * .2, rightSpeed * .2); //This new drivebase is too fast
 	}
 }

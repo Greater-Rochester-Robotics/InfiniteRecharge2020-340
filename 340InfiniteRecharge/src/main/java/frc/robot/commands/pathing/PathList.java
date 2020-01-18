@@ -27,6 +27,11 @@ public class PathList {
 			/* {"start":{"x":69,"y":117},"mid1":{"x":125,"y":117},"mid2":{"x":341,"y":96},"end":{"x":309,"y":64}} */
 			new Vec2(69, 117), new Vec2(125, 117), new Vec2(341, 96), new Vec2(309, 64) 
 			, 260));
+
+			public static final Path HECK_PATH = new Path(x -> .4, new PathSegment( 
+				/* {"start":{"x":37p,"y":246},"mid1":{"x":149,"y":243},"mid2":{"x":127,"y":229},"end":{"x":129,"y":186}} */
+				new Vec2(37, 246), new Vec2(149, 243), new Vec2(127, 229), new Vec2(129, 186) 
+				, 137));
 	}
 
 	public static final class RIGHT_ROCKET {

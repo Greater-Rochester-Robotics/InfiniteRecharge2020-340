@@ -17,6 +17,8 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj2.command.button.*;
 import frc.robot.commands.DriveXOne;
+import frc.robot.commands.pathing.PathList;
+import frc.robot.commands.pathing.RunPath;
 
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
@@ -102,6 +104,9 @@ public class RobotContainer {
    * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
+
+    driverRTButton.whenHeld(new RunPath(PathList.LEFT_ROCKET.HECK_PATH));
+    driverRTButton.whenReleased(new DriveXOne());
 
  
   }
