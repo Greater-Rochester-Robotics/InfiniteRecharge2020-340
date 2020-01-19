@@ -4,19 +4,23 @@
 /* must be accompanied by the FIRST BSD license file in the root directory of */
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
-
+//TODO: remember to use TODO: remember to use TODO: remember to use TODO: remember to use TODO: etc.
+//recursive todo reminding you to use todo to locate things
 package frc.robot;
 
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.subsystems.Drive;
+import frc.robot.subsystems.SnekShooter;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj2.command.button.*;
 import frc.robot.commands.DriveXOne;
+import frc.robot.commands.SnekShooter.Load;
+import frc.robot.commands.SnekShooter.Shoot;
 import frc.robot.commands.pathing.PathList;
 import frc.robot.commands.pathing.RunPath;
 
@@ -80,16 +84,19 @@ public class RobotContainer {
 
     public static Drive drive;
     public static Compressor compressor;
+    public static SnekShooter snekShooter;
 
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
    */
   public RobotContainer() {
-
-    drive  = new Drive();
+    //TODO: comment this out to drive
+    //drive  = new Drive();
+    snekShooter = new SnekShooter();
     //TODO: Pneumatics system, set that up
     //compressor = new Compressor(Constants.SECONDARY_PCM_ID);
-    CommandScheduler.getInstance().setDefaultCommand(drive, new DriveXOne());
+    //TODO: commented out default drive for testing purposes
+    //CommandScheduler.getInstance().setDefaultCommand(drive, new DriveXOne());
 
     
     // Configure the button bindings
@@ -105,10 +112,10 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
 
-    driverRTButton.whenHeld(new RunPath(PathList.LEFT_ROCKET.HECK_PATH));
-    driverRTButton.whenReleased(new DriveXOne());
-
- 
+    //driverRTButton.whenHeld(new RunPath(PathList.LEFT_ROCKET.HECK_PATH));
+    //driverRTButton.whenReleased(new DriveXOne());
+    driverRB.whenPressed(new Load());
+    driverLB.whenPressed(new Shoot());
   }
 
 

@@ -32,6 +32,7 @@ public final class Constants {
 	/* Talons */
 
 
+
 	///////////////
 	// DIO PORTS //
 	///////////////
@@ -42,6 +43,16 @@ public final class Constants {
 	public static final int DRIVE_ENCODER_RIGHT_CHANNEL_A = 6;
 	public static final int DRIVE_ENCODER_RIGHT_CHANNEL_B = 7;
 
+	///////////////////////FOR PROTOTYPE SNEKSHOOTER
+	public static final int SNEKSHOOTER_ENCODER_TALONSRX1_A = 12;
+	public static final int SNEKSHOOTER_ENCODER_TALONSRX2_A = 13;
+	public static final int SNEKSHOOTER_ENCODER_TALONSRX3_A = 14;
+	public static final int SNEKSHOOTER_ENCODER_TALONSRX4_A = 15;
+	public static final int SNEKSHOOTER_ENCODER_TALONSRX5_A = 16;
+	public static final int SNEKSHOOTER_ENCODER_SHOOTER_A = 17;
+	///////////////////////FOR PROTOTYPE SNEKSHOOTER
+
+	
 	/* Sensors */
 
 
@@ -54,7 +65,7 @@ public final class Constants {
 
 
     /* LEDs */
-	public static final int LED_PCM_CHANNEL = 7;
+	public static final int LED_PCM_CHANNEL = 10;
 
 	/////////////
 	// CAN IDs //
@@ -62,20 +73,24 @@ public final class Constants {
 
 	/* TalonSRXs */
 
+	public static final int SNEKSHOOTER_TALONSRX_1 = 2;
+	public static final int SNEKSHOOTER_TALONSRX_2 = 3;
+	public static final int SNEKSHOOTER_TALONSRX_3 = 4;
+	public static final int SNEKSHOOTER_TALONSRX_4 = 5;
+	public static final int SNEKSHOOTER_TALONSRX_5 = 6;
+
 	//Commented numbers are on prac bot. THEY ARE NOT NOT PERMANENT ON EITHER BOT
 
 
 	/* Spark MAXes */
-	public static final int ELEVATOR_A_MOTOR_CAN_ID = 13; //mid
-	public static final int ELEVATOR_B_MOTOR_CAN_ID = 12; //left
-	public static final int ELEVATOR_C_MOTOR_CAN_ID = 14; //right
 	public static final int DRIVE_SPARK_LEFT_CHANNEL_A = 20; //front-left
     public static final int DRIVE_SPARK_LEFT_CHANNEL_B = 21; //back-left
 	public static final int DRIVE_SPARK_RIGHT_CHANNEL_A = 22; //back-right
-    public static final int DRIVE_SPARK_RIGHT_CHANNEL_B = 23; //front-right
+	public static final int DRIVE_SPARK_RIGHT_CHANNEL_B = 23; //front-right
+	public static final int SNEKSHOOTER_SPARK_LAUNCHER = 24; //launching wheel for the prototype 
 
 	/* Compressor/LED PCM */
-	public static final int SECONDARY_PCM_ID = 10;
+	public static final int SECONDARY_PCM_ID = 11;
 
 	///////////////
 	// CONSTANTS //

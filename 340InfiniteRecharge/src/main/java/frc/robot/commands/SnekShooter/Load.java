@@ -5,21 +5,29 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.StarFishShooter;
+package frc.robot.commands.SnekShooter;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Robot;
+import frc.robot.RobotContainer;
+import frc.robot.subsystems.SnekShooter;
 
-public class CheapShoot extends CommandBase {
+public class Load extends CommandBase {
   /**
-   * Creates a new EasyShoot.
+   * Creates a new Load.
    */
-  public CheapShoot() {
+  public Load() {
     // Use addRequirements() here to declare subsystem dependencies.
+    addRequirements(RobotContainer.snekShooter);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    // double[] speds = {-1.0,-0.5,0.0,0.5,1.0};
+    // RobotContainer.snekShooter.setAllLoadWheels(speds);
+    // RobotContainer.snekShooter.setShooterWheel(1.0);
+    RobotContainer.snekShooter.setState(SnekShooter.State.KFillTo5);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -30,11 +38,12 @@ public class CheapShoot extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+    RobotContainer.snekShooter.setState(SnekShooter.State.kOff);
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return (RobotContainer.snekShooter.getState() == SnekShooter.State.kOff);
   }
 }
