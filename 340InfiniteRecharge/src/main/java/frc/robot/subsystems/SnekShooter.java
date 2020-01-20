@@ -27,15 +27,15 @@ public class SnekShooter extends SubsystemBase {
   private static TalonSRX loadWheel1, loadWheel2, loadWheel3, loadWheel4, loadWheel5;
   private DigitalInput switch1, switch2, switch3, switch4, switch5;
   public enum State{
-  KFillTo5,KFillTo4,KFillTo3,KFillTo2,KFillTo1,kOff,kshoot
-}
+    KFillTo5,KFillTo4,KFillTo3,KFillTo2,KFillTo1,kOff,kShootBall5,kShootBall4,kShootBall3,kShootBall2,kShootBall1
+  }
 private State state = State.kOff;
 
 static final double MOTOR_IN_SPEED1 = 0.3;
 static final double MOTOR_IN_SPEED2 = 0.4;
 static final double MOTOR_IN_SPEED3 = 0.5;
 static final double MOTOR_IN_SPEED4 = 0.6;
-static final double MOTOR_IN_SPEED5 = 0.7;
+static final double MOTOR_IN_SPEED5 = 0.35;
   /**
    * Creates a new Shooter.
    */
@@ -56,6 +56,12 @@ static final double MOTOR_IN_SPEED5 = 0.7;
     switch3 = new DigitalInput(2);
     switch4 = new DigitalInput(3);
     switch5 = new DigitalInput(4);
+
+    shooterWheel.setInverted(true);
+    loadWheel1.setInverted(true);
+    loadWheel3.setInverted(true);
+    loadWheel2.setInverted(true);
+    loadWheel4.setInverted(true);
   }
 
   public void setState(State state){
@@ -107,7 +113,7 @@ static final double MOTOR_IN_SPEED5 = 0.7;
           break;
         }
       case KFillTo4:
-        speeds = new double[] {MOTOR_IN_SPEED1,MOTOR_IN_SPEED2,MOTOR_IN_SPEED3,MOTOR_IN_SPEED4,0.0};
+        speeds = new double[] {MOTOR_IN_SPEED1,MOTOR_IN_SPEED2,MOTOR_IN_SPEED3,.35,0.0};
         
         if(!switch4.get()){
           state = State.KFillTo3;
@@ -115,7 +121,7 @@ static final double MOTOR_IN_SPEED5 = 0.7;
           break;
         }
       case KFillTo3:
-        speeds = new double[] {MOTOR_IN_SPEED1,MOTOR_IN_SPEED2,MOTOR_IN_SPEED3,0.0,0.0};
+        speeds = new double[] {MOTOR_IN_SPEED1,MOTOR_IN_SPEED2,.35,0.0,0.0};
         
       if(!switch3.get()){
         state = State.KFillTo2;
@@ -123,7 +129,7 @@ static final double MOTOR_IN_SPEED5 = 0.7;
         break;
       }
       case KFillTo2:
-        speeds = new double[] {MOTOR_IN_SPEED1,MOTOR_IN_SPEED2,0.0,0.0,0.0};
+        speeds = new double[] {MOTOR_IN_SPEED1,.35,0.0,0.0,0.0};
         
       if(!switch2.get()){
         state = State.KFillTo1;
@@ -142,9 +148,36 @@ static final double MOTOR_IN_SPEED5 = 0.7;
         speeds = new double[] {0.0,0.0,0.0,0.0,0.0};
         
         break;
-      case kshoot:
-        speeds = new double[] {MOTOR_IN_SPEED1,MOTOR_IN_SPEED2,MOTOR_IN_SPEED3,MOTOR_IN_SPEED4,MOTOR_IN_SPEED5};
-        
+      case kShootBall5:
+        speeds = new double[] {0.0,0.0,0.0,0.0,1.0};
+        if(switch5.get()){
+          state = State.kShootBall4;
+        }else{
+          break;
+        }
+      case kShootBall4:
+        speeds = new double[] {0.0,0.0,0.0,1.0,1.0};
+        if(switch4.get()){
+          state = State.kShootBall3;
+        }else{
+          break;
+        }
+      case kShootBall3:
+        speeds = new double[] {0.0,0.0,1.0,1.0,1.0};
+        if(switch3.get()){
+          state = State.kShootBall1;
+        }else{
+          break;
+        }
+      // case kShootBall2:
+      //   speeds = new double[] {0.0,1.0,1.0,1.0,1.0};
+      //   if(switch2.get()){
+      //     state = State.kShootBall1;
+      //   }else{
+      //     break;
+      //   }
+      case kShootBall1:
+        speeds = new double[] {1.0,1.0,1.0,1.0,1.0};
         break;
     }
     setAllLoadWheels(speeds);

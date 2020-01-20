@@ -21,6 +21,7 @@ import edu.wpi.first.wpilibj2.command.button.*;
 import frc.robot.commands.DriveXOne;
 import frc.robot.commands.SnekShooter.Load;
 import frc.robot.commands.SnekShooter.Shoot;
+import frc.robot.commands.SnekShooter.Stop;
 import frc.robot.commands.pathing.PathList;
 import frc.robot.commands.pathing.RunPath;
 
@@ -116,6 +117,7 @@ public class RobotContainer {
     //driverRTButton.whenReleased(new DriveXOne());
     driverRB.whenPressed(new Load());
     driverLB.whenPressed(new Shoot());
+    driverStart.whenPressed(new Stop());
   }
 
 
