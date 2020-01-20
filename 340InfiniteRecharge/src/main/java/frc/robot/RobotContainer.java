@@ -20,6 +20,7 @@ import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj2.command.button.*;
 import frc.robot.commands.DriveXOne;
 import frc.robot.commands.SnekShooter.Load;
+import frc.robot.commands.SnekShooter.Regurgitate;
 import frc.robot.commands.SnekShooter.Shoot;
 import frc.robot.commands.SnekShooter.Stop;
 import frc.robot.commands.pathing.PathList;
@@ -116,8 +117,12 @@ public class RobotContainer {
     //driverRTButton.whenHeld(new RunPath(PathList.LEFT_ROCKET.HECK_PATH));
     //driverRTButton.whenReleased(new DriveXOne());
     driverRB.whenPressed(new Load());
+    driverRB.whenReleased(new Stop());
     driverLB.whenPressed(new Shoot());
+    driverLB.whenReleased(new Stop());
     driverStart.whenPressed(new Stop());
+    driverRTButton.whenPressed(new Regurgitate());
+    driverRTButton.whenReleased(new Stop());
   }
 
 

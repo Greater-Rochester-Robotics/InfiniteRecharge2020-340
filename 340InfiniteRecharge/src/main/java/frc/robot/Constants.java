@@ -79,9 +79,6 @@ public final class Constants {
 	public static final int SNEKSHOOTER_TALONSRX_4 = 5;
 	public static final int SNEKSHOOTER_TALONSRX_5 = 6;
 
-	//Commented numbers are on prac bot. THEY ARE NOT NOT PERMANENT ON EITHER BOT
-
-
 	/* Spark MAXes */
 	public static final int DRIVE_SPARK_LEFT_CHANNEL_A = 20; //front-left
     public static final int DRIVE_SPARK_LEFT_CHANNEL_B = 21; //back-left
@@ -90,6 +87,7 @@ public final class Constants {
 	public static final int SNEKSHOOTER_SPARK_LAUNCHER = 24; //launching wheel for the prototype 
 
 	/* Compressor/LED PCM */
+
 	public static final int SECONDARY_PCM_ID = 11;
 
 	///////////////
@@ -99,18 +97,9 @@ public final class Constants {
 	/* C speed */
 
 
-	/* Elevator speed */
-
-	
-
-
-
 	/* The Titular Zero Speed */
 	public static final double ZERO_SPEED = 0.0;
 
-
-
-	/* Elevator heights */
 
 
 }

@@ -27,7 +27,7 @@ public class Load extends CommandBase {
     // double[] speds = {-1.0,-0.5,0.0,0.5,1.0};
     // RobotContainer.snekShooter.setAllLoadWheels(speds);
     // RobotContainer.snekShooter.setShooterWheel(1.0);
-    RobotContainer.snekShooter.setState(SnekShooter.State.KFillTo5);
+    RobotContainer.snekShooter.setState(SnekShooter.State.kFillTo5);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
