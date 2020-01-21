@@ -84,7 +84,15 @@ public final class Constants {
     public static final int DRIVE_SPARK_LEFT_CHANNEL_B = 21; //back-left
 	public static final int DRIVE_SPARK_RIGHT_CHANNEL_A = 22; //back-right
 	public static final int DRIVE_SPARK_RIGHT_CHANNEL_B = 23; //front-right
-	public static final int SNEKSHOOTER_SPARK_LAUNCHER = 24; //launching wheel for the prototype 
+	public static final int SNEKSHOOTER_SPARK_LAUNCHER = 24; //launching wheel for the prototype
+	
+	
+	// Temporary values to make BallHandler subsystem stop yelling at me
+	public static final int BALL_HANDLER_MOTOR_0 = 25;
+	public static final int BALL_HANDLER_MOTOR_1 = 26;
+	public static final int BALL_HANDLER_MOTOR_2 = 27;
+	public static final int BALL_HANDLER_MOTOR_3 = 28;
+	public static final int BALL_HANDLER_MOTOR_4 = 29;
 
 	/* Compressor/LED PCM */
 
