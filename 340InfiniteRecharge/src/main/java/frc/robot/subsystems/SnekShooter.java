@@ -9,14 +9,18 @@
 
 package frc.robot.subsystems;
 
+import com.revrobotics.CANEncoder;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import com.revrobotics.ControlType;
+import com.revrobotics.EncoderType;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+
+import java.util.ArrayList;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
@@ -26,11 +30,13 @@ public class SnekShooter extends SubsystemBase {
   private static CANSparkMax shooterWheel;
   private static TalonSRX loadWheel1, loadWheel2, loadWheel3, loadWheel4, loadWheel5;
   private DigitalInput switch1, switch2, switch3, switch4, switch5;
+  private DigitalInput[] switches; 
   public enum State{
-    kFillTo5,kFillTo4,kFillTo3,kFillTo2,kFillTo1,kOff,kShootBall5,kShootBall4,kShootBall3,kShootBall2,kShootBall1,kSpitBalls
+    kFillTo5,kFillTo4,kFillTo3,kFillTo2,kFillTo1,kOff,kShootBall5,kShootBall4,kShootBall3,kShootBall2,kShootBall1,kSpitBalls,kSemiShot,kReload
   }
 private State state = State.kOff;
 
+private CANEncoder shooterEncoder;
 static final double MOTOR_IN_SPEED1 = 0.3;
 static final double MOTOR_IN_SPEED2 = 0.4;
 static final double MOTOR_IN_SPEED3 = 0.5;
@@ -47,7 +53,7 @@ static final double MOTOR_IN_SPEED5 = 0.35;
     loadWheel4 = new TalonSRX(Constants.SNEKSHOOTER_TALONSRX_4);
     loadWheel5 = new TalonSRX(Constants.SNEKSHOOTER_TALONSRX_5);
     shooterWheel = new CANSparkMax(Constants.SNEKSHOOTER_SPARK_LAUNCHER, MotorType.kBrushless);
-    shooterWheel.getPIDController().setP(0.0001);
+    shooterWheel.getPIDController().setP(0.0001); 
     shooterWheel.getPIDController().setI(0.0);
     shooterWheel.getPIDController().setD(0.00005);
     shooterWheel.getPIDController().setFF(0.000174);
@@ -61,6 +67,8 @@ static final double MOTOR_IN_SPEED5 = 0.35;
     loadWheel3.setInverted(true);
     loadWheel2.setInverted(true);
     loadWheel4.setInverted(true);
+    switches = new DigitalInput[]{switch1, switch2, switch3, switch4, switch5};
+    shooterEncoder = shooterWheel.getEncoder(EncoderType.kHallSensor, 42);
   }
 
   public void setState(State state){
@@ -69,6 +77,15 @@ static final double MOTOR_IN_SPEED5 = 0.35;
 
   public State getState(){
     return state;
+  }
+
+  //Returns RPM of shooterWheel
+  public double getShooterVelocity(){
+    return shooterEncoder.getVelocity();
+  }
+
+  public boolean getSwitchState(int index){
+    return switches[index].get();
   }
 
   public void setLoadWheel(TalonSRX loadWheel, double speed){
@@ -106,6 +123,16 @@ static final double MOTOR_IN_SPEED5 = 0.35;
     // This method will be called once per scheduler run
     double[] speeds = new double[5];
     switch(state){
+      case kSemiShot:
+        speeds = new double[] {0.0,0.0,0.0,0.0,1.0};
+      break;
+      case kReload:
+        speeds = new double[] {MOTOR_IN_SPEED1,MOTOR_IN_SPEED2,MOTOR_IN_SPEED3,MOTOR_IN_SPEED4,0.0};
+        if(!switch5.get()){
+          state = State.kOff;
+        } else{
+        break;
+        }
       case kSpitBalls:
         speeds = new double[] {-1.0,-.85,-.7,-.6,-.5};
         break;
