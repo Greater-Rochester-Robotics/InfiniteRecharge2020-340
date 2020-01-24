@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.util.Color;
 
 import com.revrobotics.ColorSensorV3;
+import com.revrobotics.ColorSensorV3.RawColor;
 
 public class ColorWheel extends SubsystemBase {
   /**
@@ -38,7 +39,7 @@ public class ColorWheel extends SubsystemBase {
      * an object is the more light from the surroundings will bleed into the 
      * measurements and make it difficult to accurately determine its color.
      */
-    Color detectedColor = m_colorSensor.getColor();
+    RawColor detectedColor = m_colorSensor.getRawColor();
 
     /**
      * The sensor returns a raw IR value of the infrared light detected.
