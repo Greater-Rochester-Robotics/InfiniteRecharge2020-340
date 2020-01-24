@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.subsystems.ColorWheel;
 import frc.robot.subsystems.Drive;
+import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.SnekShooter;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
@@ -84,7 +85,7 @@ public class RobotContainer {
     final Button coDriverRTButton = new JoyTriggerButton(coDriver, .7, Axis.RIGHT_TRIGGER);
 
 
-
+    public static Intake intake;
     public static Drive drive;
     public static Compressor compressor;
     public static SnekShooter snekShooter;
@@ -101,7 +102,7 @@ public class RobotContainer {
     //TODO: commented out default drive for testing purposes
     //CommandScheduler.getInstance().setDefaultCommand(drive, new DriveXOne());
     colorWheel = new ColorWheel();
-    
+    intake = new Intake();
     // Configure the button bindings
     configureButtonBindings();
 
