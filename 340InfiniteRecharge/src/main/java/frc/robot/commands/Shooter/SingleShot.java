@@ -5,12 +5,13 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.SnekShooter;
+package frc.robot.commands.Shooter;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
 import edu.wpi.first.wpilibj.Timer;
-import frc.robot.subsystems.SnekShooter;
+import frc.robot.subsystems.Shooter;
+import frc.robot.subsystems.SnekLoader.State;
 
 public class SingleShot extends CommandBase {
   Timer timer = new Timer();
@@ -19,32 +20,32 @@ public class SingleShot extends CommandBase {
    */
   public SingleShot() {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(RobotContainer.snekShooter);
+    addRequirements(RobotContainer.shooter,RobotContainer.snekLoader);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    timer.reset();
-    timer.start();
-    RobotContainer.snekShooter.setShooterWheel(5500);
+    RobotContainer.shooter.setShooterWheel(5500);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if(timer.get()>1.5 && timer.get()<2.0){
-      RobotContainer.snekShooter.setState(SnekShooter.State.kSemiShot);
+    if(RobotContainer.shooter.isShooterAtSpeed()){
+      RobotContainer.snekLoader.setState(State.kShootBall4);
     }
-    if(timer.get()>2.0){
-      RobotContainer.snekShooter.setState(SnekShooter.State.kReload);
+    if(!RobotContainer.snekLoader.getHandleSensor(4)){
+      RobotContainer.snekLoader.setState(State.kFillTo4);
     }
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    RobotContainer.snekShooter.setState(SnekShooter.State.kOff);
+    //If driver wants to press per shot don't enable this
+    // RobotContainer.snekLoader.setState(State.kOff);
+    // RobotContainer.shooter.setShooterWheel(0);
   }
 
   // Returns true when the command should end.

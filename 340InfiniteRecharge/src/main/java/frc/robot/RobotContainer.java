@@ -13,18 +13,19 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.subsystems.ColorWheel;
 import frc.robot.subsystems.Drive;
-import frc.robot.subsystems.Intake;
-import frc.robot.subsystems.SnekShooter;
+import frc.robot.subsystems.Harvester;
+import frc.robot.subsystems.Shooter;
+import frc.robot.subsystems.SnekLoader;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj2.command.button.*;
 import frc.robot.commands.DriveXOne;
-import frc.robot.commands.SnekShooter.Load;
-import frc.robot.commands.SnekShooter.Regurgitate;
-import frc.robot.commands.SnekShooter.Shoot;
-import frc.robot.commands.SnekShooter.Stop;
+import frc.robot.commands.SnekLoader.Load;
+import frc.robot.commands.SnekLoader.Regurgitate;
+import frc.robot.commands.Shooter.Shoot;
+import frc.robot.commands.SnekLoader.Stop;
 import frc.robot.commands.pathing.PathList;
 import frc.robot.commands.pathing.RunPath;
 
@@ -84,11 +85,11 @@ public class RobotContainer {
     final Button coDriverLTButton = new JoyTriggerButton(coDriver, .7, Axis.LEFT_TRIGGER);
     final Button coDriverRTButton = new JoyTriggerButton(coDriver, .7, Axis.RIGHT_TRIGGER);
 
-
-    public static Intake intake;
+    public static SnekLoader snekLoader;
+    public static Harvester harvester;
     public static Drive drive;
     public static Compressor compressor;
-    public static SnekShooter snekShooter;
+    public static Shooter shooter;
     public static ColorWheel colorWheel;
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
@@ -96,13 +97,14 @@ public class RobotContainer {
   public RobotContainer() {
     //TODO: comment this out to drive
     //drive  = new Drive();
-    snekShooter = new SnekShooter();
+    shooter = new Shooter();
     //TODO: Pneumatics system, set that up
     //compressor = new Compressor(Constants.SECONDARY_PCM_ID);
     //TODO: commented out default drive for testing purposes
     //CommandScheduler.getInstance().setDefaultCommand(drive, new DriveXOne());
     colorWheel = new ColorWheel();
-    intake = new Intake();
+    harvester = new Harvester();
+    snekLoader = new SnekLoader();
     // Configure the button bindings
     configureButtonBindings();
 
