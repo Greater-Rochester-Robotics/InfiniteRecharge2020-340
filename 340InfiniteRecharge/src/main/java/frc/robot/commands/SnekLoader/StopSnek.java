@@ -5,25 +5,24 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.Intake;
+package frc.robot.commands.SnekLoader;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
+import frc.robot.subsystems.SnekLoader.State;
 
-import com.revrobotics.CANSparkMax;
-
-public class Harvest extends CommandBase {
+public class StopSnek extends CommandBase {
   /**
-   * Creates a new Harvest.
+   * Creates a new Stop.
    */
-  public Harvest() {
+  public StopSnek() {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(RobotContainer.intake);
+    addRequirements(RobotContainer.snekLoader);
   }
-
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    RobotContainer.snekLoader.setState(State.kOff);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -34,12 +33,11 @@ public class Harvest extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return true;
   }
 }

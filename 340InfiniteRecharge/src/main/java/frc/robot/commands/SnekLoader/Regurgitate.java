@@ -5,25 +5,28 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.Intake;
+package frc.robot.commands.SnekLoader;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.RobotContainer;
+import frc.robot.subsystems.Shooter;
+import frc.robot.subsystems.SnekLoader.State;
+import frc.robot.Robot;
 
-/*
-*   Needs to be implemented, used to raise and/or lower the harvester so that it can intake balls. Wait until mechanical decides on how
-*/
-
-public class ToggleIntakeLevel extends CommandBase {
+public class Regurgitate extends CommandBase {
   /**
-   * Creates a new ToggleIntakeLevel.
+   * Creates a new Regurgitate.
    */
-  public ToggleIntakeLevel() {
+  public Regurgitate() {
     // Use addRequirements() here to declare subsystem dependencies.
+    addRequirements(RobotContainer.snekLoader, RobotContainer.shooter);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    RobotContainer.snekLoader.setState(State.kSpitBalls);
+    RobotContainer.shooter.setShooterWheel(-100);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -34,6 +37,8 @@ public class ToggleIntakeLevel extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+    RobotContainer.snekLoader.setState(State.kOff);
+    RobotContainer.shooter.setShooterWheel(0.0);
   }
 
   // Returns true when the command should end.

@@ -15,7 +15,6 @@ import com.revrobotics.ControlType;
 import com.revrobotics.CANDigitalInput.LimitSwitchPolarity;
 import com.revrobotics.CANSparkMax.IdleMode;
 
-import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
@@ -23,12 +22,11 @@ import frc.robot.Constants;
  * This class is for ball handling with 5 CANSparkMax objects with limit
  * switches plugged into the SparkMax
  */
-public class BallHandler extends SubsystemBase {
+public class SnekLoader extends SubsystemBase {
 
   private static CANSparkMax[] handleMotors;
   private static CANDigitalInput[] handleSensors;
   private static CANEncoder[] handleEncoders;
-  private static DigitalInput flyWheelSensor;
 
   public enum State {
     kFillTo4, kFillTo3, kFillTo2, kFillTo1, kFillTo0, kOff, kShootBall4, kShootBall3, kShootBall2, kShootBall1,
@@ -43,7 +41,7 @@ public class BallHandler extends SubsystemBase {
   static final double MOTOR_IN_SPEED3 = 0.6;
   static final double MOTOR_IN_SPEED4 = 0.35;
 
-  public BallHandler() {
+  public SnekLoader() {
     handleMotors = new CANSparkMax[] {
         // TODO:Need to set CAN Id for motors
         new CANSparkMax(Constants.BALL_HANDLER_MOTOR_0, MotorType.kBrushless),
@@ -51,9 +49,8 @@ public class BallHandler extends SubsystemBase {
         new CANSparkMax(Constants.BALL_HANDLER_MOTOR_2, MotorType.kBrushless),
         new CANSparkMax(Constants.BALL_HANDLER_MOTOR_3, MotorType.kBrushless),
         new CANSparkMax(Constants.BALL_HANDLER_MOTOR_4, MotorType.kBrushless) };
+    // sets default setup for motors
     for (int i = 0; i <= 4; i++) {
-
-      // sets default setup for motors
       handleMotors[i].restoreFactoryDefaults();
       handleMotors[i].setIdleMode(IdleMode.kBrake);// set brake mode, so motors stop on a dime
       handleMotors[i].enableVoltageCompensation(12.0);// enable volatge compensation mode 12V
@@ -71,8 +68,7 @@ public class BallHandler extends SubsystemBase {
   public void periodic() {
     if (isJammed() && getState() != State.kSpitBalls) {
       state = State.kOff;
-      // TODO: find way to inform driver of jam, also hasn't been tested, if any jank
-      // occurs, isJammed is worth looking at (also further down)
+      // TODO: find way to inform driver of jam, also hasn't been tested.
     }
     // This method will be called once per scheduler run
     double[] speeds = new double[5];

@@ -7,28 +7,24 @@
 
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
-public class Intake extends SubsystemBase {
-private CANSparkMax leftAxleWheels, rightAxleWheels;
-private DigitalInput leftSensor, rightSensor;
+public class Harvester extends SubsystemBase {
+  private CANSparkMax axleWheels;
+
   /**
    * Creates a new Intake.
    */
-  public Intake() {
-    rightAxleWheels = new CANSparkMax(Constants.INTAKE_RIGHT_AXLE, MotorType.kBrushless);
-    leftAxleWheels = new CANSparkMax(Constants.INTAKE_LEFT_AXLE, MotorType.kBrushless);
+  public Harvester() {
+    axleWheels = new CANSparkMax(Constants.INTAKE_AXLE, MotorType.kBrushed);
   }
 
-  @Override
-  public void periodic() {
-    // This method will be called once per scheduler run
-    
-
+  public void setAxleWheels(double speed){
+      axleWheels.set(speed);
   }
+
 }

@@ -5,41 +5,43 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.SnekShooter;
+package frc.robot.commands.Harvester;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
-import frc.robot.subsystems.SnekShooter.State;
 
-public class Stop extends CommandBase {
+import com.revrobotics.CANSparkMax;
+
+public class IntakeBalls extends CommandBase {
   /**
-   * Creates a new Stop.
+   * Creates a new Harvest.
    */
-  public Stop() {
+  public IntakeBalls() {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(RobotContainer.snekShooter);
+    addRequirements(RobotContainer.harvester);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    RobotContainer.snekShooter.setState(State.kOff);
-    RobotContainer.snekShooter.setShooterWheel(0.0);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    RobotContainer.harvester.setAxleWheels(1.0);
   }
 
   // Called once the command ends or is interrupted.
+  //If command is interuptted, stops the harvester
   @Override
   public void end(boolean interrupted) {
+    RobotContainer.harvester.setAxleWheels(0.0);
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return true;
+    return false;
   }
 }

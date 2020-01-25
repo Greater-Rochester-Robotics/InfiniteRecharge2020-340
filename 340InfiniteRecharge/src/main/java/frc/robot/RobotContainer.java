@@ -13,19 +13,29 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 // import frc.robot.subsystems.ColorWheel;
 import frc.robot.subsystems.Drive;
-import frc.robot.subsystems.Intake;
-import frc.robot.subsystems.SnekShooter;
+import frc.robot.subsystems.Harvester;
+import frc.robot.subsystems.Shooter;
+import frc.robot.subsystems.SnekLoader;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj2.command.button.*;
 import frc.robot.commands.DriveXOne;
+<<<<<<< HEAD
 import frc.robot.commands.SnekShooter.Load;
 import frc.robot.commands.SnekShooter.Regurgitate;
 import frc.robot.commands.SnekShooter.Shoot;
 import frc.robot.commands.SnekShooter.Stop;
 import frc.robot.commands.SnekShooter.SingleShot;
+=======
+import frc.robot.commands.SnekLoader.Load;
+import frc.robot.commands.SnekLoader.Regurgitate;
+import frc.robot.commands.Shooter.Shoot;
+import frc.robot.commands.Shooter.SingleShot;
+import frc.robot.commands.Shooter.StopShoot;
+import frc.robot.commands.SnekLoader.StopSnek;
+>>>>>>> 4fcd426abe634dc8f54ae5d4519490e6debc2ead
 import frc.robot.commands.pathing.PathList;
 import frc.robot.commands.pathing.RunPath;
 
@@ -85,25 +95,36 @@ public class RobotContainer {
     final Button coDriverLTButton = new JoyTriggerButton(coDriver, .7, Axis.LEFT_TRIGGER);
     final Button coDriverRTButton = new JoyTriggerButton(coDriver, .7, Axis.RIGHT_TRIGGER);
 
-
-    public static Intake intake;
+    public static SnekLoader snekLoader;
+    public static Harvester harvester;
     public static Drive drive;
     public static Compressor compressor;
+<<<<<<< HEAD
     public static SnekShooter snekShooter;
     // public static ColorWheel colorWheel;
+=======
+    public static Shooter shooter;
+    public static ColorWheel colorWheel;
+>>>>>>> 4fcd426abe634dc8f54ae5d4519490e6debc2ead
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
    */
   public RobotContainer() {
     //TODO: comment this out to drive
     //drive  = new Drive();
-    snekShooter = new SnekShooter();
+    shooter = new Shooter();
     //TODO: Pneumatics system, set that up
     //compressor = new Compressor(Constants.SECONDARY_PCM_ID);
     //TODO: commented out default drive for testing purposes
     //CommandScheduler.getInstance().setDefaultCommand(drive, new DriveXOne());
+<<<<<<< HEAD
     // colorWheel = new ColorWheel();
     intake = new Intake();
+=======
+    colorWheel = new ColorWheel();
+    harvester = new Harvester();
+    snekLoader = new SnekLoader();
+>>>>>>> 4fcd426abe634dc8f54ae5d4519490e6debc2ead
     // Configure the button bindings
     configureButtonBindings();
 
@@ -120,14 +141,25 @@ public class RobotContainer {
     //driverRTButton.whenHeld(new RunPath(PathList.LEFT_ROCKET.HECK_PATH));
     //driverRTButton.whenReleased(new DriveXOne());
     driverRB.whenPressed(new Load());
-    driverRB.whenReleased(new Stop());
+    driverRB.whenReleased(new StopSnek());
     driverLB.whenPressed(new Shoot());
-    driverLB.whenReleased(new Stop());
-    driverStart.whenPressed(new Stop());
+    driverLB.whenReleased(new StopSnek());
+    driverLB.whenReleased(new StopShoot());
+    driverStart.whenPressed(new StopSnek());
+    driverStart.whenPressed(new StopShoot());
     driverRTButton.whenPressed(new Regurgitate());
+<<<<<<< HEAD
     driverRTButton.whenReleased(new Stop());
     driverLTButton.whenPressed(new SingleShot());
     driverLTButton.whenReleased(new Load());
+=======
+    driverRTButton.whenReleased(new StopSnek());
+    driverRTButton.whenReleased(new StopShoot());
+    driverLTButton.whenPressed(new SingleShot());
+    driverLTButton.whenReleased(new StopSnek());
+    driverLTButton.whenReleased(new StopShoot());
+    // driverYButton.whenPressed(new )
+>>>>>>> 4fcd426abe634dc8f54ae5d4519490e6debc2ead
   }
 
 

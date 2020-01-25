@@ -5,55 +5,46 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.SnekShooter;
+package frc.robot.commands.SnekLoader;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Robot;
 import frc.robot.RobotContainer;
-import frc.robot.subsystems.SnekShooter;
-import edu.wpi.first.wpilibj.Timer;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.subsystems.Shooter;
+import frc.robot.subsystems.SnekLoader.State;
 
-public class Shoot extends CommandBase {
-  Timer timer = new Timer();
+public class Load extends CommandBase {
   /**
-   * Creates a new Shoot.
+   * Creates a new Load.
    */
-  public Shoot() {
+  public Load() {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(RobotContainer.snekShooter);
+    addRequirements(RobotContainer.shooter);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    timer.reset();
-    timer.start();
-    RobotContainer.snekShooter.setShooterWheel(5500);
-    SmartDashboard.putNumber("newSpeed",5500);
-    
+    // double[] speds = {-1.0,-0.5,0.0,0.5,1.0};
+    // RobotContainer.snekShooter.setAllLoadWheels(speds);
+    // RobotContainer.snekShooter.setShooterWheel(1.0);
+    RobotContainer.snekLoader.setState(State.kFillTo4);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {  
-    if(timer.get()>1.5){
-      RobotContainer.snekShooter.setState(SnekShooter.State.kShootBall5);
-    }
-    double newSpeed = SmartDashboard.getNumber("newSpeed", 5500);
-    RobotContainer.snekShooter.setShooterWheel(newSpeed);
-
+  public void execute() {
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    RobotContainer.snekShooter.setShooterWheel(0.0);
-    RobotContainer.snekShooter.setState(SnekShooter.State.kOff);
+    RobotContainer.snekLoader.setState(State.kOff);
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return (RobotContainer.snekLoader.getState() == State.kOff);
   }
 }
