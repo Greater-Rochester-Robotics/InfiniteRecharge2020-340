@@ -11,7 +11,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
-import frc.robot.subsystems.ColorWheel;
+// import frc.robot.subsystems.ColorWheel;
 import frc.robot.subsystems.Drive;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.SnekShooter;
@@ -25,6 +25,7 @@ import frc.robot.commands.SnekShooter.Load;
 import frc.robot.commands.SnekShooter.Regurgitate;
 import frc.robot.commands.SnekShooter.Shoot;
 import frc.robot.commands.SnekShooter.Stop;
+import frc.robot.commands.SnekShooter.SingleShot;
 import frc.robot.commands.pathing.PathList;
 import frc.robot.commands.pathing.RunPath;
 
@@ -89,7 +90,7 @@ public class RobotContainer {
     public static Drive drive;
     public static Compressor compressor;
     public static SnekShooter snekShooter;
-    public static ColorWheel colorWheel;
+    // public static ColorWheel colorWheel;
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
    */
@@ -101,7 +102,7 @@ public class RobotContainer {
     //compressor = new Compressor(Constants.SECONDARY_PCM_ID);
     //TODO: commented out default drive for testing purposes
     //CommandScheduler.getInstance().setDefaultCommand(drive, new DriveXOne());
-    colorWheel = new ColorWheel();
+    // colorWheel = new ColorWheel();
     intake = new Intake();
     // Configure the button bindings
     configureButtonBindings();
@@ -125,7 +126,8 @@ public class RobotContainer {
     driverStart.whenPressed(new Stop());
     driverRTButton.whenPressed(new Regurgitate());
     driverRTButton.whenReleased(new Stop());
-    // driverYButton.whenPressed(new )
+    driverLTButton.whenPressed(new SingleShot());
+    driverLTButton.whenReleased(new Load());
   }
 
 
