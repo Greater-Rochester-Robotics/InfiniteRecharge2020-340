@@ -25,7 +25,9 @@ import frc.robot.commands.DriveXOne;
 import frc.robot.commands.SnekLoader.Load;
 import frc.robot.commands.SnekLoader.Regurgitate;
 import frc.robot.commands.Shooter.Shoot;
-import frc.robot.commands.SnekLoader.Stop;
+import frc.robot.commands.Shooter.SingleShot;
+import frc.robot.commands.Shooter.StopShoot;
+import frc.robot.commands.SnekLoader.StopSnek;
 import frc.robot.commands.pathing.PathList;
 import frc.robot.commands.pathing.RunPath;
 
@@ -121,12 +123,18 @@ public class RobotContainer {
     //driverRTButton.whenHeld(new RunPath(PathList.LEFT_ROCKET.HECK_PATH));
     //driverRTButton.whenReleased(new DriveXOne());
     driverRB.whenPressed(new Load());
-    driverRB.whenReleased(new Stop());
+    driverRB.whenReleased(new StopSnek());
     driverLB.whenPressed(new Shoot());
-    driverLB.whenReleased(new Stop());
-    driverStart.whenPressed(new Stop());
+    driverLB.whenReleased(new StopSnek());
+    driverLB.whenReleased(new StopShoot());
+    driverStart.whenPressed(new StopSnek());
+    driverStart.whenPressed(new StopShoot());
     driverRTButton.whenPressed(new Regurgitate());
-    driverRTButton.whenReleased(new Stop());
+    driverRTButton.whenReleased(new StopSnek());
+    driverRTButton.whenReleased(new StopShoot());
+    driverLTButton.whenPressed(new SingleShot());
+    driverLTButton.whenReleased(new StopSnek());
+    driverLTButton.whenReleased(new StopShoot());
     // driverYButton.whenPressed(new )
   }
 

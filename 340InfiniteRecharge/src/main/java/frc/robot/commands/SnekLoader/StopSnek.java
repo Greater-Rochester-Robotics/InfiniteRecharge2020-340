@@ -11,15 +11,14 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
 import frc.robot.subsystems.SnekLoader.State;
 
-public class Stop extends CommandBase {
+public class StopSnek extends CommandBase {
   /**
    * Creates a new Stop.
    */
-  public Stop() {
+  public StopSnek() {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(RobotContainer.snekLoader);
   }
-
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {

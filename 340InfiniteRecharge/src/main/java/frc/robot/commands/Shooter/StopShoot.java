@@ -5,43 +5,40 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.Harvester;
+package frc.robot.commands.Shooter;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Robot;
 import frc.robot.RobotContainer;
 
-import com.revrobotics.CANSparkMax;
-
-public class IntakeBalls extends CommandBase {
+public class StopShoot extends CommandBase {
   /**
-   * Creates a new Harvest.
+   * Creates a new StopShoot.
    */
-  public IntakeBalls() {
+  public StopShoot() {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(RobotContainer.harvester);
+    addRequirements(RobotContainer.shooter);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    RobotContainer.shooter.setShooterWheel(0.0);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    RobotContainer.harvester.setAxleWheels(1.0);
   }
 
   // Called once the command ends or is interrupted.
-  //If command is interuptted, stops the harvester
   @Override
   public void end(boolean interrupted) {
-    RobotContainer.harvester.setAxleWheels(0.0);
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return true;
   }
 }

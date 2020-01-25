@@ -10,13 +10,11 @@ package frc.robot.commands.Harvester;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
 
-import com.revrobotics.CANSparkMax;
-
-public class IntakeBalls extends CommandBase {
+public class SpitBalls extends CommandBase {
   /**
-   * Creates a new Harvest.
+   * Creates a new SpitBalls.
    */
-  public IntakeBalls() {
+  public SpitBalls() {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(RobotContainer.harvester);
   }
@@ -29,11 +27,10 @@ public class IntakeBalls extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    RobotContainer.harvester.setAxleWheels(1.0);
+    RobotContainer.harvester.setAxleWheels(-1.0);
   }
 
   // Called once the command ends or is interrupted.
-  //If command is interuptted, stops the harvester
   @Override
   public void end(boolean interrupted) {
     RobotContainer.harvester.setAxleWheels(0.0);

@@ -15,6 +15,7 @@ import com.revrobotics.ControlType;
 import com.revrobotics.CANDigitalInput.LimitSwitchPolarity;
 import com.revrobotics.CANSparkMax.IdleMode;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
@@ -27,6 +28,7 @@ public class BallHandler extends SubsystemBase {
   private static CANSparkMax[] handleMotors;
   private static CANDigitalInput[] handleSensors;
   private static CANEncoder[] handleEncoders;
+  private static DigitalInput flyWheelSensor;
 
   public enum State {
     kFillTo4, kFillTo3, kFillTo2, kFillTo1, kFillTo0, kOff, kShootBall4, kShootBall3, kShootBall2, kShootBall1,
@@ -50,6 +52,7 @@ public class BallHandler extends SubsystemBase {
         new CANSparkMax(Constants.BALL_HANDLER_MOTOR_3, MotorType.kBrushless),
         new CANSparkMax(Constants.BALL_HANDLER_MOTOR_4, MotorType.kBrushless) };
     for (int i = 0; i <= 4; i++) {
+
       // sets default setup for motors
       handleMotors[i].restoreFactoryDefaults();
       handleMotors[i].setIdleMode(IdleMode.kBrake);// set brake mode, so motors stop on a dime
