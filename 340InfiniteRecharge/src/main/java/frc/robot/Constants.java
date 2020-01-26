@@ -73,17 +73,13 @@ public final class Constants {
 
 	/* TalonSRXs */
 
-	public static final int SNEKSHOOTER_TALONSRX_1 = 2;
-	public static final int SNEKSHOOTER_TALONSRX_2 = 3;
-	public static final int SNEKSHOOTER_TALONSRX_3 = 4;
-	public static final int SNEKSHOOTER_TALONSRX_4 = 5;
-	public static final int SNEKSHOOTER_TALONSRX_5 = 6;
+	/* Falcon 500 */
+	public static final int DRIVE_LEFT_CHANNEL_A = 20; //front-left
+    public static final int DRIVE_LEFT_CHANNEL_B = 21; //back-left
+	public static final int DRIVE_RIGHT_CHANNEL_A = 22; //back-right
+	public static final int DRIVE_RIGHT_CHANNEL_B = 23; //front-right
 
 	/* Spark MAXes */
-	public static final int DRIVE_SPARK_LEFT_CHANNEL_A = 20; //front-left
-    public static final int DRIVE_SPARK_LEFT_CHANNEL_B = 21; //back-left
-	public static final int DRIVE_SPARK_RIGHT_CHANNEL_A = 22; //back-right
-	public static final int DRIVE_SPARK_RIGHT_CHANNEL_B = 23; //front-right
 	public static final int SNEKSHOOTER_SPARK_LAUNCHER = 24; //launching wheel for the prototype
 	public static final int INTAKE_AXLE = 30;
 	

@@ -7,6 +7,8 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
@@ -27,11 +29,13 @@ import frc.robot.commands.DriveXOne;
 public class Drive extends SubsystemBase {
 	private double leftSpeed, rightSpeed; //Makes math easier for fancy drive
 
+
+
 	//RIP IMU
 	// private static ADIS16448_IMU imu;
 	private static ADXRS450_Gyro gyro;
 	private static Encoder encLeft, encRight;
-	private static CANSparkMax driveLeftA, driveLeftB, driveRightA, driveRightB;
+	private static TalonFX driveLeftA, driveLeftB, driveRightA, driveRightB;
 	private static PCM_LED led;
 
 	/**
@@ -55,10 +59,10 @@ public class Drive extends SubsystemBase {
 		encLeft.setReverseDirection(true);
 		encRight.setReverseDirection(true);
 
-		driveLeftA = new CANSparkMax(Constants.DRIVE_SPARK_LEFT_CHANNEL_A, MotorType.kBrushless);
-		driveLeftB = new CANSparkMax(Constants.DRIVE_SPARK_LEFT_CHANNEL_B, MotorType.kBrushless);
-		driveRightA = new CANSparkMax(Constants.DRIVE_SPARK_RIGHT_CHANNEL_A, MotorType.kBrushless);
-		driveRightB = new CANSparkMax(Constants.DRIVE_SPARK_RIGHT_CHANNEL_B, MotorType.kBrushless);
+		driveLeftA = new TalonFX(Constants.DRIVE_LEFT_CHANNEL_A);
+		driveLeftB = new TalonFX(Constants.DRIVE_LEFT_CHANNEL_B);
+		driveRightA = new TalonFX(Constants.DRIVE_RIGHT_CHANNEL_A);
+		driveRightB = new TalonFX(Constants.DRIVE_RIGHT_CHANNEL_B);
 		
 		//TODO: Commented out PCM LED due to null exception
 		//led = new PCM_LED(Constants.SECONDARY_PCM_ID, Constants.LED_PCM_CHANNEL);
@@ -151,8 +155,8 @@ public class Drive extends SubsystemBase {
 			speed = 1;
 		}
 
-		driveLeftA.set(speed);
-		driveLeftB.set(speed);
+		driveLeftA.set(ControlMode.PercentOutput,speed);
+		driveLeftB.set(ControlMode.PercentOutput,speed);
 	}
 
 	/**
@@ -166,8 +170,8 @@ public class Drive extends SubsystemBase {
 			speed = 1;
 		}
 
-		driveRightA.set(speed);
-		driveRightB.set(speed);
+		driveRightA.set(ControlMode.PercentOutput,speed);
+		driveRightB.set(ControlMode.PercentOutput,speed);
 	}
 
 	/**
