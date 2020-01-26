@@ -10,7 +10,6 @@ package frc.robot.commands.Shooter;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
 import edu.wpi.first.wpilibj.Timer;
-import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.SnekLoader.State;
 
 public class SingleShot extends CommandBase {

@@ -10,8 +10,6 @@ package frc.robot.commands.Harvester;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
 
-import com.revrobotics.CANSparkMax;
-
 public class IntakeBalls extends CommandBase {
   /**
    * Creates a new Harvest.

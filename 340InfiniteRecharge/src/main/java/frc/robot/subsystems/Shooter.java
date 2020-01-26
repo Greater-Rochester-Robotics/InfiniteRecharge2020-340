@@ -15,6 +15,7 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import com.revrobotics.ControlType;
 import com.revrobotics.EncoderType;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
@@ -24,6 +25,10 @@ public class Shooter extends SubsystemBase {
   private static CANSparkMax shooterWheel;
   private CANEncoder shooterEncoder;
   private double targetVelocity;
+  private DigitalInput ballCounter;
+  private int ballCount = 0;
+  private int totalBallCount = 0;
+  private boolean ballPresent;
 
   /**
    * Creates a new Shooter.
@@ -36,6 +41,8 @@ public class Shooter extends SubsystemBase {
     shooterWheel.getPIDController().setFF(0.000174);
     shooterWheel.setInverted(true);
     shooterEncoder = shooterWheel.getEncoder(EncoderType.kHallSensor, 42);
+    ballCounter = new DigitalInput(Constants.BALL_COUNTER_SENSOR);
+    ballPresent = false;
   }
 
   // Returns RPM of shooterWheel
@@ -57,5 +64,28 @@ public class Shooter extends SubsystemBase {
   public boolean isShooterAtSpeed(){
     return ((shooterEncoder.getVelocity() >= targetVelocity*.98) && (shooterEncoder.getVelocity() <= targetVelocity*1.02));
   
+  }
+ 
+  public void resetBallCount(){
+    ballCount = 0;
+  }
+
+  public int getBallCount(){
+    return ballCount;
+  }
+
+  public int getTotalBallCount(){
+    return totalBallCount;
+  }
+
+  @Override
+  public void periodic(){
+    //if ballCounter sensor is false and ball sensor was true previously, add one
+    if (!ballCounter.get() && ballPresent){
+      ballCount ++;
+      totalBallCount ++;
+    }
+
+    ballPresent = ballCounter.get();
   }
 }

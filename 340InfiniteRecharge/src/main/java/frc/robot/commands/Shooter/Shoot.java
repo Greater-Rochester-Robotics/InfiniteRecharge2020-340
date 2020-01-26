@@ -8,20 +8,19 @@
 package frc.robot.commands.Shooter;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Robot;
 import frc.robot.RobotContainer;
-import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.SnekLoader.State;
-import edu.wpi.first.wpilibj.Timer;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Shoot extends CommandBase {
   private int stateIndex;
+  private int ballsToShoot;
 
-  /**
-   * Creates a new Shoot.
-   */
   public Shoot() {
+    this(-1);
+  }
+
+  public Shoot(int numToShoot) {
+    this.ballsToShoot = numToShoot;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(RobotContainer.shooter, RobotContainer.snekLoader);
   }
@@ -31,16 +30,19 @@ public class Shoot extends CommandBase {
   public void initialize() {
     stateIndex = 4;
     RobotContainer.shooter.setShooterWheel(5500);
-
+    RobotContainer.shooter.resetBallCount();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    // Reinstantiate if PID loop isn't working for the flywheel to spin up between
+    // Check speed if PID loop isn't working for the flywheel to spin up between
     // shots
-    // if(RobotContainer.shooter.isShooterAtSpeed()){
-    if ((stateIndex == 4) && RobotContainer.shooter.isShooterAtSpeed()) {
+    if (!RobotContainer.shooter.isShooterAtSpeed()) {
+      return;
+    }
+
+    if ((stateIndex == 4)) {
       RobotContainer.snekLoader.setState(State.kShootBall4);
       stateIndex = 3;
     } else if (stateIndex == 3 && (!RobotContainer.snekLoader.getHandleSensor(4))) {
@@ -61,7 +63,7 @@ public class Shoot extends CommandBase {
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {
+  public void end(final boolean interrupted) {
     RobotContainer.shooter.setShooterWheel(0.0);
     RobotContainer.snekLoader.setState(State.kOff);
   }
@@ -69,6 +71,6 @@ public class Shoot extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return ((RobotContainer.shooter.getBallCount() >= ballsToShoot) && ballsToShoot > 0);
   }
 }

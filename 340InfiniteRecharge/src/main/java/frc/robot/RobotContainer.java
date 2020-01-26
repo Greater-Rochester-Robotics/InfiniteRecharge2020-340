@@ -10,26 +10,23 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.GenericHID;
+import edu.wpi.first.wpilibj.GenericHID.RumbleType;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.button.Button;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import frc.robot.commands.Shooter.Shoot;
+import frc.robot.commands.Shooter.SingleShot;
+import frc.robot.commands.Shooter.StopShoot;
+import frc.robot.commands.SnekLoader.Load;
+import frc.robot.commands.SnekLoader.Regurgitate;
+import frc.robot.commands.SnekLoader.StopSnek;
 import frc.robot.subsystems.ColorWheel;
 import frc.robot.subsystems.Drive;
 import frc.robot.subsystems.Harvester;
 import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.SnekLoader;
-import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.GenericHID.RumbleType;
-import edu.wpi.first.wpilibj2.command.button.*;
-import frc.robot.commands.DriveXOne;
-import frc.robot.commands.SnekLoader.Load;
-import frc.robot.commands.SnekLoader.Regurgitate;
-import frc.robot.commands.Shooter.Shoot;
-import frc.robot.commands.Shooter.SingleShot;
-import frc.robot.commands.Shooter.StopShoot;
-import frc.robot.commands.SnekLoader.StopSnek;
-import frc.robot.commands.pathing.PathList;
-import frc.robot.commands.pathing.RunPath;
 
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a

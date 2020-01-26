@@ -54,7 +54,7 @@ public final class Constants {
 
 	
 	/* Sensors */
-
+	public static final int BALL_COUNTER_SENSOR = 7;
 
 
 	////////////////////////

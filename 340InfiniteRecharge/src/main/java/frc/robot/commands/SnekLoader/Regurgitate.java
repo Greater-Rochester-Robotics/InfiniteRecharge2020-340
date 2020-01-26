@@ -9,9 +9,7 @@ package frc.robot.commands.SnekLoader;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
-import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.SnekLoader.State;
-import frc.robot.Robot;
 
 public class Regurgitate extends CommandBase {
   /**
