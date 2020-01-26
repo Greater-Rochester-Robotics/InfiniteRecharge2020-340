@@ -10,6 +10,8 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.util.Color;
+
 import com.revrobotics.ColorSensorV3;
 import com.revrobotics.ColorSensorV3.RawColor;
 
@@ -21,10 +23,35 @@ public class ColorWheel extends SubsystemBase {
   private final I2C.Port i2cPort = I2C.Port.kOnboard;
   private final ColorSensorV3 m_colorSensor = new ColorSensorV3(i2cPort);
 
+
+  public enum ColorName{
+    red, blue, green, yellow
+  }
+
+
+
   public ColorWheel() {
 
   }
 
+  public ColorName getColor(Color color) {
+    if (color.blue >= 0.35) {
+      return ColorWheel.ColorName.blue;
+    }
+    else if (color.red > color.green) {
+      return ColorWheel.ColorName.red;
+    }
+    else if (color.red > 0.25 && color.green > 0.5) {
+      return ColorWheel.ColorName.yellow;
+    }
+    else if (color.green > color.blue && color.green > color.red) {
+      return ColorWheel.ColorName.green;
+    }
+    else{
+    return null;
+    }
+  }
+  
   @Override
   public void periodic() {
       /**
@@ -37,7 +64,7 @@ public class ColorWheel extends SubsystemBase {
      * an object is the more light from the surroundings will bleed into the 
      * measurements and make it difficult to accurately determine its color.
      */
-    RawColor detectedColor = m_colorSensor.getRawColor();
+    Color detectedColor = m_colorSensor.getColor();
 
     /**
      * The sensor returns a raw IR value of the infrared light detected.
@@ -52,8 +79,15 @@ public class ColorWheel extends SubsystemBase {
     SmartDashboard.putNumber("Green", detectedColor.green);
     SmartDashboard.putNumber("Blue", detectedColor.blue);
     SmartDashboard.putNumber("IR", IR);
-    // This method will be called once per scheduler run
     
+    SmartDashboard.putString("Color", getColor(detectedColor).name());
+
+
+
+
+    
+    // This method will be called once per scheduler run
+    //System.out.println()
     /**
      * In addition to RGB IR values, the color sensor can also return an 
      * infrared proximity value. The chip contains an IR led which will emit
@@ -69,5 +103,9 @@ public class ColorWheel extends SubsystemBase {
 
     SmartDashboard.putNumber("Proximity", proximity);
 
+
+
+    
+    
   }
 }

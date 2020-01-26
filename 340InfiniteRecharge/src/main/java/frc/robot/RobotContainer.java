@@ -20,7 +20,6 @@ import frc.robot.commands.Shooter.Shoot;
 import frc.robot.commands.Shooter.SingleShot;
 import frc.robot.commands.Shooter.StopShoot;
 import frc.robot.commands.SnekLoader.Load;
-import frc.robot.commands.SnekLoader.Regurgitate;
 import frc.robot.commands.SnekLoader.StopSnek;
 import frc.robot.subsystems.ColorWheel;
 import frc.robot.subsystems.Drive;
@@ -29,78 +28,78 @@ import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.SnekLoader;
 
 /**
- * This class is where the bulk of the robot should be declared.  Since Command-based is a
- * "declarative" paradigm, very little robot logic should actually be handled in the {@link Robot}
- * periodic methods (other than the scheduler calls).  Instead, the structure of the robot
- * (including subsystems, commands, and button mappings) should be declared here.
+ * This class is where the bulk of the robot should be declared. Since
+ * Command-based is a "declarative" paradigm, very little robot logic should
+ * actually be handled in the {@link Robot} periodic methods (other than the
+ * scheduler calls). Instead, the structure of the robot (including subsystems,
+ * commands, and button mappings) should be declared here.
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
 
- 
-  
   final Joystick driver = new Joystick(0);
   final Joystick coDriver = new Joystick(1);
-  
-    ////////////////////
-    // DRIVER BUTTONS //
-    ////////////////////
-  
-    final Button driverA = new JoystickButton(driver, 1);
-    final Button driverB = new JoystickButton(driver, 2);
-    final Button driverX = new JoystickButton(driver, 3);
-    final Button driverY = new JoystickButton(driver, 4);
-    final Button driverLB = new JoystickButton(driver, 5);
-    final Button driverRB = new JoystickButton(driver, 6);
-    final Button driverBack = new JoystickButton(driver, 7);
-    final Button driverStart = new JoystickButton(driver, 8);
-    final Button driverLS = new JoystickButton(driver, 9);
-    final Button driverRS = new JoystickButton(driver, 10);
-    final Button driverDUp = new DPad(driver, DPad.Direction.UP);
-    final Button driverDDown = new DPad(driver, DPad.Direction.DOWN);
-    final Button driverDLeft = new DPad(driver, DPad.Direction.LEFT);
-    final Button driverDRight = new DPad(driver, DPad.Direction.RIGHT);
-    final Button driverLTButton = new JoyTriggerButton(driver, .3, Axis.LEFT_TRIGGER);
-    final Button driverRTButton = new JoyTriggerButton(driver, .3, Axis.RIGHT_TRIGGER);
-  
-    ///////////////////////
-    // CO-DRIVER BUTTONS //
-    ///////////////////////
-  
-    final Button coDriverA = new JoystickButton(coDriver, 1);
-    final Button coDriverB = new JoystickButton(coDriver, 2);
-    final Button coDriverX = new JoystickButton(coDriver, 3);
-    final Button coDriverY = new JoystickButton(coDriver, 4);
-    final Button coDriverLB = new JoystickButton(coDriver, 5);
-    final Button coDriverRB = new JoystickButton(coDriver, 6);
-    final Button coDriverBack = new JoystickButton(coDriver, 7);
-    final Button coDriverStart = new JoystickButton(coDriver, 8);
-    final Button coDriverLS = new JoystickButton(coDriver, 9);
-    final Button coDriverRS = new JoystickButton(coDriver, 10);
-    final Button coDriverDUp = new DPad(coDriver, DPad.Direction.UP);
-    final Button coDriverDDown = new DPad(coDriver, DPad.Direction.DOWN);
-    final Button coDriverDLeft = new DPad(coDriver, DPad.Direction.LEFT);
-    final Button coDriverDRight = new DPad(coDriver, DPad.Direction.RIGHT);
-    final Button coDriverLTButton = new JoyTriggerButton(coDriver, .7, Axis.LEFT_TRIGGER);
-    final Button coDriverRTButton = new JoyTriggerButton(coDriver, .7, Axis.RIGHT_TRIGGER);
 
-    public static SnekLoader snekLoader;
-    public static Harvester harvester;
-    public static Drive drive;
-    public static Compressor compressor;
-    public static Shooter shooter;
-    public static ColorWheel colorWheel;
+  ////////////////////
+  // DRIVER BUTTONS //
+  ////////////////////
+
+  final Button driverA = new JoystickButton(driver, 1);
+  final Button driverB = new JoystickButton(driver, 2);
+  final Button driverX = new JoystickButton(driver, 3);
+  final Button driverY = new JoystickButton(driver, 4);
+  final Button driverLB = new JoystickButton(driver, 5);
+  final Button driverRB = new JoystickButton(driver, 6);
+  final Button driverBack = new JoystickButton(driver, 7);
+  final Button driverStart = new JoystickButton(driver, 8);
+  final Button driverLS = new JoystickButton(driver, 9);
+  final Button driverRS = new JoystickButton(driver, 10);
+  final Button driverDUp = new DPad(driver, DPad.Direction.UP);
+  final Button driverDDown = new DPad(driver, DPad.Direction.DOWN);
+  final Button driverDLeft = new DPad(driver, DPad.Direction.LEFT);
+  final Button driverDRight = new DPad(driver, DPad.Direction.RIGHT);
+  final Button driverLTButton = new JoyTriggerButton(driver, .3, Axis.LEFT_TRIGGER);
+  final Button driverRTButton = new JoyTriggerButton(driver, .3, Axis.RIGHT_TRIGGER);
+
+  ///////////////////////
+  // CO-DRIVER BUTTONS //
+  ///////////////////////
+
+  final Button coDriverA = new JoystickButton(coDriver, 1);
+  final Button coDriverB = new JoystickButton(coDriver, 2);
+  final Button coDriverX = new JoystickButton(coDriver, 3);
+  final Button coDriverY = new JoystickButton(coDriver, 4);
+  final Button coDriverLB = new JoystickButton(coDriver, 5);
+  final Button coDriverRB = new JoystickButton(coDriver, 6);
+  final Button coDriverBack = new JoystickButton(coDriver, 7);
+  final Button coDriverStart = new JoystickButton(coDriver, 8);
+  final Button coDriverLS = new JoystickButton(coDriver, 9);
+  final Button coDriverRS = new JoystickButton(coDriver, 10);
+  final Button coDriverDUp = new DPad(coDriver, DPad.Direction.UP);
+  final Button coDriverDDown = new DPad(coDriver, DPad.Direction.DOWN);
+  final Button coDriverDLeft = new DPad(coDriver, DPad.Direction.LEFT);
+  final Button coDriverDRight = new DPad(coDriver, DPad.Direction.RIGHT);
+  final Button coDriverLTButton = new JoyTriggerButton(coDriver, .7, Axis.LEFT_TRIGGER);
+  final Button coDriverRTButton = new JoyTriggerButton(coDriver, .7, Axis.RIGHT_TRIGGER);
+
+  public static SnekLoader snekLoader;
+  public static Harvester harvester;
+  public static Drive drive;
+  public static Compressor compressor;
+  public static Shooter shooter;
+  public static ColorWheel colorWheel;
+
   /**
-   * The container for the robot.  Contains subsystems, OI devices, and commands.
+   * The container for the robot. Contains subsystems, OI devices, and commands.
    */
   public RobotContainer() {
-    //TODO: comment this out to drive
-    //drive  = new Drive();
+    // TODO: comment this out to drive
+    // drive = new Drive();
     shooter = new Shooter();
-    //TODO: Pneumatics system, set that up
-    //compressor = new Compressor(Constants.SECONDARY_PCM_ID);
-    //TODO: commented out default drive for testing purposes
-    //CommandScheduler.getInstance().setDefaultCommand(drive, new DriveXOne());
+    // TODO: Pneumatics system, set that up
+    // compressor = new Compressor(Constants.SECONDARY_PCM_ID);
+    // TODO: commented out default drive for testing purposes
+    // CommandScheduler.getInstance().setDefaultCommand(drive, new DriveXOne());
     colorWheel = new ColorWheel();
     harvester = new Harvester();
     snekLoader = new SnekLoader();
@@ -126,7 +125,6 @@ public class RobotContainer {
     driverLB.whenReleased(new StopShoot());
     driverStart.whenPressed(new StopSnek());
     driverStart.whenPressed(new StopShoot());
-    driverRTButton.whenPressed(new Regurgitate());
     driverRTButton.whenReleased(new StopSnek());
     driverRTButton.whenReleased(new StopShoot());
     driverLTButton.whenPressed(new SingleShot());
