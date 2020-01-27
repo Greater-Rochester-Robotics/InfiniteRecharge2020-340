@@ -5,50 +5,35 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.SnekShooter;
+package frc.robot.commands.Harvester;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
-import frc.robot.subsystems.SnekShooter;
-import edu.wpi.first.wpilibj.Timer;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-public class Shoot extends CommandBase {
-  Timer timer = new Timer();
+public class SpitBalls extends CommandBase {
   /**
-   * Creates a new Shoot.
+   * Creates a new SpitBalls.
    */
-  public Shoot() {
+  public SpitBalls() {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(RobotContainer.snekShooter);
+    addRequirements(RobotContainer.harvester);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    timer.reset();
-    timer.start();
-    RobotContainer.snekShooter.setShooterWheel(5500);
-    SmartDashboard.putNumber("newSpeed",5500);
-    
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {  
-    if(timer.get()>1.5){
-      RobotContainer.snekShooter.setState(SnekShooter.State.kShootBall5);
-    }
-    double newSpeed = SmartDashboard.getNumber("newSpeed", 5500);
-    RobotContainer.snekShooter.setShooterWheel(newSpeed);
-
+  public void execute() {
+    RobotContainer.harvester.setAxleWheels(-1.0);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    RobotContainer.snekShooter.setShooterWheel(0.0);
-    RobotContainer.snekShooter.setState(SnekShooter.State.kOff);
+    RobotContainer.harvester.setAxleWheels(0.0);
   }
 
   // Returns true when the command should end.

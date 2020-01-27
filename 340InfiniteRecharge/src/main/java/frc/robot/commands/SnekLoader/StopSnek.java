@@ -5,51 +5,39 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.SnekShooter;
+package frc.robot.commands.SnekLoader;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
-import edu.wpi.first.wpilibj.Timer;
-import frc.robot.subsystems.SnekShooter;
+import frc.robot.subsystems.SnekLoader.State;
 
-public class SingleShot extends CommandBase {
-  Timer timer = new Timer();
+public class StopSnek extends CommandBase {
   /**
-   * Creates a new SingleShot.
+   * Creates a new Stop.
    */
-  public SingleShot() {
+  public StopSnek() {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(RobotContainer.snekShooter);
+    addRequirements(RobotContainer.snekLoader);
   }
-
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    timer.reset();
-    timer.start();
-    RobotContainer.snekShooter.setShooterWheel(5500);
+    RobotContainer.snekLoader.setState(State.kOff);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if(timer.get()>1.5 && timer.get()<2.0){
-      RobotContainer.snekShooter.setState(SnekShooter.State.kSemiShot);
-    }
-    if(timer.get()>2.0){
-      RobotContainer.snekShooter.setState(SnekShooter.State.kReload);
-    }
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    RobotContainer.snekShooter.setState(SnekShooter.State.kOff);
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return true;
   }
 }

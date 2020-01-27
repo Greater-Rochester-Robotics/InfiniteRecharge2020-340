@@ -5,12 +5,11 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.SnekShooter;
+package frc.robot.commands.SnekLoader;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Robot;
 import frc.robot.RobotContainer;
-import frc.robot.subsystems.SnekShooter;
+import frc.robot.subsystems.SnekLoader.State;
 
 public class Load extends CommandBase {
   /**
@@ -18,7 +17,7 @@ public class Load extends CommandBase {
    */
   public Load() {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(RobotContainer.snekShooter);
+    addRequirements(RobotContainer.shooter);
   }
 
   // Called when the command is initially scheduled.
@@ -27,7 +26,7 @@ public class Load extends CommandBase {
     // double[] speds = {-1.0,-0.5,0.0,0.5,1.0};
     // RobotContainer.snekShooter.setAllLoadWheels(speds);
     // RobotContainer.snekShooter.setShooterWheel(1.0);
-    RobotContainer.snekShooter.setState(SnekShooter.State.kFillTo5);
+    RobotContainer.snekLoader.setState(State.kFillTo4);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -38,12 +37,12 @@ public class Load extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    RobotContainer.snekShooter.setState(SnekShooter.State.kOff);
+    RobotContainer.snekLoader.setState(State.kOff);
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return (RobotContainer.snekShooter.getState() == SnekShooter.State.kOff);
+    return (RobotContainer.snekLoader.getState() == State.kOff);
   }
 }
