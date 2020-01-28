@@ -26,6 +26,9 @@ import frc.robot.subsystems.Drive;
 import frc.robot.subsystems.Harvester;
 import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.SnekLoader;
+import frc.robot.commands.DriveAutoAlign;
+import frc.robot.commands.DriveXOne;
+import frc.robot.commands.automatedAlignment.AutomatedAlignment;
 
 /**
  * This class is where the bulk of the robot should be declared. Since
@@ -106,6 +109,11 @@ public class RobotContainer {
     colorWheel = new ColorWheel();
     harvester = new Harvester();
     snekLoader = new SnekLoader();
+    drive  = new Drive();
+    //TODO: Pneumatics system, set that up
+    //compressor = new Compressor(Constants.SECONDARY_PCM_ID);
+    CommandScheduler.getInstance().setDefaultCommand(drive, new DriveXOne());
+    
     // Configure the button bindings
     configureButtonBindings();
 
@@ -134,6 +142,9 @@ public class RobotContainer {
     driverLTButton.whenReleased(new StopSnek());
     driverLTButton.whenReleased(new StopShoot());
     // driverYButton.whenPressed(new )
+    coDriverRB.whenPressed(new DriveAutoAlign());
+    coDriverRB.whenReleased(new DriveXOne());
+ 
   }
 
 

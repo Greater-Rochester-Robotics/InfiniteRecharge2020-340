@@ -12,6 +12,7 @@ import frc.robot.Robot;
 import frc.robot.RobotContainer;
 import frc.robot.RobotContainer.Axis;
 import edu.wpi.first.networktables.NetworkTableInstance;
+
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
@@ -47,10 +48,12 @@ public class DriveAutoAlign extends CommandBase {
   @Override
   public void execute() {
 	  NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(3); //turns on limelight led boi
-	  RobotContainer.drive.setLEDs(true); //also turn on PCM LEDs
+	//  RobotContainer.drive.setLEDs(true); // also turn on PCM LEDs
 	  // drive forward constnagt slow speed 
 	  // adjust angle robot is at as needed
 	  double haveTarget = NetworkTableInstance.getDefault().getTable("limelight").getEntry("tv").getDouble(0);
+	  System.out.println(NetworkTableInstance.getDefault().getTable("limelight").getEntry("tv").getDouble(0));
+	  System.out.println(haveTarget);
 	  if(haveTarget == 0 && hadTarget == 0) {
 		//Rumble soft if NO target
 		Robot.robotContainer.setDriverRumble(0.7, 0);
@@ -128,6 +131,6 @@ public class DriveAutoAlign extends CommandBase {
 	  //turn off led (no blindness please)
 
 	NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(1); //turns off limelight led boi
-	RobotContainer.drive.setLEDs(false); //also turn off PCM LEDs
+	// RobotContainer.drive.setLEDs(false); //also turn off PCM LEDs
   }
 }
