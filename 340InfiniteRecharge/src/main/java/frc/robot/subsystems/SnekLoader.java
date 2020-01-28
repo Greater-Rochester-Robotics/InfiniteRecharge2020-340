@@ -16,6 +16,7 @@ import com.revrobotics.CANSparkMax.IdleMode;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import frc.robot.RobotContainer;
 
 /**
  * This class is for ball handling with 5 CANSparkMax objects with limit
@@ -41,13 +42,26 @@ public class SnekLoader extends SubsystemBase {
   static final double MOTOR_IN_SPEED4 = 0.35;
 
   public SnekLoader() {
-    handleMotors = new CANSparkMax[] {
-        // TODO:Need to set CAN Id for motors
-        new CANSparkMax(Constants.BALL_HANDLER_MOTOR_0, MotorType.kBrushless),
-        new CANSparkMax(Constants.BALL_HANDLER_MOTOR_1, MotorType.kBrushless),
-        new CANSparkMax(Constants.BALL_HANDLER_MOTOR_2, MotorType.kBrushless),
-        new CANSparkMax(Constants.BALL_HANDLER_MOTOR_3, MotorType.kBrushless),
-        new CANSparkMax(Constants.BALL_HANDLER_MOTOR_4, MotorType.kBrushless) };
+    if (RobotContainer.isBrushedSnek) {
+      // This is here so we can support the prototype that does not have the neo550s
+      // on them and instead have the BAG motors.
+      handleMotors = new CANSparkMax[] {
+          // TODO:Need to set CAN Id for motors
+          new CANSparkMax(Constants.BALL_HANDLER_MOTOR_0, MotorType.kBrushed),
+          new CANSparkMax(Constants.BALL_HANDLER_MOTOR_1, MotorType.kBrushed),
+          new CANSparkMax(Constants.BALL_HANDLER_MOTOR_2, MotorType.kBrushed),
+          new CANSparkMax(Constants.BALL_HANDLER_MOTOR_3, MotorType.kBrushed),
+          new CANSparkMax(Constants.BALL_HANDLER_MOTOR_4, MotorType.kBrushed) };
+    } else {
+      handleMotors = new CANSparkMax[] {
+          // TODO:Need to set CAN Id for motors
+          new CANSparkMax(Constants.BALL_HANDLER_MOTOR_0, MotorType.kBrushless),
+          new CANSparkMax(Constants.BALL_HANDLER_MOTOR_1, MotorType.kBrushless),
+          new CANSparkMax(Constants.BALL_HANDLER_MOTOR_2, MotorType.kBrushless),
+          new CANSparkMax(Constants.BALL_HANDLER_MOTOR_3, MotorType.kBrushless),
+          new CANSparkMax(Constants.BALL_HANDLER_MOTOR_4, MotorType.kBrushless) };
+    }
+
     // sets default setup for motors
     for (int i = 0; i <= 4; i++) {
       handleMotors[i].restoreFactoryDefaults();

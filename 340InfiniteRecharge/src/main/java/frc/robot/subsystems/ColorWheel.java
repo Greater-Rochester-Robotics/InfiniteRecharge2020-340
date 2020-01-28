@@ -35,13 +35,13 @@ public class ColorWheel extends SubsystemBase {
   }
 
   public ColorName getColor(Color color) {
-    if (color.blue >= 0.35) {
+    if (color.blue >= 0.30) {
       return ColorWheel.ColorName.blue;
     }
-    else if (color.red > color.green) {
+    else if (color.red >= 0.30 && color.green <= 0.45) {
       return ColorWheel.ColorName.red;
     }
-    else if (color.red > 0.25 && color.green > 0.5) {
+    else if (color.red > 0.25 && color.green > 0.45) {
       return ColorWheel.ColorName.yellow;
     }
     else if (color.green > color.blue && color.green > color.red) {

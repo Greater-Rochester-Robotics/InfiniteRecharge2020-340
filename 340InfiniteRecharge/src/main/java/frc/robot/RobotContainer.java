@@ -57,7 +57,7 @@ public class RobotContainer {
   final Button driverDUp = new DPad(driver, DPad.Direction.UP);
   final Button driverDDown = new DPad(driver, DPad.Direction.DOWN);
   final Button driverDLeft = new DPad(driver, DPad.Direction.LEFT);
-  final Button driverDRight = new DPad(driver, DPad.Direction.RIGHT);
+  final Button driverDRight = new DPad(   driver, DPad.Direction.RIGHT);
   final Button driverLTButton = new JoyTriggerButton(driver, .3, Axis.LEFT_TRIGGER);
   final Button driverRTButton = new JoyTriggerButton(driver, .3, Axis.RIGHT_TRIGGER);
 
@@ -88,6 +88,9 @@ public class RobotContainer {
   public static Compressor compressor;
   public static Shooter shooter;
   public static ColorWheel colorWheel;
+
+  public static final boolean isBrushedSnek = true;
+  public static final boolean isFalconFx = false;
 
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
