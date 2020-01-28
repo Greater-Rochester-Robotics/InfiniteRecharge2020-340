@@ -7,43 +7,42 @@
 
 package frc.robot.subsystems;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
-
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.PCM_LED;
+import frc.robot.RobotContainer;
 import frc.robot.Constants;
 import frc.robot.commands.DriveXOne;
 
 /**
- * <h1>Drive</h1>
- * Moves the robot between two places. Always uses the Xbox ONE controller
- * command unless explicitly told otherwise<br>
+ * <h1>Drive</h1> Moves the robot between two places. Always uses the Xbox ONE
+ * controller command unless explicitly told otherwise<br>
  * <br>
  * Overall gear ratio: 44/5
  */
 public class Drive extends SubsystemBase {
-	private double leftSpeed, rightSpeed; //Makes math easier for fancy drive
+	private double leftSpeed, rightSpeed; // Makes math easier for fancy drive
 
-
-
-	//RIP IMU
+	// RIP IMU
 	// private static ADIS16448_IMU imu;
 	private static ADXRS450_Gyro gyro;
 	private static Encoder encLeft, encRight;
-	private static TalonFX driveLeftA, driveLeftB, driveRightA, driveRightB;
+	private static SpeedController driveLeftA, driveLeftB, driveRightA, driveRightB;
 	private static PCM_LED led;
 
 	/**
-	 * Set up the Sparks and encoders with the ports specified
-	 * in {@link Constants}, and the IMU with the Y-axis as yaw
+	 * Set up the Sparks and encoders with the ports specified in {@link Constants},
+	 * and the IMU with the Y-axis as yaw
 	 */
 	public Drive() {
-		// imu = new ADIS16448_IMU(ADIS16448_IMU.Axis.kZ); //The parameter here is the axis the IMU interprets as being yaw. This will depend on how the RIO is oriented
+		// imu = new ADIS16448_IMU(ADIS16448_IMU.Axis.kZ); //The parameter here is the
+		// axis the IMU interprets as being yaw. This will depend on how the RIO is
+		// oriented
 		// imu.calibrate();
 		// imu.reset();
 
@@ -52,30 +51,37 @@ public class Drive extends SubsystemBase {
 		encLeft = new Encoder(Constants.DRIVE_ENCODER_LEFT_CHANNEL_A, Constants.DRIVE_ENCODER_LEFT_CHANNEL_B);
 		encRight = new Encoder(Constants.DRIVE_ENCODER_RIGHT_CHANNEL_A, Constants.DRIVE_ENCODER_RIGHT_CHANNEL_B);
 
-		//256 ticks to 6pi inches = .0234375pi inches per tick
+		// 256 ticks to 6pi inches = .0234375pi inches per tick
 		encLeft.setDistancePerPulse(.0234375 * Math.PI);
 		encRight.setDistancePerPulse(.0234375 * Math.PI);
 
 		encLeft.setReverseDirection(true);
 		encRight.setReverseDirection(true);
+		if (RobotContainer.isFalconFx) {
+			driveLeftA = new WPI_TalonFX(Constants.DRIVE_LEFT_CHANNEL_A);
+			driveLeftB = new WPI_TalonFX(Constants.DRIVE_LEFT_CHANNEL_B);
+			driveRightA = new WPI_TalonFX(Constants.DRIVE_RIGHT_CHANNEL_A);
+			driveRightB = new WPI_TalonFX(Constants.DRIVE_RIGHT_CHANNEL_B);
+		} else {
+			
+			driveLeftA = new CANSparkMax(Constants.DRIVE_LEFT_CHANNEL_A, MotorType.kBrushless);
+			driveLeftB = new CANSparkMax(Constants.DRIVE_LEFT_CHANNEL_B, MotorType.kBrushless);
+			driveRightA = new CANSparkMax(Constants.DRIVE_RIGHT_CHANNEL_A, MotorType.kBrushless);
+			driveRightB = new CANSparkMax(Constants.DRIVE_RIGHT_CHANNEL_B, MotorType.kBrushless);
+		}
 
-		driveLeftA = new TalonFX(Constants.DRIVE_LEFT_CHANNEL_A);
-		driveLeftB = new TalonFX(Constants.DRIVE_LEFT_CHANNEL_B);
-		driveRightA = new TalonFX(Constants.DRIVE_RIGHT_CHANNEL_A);
-		driveRightB = new TalonFX(Constants.DRIVE_RIGHT_CHANNEL_B);
-		
-		//TODO: Commented out PCM LED due to null exception
-		//led = new PCM_LED(Constants.SECONDARY_PCM_ID, Constants.LED_PCM_CHANNEL);
+		// TODO: Commented out PCM LED due to null exception
+		// led = new PCM_LED(Constants.SECONDARY_PCM_ID, Constants.LED_PCM_CHANNEL);
 
-		//TODO: consider enslaving B motors to A motors
+		// TODO: consider enslaving B motors to A motors
 
-		//Negate all speeds to the left side to account for mirrored axes
+		// Negate all speeds to the left side to account for mirrored axes
 		driveLeftA.setInverted(true);
 		driveLeftB.setInverted(true);
 
 	}
 
-	//@Override
+	// @Override
 	public void initDefaultCommand() {
 		setDefaultCommand(new DriveXOne());
 	}
@@ -146,36 +152,39 @@ public class Drive extends SubsystemBase {
 
 	/**
 	 * Set the speed, as a percentage of max forward speed, of the left drive rail
+	 * 
 	 * @param speed percentage of max forward speed
 	 */
 	public void setDriveLeft(double speed) {
-		if(speed < -1) {
+		if (speed < -1) {
 			speed = -1;
 		} else if (speed > 1) {
 			speed = 1;
 		}
 
-		driveLeftA.set(ControlMode.PercentOutput,speed);
-		driveLeftB.set(ControlMode.PercentOutput,speed);
+		driveLeftA.set(speed);
+		driveLeftB.set(speed);
 	}
 
 	/**
 	 * Set the speed, as a percentage of max forward speed, of the right drive rail
+	 * 
 	 * @param speed percentage of max forward speed
 	 */
 	public void setDriveRight(double speed) {
-		if(speed < -1) {
+		if (speed < -1) {
 			speed = -1;
 		} else if (speed > 1) {
 			speed = 1;
 		}
 
-		driveRightA.set(ControlMode.PercentOutput,speed);
-		driveRightB.set(ControlMode.PercentOutput,speed);
+		driveRightA.set( speed);
+		driveRightB.set( speed);
 	}
 
 	/**
-	 * Set the drive train to a given speed, as a percentage of max forward speed<br>
+	 * Set the drive train to a given speed, as a percentage of max forward
+	 * speed<br>
 	 * Both rails will be at equal speed
 	 */
 	public void setDriveBoth(double speed) {
@@ -184,7 +193,8 @@ public class Drive extends SubsystemBase {
 	}
 
 	/**
-	 * Set the drive train to a given speed, as a percentage of max forward speed<br>
+	 * Set the drive train to a given speed, as a percentage of max forward
+	 * speed<br>
 	 * Rails are independently sped
 	 */
 	public void setDriveBoth(double lSpeed, double rSpeed) {
@@ -224,6 +234,7 @@ public class Drive extends SubsystemBase {
 
 	/**
 	 * Turns the LEDs on/off (for Limelight assitance)
+	 * 
 	 * @param isOn {@code true} to turn them on, {@code false} to turn them off
 	 */
 	public void setLEDs(boolean isOn) {
@@ -231,57 +242,65 @@ public class Drive extends SubsystemBase {
 	}
 
 	/**
-     * One joystick drive mode. One stick axis speeds forward/backwards, the other adds rotation on robot yaw axis
-     * @param moveValue forward/backward speed, as a percentage of max forward speed
-     * @param rotateValue rotation speed, as a percentage of max rightward rotation speed
-     */
-    public void arcadeDrive(double moveValue, double rotateValue) {
-		if(moveValue > 0.0) {
-		    if(rotateValue > 0.0) {
-		    	leftSpeed = moveValue - rotateValue;
-		    	rightSpeed = Math.max(moveValue, rotateValue);
-		    } else {
-		    	leftSpeed = Math.max(moveValue, -rotateValue);
-		    	rightSpeed = moveValue + rotateValue;
-		    }
+	 * One joystick drive mode. One stick axis speeds forward/backwards, the other
+	 * adds rotation on robot yaw axis
+	 * 
+	 * @param moveValue   forward/backward speed, as a percentage of max forward
+	 *                    speed
+	 * @param rotateValue rotation speed, as a percentage of max rightward rotation
+	 *                    speed
+	 */
+	public void arcadeDrive(double moveValue, double rotateValue) {
+		if (moveValue > 0.0) {
+			if (rotateValue > 0.0) {
+				leftSpeed = moveValue - rotateValue;
+				rightSpeed = Math.max(moveValue, rotateValue);
+			} else {
+				leftSpeed = Math.max(moveValue, -rotateValue);
+				rightSpeed = moveValue + rotateValue;
+			}
 		} else {
-		    if(rotateValue > 0.0) {
-		    	leftSpeed = -Math.max(-moveValue, rotateValue);
-		    	rightSpeed = moveValue + rotateValue;
-		    } else {
-		    	leftSpeed = moveValue - rotateValue;
-		    	rightSpeed = -Math.max(-moveValue, -rotateValue);
-		    }
+			if (rotateValue > 0.0) {
+				leftSpeed = -Math.max(-moveValue, rotateValue);
+				rightSpeed = moveValue + rotateValue;
+			} else {
+				leftSpeed = moveValue - rotateValue;
+				rightSpeed = -Math.max(-moveValue, -rotateValue);
+			}
 		}
 
-		setDriveBoth( leftSpeed , rightSpeed ); //This new drivebase is too fast
+		setDriveBoth(leftSpeed, rightSpeed); // This new drivebase is too fast
 	}
 
 	/**
-     * One joystick drive mode. One stick axis speeds forward/backwards, the other adds rotation on robot yaw axis<br>
+	 * One joystick drive mode. One stick axis speeds forward/backwards, the other
+	 * adds rotation on robot yaw axis<br>
 	 * This one also controls mantis banebot wheels
-     * @param moveValue forward/backward speed, as a percentage of max forward speed
-     * @param rotateValue rotation speed, as a percentage of max rightward rotation speed
-     */
-    public void arcadeDriveWithMantis(double moveValue, double rotateValue) {
-		if(moveValue > 0.0) {
-		    if(rotateValue > 0.0) {
-		    	leftSpeed = moveValue - rotateValue;
-		    	rightSpeed = Math.max(moveValue, rotateValue);
-		    } else {
-		    	leftSpeed = Math.max(moveValue, -rotateValue);
-		    	rightSpeed = moveValue + rotateValue;
-		    }
+	 * 
+	 * @param moveValue   forward/backward speed, as a percentage of max forward
+	 *                    speed
+	 * @param rotateValue rotation speed, as a percentage of max rightward rotation
+	 *                    speed
+	 */
+	public void arcadeDriveWithMantis(double moveValue, double rotateValue) {
+		if (moveValue > 0.0) {
+			if (rotateValue > 0.0) {
+				leftSpeed = moveValue - rotateValue;
+				rightSpeed = Math.max(moveValue, rotateValue);
+			} else {
+				leftSpeed = Math.max(moveValue, -rotateValue);
+				rightSpeed = moveValue + rotateValue;
+			}
 		} else {
-		    if(rotateValue > 0.0) {
-		    	leftSpeed = -Math.max(-moveValue, rotateValue);
-		    	rightSpeed = moveValue + rotateValue;
-		    } else {
-		    	leftSpeed = moveValue - rotateValue;
-		    	rightSpeed = -Math.max(-moveValue, -rotateValue);
-		    }
+			if (rotateValue > 0.0) {
+				leftSpeed = -Math.max(-moveValue, rotateValue);
+				rightSpeed = moveValue + rotateValue;
+			} else {
+				leftSpeed = moveValue - rotateValue;
+				rightSpeed = -Math.max(-moveValue, -rotateValue);
+			}
 		}
 
-		setDriveBoth(leftSpeed * .2, rightSpeed * .2); //This new drivebase is too fast
+		setDriveBoth(leftSpeed * .2, rightSpeed * .2); // This new drivebase is too fast
 	}
 }
