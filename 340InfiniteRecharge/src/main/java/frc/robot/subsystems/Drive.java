@@ -222,9 +222,9 @@ public class Drive extends SubsystemBase {
 	 * Turns the LEDs on/off (for Limelight assitance)
 	 * @param isOn {@code true} to turn them on, {@code false} to turn them off
 	 */
-	public void setLEDs(boolean isOn) {
-		led.set(isOn);
-	}
+	// public void setLEDs(boolean isOn) {
+		// led.set(isOn);
+	// }
 
 	/**
      * One joystick drive mode. One stick axis speeds forward/backwards, the other adds rotation on robot yaw axis

@@ -16,7 +16,9 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj2.command.button.*;
+import frc.robot.commands.DriveAutoAlign;
 import frc.robot.commands.DriveXOne;
+import frc.robot.commands.automatedAlignment.AutomatedAlignment;
 
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
@@ -88,6 +90,7 @@ public class RobotContainer {
     //TODO: Pneumatics system, set that up
     //compressor = new Compressor(Constants.SECONDARY_PCM_ID);
     CommandScheduler.getInstance().setDefaultCommand(drive, new DriveXOne());
+    
 
     
     // Configure the button bindings
@@ -103,6 +106,8 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
 
+    driverRB.whenPressed(new DriveAutoAlign());
+    driverRB.whenReleased(new DriveXOne());
  
   }
 

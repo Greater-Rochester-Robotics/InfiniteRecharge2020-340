@@ -13,7 +13,7 @@ import frc.robot.Robot;
 import frc.robot.RobotContainer;
 import frc.robot.RobotContainer.Axis;
 import edu.wpi.first.networktables.NetworkTableInstance;
-@Deprecated
+
 public class AutomatedAlignment extends CommandBase {
 	
 	double hadTarget = 0;
