@@ -8,6 +8,7 @@
 //recursive todo reminding you to use todo to locate things
 package frc.robot;
 
+import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.GenericHID.RumbleType;
@@ -28,7 +29,7 @@ import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.SnekLoader;
 import frc.robot.commands.DriveAutoAlign;
 import frc.robot.commands.DriveXOne;
-import frc.robot.commands.automatedAlignment.AutomatedAlignment;
+import edu.wpi.first.cameraserver.CameraServer;
 
 /**
  * This class is where the bulk of the robot should be declared. Since
@@ -113,6 +114,12 @@ public class RobotContainer {
     //TODO: Pneumatics system, set that up
     //compressor = new Compressor(Constants.SECONDARY_PCM_ID);
     CommandScheduler.getInstance().setDefaultCommand(drive, new DriveXOne());
+
+    CameraServer.getInstance().startAutomaticCapture();
+
+    
+		NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(3);
+		NetworkTableInstance.getDefault().getTable("limelight").getEntry("stream").setNumber(2);
     
     // Configure the button bindings
     configureButtonBindings();
