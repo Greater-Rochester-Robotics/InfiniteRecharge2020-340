@@ -10,11 +10,11 @@ package frc.robot.commands.Harvester;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
 
-public class SetHarvesterDown extends CommandBase {
+public class PickHarvesterUp extends CommandBase {
   /**
-   * Creates a new SetHarvesterDown.
+   * Creates a new PickHarvesterUp.
    */
-  public SetHarvesterDown() {
+  public PickHarvesterUp() {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(RobotContainer.harvester);
   }
@@ -22,7 +22,8 @@ public class SetHarvesterDown extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    RobotContainer.harvester.lowerHarvester();
+    RobotContainer.harvester.setAxleWheels(0.0);
+    RobotContainer.harvester.raiseHarvester();
   }
 
   // Called every time the scheduler runs while the command is scheduled.

@@ -5,24 +5,24 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.Harvester;
+package frc.robot.commands.Shooter;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
 
-public class SetHarvesterDown extends CommandBase {
+public class LowerCobraHood extends CommandBase {
   /**
-   * Creates a new SetHarvesterDown.
+   * Creates a new LowerCobraHood.
    */
-  public SetHarvesterDown() {
+  public LowerCobraHood() {
+    addRequirements(RobotContainer.shooter);
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(RobotContainer.harvester);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    RobotContainer.harvester.lowerHarvester();
+    RobotContainer.shooter.lowerHood();
   }
 
   // Called every time the scheduler runs while the command is scheduled.

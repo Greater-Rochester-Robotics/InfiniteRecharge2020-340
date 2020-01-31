@@ -16,6 +16,7 @@ import com.revrobotics.ControlType;
 import com.revrobotics.EncoderType;
 
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
@@ -29,6 +30,7 @@ public class Shooter extends SubsystemBase {
   private int ballCount = 0;
   private int totalBallCount = 0;
   private boolean ballPresent;
+  private Solenoid hoodMover;
 
   /**
    * Creates a new Shooter.
@@ -43,6 +45,7 @@ public class Shooter extends SubsystemBase {
     shooterEncoder = shooterWheel.getEncoder(EncoderType.kHallSensor, 42);
     ballCounter = new DigitalInput(Constants.BALL_COUNTER_SENSOR);
     ballPresent = false;
+    hoodMover = new Solenoid(2);
   }
 
   // Returns RPM of shooterWheel
@@ -66,6 +69,14 @@ public class Shooter extends SubsystemBase {
   
   }
  
+  public void raiseHood(){
+    hoodMover.set(true);
+  }
+
+  public void lowerHood(){
+    hoodMover.set(false);
+  }
+
   public void resetBallCount(){
     ballCount = 0;
   }
