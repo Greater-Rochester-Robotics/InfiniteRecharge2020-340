@@ -7,6 +7,7 @@
 
 package frc.robot;
 
+import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
@@ -18,7 +19,7 @@ import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj2.command.button.*;
 import frc.robot.commands.DriveAutoAlign;
 import frc.robot.commands.DriveXOne;
-import frc.robot.commands.automatedAlignment.AutomatedAlignment;
+import edu.wpi.first.cameraserver.CameraServer;
 
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
@@ -90,6 +91,12 @@ public class RobotContainer {
     //TODO: Pneumatics system, set that up
     //compressor = new Compressor(Constants.SECONDARY_PCM_ID);
     CommandScheduler.getInstance().setDefaultCommand(drive, new DriveXOne());
+
+    CameraServer.getInstance().startAutomaticCapture();
+
+    
+		NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(3);
+		NetworkTableInstance.getDefault().getTable("limelight").getEntry("stream").setNumber(2);
     
 
     

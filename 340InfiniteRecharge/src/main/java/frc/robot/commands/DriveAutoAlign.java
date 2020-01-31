@@ -12,7 +12,9 @@ import frc.robot.Robot;
 import frc.robot.RobotContainer;
 import frc.robot.RobotContainer.Axis;
 import edu.wpi.first.networktables.NetworkTableInstance;
-
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
@@ -52,8 +54,9 @@ public class DriveAutoAlign extends CommandBase {
 	  // drive forward constnagt slow speed 
 	  // adjust angle robot is at as needed
 	  double haveTarget = NetworkTableInstance.getDefault().getTable("limelight").getEntry("tv").getDouble(0);
-	  System.out.println(NetworkTableInstance.getDefault().getTable("limelight").getEntry("tv").getDouble(0));
 	  System.out.println(haveTarget);
+	  double angleToTarget=NetworkTableInstance.getDefault().getTable("limelight").getEntry("tx").getDouble(0);
+	  System.out.println("tx = " + angleToTarget);
 	  if(haveTarget == 0 && hadTarget == 0) {
 		//Rumble soft if NO target
 		Robot.robotContainer.setDriverRumble(0.7, 0);
@@ -81,7 +84,6 @@ public class DriveAutoAlign extends CommandBase {
 		}
 		
 		double rotateValue=0;
-		double angleToTarget=NetworkTableInstance.getDefault().getTable("limelight").getEntry("tx").getDouble(0);
 		// write a function for rotateValue, so that it is driven by angleToTarget
 		if (Math.abs(angleToTarget) < .5){
 			rotateValue = 0;
@@ -104,7 +106,6 @@ public class DriveAutoAlign extends CommandBase {
 		RobotContainer.drive.setDriveLeft(leftSpeed);
 		RobotContainer.drive.setDriveRight(rightSpeed);
 		
-		// COMPARE CORNERS TO ELIMINATE FALSE TARGETS
 
 	  }
 	  hadTarget = haveTarget;
