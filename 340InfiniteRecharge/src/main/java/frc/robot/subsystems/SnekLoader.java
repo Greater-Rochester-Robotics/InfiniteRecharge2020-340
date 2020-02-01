@@ -28,8 +28,9 @@ public class SnekLoader extends SubsystemBase {
   private static CANSparkMax[] handleMotors;
   private static CANDigitalInput[] handleSensors;
   private static CANEncoder[] handleEncoders;
+  // If it is deemed necessary, uncomment all of ballsLoaded stuff
   private static int ballsLoaded;
-  private static boolean hadBall;
+  // private static boolean hadBall;
 
   public enum State {
     kFillTo4, kFillTo3, kFillTo2, kFillTo1, kFillTo0, kOff, kShootBall4, kShootBall3, kShootBall2, kShootBall1,
@@ -45,9 +46,9 @@ public class SnekLoader extends SubsystemBase {
   static final double MOTOR_IN_SPEED4 = 0.35;
 
   public SnekLoader() {
+    ballsLoaded = 0;
+    // hadBall = false;
     if (RobotContainer.isBrushedSnek) {
-      ballsLoaded = 0;
-      hadBall = false;
       // This is here so we can support the prototype that does not have the neo550s
       // on them and instead have the BAG motors.
       handleMotors = new CANSparkMax[] {
@@ -82,11 +83,18 @@ public class SnekLoader extends SubsystemBase {
     }
   }
 
+  /**
+   * @return the ballsLoaded
+   */
+  public int getBallsLoaded() {
+    return ballsLoaded;
+  }
+
   @Override
   public void periodic() {
-    if (!hadBall && handleSensors[0].get()) {
-      ballsLoaded++;
-    }
+    // if (!hadBall && handleSensors[0].get()) {
+    // ballsLoaded++;
+    // }
     if (isJammed() && getState() != State.kSpitBalls) {
       state = State.kOff;
       SmartDashboard.putBoolean("isJammed", true);
@@ -106,6 +114,7 @@ public class SnekLoader extends SubsystemBase {
       if (getHandleSensor(4)) {
         state = State.kFillTo3;
       } else {
+        ballsLoaded = 0;
         break;
       }
     case kFillTo3:
@@ -114,6 +123,7 @@ public class SnekLoader extends SubsystemBase {
       if (getHandleSensor(3)) {
         state = State.kFillTo2;
       } else {
+        ballsLoaded = 1;
         break;
       }
     case kFillTo2:
@@ -122,6 +132,7 @@ public class SnekLoader extends SubsystemBase {
       if (getHandleSensor(2)) {
         state = State.kFillTo1;
       } else {
+        ballsLoaded = 2;
         break;
       }
     case kFillTo1:
@@ -130,14 +141,17 @@ public class SnekLoader extends SubsystemBase {
       if (getHandleSensor(1)) {
         state = State.kFillTo0;
       } else {
+        ballsLoaded = 3;
         break;
       }
     case kFillTo0:
       speeds = new double[] { MOTOR_IN_SPEED0, 0.0, 0.0, 0.0, 0.0 };
       enableOneLimit(0);
       if (getHandleSensor(0)) {
+        ballsLoaded = 5;
         state = State.kOff;
       } else {
+        ballsLoaded = 4;
         break;
       }
 
@@ -175,6 +189,7 @@ public class SnekLoader extends SubsystemBase {
       break;
     }
     setAllHandleMotors(speeds);
+    SmartDashboard.putNumber("BallsLoaded", ballsLoaded);
   }
 
   /**
