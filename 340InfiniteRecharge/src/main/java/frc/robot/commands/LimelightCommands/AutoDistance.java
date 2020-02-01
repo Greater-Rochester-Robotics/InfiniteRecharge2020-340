@@ -62,7 +62,7 @@ public class AutoDistance extends CommandBase {
       }
       else{
         double variable = 0.5;
-        distanceOffset = (RobotContainer.limelight.getDistance() / 15) * variable;
+        distanceOffset = (RobotContainer.limelight.getDistance() / 15) * variable; //needs to be tested, it will probably be janky, change the 15
       }
       
       double rightSpeed = distanceOffset;

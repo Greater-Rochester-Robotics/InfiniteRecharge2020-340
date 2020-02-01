@@ -44,13 +44,18 @@ public class Limelight extends SubsystemBase {
     return NetworkTableInstance.getDefault().getTable("limelight").getEntry("tx").getDouble(0); //returns the angle offset (+ is left of target, - is right of target)
   }
 
+  public double verticalAngleToTarget(){
+    return NetworkTableInstance.getDefault().getTable("limelight").getEntry("ty").getDouble(0); //returns the vertical angle offset
+  }
+
   public double getDistance(){
     //TODO: find actual values for these, and implement/test them
-    double cameraHeight = 0;
-    double targetHeight = 0;
-    double cameraAngle = 0;
-    double verticalAngleToTarget = 0;
-    return (targetHeight - cameraHeight) / Math.tan(cameraAngle + verticalAngleToTarget); // hopefully returns the distance to the target
+
+    //all distance values are in inches
+    double cameraHeight = 24;    //not final value
+    double targetHeight = 98.25; //final value
+    double cameraAngle = 50;     //not final value
+    return (targetHeight - cameraHeight) / Math.tan(cameraAngle + RobotContainer.limelight.verticalAngleToTarget()); // hopefully returns the distance to the target
 
     //d = (h2-h1) / tan(a1+a2)
     //h2 = height of target above floor
