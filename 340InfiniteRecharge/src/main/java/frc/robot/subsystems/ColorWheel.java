@@ -8,11 +8,14 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants;
 import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.util.Color;
 
+import com.revrobotics.CANSparkMax;
 import com.revrobotics.ColorSensorV3;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import com.revrobotics.ColorSensorV3.RawColor;
 
 public class ColorWheel extends SubsystemBase {
@@ -22,10 +25,10 @@ public class ColorWheel extends SubsystemBase {
    */
   private final I2C.Port i2cPort = I2C.Port.kOnboard;
   private final ColorSensorV3 m_colorSensor = new ColorSensorV3(i2cPort);
-
+  private static CANSparkMax colorWheelWheel;
 
   public enum ColorName{
-    red("blue"), blue("red"), green("yellow"), yellow("green");
+    R("B"), B("R"), G("Y"), Y("G");
     
     private final String targetColor;
 
@@ -33,34 +36,38 @@ public class ColorWheel extends SubsystemBase {
       this.targetColor = targetColor;
 
     }
+   
     public ColorName getTargetColor(){
       return valueOf(targetColor);
-    }
+    }    
   }
 
 
 
   public ColorWheel() {
 
+    // colorWheelWheel = new CANSparkMax(Constants.COLOR_WHEEL_SPINNER, MotorType.kBrushless);
+
   }
 
-  public ColorName getColor(Color color) {
+  public ColorName getColor() {
+    Color color = m_colorSensor.getColor();
     if (color.blue >= 0.30) {
-      return ColorWheel.ColorName.blue;
+      return ColorWheel.ColorName.B;
     }
 
     else if (color.red >= 0.30 && color.green <= 0.45) {
-      return ColorWheel.ColorName.red;
+      return ColorWheel.ColorName.R;
     }
 
 
     else if (color.red > 0.30 && color.green > 0.45) {
-      return ColorWheel.ColorName.yellow;
+      return ColorWheel.ColorName.Y;
     }
 
     
     else if (color.green > color.blue && color.green > color.red) {
-      return ColorWheel.ColorName.green;
+      return ColorWheel.ColorName.G;
     }
 
     else{
@@ -96,9 +103,9 @@ public class ColorWheel extends SubsystemBase {
     SmartDashboard.putNumber("Blue", detectedColor.blue);
     SmartDashboard.putNumber("IR", IR);
     
-    SmartDashboard.putString("Color", getColor(detectedColor).name());
+    SmartDashboard.putString("Color", getColor().name());
 
-    SmartDashboard.putString("Field Color", getColor(detectedColor).getTargetColor().name());
+    SmartDashboard.putString("Field Color", getColor().getTargetColor().name());
 
 
     

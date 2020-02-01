@@ -14,10 +14,12 @@ import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.button.Button;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import frc.robot.commands.DriveAutoAlign;
 import frc.robot.commands.DriveXOne;
+import frc.robot.commands.LimelightCommands.AutoDistance;
+import frc.robot.commands.LimelightCommands.DriveAutoAlign;
 import frc.robot.commands.Shooter.Shoot;
 import frc.robot.commands.Shooter.SingleShot;
 import frc.robot.commands.Shooter.StopShoot;
@@ -101,15 +103,15 @@ public class RobotContainer {
    */
   public RobotContainer() {
     // TODO: comment this out to drive
-    // drive = new Drive();
-    shooter = new Shooter();
+    drive = new Drive();
+    // shooter = new Shooter();
     // TODO: Pneumatics system, set that up
     // compressor = new Compressor(Constants.SECONDARY_PCM_ID);
     // TODO: commented out default drive for testing purposes
-    // CommandScheduler.getInstance().setDefaultCommand(drive, new DriveXOne());
-    colorWheel = new ColorWheel();
-    harvester = new Harvester();
-    snekLoader = new SnekLoader();
+    CommandScheduler.getInstance().setDefaultCommand(drive, new DriveXOne());
+    // colorWheel = new ColorWheel();
+    // harvester = new Harvester();
+    // snekLoader = new SnekLoader();
     limelight = new Limelight();
     // Configure the button bindings
     configureButtonBindings();
@@ -126,20 +128,22 @@ public class RobotContainer {
 
     //driverRTButton.whenHeld(new RunPath(PathList.LEFT_ROCKET.HECK_PATH));
     //driverRTButton.whenReleased(new DriveXOne());
-    driverRB.whenPressed(new Load());
-    driverRB.whenReleased(new StopSnek());
-    driverLB.whenPressed(new Shoot());
-    driverLB.whenReleased(new StopSnek());
-    driverLB.whenReleased(new StopShoot());
-    driverStart.whenPressed(new StopSnek());
-    driverStart.whenPressed(new StopShoot());
-    driverRTButton.whenReleased(new StopSnek());
-    driverRTButton.whenReleased(new StopShoot());
-    driverLTButton.whenPressed(new SingleShot());
-    driverLTButton.whenReleased(new StopSnek());
-    driverLTButton.whenReleased(new StopShoot());
+    // driverRB.whenPressed(new Load());
+    // driverRB.whenReleased(new StopSnek());
+    // driverLB.whenPressed(new Shoot());
+    // driverLB.whenReleased(new StopSnek());
+    // driverLB.whenReleased(new StopShoot());
+    // driverStart.whenPressed(new StopSnek());
+    // driverStart.whenPressed(new StopShoot());
+    // driverRTButton.whenReleased(new StopSnek());
+    // driverRTButton.whenReleased(new StopShoot());
+    // driverLTButton.whenPressed(new SingleShot());
+    // driverLTButton.whenReleased(new StopSnek());
+    // driverLTButton.whenReleased(new StopShoot());
     driverY.whenPressed(new DriveAutoAlign());
     driverY.whenReleased(new DriveXOne());
+    driverA.whenPressed(new AutoDistance());
+    driverA.whenReleased(new DriveXOne());
   }
 
 

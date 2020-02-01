@@ -52,10 +52,12 @@ public class Limelight extends SubsystemBase {
     //TODO: find actual values for these, and implement/test them
 
     //all distance values are in inches
-    double cameraHeight = 24;    //not final value
-    double targetHeight = 98.25; //final value
-    double cameraAngle = 50;     //not final value
-    return (targetHeight - cameraHeight) / Math.tan(cameraAngle + RobotContainer.limelight.verticalAngleToTarget()); // hopefully returns the distance to the target
+    double cameraHeight = 28.5;    //not final value
+    double targetHeight = 48; //final value = 98.25
+    double cameraAngle = 2.0;     //not final value
+    double Distance = (targetHeight - cameraHeight) / Math.tan(cameraAngle + RobotContainer.limelight.verticalAngleToTarget()); // hopefully returns the distance to the target
+    System.out.println(Distance);
+    return Distance;
 
     //d = (h2-h1) / tan(a1+a2)
     //h2 = height of target above floor
