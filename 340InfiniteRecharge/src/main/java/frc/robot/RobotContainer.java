@@ -16,6 +16,8 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.Button;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import frc.robot.commands.DriveAutoAlign;
+import frc.robot.commands.DriveXOne;
 import frc.robot.commands.Shooter.Shoot;
 import frc.robot.commands.Shooter.SingleShot;
 import frc.robot.commands.Shooter.StopShoot;
@@ -26,6 +28,7 @@ import frc.robot.subsystems.Drive;
 import frc.robot.subsystems.Harvester;
 import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.SnekLoader;
+import frc.robot.subsystems.Limelight;
 
 /**
  * This class is where the bulk of the robot should be declared. Since
@@ -88,6 +91,7 @@ public class RobotContainer {
   public static Compressor compressor;
   public static Shooter shooter;
   public static ColorWheel colorWheel;
+  public static Limelight limelight;
 
   public static final boolean isBrushedSnek = true;
   public static final boolean isFalconFx = false;
@@ -106,6 +110,7 @@ public class RobotContainer {
     colorWheel = new ColorWheel();
     harvester = new Harvester();
     snekLoader = new SnekLoader();
+    limelight = new Limelight();
     // Configure the button bindings
     configureButtonBindings();
 
@@ -133,7 +138,8 @@ public class RobotContainer {
     driverLTButton.whenPressed(new SingleShot());
     driverLTButton.whenReleased(new StopSnek());
     driverLTButton.whenReleased(new StopShoot());
-    // driverYButton.whenPressed(new )
+    driverY.whenPressed(new DriveAutoAlign());
+    driverY.whenReleased(new DriveXOne());
   }
 
 
