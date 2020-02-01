@@ -14,6 +14,7 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import com.revrobotics.CANDigitalInput.LimitSwitchPolarity;
 import com.revrobotics.CANSparkMax.IdleMode;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.RobotContainer;
@@ -27,6 +28,8 @@ public class SnekLoader extends SubsystemBase {
   private static CANSparkMax[] handleMotors;
   private static CANDigitalInput[] handleSensors;
   private static CANEncoder[] handleEncoders;
+  private static int ballsLoaded;
+  private static boolean hadBall;
 
   public enum State {
     kFillTo4, kFillTo3, kFillTo2, kFillTo1, kFillTo0, kOff, kShootBall4, kShootBall3, kShootBall2, kShootBall1,
@@ -43,6 +46,8 @@ public class SnekLoader extends SubsystemBase {
 
   public SnekLoader() {
     if (RobotContainer.isBrushedSnek) {
+      ballsLoaded = 0;
+      hadBall = false;
       // This is here so we can support the prototype that does not have the neo550s
       // on them and instead have the BAG motors.
       handleMotors = new CANSparkMax[] {
@@ -79,10 +84,16 @@ public class SnekLoader extends SubsystemBase {
 
   @Override
   public void periodic() {
+    if (!hadBall && handleSensors[0].get()) {
+      ballsLoaded++;
+    }
     if (isJammed() && getState() != State.kSpitBalls) {
       state = State.kOff;
-      // TODO: find way to inform driver of jam, also hasn't been tested.
+      SmartDashboard.putBoolean("isJammed", true);
+    } else {
+      SmartDashboard.putBoolean("isJammed", false);
     }
+
     // This method will be called once per scheduler run
     double[] speeds = new double[5];
     switch (state) {

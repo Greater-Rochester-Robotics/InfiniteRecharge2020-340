@@ -22,7 +22,7 @@ public class SetHarvesterDown extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    RobotContainer.harvester.setAxleWheels(1.0);
+    RobotContainer.harvester.lowerHarvester();
   }
 
   // Called every time the scheduler runs while the command is scheduled.

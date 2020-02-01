@@ -14,13 +14,15 @@ import frc.robot.subsystems.SnekLoader.State;
 public class Shoot extends CommandBase {
   private int stateIndex;
   private int ballsToShoot;
+  private int speedRpm;
 
   public Shoot() {
-    this(-1);
+    this(-1, 5500);
   }
 
-  public Shoot(int numToShoot) {
+  public Shoot(int numToShoot, int speed) {
     this.ballsToShoot = numToShoot;
+    speed = speedRpm;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(RobotContainer.shooter, RobotContainer.snekLoader);
   }
@@ -30,7 +32,6 @@ public class Shoot extends CommandBase {
   public void initialize() {
     stateIndex = 4;
     RobotContainer.shooter.setShooterWheel(5500);
-    RobotContainer.shooter.resetBallCount();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
