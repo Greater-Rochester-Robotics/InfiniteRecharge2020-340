@@ -25,7 +25,17 @@ public class ColorWheel extends SubsystemBase {
 
 
   public enum ColorName{
-    red, blue, green, yellow
+    red("blue"), blue("red"), green("yellow"), yellow("green");
+    
+    private final String targetColor;
+
+    private ColorName (String targetColor){
+      this.targetColor = targetColor;
+
+    }
+    public ColorName getTargetColor(){
+      return valueOf(targetColor);
+    }
   }
 
 
@@ -38,15 +48,21 @@ public class ColorWheel extends SubsystemBase {
     if (color.blue >= 0.30) {
       return ColorWheel.ColorName.blue;
     }
+
     else if (color.red >= 0.30 && color.green <= 0.45) {
       return ColorWheel.ColorName.red;
     }
-    else if (color.red > 0.25 && color.green > 0.45) {
+
+
+    else if (color.red > 0.30 && color.green > 0.45) {
       return ColorWheel.ColorName.yellow;
     }
+
+    
     else if (color.green > color.blue && color.green > color.red) {
       return ColorWheel.ColorName.green;
     }
+
     else{
     return null;
     }
@@ -82,7 +98,7 @@ public class ColorWheel extends SubsystemBase {
     
     SmartDashboard.putString("Color", getColor(detectedColor).name());
 
-
+    SmartDashboard.putString("Field Color", getColor(detectedColor).getTargetColor().name());
 
 
     
