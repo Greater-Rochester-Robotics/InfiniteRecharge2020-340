@@ -32,6 +32,7 @@ public final class Constants {
 	/* Talons */
 
 
+
 	///////////////
 	// DIO PORTS //
 	///////////////
@@ -42,8 +43,18 @@ public final class Constants {
 	public static final int DRIVE_ENCODER_RIGHT_CHANNEL_A = 6;
 	public static final int DRIVE_ENCODER_RIGHT_CHANNEL_B = 7;
 
-	/* Sensors */
+	///////////////////////FOR PROTOTYPE SNEKSHOOTER
+	public static final int SNEKSHOOTER_ENCODER_TALONSRX1_A = 12;
+	public static final int SNEKSHOOTER_ENCODER_TALONSRX2_A = 13;
+	public static final int SNEKSHOOTER_ENCODER_TALONSRX3_A = 14;
+	public static final int SNEKSHOOTER_ENCODER_TALONSRX4_A = 15;
+	public static final int SNEKSHOOTER_ENCODER_TALONSRX5_A = 16;
+	public static final int SNEKSHOOTER_ENCODER_SHOOTER_A = 17;
+	///////////////////////FOR PROTOTYPE SNEKSHOOTER
 
+	
+	/* Sensors */
+	public static final int BALL_COUNTER_SENSOR = 7;
 
 
 	////////////////////////
@@ -54,7 +65,7 @@ public final class Constants {
 
 
     /* LEDs */
-	public static final int LED_PCM_CHANNEL = 7;
+	public static final int LED_PCM_CHANNEL = 10;
 
 	/////////////
 	// CAN IDs //
@@ -62,20 +73,27 @@ public final class Constants {
 
 	/* TalonSRXs */
 
-	//Commented numbers are on prac bot. THEY ARE NOT NOT PERMANENT ON EITHER BOT
-
+	/* Falcon 500 */
+	public static final int DRIVE_LEFT_CHANNEL_A = 20; //front-left
+    public static final int DRIVE_LEFT_CHANNEL_B = 21; //back-left
+	public static final int DRIVE_RIGHT_CHANNEL_A = 22; //back-right
+	public static final int DRIVE_RIGHT_CHANNEL_B = 23; //front-right
 
 	/* Spark MAXes */
-	public static final int ELEVATOR_A_MOTOR_CAN_ID = 13; //mid
-	public static final int ELEVATOR_B_MOTOR_CAN_ID = 12; //left
-	public static final int ELEVATOR_C_MOTOR_CAN_ID = 14; //right
-	public static final int DRIVE_SPARK_LEFT_CHANNEL_A = 20; //front-left
-    public static final int DRIVE_SPARK_LEFT_CHANNEL_B = 21; //back-left
-	public static final int DRIVE_SPARK_RIGHT_CHANNEL_A = 22; //back-right
-    public static final int DRIVE_SPARK_RIGHT_CHANNEL_B = 23; //front-right
+	public static final int SNEKSHOOTER_SPARK_LAUNCHER = 24; //launching wheel for the prototype
+	public static final int INTAKE_AXLE = 30;
+	
+	
+	// Temporary values to make BallHandler subsystem stop yelling at me
+	public static final int BALL_HANDLER_MOTOR_0 = 25;
+	public static final int BALL_HANDLER_MOTOR_1 = 26;
+	public static final int BALL_HANDLER_MOTOR_2 = 27;
+	public static final int BALL_HANDLER_MOTOR_3 = 28;
+	public static final int BALL_HANDLER_MOTOR_4 = 29;
 
 	/* Compressor/LED PCM */
-	public static final int SECONDARY_PCM_ID = 10;
+
+	public static final int SECONDARY_PCM_ID = 11;
 
 	///////////////
 	// CONSTANTS //
@@ -84,18 +102,9 @@ public final class Constants {
 	/* C speed */
 
 
-	/* Elevator speed */
-
-	
-
-
-
 	/* The Titular Zero Speed */
 	public static final double ZERO_SPEED = 0.0;
 
-
-
-	/* Elevator heights */
 
 
 }
