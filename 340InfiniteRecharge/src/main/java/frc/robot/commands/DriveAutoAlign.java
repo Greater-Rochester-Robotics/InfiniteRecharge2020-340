@@ -54,9 +54,7 @@ public class DriveAutoAlign extends CommandBase {
 	  // drive forward constnagt slow speed 
 	  // adjust angle robot is at as needed
 	  double haveTarget = NetworkTableInstance.getDefault().getTable("limelight").getEntry("tv").getDouble(0);
-	  System.out.println(haveTarget);
 	  double angleToTarget=NetworkTableInstance.getDefault().getTable("limelight").getEntry("tx").getDouble(0);
-	  System.out.println("tx = " + angleToTarget);
 	  if(haveTarget == 0 && hadTarget == 0) {
 		//Rumble soft if NO target
 		Robot.robotContainer.setDriverRumble(0.7, 0);
@@ -88,15 +86,11 @@ public class DriveAutoAlign extends CommandBase {
 		if (Math.abs(angleToTarget) < .5){
 			rotateValue = 0;
 		}else{
-			rotateValue = ((angleToTarget-1)/35)*(moveValue+.45);//*12.5/ControllerPower.getInputVoltage();
-			// if(Math.abs(rotateValue) < .07){
-			// 	if(rotateValue > 0){
-			// 		rotateValue = .07;
-			// 	}
-			// 	else{
-			// 		rotateValue = -.07;
-			// 	}
-			// }
+			double variable = .5;
+			//finds the speed we want to move in proportion to how far away we are from the target, modify the variable value to vary the
+			//speed and accuracy at which the limelight finds the target 
+			rotateValue = (((angleToTarget)/35)*(moveValue+.45)) * variable; 
+			System.out.println(rotateValue);
 		}
 		
 		double rightSpeed = moveValue + rotateValue;
