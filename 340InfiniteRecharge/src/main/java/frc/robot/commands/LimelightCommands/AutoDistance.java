@@ -55,21 +55,20 @@ public class AutoDistance extends CommandBase {
       //Stop rumble if there is a target
       Robot.robotContainer.setDriverRumble(0, 0);
 
-      double distanceOffset = 0.0;
+      double distanceWanted = 132; // in inches for consistency
+      double distanceOffset = distanceWanted - RobotContainer.limelight.getDistance();
+      double speeds = 0;
 
-      if(Math.abs(RobotContainer.limelight.getDistance()) < .5){
-        distanceOffset = 0.0;
+      if(Math.abs(distanceOffset) < 12){
+        speeds = 0.0;
       }
       else{
-        double variable = 0.5;
-        distanceOffset = (RobotContainer.limelight.getDistance() / 15) * variable; //needs to be tested, it will probably be janky, change the 15
+        double variable = 0.1;
+        speeds = (distanceOffset / 100) * variable; //needs to be tested, it will probably be janky, change the 15
       }
       
-      double rightSpeed = distanceOffset;
-      double leftSpeed = -distanceOffset;
 
-      RobotContainer.drive.setDriveRight(rightSpeed);
-      RobotContainer.drive.setDriveLeft(leftSpeed);
+      RobotContainer.drive.setDriveBoth(speeds);
 
 
       }
