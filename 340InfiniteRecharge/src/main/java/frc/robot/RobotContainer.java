@@ -15,14 +15,10 @@ import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
-<<<<<<< HEAD
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj2.command.button.*;
-=======
-import edu.wpi.first.wpilibj2.command.button.Button;
-import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.Shooter.Shoot;
 import frc.robot.commands.Shooter.SingleShot;
 import frc.robot.commands.Shooter.StopShoot;
@@ -33,7 +29,6 @@ import frc.robot.subsystems.Drive;
 import frc.robot.subsystems.Harvester;
 import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.SnekLoader;
->>>>>>> b8fbbe08752903b271a4040a1e60fd76bac877e3
 import frc.robot.commands.DriveAutoAlign;
 import frc.robot.commands.DriveXOne;
 import edu.wpi.first.cameraserver.CameraServer;
@@ -127,11 +122,6 @@ public class RobotContainer {
     
 		NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(3);
 		NetworkTableInstance.getDefault().getTable("limelight").getEntry("stream").setNumber(2);
-<<<<<<< HEAD
-    
-
-=======
->>>>>>> b8fbbe08752903b271a4040a1e60fd76bac877e3
     
     // Configure the button bindings
     configureButtonBindings();
@@ -146,10 +136,6 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
 
-<<<<<<< HEAD
-    driverRB.whenPressed(new DriveAutoAlign());
-    driverRB.whenReleased(new DriveXOne());
-=======
     //driverRTButton.whenHeld(new RunPath(PathList.LEFT_ROCKET.HECK_PATH));
     //driverRTButton.whenReleased(new DriveXOne());
     driverRB.whenPressed(new Load());
@@ -167,7 +153,6 @@ public class RobotContainer {
     // driverYButton.whenPressed(new )
     coDriverRB.whenPressed(new DriveAutoAlign());
     coDriverRB.whenReleased(new DriveXOne());
->>>>>>> b8fbbe08752903b271a4040a1e60fd76bac877e3
  
   }
 
