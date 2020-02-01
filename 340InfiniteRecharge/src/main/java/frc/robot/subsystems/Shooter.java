@@ -27,8 +27,8 @@ public class Shooter extends SubsystemBase {
   private CANEncoder shooterEncoder;
   private double targetVelocity;
   private DigitalInput ballCounter;
-  private int ballCount = 0;
-  private int totalBallCount = 0;
+  private int ballsShot = 0;
+  private int totalBallsShot = 0;
   private boolean ballWasPresent;
   private Solenoid hoodMover;
 
@@ -77,24 +77,28 @@ public class Shooter extends SubsystemBase {
     hoodMover.set(false);
   }
 
-  public int getBallCount(){
-    return ballCount;
+  public void resetBallsShot(){
+    ballsShot = -0;
   }
 
-  public int getTotalBallCount(){
-    return totalBallCount;
+  public int getBallsShot(){
+    return ballsShot;
   }
 
   public boolean getShooterSensor(){
     return (ballCounter.get());
   }
 
+  public int getTotalBallsShot(){
+    return totalBallsShot;
+  }
+
   @Override
   public void periodic(){
     //if ballCounter sensor is false and ball sensor was true previously, add one
     if (!ballCounter.get() && ballWasPresent){
-      ballCount --;
-      totalBallCount ++;
+      ballsShot ++;
+      totalBallsShot++;
     }
 
     ballWasPresent = ballCounter.get();

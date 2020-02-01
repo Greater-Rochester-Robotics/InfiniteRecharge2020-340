@@ -20,9 +20,13 @@ public class Shoot extends CommandBase {
     this(-1, 5500);
   }
 
+  public Shoot(int speed){
+    ballsToShoot = RobotContainer.snekLoader.getBallsLoaded();
+    speedRpm = speed;
+  }
   public Shoot(int numToShoot, int speed) {
     this.ballsToShoot = numToShoot;
-    speed = speedRpm;
+    speedRpm = speed;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(RobotContainer.shooter, RobotContainer.snekLoader);
   }
@@ -31,7 +35,7 @@ public class Shoot extends CommandBase {
   @Override
   public void initialize() {
     stateIndex = 4;
-    RobotContainer.shooter.setShooterWheel(5500);
+    RobotContainer.shooter.setShooterWheel(speedRpm);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -72,6 +76,6 @@ public class Shoot extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return ((RobotContainer.shooter.getBallCount() >= ballsToShoot) && ballsToShoot > 0);
+    return ((RobotContainer.shooter.getBallsShot() >= ballsToShoot) && ballsToShoot > 0);
   }
 }
