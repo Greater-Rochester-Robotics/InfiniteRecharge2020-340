@@ -99,7 +99,10 @@ public final class Constants {
 	// CONSTANTS //
 	///////////////
 
-	/* C speed */
+	/* Shooter Speeds */
+	public static final int TRENCH_SHOT_RPM = 5500;
+	public static final int INIT_LINE_SHOT_RPM = 5500;
+	public static final int WALL_SHOT_RPM = 5000;
 
 
 	/* The Titular Zero Speed */

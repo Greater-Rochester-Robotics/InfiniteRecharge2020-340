@@ -32,7 +32,6 @@ public class Shoot extends CommandBase {
   public void initialize() {
     stateIndex = 4;
     RobotContainer.shooter.setShooterWheel(5500);
-    RobotContainer.shooter.resetBallCount();
   }
 
   // Called every time the scheduler runs while the command is scheduled.

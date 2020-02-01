@@ -13,7 +13,6 @@ import edu.wpi.first.wpilibj.Timer;
 import frc.robot.subsystems.SnekLoader.State;
 
 public class SingleShot extends CommandBase {
-  Timer timer = new Timer();
   /**
    * Creates a new SingleShot.
    */
@@ -31,11 +30,12 @@ public class SingleShot extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if(RobotContainer.shooter.isShooterAtSpeed()){
-      RobotContainer.snekLoader.setState(State.kShootBall4);
-    }
-    if(!RobotContainer.snekLoader.getHandleSensor(4)){
+    if(!RobotContainer.snekLoader.getHandleSensor(4) && (!RobotContainer.shooter.getShooterSensor())){
+      RobotContainer.shooter.setShooterWheel(0.0);
       RobotContainer.snekLoader.setState(State.kFillTo4);
+    }
+    else if(RobotContainer.shooter.isShooterAtSpeed()){
+      RobotContainer.snekLoader.setState(State.kShootBall4);
     }
   }
 
@@ -50,6 +50,6 @@ public class SingleShot extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return (!RobotContainer.snekLoader.getHandleSensor(4));
   }
 }

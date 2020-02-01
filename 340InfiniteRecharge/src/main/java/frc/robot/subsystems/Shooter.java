@@ -29,7 +29,7 @@ public class Shooter extends SubsystemBase {
   private DigitalInput ballCounter;
   private int ballCount = 0;
   private int totalBallCount = 0;
-  private boolean ballPresent;
+  private boolean ballWasPresent;
   private Solenoid hoodMover;
 
   /**
@@ -44,7 +44,7 @@ public class Shooter extends SubsystemBase {
     shooterWheel.setInverted(true);
     shooterEncoder = shooterWheel.getEncoder(EncoderType.kHallSensor, 42);
     ballCounter = new DigitalInput(Constants.BALL_COUNTER_SENSOR);
-    ballPresent = false;
+    ballWasPresent = false;
     hoodMover = new Solenoid(2);
   }
 
@@ -77,10 +77,6 @@ public class Shooter extends SubsystemBase {
     hoodMover.set(false);
   }
 
-  public void resetBallCount(){
-    ballCount = 0;
-  }
-
   public int getBallCount(){
     return ballCount;
   }
@@ -89,14 +85,18 @@ public class Shooter extends SubsystemBase {
     return totalBallCount;
   }
 
+  public boolean getShooterSensor(){
+    return (ballCounter.get());
+  }
+
   @Override
   public void periodic(){
     //if ballCounter sensor is false and ball sensor was true previously, add one
-    if (!ballCounter.get() && ballPresent){
-      ballCount ++;
+    if (!ballCounter.get() && ballWasPresent){
+      ballCount --;
       totalBallCount ++;
     }
 
-    ballPresent = ballCounter.get();
+    ballWasPresent = ballCounter.get();
   }
 }
