@@ -16,6 +16,7 @@ import com.revrobotics.ControlType;
 import com.revrobotics.EncoderType;
 
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
@@ -28,7 +29,8 @@ public class Shooter extends SubsystemBase {
   private DigitalInput ballCounter;
   private int ballCount = 0;
   private int totalBallCount = 0;
-  private boolean ballPresent;
+  private boolean ballWasPresent;
+  private Solenoid hoodMover;
 
   /**
    * Creates a new Shooter.
@@ -42,7 +44,8 @@ public class Shooter extends SubsystemBase {
     shooterWheel.setInverted(true);
     shooterEncoder = shooterWheel.getEncoder(EncoderType.kHallSensor, 42);
     ballCounter = new DigitalInput(Constants.BALL_COUNTER_SENSOR);
-    ballPresent = false;
+    ballWasPresent = false;
+    hoodMover = new Solenoid(2);
   }
 
   // Returns RPM of shooterWheel
@@ -66,8 +69,12 @@ public class Shooter extends SubsystemBase {
   
   }
  
-  public void resetBallCount(){
-    ballCount = 0;
+  public void raiseHood(){
+    hoodMover.set(true);
+  }
+
+  public void lowerHood(){
+    hoodMover.set(false);
   }
 
   public int getBallCount(){
@@ -78,14 +85,18 @@ public class Shooter extends SubsystemBase {
     return totalBallCount;
   }
 
+  public boolean getShooterSensor(){
+    return (ballCounter.get());
+  }
+
   @Override
   public void periodic(){
     //if ballCounter sensor is false and ball sensor was true previously, add one
-    if (!ballCounter.get() && ballPresent){
-      ballCount ++;
+    if (!ballCounter.get() && ballWasPresent){
+      ballCount --;
       totalBallCount ++;
     }
 
-    ballPresent = ballCounter.get();
+    ballWasPresent = ballCounter.get();
   }
 }
