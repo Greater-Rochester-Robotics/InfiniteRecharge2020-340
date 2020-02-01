@@ -96,7 +96,7 @@ public class SnekLoader extends SubsystemBase {
     // ballsLoaded++;
     // }
     if (isJammed() && getState() != State.kSpitBalls) {
-      state = State.kOff;
+      // state = State.kOff;
       SmartDashboard.putBoolean("isJammed", true);
     } else {
       SmartDashboard.putBoolean("isJammed", false);
@@ -154,7 +154,7 @@ public class SnekLoader extends SubsystemBase {
         ballsLoaded = 4;
         break;
       }
-
+      
     case kOff:
       speeds = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0 };
       enableOneLimit(-1);
@@ -163,26 +163,22 @@ public class SnekLoader extends SubsystemBase {
     case kShootBall4:
       speeds = new double[] { 0.0, 0.0, 0.0, 0.0, 1.0 };
       enableOneLimit(-1);
-
       break;
 
     case kShootBall3:
       speeds = new double[] { 0.0, 0.0, 0.0, 1.0, 1.0 };
       enableOneLimit(-1);
-
       break;
 
     case kShootBall2:
       speeds = new double[] { 0.0, 0.0, 1.0, 1.0, 1.0 };
       enableOneLimit(-1);
-
       break;
+
     case kShootBall1:
       speeds = new double[] { 0.0, 1.0, 1.0, 1.0, 1.0 };
       enableOneLimit(-1);
-
       break;
-
     case kShootBall0:
       speeds = new double[] { 1.0, 1.0, 1.0, 1.0, 1.0 };
       enableOneLimit(-1);
@@ -190,6 +186,7 @@ public class SnekLoader extends SubsystemBase {
     }
     setAllHandleMotors(speeds);
     SmartDashboard.putNumber("BallsLoaded", ballsLoaded);
+    SmartDashboard.putString("State", state.name());
   }
 
   /**

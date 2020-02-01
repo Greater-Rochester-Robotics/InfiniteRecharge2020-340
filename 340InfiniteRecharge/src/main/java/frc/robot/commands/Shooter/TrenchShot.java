@@ -10,6 +10,7 @@ package frc.robot.commands.Shooter;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.Constants;
 import frc.robot.RobotContainer;
+import frc.robot.commands.SnekLoader.StopSnek;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
@@ -22,6 +23,10 @@ public class TrenchShot extends SequentialCommandGroup {
     // Add your commands in the super() call, e.g.
     // super(new FooCommand(), new BarCommand());
     //Puts up hood, aims, shoots all balls, stops shooter and loader wheels
-   // super(new RaiseCobraHood(), new Shoot(numToShoot, Constants.TRENCH_SHOT_RPM));
+    super(new RaiseCobraHood(), 
+    /** put autoalign here */ 
+    new Shoot(Constants.TRENCH_SHOT_RPM),
+    new StopShoot(), 
+    new StopSnek());
   }
 }

@@ -17,14 +17,15 @@ public class Shoot extends CommandBase {
   private int speedRpm;
 
   public Shoot() {
-    this(-1, 5500);
+    this(5500, -1);
   }
 
-  public Shoot(int speed){
+  public Shoot(int speed) {
     ballsToShoot = RobotContainer.snekLoader.getBallsLoaded();
     speedRpm = speed;
   }
-  public Shoot(int numToShoot, int speed) {
+
+  public Shoot(int speed, int numToShoot) {
     this.ballsToShoot = numToShoot;
     speedRpm = speed;
     // Use addRequirements() here to declare subsystem dependencies.
