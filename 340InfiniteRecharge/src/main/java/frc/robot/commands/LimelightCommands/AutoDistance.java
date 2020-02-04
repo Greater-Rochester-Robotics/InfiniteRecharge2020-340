@@ -64,7 +64,7 @@ public class AutoDistance extends CommandBase {
       }
       else{
         double variable = 0.1;
-        speeds = (distanceOffset / 100) * variable; //needs to be tested, it will probably be janky, change the 15
+        speeds = (distanceOffset / 100) * variable;
       }
       
 

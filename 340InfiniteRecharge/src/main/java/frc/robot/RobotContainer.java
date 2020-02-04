@@ -20,6 +20,7 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.DriveXOne;
 import frc.robot.commands.LimelightCommands.AutoDistance;
 import frc.robot.commands.LimelightCommands.DriveAutoAlign;
+import frc.robot.commands.LimelightCommands.ObtainDistance;
 import frc.robot.commands.Shooter.Shoot;
 import frc.robot.commands.Shooter.SingleShot;
 import frc.robot.commands.Shooter.StopShoot;
@@ -140,10 +141,11 @@ public class RobotContainer {
     // driverLTButton.whenPressed(new SingleShot());
     // driverLTButton.whenReleased(new StopSnek());
     // driverLTButton.whenReleased(new StopShoot());
-    driverY.whenPressed(new DriveAutoAlign());
-    driverY.whenReleased(new DriveXOne());
-    driverA.whenPressed(new AutoDistance());
-    driverA.whenReleased(new DriveXOne());
+    driverRB.whenPressed(new DriveAutoAlign());
+    driverRB.whenReleased(new DriveXOne());
+    driverLB.whenPressed(new AutoDistance());
+    driverLB.whenReleased(new DriveXOne());
+    driverY.whenPressed(new ObtainDistance());
   }
 
 
