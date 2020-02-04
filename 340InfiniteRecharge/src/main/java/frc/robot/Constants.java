@@ -81,6 +81,7 @@ public final class Constants {
 
 	/* Spark MAXes */
 	public static final int SNEKSHOOTER_SPARK_LAUNCHER = 24; //launching wheel for the prototype
+	// public static final int COLOR_WHEEL_SPINNER = 25; 
 	public static final int INTAKE_AXLE = 30;
 	
 	

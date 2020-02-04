@@ -18,6 +18,7 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.button.Button;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.DriveXOne;
+import frc.robot.commands.ColorWheel.SpinToColor;
 import frc.robot.commands.LimelightCommands.AutoDistance;
 import frc.robot.commands.LimelightCommands.DriveAutoAlign;
 import frc.robot.commands.Shooter.Shoot;
@@ -103,13 +104,13 @@ public class RobotContainer {
    */
   public RobotContainer() {
     // TODO: comment this out to drive
-    drive = new Drive();
+    // drive = new Drive();
     // shooter = new Shooter();
     // TODO: Pneumatics system, set that up
     // compressor = new Compressor(Constants.SECONDARY_PCM_ID);
     // TODO: commented out default drive for testing purposes
-    CommandScheduler.getInstance().setDefaultCommand(drive, new DriveXOne());
-    // colorWheel = new ColorWheel();
+    // CommandScheduler.getInstance().setDefaultCommand(drive, new DriveXOne());
+    colorWheel = new ColorWheel();
     // harvester = new Harvester();
     // snekLoader = new SnekLoader();
     limelight = new Limelight();
@@ -140,10 +141,11 @@ public class RobotContainer {
     // driverLTButton.whenPressed(new SingleShot());
     // driverLTButton.whenReleased(new StopSnek());
     // driverLTButton.whenReleased(new StopShoot());
-    driverY.whenPressed(new DriveAutoAlign());
-    driverY.whenReleased(new DriveXOne());
-    driverA.whenPressed(new AutoDistance());
-    driverA.whenReleased(new DriveXOne());
+    // driverY.whenPressed(new DriveAutoAlign());
+    // driverY.whenReleased(new DriveXOne());
+    // driverA.whenPressed(new AutoDistance());
+    // driverA.whenReleased(new DriveXOne());
+    driverA.whenPressed(new SpinToColor());
   }
 
 
