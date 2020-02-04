@@ -35,6 +35,7 @@ public class Shoot extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    RobotContainer.shooter.resetBallsShot();
     stateIndex = 4;
     RobotContainer.shooter.setShooterWheel(speedRpm);
   }

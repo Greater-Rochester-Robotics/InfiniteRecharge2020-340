@@ -17,9 +17,9 @@ import com.revrobotics.EncoderType;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
-
 
 public class Shooter extends SubsystemBase {
 
@@ -59,48 +59,52 @@ public class Shooter extends SubsystemBase {
     // } else if (speed > 1) {
     // speed = 1;
     // }
-      targetVelocity = speed;
+    targetVelocity = speed;
     shooterWheel.getPIDController().setReference(speed, ControlType.kVelocity);
     // shooterWheel.set(speed);
   }
 
-  public boolean isShooterAtSpeed(){
-    return ((shooterEncoder.getVelocity() >= targetVelocity*.98) && (shooterEncoder.getVelocity() <= targetVelocity*1.02));
-  
+  public boolean isShooterAtSpeed() {
+    return ((shooterEncoder.getVelocity() >= targetVelocity * .98)
+        && (shooterEncoder.getVelocity() <= targetVelocity * 1.02));
+
   }
- 
-  public void raiseHood(){
+
+  public void raiseHood() {
     hoodMover.set(true);
   }
 
-  public void lowerHood(){
+  public void lowerHood() {
     hoodMover.set(false);
   }
 
-  public void resetBallsShot(){
+  public void resetBallsShot() {
     ballsShot = -0;
   }
 
-  public int getBallsShot(){
+  public int getBallsShot() {
     return ballsShot;
   }
 
-  public boolean getShooterSensor(){
+  public boolean getShooterSensor() {
     return (ballCounter.get());
   }
 
-  public int getTotalBallsShot(){
+  public int getTotalBallsShot() {
     return totalBallsShot;
   }
 
   @Override
-  public void periodic(){
-    //if ballCounter sensor is false and ball sensor was true previously, add one
-    if (!ballCounter.get() && ballWasPresent){
-      ballsShot ++;
+  public void periodic() {
+    // if ballCounter sensor is false and ball sensor was true previously, add one
+    if (!ballCounter.get() && ballWasPresent) {
+      ballsShot++;
       totalBallsShot++;
     }
-
+    SmartDashboard.putNumber("Balls Shot", ballsShot);
+    SmartDashboard.putBoolean("Shooter Sensor Value", ballCounter.get());
+    SmartDashboard.putNumber("Flywheel Speed", shooterEncoder.getVelocity());
+    SmartDashboard.putNumber("Total Balls Shot In Match", totalBallsShot);
     ballWasPresent = ballCounter.get();
   }
 }
