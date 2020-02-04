@@ -106,7 +106,7 @@ public class RobotContainer {
     drive = new Drive();
     // shooter = new Shooter();
     // TODO: Pneumatics system, set that up
-    // compressor = new Compressor(Constants.SECONDARY_PCM_ID);
+    compressor = new Compressor();
     // TODO: commented out default drive for testing purposes
     CommandScheduler.getInstance().setDefaultCommand(drive, new DriveXOne());
     // colorWheel = new ColorWheel();
@@ -126,8 +126,6 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
 
-    //driverRTButton.whenHeld(new RunPath(PathList.LEFT_ROCKET.HECK_PATH));
-    //driverRTButton.whenReleased(new DriveXOne());
     // driverRB.whenPressed(new Load());
     // driverRB.whenReleased(new StopSnek());
     // driverLB.whenPressed(new Shoot());
@@ -140,10 +138,6 @@ public class RobotContainer {
     // driverLTButton.whenPressed(new SingleShot());
     // driverLTButton.whenReleased(new StopSnek());
     // driverLTButton.whenReleased(new StopShoot());
-    driverY.whenPressed(new DriveAutoAlign());
-    driverY.whenReleased(new DriveXOne());
-    driverA.whenPressed(new AutoDistance());
-    driverA.whenReleased(new DriveXOne());
   }
 
 

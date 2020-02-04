@@ -107,6 +107,7 @@ public class SnekLoader extends SubsystemBase {
     switch (state) {
     case kSpitBalls:
       speeds = new double[] { -1.0, -.85, -.7, -.6, -.5 };
+      ballsLoaded = 0;
       break;
     case kFillTo4:
       enableOneLimit(4);
@@ -187,6 +188,12 @@ public class SnekLoader extends SubsystemBase {
     setAllHandleMotors(speeds);
     SmartDashboard.putNumber("BallsLoaded", ballsLoaded);
     SmartDashboard.putString("State", state.name());
+
+    SmartDashboard.putBoolean("Handle Sensor 0", handleSensors[0].get());
+    SmartDashboard.putBoolean("Handle Sensor 1", handleSensors[1].get());
+    SmartDashboard.putBoolean("Handle Sensor 2", handleSensors[2].get());
+    SmartDashboard.putBoolean("Handle Sensor 3", handleSensors[3].get());
+    SmartDashboard.putBoolean("Handle Sensor 4", handleSensors[4].get());
   }
 
   /**
