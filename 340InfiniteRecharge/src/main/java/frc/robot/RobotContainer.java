@@ -96,7 +96,7 @@ public class RobotContainer {
   public static Limelight limelight;
 
   public static final boolean isBrushedSnek = true;
-  public static final boolean isFalconFx = false;
+  public static final boolean isFalconFx = true;
 
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
@@ -106,7 +106,7 @@ public class RobotContainer {
     drive = new Drive();
     // shooter = new Shooter();
     // TODO: Pneumatics system, set that up
-    compressor = new Compressor();
+    // compressor = new Compressor();
     // TODO: commented out default drive for testing purposes
     CommandScheduler.getInstance().setDefaultCommand(drive, new DriveXOne());
     // colorWheel = new ColorWheel();

@@ -22,7 +22,7 @@ public class Harvester extends SubsystemBase {
    * Creates a new Intake.
    */
   public Harvester() {
-    axleWheels = new CANSparkMax(Constants.INTAKE_AXLE, MotorType.kBrushed);
+    axleWheels = new CANSparkMax(Constants.INTAKE_AXLE, MotorType.kBrushless);
     harvesterPneu = new Solenoid(1);
   }
 

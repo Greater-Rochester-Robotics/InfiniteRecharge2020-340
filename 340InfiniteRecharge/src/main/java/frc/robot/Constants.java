@@ -81,15 +81,12 @@ public final class Constants {
 
 	/* Spark MAXes */
 	public static final int SNEKSHOOTER_SPARK_LAUNCHER = 24; //launching wheel for the prototype
-	public static final int INTAKE_AXLE = 30;
-	
-	
-	// Temporary values to make BallHandler subsystem stop yelling at me
 	public static final int BALL_HANDLER_MOTOR_0 = 25;
 	public static final int BALL_HANDLER_MOTOR_1 = 26;
 	public static final int BALL_HANDLER_MOTOR_2 = 27;
 	public static final int BALL_HANDLER_MOTOR_3 = 28;
 	public static final int BALL_HANDLER_MOTOR_4 = 29;
+	public static final int INTAKE_AXLE = 30;
 
 	/* Compressor/LED PCM */
 
