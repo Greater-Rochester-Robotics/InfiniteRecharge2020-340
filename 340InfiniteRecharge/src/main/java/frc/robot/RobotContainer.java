@@ -21,6 +21,7 @@ import frc.robot.commands.DriveXOne;
 import frc.robot.commands.ColorWheel.SpinToColor;
 import frc.robot.commands.LimelightCommands.AutoDistance;
 import frc.robot.commands.LimelightCommands.DriveAutoAlign;
+import frc.robot.commands.LimelightCommands.ObtainDistance;
 import frc.robot.commands.Shooter.Shoot;
 import frc.robot.commands.Shooter.SingleShot;
 import frc.robot.commands.Shooter.StopShoot;
@@ -107,7 +108,7 @@ public class RobotContainer {
     // drive = new Drive();
     // shooter = new Shooter();
     // TODO: Pneumatics system, set that up
-    // compressor = new Compressor(Constants.SECONDARY_PCM_ID);
+    compressor = new Compressor();
     // TODO: commented out default drive for testing purposes
     // CommandScheduler.getInstance().setDefaultCommand(drive, new DriveXOne());
     colorWheel = new ColorWheel();
@@ -127,8 +128,6 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
 
-    //driverRTButton.whenHeld(new RunPath(PathList.LEFT_ROCKET.HECK_PATH));
-    //driverRTButton.whenReleased(new DriveXOne());
     // driverRB.whenPressed(new Load());
     // driverRB.whenReleased(new StopSnek());
     // driverLB.whenPressed(new Shoot());
@@ -141,11 +140,22 @@ public class RobotContainer {
     // driverLTButton.whenPressed(new SingleShot());
     // driverLTButton.whenReleased(new StopSnek());
     // driverLTButton.whenReleased(new StopShoot());
+<<<<<<< HEAD
     // driverY.whenPressed(new DriveAutoAlign());
     // driverY.whenReleased(new DriveXOne());
     // driverA.whenPressed(new AutoDistance());
     // driverA.whenReleased(new DriveXOne());
     driverA.whenPressed(new SpinToColor());
+=======
+<<<<<<< HEAD
+    driverRB.whenPressed(new DriveAutoAlign());
+    driverRB.whenReleased(new DriveXOne());
+    driverLB.whenPressed(new AutoDistance());
+    driverLB.whenReleased(new DriveXOne());
+    driverY.whenPressed(new ObtainDistance());
+=======
+>>>>>>> 112348e774c6501caed8daa94ccd5abc8f018112
+>>>>>>> 6df16b2c700f34daf64b01d9e35ea6243672274d
   }
 
 

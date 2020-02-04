@@ -5,26 +5,26 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.pathing.groups;
+package frc.robot.commands.Shooter;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import frc.robot.commands.Harvester.IntakeBalls;
-import frc.robot.commands.Harvester.SetHarvesterDown;
-import frc.robot.commands.Shooter.Shoot;
-import frc.robot.commands.pathing.PathList;
-import frc.robot.commands.pathing.RunPath;
+import frc.robot.Constants;
+import frc.robot.commands.SnekLoader.StopSnek;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/latest/docs/software/commandbased/convenience-features.html
-public class AutoInitialLineShot extends SequentialCommandGroup {
+public class AutoWallShot extends SequentialCommandGroup {
   /**
-   * Creates a new AutoInitialLineShot.
+   * Creates a new AutoWallShot.
    */
-  public AutoInitialLineShot() {
+  public AutoWallShot() {
     // Add your commands in the super() call, e.g.
     // super(new FooCommand(), new BarCommand());
-    //Needs revisions so make it more accurate. Make command to set the snek state machine to kFillTo3
-    super(new Shoot(), new SetHarvesterDown(), new IntakeBalls() ,new RunPath(PathList.TRENCH_RUN.RIGHT_LINE_ONE), new RunPath(PathList.TRENCH_RUN.INTIAL_LINE_SHOT));
+    super(new LowerCobraHood(), 
+    /** auto align here */ 
+    new Shoot(Constants.WALL_SHOT_RPM,3),
+     new StopShoot(), 
+     new StopSnek());
   }
 }

@@ -5,25 +5,23 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.Harvester;
+package frc.robot.commands.manual;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.RobotContainer;
 
-/*
-*   Needs to be implemented, used to raise and/or lower the harvester so that it can intake balls. Wait until mechanical decides on how
-*/
-
-public class ToggleHarvesterLevel extends CommandBase {
+public class ManualShooterShoot extends CommandBase {
   /**
-   * Creates a new ToggleIntakeLevel.
+   * Creates a new ManualShooterShoot.
    */
-  public ToggleHarvesterLevel() {
-    // Use addRequirements() here to declare subsystem dependencies.
+  public ManualShooterShoot() {
+  addRequirements(RobotContainer.shooter);    
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    RobotContainer.shooter.setShooterWheel(5500);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -34,6 +32,7 @@ public class ToggleHarvesterLevel extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+    RobotContainer.shooter.setShooterWheel(0);
   }
 
   // Returns true when the command should end.

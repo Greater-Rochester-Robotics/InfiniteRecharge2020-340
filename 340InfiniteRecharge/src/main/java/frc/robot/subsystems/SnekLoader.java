@@ -96,7 +96,7 @@ public class SnekLoader extends SubsystemBase {
     // ballsLoaded++;
     // }
     if (isJammed() && getState() != State.kSpitBalls) {
-      state = State.kOff;
+      // state = State.kOff;
       SmartDashboard.putBoolean("isJammed", true);
     } else {
       SmartDashboard.putBoolean("isJammed", false);
@@ -107,6 +107,7 @@ public class SnekLoader extends SubsystemBase {
     switch (state) {
     case kSpitBalls:
       speeds = new double[] { -1.0, -.85, -.7, -.6, -.5 };
+      ballsLoaded = 0;
       break;
     case kFillTo4:
       enableOneLimit(4);
@@ -154,7 +155,7 @@ public class SnekLoader extends SubsystemBase {
         ballsLoaded = 4;
         break;
       }
-
+      
     case kOff:
       speeds = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0 };
       enableOneLimit(-1);
@@ -163,26 +164,22 @@ public class SnekLoader extends SubsystemBase {
     case kShootBall4:
       speeds = new double[] { 0.0, 0.0, 0.0, 0.0, 1.0 };
       enableOneLimit(-1);
-
       break;
 
     case kShootBall3:
       speeds = new double[] { 0.0, 0.0, 0.0, 1.0, 1.0 };
       enableOneLimit(-1);
-
       break;
 
     case kShootBall2:
       speeds = new double[] { 0.0, 0.0, 1.0, 1.0, 1.0 };
       enableOneLimit(-1);
-
       break;
+
     case kShootBall1:
       speeds = new double[] { 0.0, 1.0, 1.0, 1.0, 1.0 };
       enableOneLimit(-1);
-
       break;
-
     case kShootBall0:
       speeds = new double[] { 1.0, 1.0, 1.0, 1.0, 1.0 };
       enableOneLimit(-1);
@@ -190,6 +187,13 @@ public class SnekLoader extends SubsystemBase {
     }
     setAllHandleMotors(speeds);
     SmartDashboard.putNumber("BallsLoaded", ballsLoaded);
+    SmartDashboard.putString("State", state.name());
+
+    SmartDashboard.putBoolean("Handle Sensor 0", handleSensors[0].get());
+    SmartDashboard.putBoolean("Handle Sensor 1", handleSensors[1].get());
+    SmartDashboard.putBoolean("Handle Sensor 2", handleSensors[2].get());
+    SmartDashboard.putBoolean("Handle Sensor 3", handleSensors[3].get());
+    SmartDashboard.putBoolean("Handle Sensor 4", handleSensors[4].get());
   }
 
   /**
