@@ -5,24 +5,19 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.ColorWheel;
+package frc.robot.commands.LimelightCommands;
 
-import edu.wpi.first.wpilibj.DriverStation;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
-import frc.robot.subsystems.ColorWheel.ColorName;
 
-public class SpinToColor extends CommandBase {
-public ColorName colorDetected;
-private ColorName wantedColor;
-
-  public SpinToColor() {
+public class ObtainDistance extends CommandBase {
+  /**
+   * Creates a new GetDistance.
+   */
+  public ObtainDistance() {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(RobotContainer.colorWheel);
+    addRequirements(RobotContainer.limelight);
   }
-
-
 
   // Called when the command is initially scheduled.
   @Override
@@ -32,25 +27,17 @@ private ColorName wantedColor;
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    SmartDashboard.putString("Spinning", "Yes Speen");
-    
-    colorDetected = RobotContainer.colorWheel.getColor();
-    if (DriverStation.getInstance().getGameSpecificMessage().length() > 0) {
-      wantedColor = ColorName.valueOf (String.valueOf(DriverStation.getInstance().getGameSpecificMessage().charAt(0)));
-    }
+    RobotContainer.limelight.getDistance();
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    SmartDashboard.putString("Spinning", "No Speen");
-    
-    return colorDetected.getTargetColor() == wantedColor;
+    return true;
   }
 }
