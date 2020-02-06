@@ -16,21 +16,23 @@ import com.revrobotics.ControlType;
 import com.revrobotics.EncoderType;
 
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class Shooter extends SubsystemBase {
 
-  private static CANSparkMax shooterWheel;
+  private CANSparkMax shooterWheel;
   private CANEncoder shooterEncoder;
   private double targetVelocity;
   private DigitalInput ballCounter;
   private int ballsShot = 0;
   private int totalBallsShot = 0;
   private boolean ballWasPresent;
-  private Solenoid hoodMover;
+  private DoubleSolenoid hoodMover;
 
   /**
    * Creates a new Shooter.
@@ -45,7 +47,7 @@ public class Shooter extends SubsystemBase {
     shooterEncoder = shooterWheel.getEncoder(EncoderType.kHallSensor, 42);
     ballCounter = new DigitalInput(Constants.BALL_COUNTER_SENSOR);
     ballWasPresent = false;
-    hoodMover = new Solenoid(2);
+    hoodMover = new DoubleSolenoid(2,3);
   }
 
   // Returns RPM of shooterWheel
@@ -60,7 +62,7 @@ public class Shooter extends SubsystemBase {
     // speed = 1;
     // }
     targetVelocity = speed;
-    shooterWheel.getPIDController().setReference(speed, ControlType.kVelocity);
+    // shooterWheel.getPIDController().setReference(speed, ControlType.kVelocity);
     // shooterWheel.set(speed);
   }
 
@@ -71,11 +73,11 @@ public class Shooter extends SubsystemBase {
   }
 
   public void raiseHood() {
-    hoodMover.set(true);
+    hoodMover.set(Value.kForward);
   }
 
   public void lowerHood() {
-    hoodMover.set(false);
+    hoodMover.set(Value.kReverse);
   }
 
   public void resetBallsShot() {

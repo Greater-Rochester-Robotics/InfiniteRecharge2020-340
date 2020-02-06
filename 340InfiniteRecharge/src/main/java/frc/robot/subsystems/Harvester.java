@@ -7,7 +7,9 @@
 
 package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
@@ -16,14 +18,14 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 public class Harvester extends SubsystemBase {
   private CANSparkMax axleWheels;
-  private Solenoid harvesterPneu;
+  private DoubleSolenoid harvesterPneu;
 
   /**
    * Creates a new Intake.
    */
   public Harvester() {
     axleWheels = new CANSparkMax(Constants.INTAKE_AXLE, MotorType.kBrushless);
-    harvesterPneu = new Solenoid(1);
+    harvesterPneu = new DoubleSolenoid(0,1);
   }
 
   public void setAxleWheels(double speed) {
@@ -31,11 +33,11 @@ public class Harvester extends SubsystemBase {
   }
 
   public void lowerHarvester(){
-    harvesterPneu.set(true);
+    harvesterPneu.set(Value.kForward);
   }
 
   public void raiseHarvester(){
-    harvesterPneu.set(false);
+    harvesterPneu.set(Value.kReverse);
   }
 
 
