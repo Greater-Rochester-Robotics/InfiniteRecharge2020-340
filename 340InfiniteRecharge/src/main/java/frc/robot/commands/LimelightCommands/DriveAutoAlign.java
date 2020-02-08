@@ -122,7 +122,7 @@ public class DriveAutoAlign extends CommandBase {
 	  //or when ready to score
 	  //turn off led (no blindness please)
 
-	RobotContainer.limelight.setLightState(1); //turns off limelight led boi
+	// RobotContainer.limelight.setLightState(1); //turns off limelight led boi
 	// RobotContainer.drive.setLEDs(false); //also turn off PCM LEDs
   }
 }
