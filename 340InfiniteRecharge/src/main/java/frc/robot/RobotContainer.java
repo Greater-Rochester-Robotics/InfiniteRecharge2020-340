@@ -18,6 +18,11 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.button.Button;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.DriveXOne;
+import frc.robot.commands.PlayMusic;
+// import frc.robot.commands.ColorWheel.SpinToColor;
+// import frc.robot.commands.LimelightCommands.AutoDistance;
+// import frc.robot.commands.LimelightCommands.DriveAutoAlign;
+// import frc.robot.commands.LimelightCommands.ObtainDistance;
 import frc.robot.commands.ColorWheel.SpinToColor;
 import frc.robot.commands.Harvester.PickHarvesterUp;
 import frc.robot.commands.Harvester.SetHarvesterDown;
@@ -132,6 +137,7 @@ public class RobotContainer {
    * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
+    driverRB.whenPressed(new PlayMusic());
 
     // driverRTButton.whenPressed(new SetHarvesterDown());
     // driverLTButton.whenPressed(new PickHarvesterUp());
