@@ -103,23 +103,23 @@ public class RobotContainer {
   public static Limelight limelight;
 
   public static final boolean isBrushedSnek = true;
-  public static final boolean isFalconFx = true;
+  public static final boolean isFalconFx = false;
 
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
    */
   public RobotContainer() {
     // TODO: comment this out to drive
-    // drive = new Drive();
+    drive = new Drive();
     // shooter = new Shooter();
     // TODO: Pneumatics system, set that up
     // compressor = new Compressor();
     // TODO: commented out default drive for testing purposes
-    // CommandScheduler.getInstance().setDefaultCommand(drive, new DriveXOne());
+    CommandScheduler.getInstance().setDefaultCommand(drive, new DriveXOne());
     // colorWheel = new ColorWheel();
     // harvester = new Harvester();
-    snekLoader = new SnekLoader();
-    // limelight = new Limelight();
+    // snekLoader = new SnekLoader();
+    limelight = new Limelight();
     // Configure the button bindings
     configureButtonBindings();
 
@@ -135,14 +135,17 @@ public class RobotContainer {
 
     // driverRTButton.whenPressed(new SetHarvesterDown());
     // driverLTButton.whenPressed(new PickHarvesterUp());
-    driverStart.whenPressed(new StopSnek());
-    driverA.whenPressed(new Load());
-    driverA.whenReleased(new StopSnek());
+    // driverStart.whenPressed(new StopSnek());
+    // driverA.whenPressed(new Load());
+    // driverA.whenReleased(new StopSnek());
     // driverB.whenPressed(new Regurgitate());
-    driverB.whenReleased(new StopSnek());
+    // driverB.whenReleased(new StopSnek());
     // driverRB.whenPressed(new LowerCobraHood());
     // driverLB.whenPressed(new RaiseCobraHood());
-
+    driverRB.whenPressed(new DriveAutoAlign());
+    driverRB.whenReleased(new DriveXOne());
+    driverLB.whenPressed(new AutoDistance());
+    driverLB.whenReleased(new DriveXOne());
   }
 
 
