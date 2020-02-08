@@ -26,8 +26,8 @@ import frc.robot.RobotContainer;
 public class SnekLoader extends SubsystemBase {
 
   private static CANSparkMax[] handleMotors;
-  private static CANDigitalInput[] handleSensors;
-  private static CANEncoder[] handleEncoders;
+  private static CANDigitalInput[] handleSensors = new CANDigitalInput[5];
+  private static CANEncoder[] handleEncoders = new CANEncoder[5];
   // If it is deemed necessary, uncomment all of ballsLoaded stuff
   private static int ballsLoaded;
   // private static boolean hadBall;
@@ -68,6 +68,7 @@ public class SnekLoader extends SubsystemBase {
           new CANSparkMax(Constants.BALL_HANDLER_MOTOR_4, MotorType.kBrushless) };
     }
 
+    // handleSensors
     // sets default setup for motors
     for (int i = 0; i <= 4; i++) {
       handleMotors[i].restoreFactoryDefaults();
@@ -95,12 +96,12 @@ public class SnekLoader extends SubsystemBase {
     // if (!hadBall && handleSensors[0].get()) {
     // ballsLoaded++;
     // }
-    if (isJammed() && getState() != State.kSpitBalls) {
-      // state = State.kOff;
-      SmartDashboard.putBoolean("isJammed", true);
-    } else {
-      SmartDashboard.putBoolean("isJammed", false);
-    }
+    // if (isJammed() && getState() != State.kSpitBalls) {
+    //   // state = State.kOff;
+    //   SmartDashboard.putBoolean("isJammed", true);
+    // } else {
+    //   SmartDashboard.putBoolean("isJammed", false);
+    // }
 
     // This method will be called once per scheduler run
     double[] speeds = new double[5];
@@ -254,7 +255,7 @@ public class SnekLoader extends SubsystemBase {
   public boolean isJammed() {
     boolean isJammed = false;
     for (int i = 0; i <= 4; i++) {
-      isJammed = isJammed || ((handleMotors[i].get() != 0) && (handleEncoders[i].getVelocity() == 0));
+      // isJammed = isJammed || ((handleMotors[i].get() != 0) && (handleEncoders[i].getVelocity() == 0));
     }
     return isJammed;
   }

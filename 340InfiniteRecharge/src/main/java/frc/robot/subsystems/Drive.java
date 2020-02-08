@@ -48,14 +48,14 @@ public class Drive extends SubsystemBase {
 	 * and the IMU with the Y-axis as yaw
 	 */
 	public Drive() {
-		// imu = new ADIS16448_IMU(ADIS16448_IMU.Axis.kZ); //The parameter here is the
+		//imu = new ADIS16448_IMU(ADIS16448_IMU.Axis.kZ); //The parameter here is the
 		// axis the IMU interprets as being yaw. This will depend on how the RIO is
 		// oriented
 		// imu.calibrate();
 		// imu.reset();
 
-		gyro = new ADXRS450_Gyro();
-		gyro.calibrate();
+		// gyro = new ADXRS450_Gyro();
+		// gyro.calibrate();
 		encLeft = new Encoder(Constants.DRIVE_ENCODER_LEFT_CHANNEL_A, Constants.DRIVE_ENCODER_LEFT_CHANNEL_B);
 		encRight = new Encoder(Constants.DRIVE_ENCODER_RIGHT_CHANNEL_A, Constants.DRIVE_ENCODER_RIGHT_CHANNEL_B);
 

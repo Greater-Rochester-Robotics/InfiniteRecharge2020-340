@@ -17,7 +17,7 @@ public class Load extends CommandBase {
    */
   public Load() {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(RobotContainer.shooter);
+    addRequirements(RobotContainer.snekLoader);
   }
 
   // Called when the command is initially scheduled.

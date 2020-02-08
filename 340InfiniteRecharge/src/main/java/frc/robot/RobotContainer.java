@@ -23,10 +23,19 @@ import frc.robot.commands.PlayMusic;
 // import frc.robot.commands.LimelightCommands.AutoDistance;
 // import frc.robot.commands.LimelightCommands.DriveAutoAlign;
 // import frc.robot.commands.LimelightCommands.ObtainDistance;
+import frc.robot.commands.ColorWheel.SpinToColor;
+import frc.robot.commands.Harvester.PickHarvesterUp;
+import frc.robot.commands.Harvester.SetHarvesterDown;
+import frc.robot.commands.LimelightCommands.AutoDistance;
+import frc.robot.commands.LimelightCommands.DriveAutoAlign;
+import frc.robot.commands.LimelightCommands.ObtainDistance;
+import frc.robot.commands.Shooter.LowerCobraHood;
+import frc.robot.commands.Shooter.RaiseCobraHood;
 import frc.robot.commands.Shooter.Shoot;
 import frc.robot.commands.Shooter.SingleShot;
 import frc.robot.commands.Shooter.StopShoot;
 import frc.robot.commands.SnekLoader.Load;
+import frc.robot.commands.SnekLoader.Regurgitate;
 import frc.robot.commands.SnekLoader.StopSnek;
 import frc.robot.subsystems.ColorWheel;
 import frc.robot.subsystems.Drive;
@@ -99,20 +108,20 @@ public class RobotContainer {
   public static Limelight limelight;
 
   public static final boolean isBrushedSnek = true;
-  public static final boolean isFalconFx = true;
+  public static final boolean isFalconFx = false;
 
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
    */
   public RobotContainer() {
     // TODO: comment this out to drive
-    // drive = new Drive();
+    drive = new Drive();
     // shooter = new Shooter();
     // TODO: Pneumatics system, set that up
     // compressor = new Compressor();
     // TODO: commented out default drive for testing purposes
-    // CommandScheduler.getInstance().setDefaultCommand(drive, new DriveXOne());
-    colorWheel = new ColorWheel();
+    CommandScheduler.getInstance().setDefaultCommand(drive, new DriveXOne());
+    // colorWheel = new ColorWheel();
     // harvester = new Harvester();
     // snekLoader = new SnekLoader();
     limelight = new Limelight();
@@ -129,6 +138,20 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     driverRB.whenPressed(new PlayMusic());
+
+    // driverRTButton.whenPressed(new SetHarvesterDown());
+    // driverLTButton.whenPressed(new PickHarvesterUp());
+    // driverStart.whenPressed(new StopSnek());
+    // driverA.whenPressed(new Load());
+    // driverA.whenReleased(new StopSnek());
+    // driverB.whenPressed(new Regurgitate());
+    // driverB.whenReleased(new StopSnek());
+    // driverRB.whenPressed(new LowerCobraHood());
+    // driverLB.whenPressed(new RaiseCobraHood());
+    driverRB.whenPressed(new DriveAutoAlign());
+    driverRB.whenReleased(new DriveXOne());
+    driverLB.whenPressed(new AutoDistance());
+    driverLB.whenReleased(new DriveXOne());
   }
 
 
