@@ -18,10 +18,11 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.button.Button;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.DriveXOne;
-import frc.robot.commands.ColorWheel.SpinToColor;
-import frc.robot.commands.LimelightCommands.AutoDistance;
-import frc.robot.commands.LimelightCommands.DriveAutoAlign;
-import frc.robot.commands.LimelightCommands.ObtainDistance;
+import frc.robot.commands.PlayMusic;
+// import frc.robot.commands.ColorWheel.SpinToColor;
+// import frc.robot.commands.LimelightCommands.AutoDistance;
+// import frc.robot.commands.LimelightCommands.DriveAutoAlign;
+// import frc.robot.commands.LimelightCommands.ObtainDistance;
 import frc.robot.commands.Shooter.Shoot;
 import frc.robot.commands.Shooter.SingleShot;
 import frc.robot.commands.Shooter.StopShoot;
@@ -127,29 +128,7 @@ public class RobotContainer {
    * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-
-    // driverRB.whenPressed(new Load());
-    // driverRB.whenReleased(new StopSnek());
-    // driverLB.whenPressed(new Shoot());
-    // driverLB.whenReleased(new StopSnek());
-    // driverLB.whenReleased(new StopShoot());
-    // driverStart.whenPressed(new StopSnek());
-    // driverStart.whenPressed(new StopShoot());
-    // driverRTButton.whenReleased(new StopSnek());
-    // driverRTButton.whenReleased(new StopShoot());
-    // driverLTButton.whenPressed(new SingleShot());
-    // driverLTButton.whenReleased(new StopSnek());
-    // driverLTButton.whenReleased(new StopShoot());
-    // driverY.whenPressed(new DriveAutoAlign());
-    // driverY.whenReleased(new DriveXOne());
-    // driverA.whenPressed(new AutoDistance());
-    // driverA.whenReleased(new DriveXOne());
-    driverA.whenPressed(new SpinToColor());
-    driverRB.whenPressed(new DriveAutoAlign());
-    driverRB.whenReleased(new DriveXOne());
-    driverLB.whenPressed(new AutoDistance());
-    driverLB.whenReleased(new DriveXOne());
-    driverY.whenPressed(new ObtainDistance());
+    driverRB.whenPressed(new PlayMusic());
   }
 
 
