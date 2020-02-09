@@ -38,18 +38,23 @@ public class Shooter extends SubsystemBase {
    * Creates a new Shooter.
    */
   public Shooter() {
-    shooterWheel = new CANSparkMax(Constants.SNEKSHOOTER_SPARK_LAUNCHER, MotorType.kBrushless);
-    shooterWheel.getPIDController().setP(0.0001);
+    shooterWheel = new CANSparkMax(Constants.SHOOTER_WHEEL, MotorType.kBrushless);
+    shooterWheel.getPIDController().setP(0.0007);
+    // shooterWheel.getPIDController().setP(0.0);
     shooterWheel.getPIDController().setI(0.0);
-    shooterWheel.getPIDController().setD(0.00005);
-    shooterWheel.getPIDController().setFF(0.000174);
+    // shooterWheel.getPIDController().setD(0.00005);
+    shooterWheel.getPIDController().setD(0.000075);
+    shooterWheel.getPIDController().setFF(0.000185);
     shooterWheel.setInverted(true);
-    shooterEncoder = shooterWheel.getEncoder(EncoderType.kHallSensor, 42);
+    shooterEncoder = shooterWheel.getEncoder();
     ballCounter = new DigitalInput(Constants.BALL_COUNTER_SENSOR);
     ballWasPresent = false;
     hoodMover = new DoubleSolenoid(2,3);
   }
 
+  public void stop(){
+    shooterWheel.setVoltage(0);
+  }
   // Returns RPM of shooterWheel
   public double getShooterVelocity() {
     return shooterEncoder.getVelocity();
@@ -61,14 +66,16 @@ public class Shooter extends SubsystemBase {
     // } else if (speed > 1) {
     // speed = 1;
     // }
+
+    //shooterWheel.getPIDController().setFF(speed * 1 + 0);
     targetVelocity = speed;
-    // shooterWheel.getPIDController().setReference(speed, ControlType.kVelocity);
+    shooterWheel.getPIDController().setReference(speed, ControlType.kVelocity);
     // shooterWheel.set(speed);
   }
 
   public boolean isShooterAtSpeed() {
-    return ((shooterEncoder.getVelocity() >= targetVelocity * .98)
-        && (shooterEncoder.getVelocity() <= targetVelocity * 1.02));
+    return ((shooterEncoder.getVelocity() >= (targetVelocity*.98) -25)
+        && (shooterEncoder.getVelocity() <= (targetVelocity*1.02 )+100));
 
   }
 
@@ -81,7 +88,7 @@ public class Shooter extends SubsystemBase {
   }
 
   public void resetBallsShot() {
-    ballsShot = -0;
+    ballsShot = -0;// UwU
   }
 
   public int getBallsShot() {
@@ -89,7 +96,7 @@ public class Shooter extends SubsystemBase {
   }
 
   public boolean getShooterSensor() {
-    return (ballCounter.get());
+    return (!ballCounter.get());
   }
 
   public int getTotalBallsShot() {
@@ -99,14 +106,22 @@ public class Shooter extends SubsystemBase {
   @Override
   public void periodic() {
     // if ballCounter sensor is false and ball sensor was true previously, add one
-    if (!ballCounter.get() && ballWasPresent) {
+    if (!getShooterSensor() && ballWasPresent) {
       ballsShot++;
       totalBallsShot++;
     }
-    SmartDashboard.putNumber("Balls Shot", ballsShot);
-    SmartDashboard.putBoolean("Shooter Sensor Value", ballCounter.get());
-    SmartDashboard.putNumber("Flywheel Speed", shooterEncoder.getVelocity());
-    SmartDashboard.putNumber("Total Balls Shot In Match", totalBallsShot);
-    ballWasPresent = ballCounter.get();
+    SmartDashboard.putString("Max Speed", ""+((targetVelocity*1.02)+25));
+    SmartDashboard.putString("Target Speed", ""+targetVelocity);
+    SmartDashboard.putString("Min Speed", ""+((targetVelocity*.98)-25));
+    // SmartDashboard.putString("Balls Shot", ""+ballsShot);
+    // SmartDashboard.putBoolean("Shooter Sensor", getShooterSensor());
+    SmartDashboard.putString("Flywheel Speed", ""+shooterEncoder.getVelocity());
+    // SmartDashboard.putString("Total Balls Shot In Match", ""+totalBallsShot);
+    if (this.getCurrentCommand() != null){
+      SmartDashboard.putString("shooter command", this.getCurrentCommand().getName());
+    } else {
+      SmartDashboard.putString("shooter command", "none");
+    }
+    ballWasPresent = getShooterSensor();
   }
 }

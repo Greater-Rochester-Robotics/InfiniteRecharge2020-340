@@ -24,7 +24,7 @@ public class Regurgitate extends CommandBase {
   @Override
   public void initialize() {
     RobotContainer.snekLoader.setState(State.kSpitBalls);
-    RobotContainer.shooter.setShooterWheel(-100);
+    // RobotContainer.shooter.setShooterWheel(-100);
   }
 
   // Called every time the scheduler runs while the command is scheduled.

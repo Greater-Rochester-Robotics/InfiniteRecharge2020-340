@@ -7,6 +7,7 @@
 
 package frc.robot.commands.Shooter;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
 import frc.robot.subsystems.SnekLoader.State;
@@ -17,17 +18,19 @@ public class Shoot extends CommandBase {
   private int speedRpm;
 
   public Shoot() {
-    this(5500, -1);
+    this(4500, -1);
   }
 
   public Shoot(int speed) {
-    ballsToShoot = RobotContainer.snekLoader.getBallsLoaded();
-    speedRpm = speed;
+    this(speed, RobotContainer.snekLoader.getBallsLoaded());
   }
 
   public Shoot(int speed, int numToShoot) {
     this.ballsToShoot = numToShoot;
     speedRpm = speed;
+    System.out.println(
+      "constructed"
+    );
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(RobotContainer.shooter, RobotContainer.snekLoader);
   }
@@ -38,6 +41,7 @@ public class Shoot extends CommandBase {
     RobotContainer.shooter.resetBallsShot();
     stateIndex = 4;
     RobotContainer.shooter.setShooterWheel(speedRpm);
+    System.out.println("Shoot init");
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -45,10 +49,14 @@ public class Shoot extends CommandBase {
   public void execute() {
     // Check speed if PID loop isn't working for the flywheel to spin up between
     // shots
+    SmartDashboard.putString("TEST", "Happy");
     if (!RobotContainer.shooter.isShooterAtSpeed()) {
+      SmartDashboard.putString("Speed?", "No");
+      RobotContainer.snekLoader.setState(State.kFillTo4);
+      stateIndex=4;
       return;
     }
-
+    SmartDashboard.putString("Speed?", "Yes");
     if ((stateIndex == 4)) {
       RobotContainer.snekLoader.setState(State.kShootBall4);
       stateIndex = 3;
@@ -65,14 +73,19 @@ public class Shoot extends CommandBase {
       RobotContainer.snekLoader.setState(State.kShootBall0);
       stateIndex = -1;
     }
-
+    SmartDashboard.putString("index", ""+stateIndex);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(final boolean interrupted) {
-    RobotContainer.shooter.setShooterWheel(0.0);
+    System.out.println("Shoot() ended interrupted:" + interrupted);
+    RobotContainer.shooter.stop();
+    if ( interrupted){
     RobotContainer.snekLoader.setState(State.kOff);
+    }else{
+      RobotContainer.snekLoader.setState(State.kFillTo4);
+    }
   }
 
   // Returns true when the command should end.

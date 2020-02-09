@@ -22,7 +22,7 @@ public class StopShoot extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    RobotContainer.shooter.setShooterWheel(0.0);
+    RobotContainer.shooter.stop();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
