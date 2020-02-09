@@ -18,6 +18,12 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.button.Button;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.DriveXOne;
+import frc.robot.commands.PlayMusic;
+import frc.robot.commands.StopMusic;
+// import frc.robot.commands.ColorWheel.SpinToColor;
+// import frc.robot.commands.LimelightCommands.AutoDistance;
+// import frc.robot.commands.LimelightCommands.DriveAutoAlign;
+// import frc.robot.commands.LimelightCommands.ObtainDistance;
 import frc.robot.commands.ColorWheel.SpinToColor;
 import frc.robot.commands.Harvester.IntakeBalls;
 import frc.robot.commands.Harvester.PickHarvesterUp;
@@ -134,6 +140,9 @@ public class RobotContainer {
    * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
+    driverBack.whenPressed(new PlayMusic());
+    driverBack.whenPressed(new StopMusic());
+
 
     driverX.whenPressed(new IntakeBalls());
     driverX.whenPressed(new Load());
@@ -164,8 +173,15 @@ public class RobotContainer {
     driverLB.whenPressed(new RaiseCobraHood());
     driverRTButton.whenPressed(new SetHarvesterDown());
     driverLTButton.whenPressed(new PickHarvesterUp());
+    // driverRB.whenPressed(new LowerCobraHood());
+    // driverLB.whenPressed(new RaiseCobraHood());
+    // driverRB.whenPressed(new DriveAutoAlign());
+    // driverRB.whenReleased(new DriveXOne());
+    // driverLB.whenPressed(new AutoDistance());
+    // driverLB.whenReleased(new DriveXOne());
+    // driverY.whenPressed(new ObtainDistance());
 
-  }
+    }
 
 
 

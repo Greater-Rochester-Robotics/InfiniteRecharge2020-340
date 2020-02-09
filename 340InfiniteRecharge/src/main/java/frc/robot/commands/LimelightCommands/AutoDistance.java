@@ -55,16 +55,20 @@ public class AutoDistance extends CommandBase {
       //Stop rumble if there is a target
       Robot.robotContainer.setDriverRumble(0, 0);
 
-      double distanceWanted = 132; // in inches for consistency
-      double distanceOffset = distanceWanted - RobotContainer.limelight.getDistance();
+      // we are using the vertical angle to the target to determine a rough distance, this variable should be set to 
+      // whatever the ty variable is when we are at the distance we want to be from the target.
+      double angleWanted = 0; 
+      double angleOffset = RobotContainer.limelight.verticalAngleToTarget() - angleWanted;
       double speeds = 0;
 
-      if(Math.abs(distanceOffset) < 12){
+      if(Math.abs(angleOffset) < .5){
         speeds = 0.0;
       }
       else{
-        double variable = 0.1;
-        speeds = (distanceOffset / 100) * variable;
+        //this variable is to modify the speed at which we attempt to get to the distance we want to be at.
+        double speedVariable = 0.5;
+        //we divide distanceOffset by 15 because that is near the maximum value for ty which is 24.85
+        speeds = (angleOffset / 15) * speedVariable;
       }
       
 

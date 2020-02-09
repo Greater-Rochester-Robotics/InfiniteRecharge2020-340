@@ -5,23 +5,24 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.manual;
+package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
 
-public class ManualShooterShoot extends CommandBase {
+public class StopMusic extends CommandBase {
   /**
-   * Creates a new ManualShooterShoot.
+   * Creates a new StopMusic.
    */
-  public ManualShooterShoot() {
-  addRequirements(RobotContainer.shooter);    
+  public StopMusic() {
+    addRequirements(RobotContainer.drive);
+    // Use addRequirements() here to declare subsystem dependencies.
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    RobotContainer.shooter.setShooterWheel(5500);
+    RobotContainer.drive.stopMusic();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -32,7 +33,7 @@ public class ManualShooterShoot extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    RobotContainer.shooter.setShooterWheel(0);
+    RobotContainer.drive.stopMusic();
   }
 
   // Returns true when the command should end.

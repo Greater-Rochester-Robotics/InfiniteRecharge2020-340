@@ -9,7 +9,13 @@ package frc.robot.subsystems;
 
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+
+import java.util.ArrayList;
+
+import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
+import com.ctre.phoenix.music.Orchestra;
+
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.SpeedController;
@@ -32,22 +38,24 @@ public class Drive extends SubsystemBase {
 	// private static ADIS16448_IMU imu;
 	private static ADXRS450_Gyro gyro;
 	private static Encoder encLeft, encRight;
-	private static SpeedController driveLeftA, driveLeftB, driveRightA, driveRightB;
+	private static WPI_TalonFX driveLeftA, driveLeftB, driveRightA, driveRightB;
 	private static PCM_LED led;
+
+	Orchestra band;
 
 	/**
 	 * Set up the Sparks and encoders with the ports specified in {@link Constants},
 	 * and the IMU with the Y-axis as yaw
 	 */
 	public Drive() {
-		// imu = new ADIS16448_IMU(ADIS16448_IMU.Axis.kZ); //The parameter here is the
+		//imu = new ADIS16448_IMU(ADIS16448_IMU.Axis.kZ); //The parameter here is the
 		// axis the IMU interprets as being yaw. This will depend on how the RIO is
 		// oriented
 		// imu.calibrate();
 		// imu.reset();
 
-		gyro = new ADXRS450_Gyro();
-		gyro.calibrate();
+		// gyro = new ADXRS450_Gyro();
+		// gyro.calibrate();
 		encLeft = new Encoder(Constants.DRIVE_ENCODER_LEFT_CHANNEL_A, Constants.DRIVE_ENCODER_LEFT_CHANNEL_B);
 		encRight = new Encoder(Constants.DRIVE_ENCODER_RIGHT_CHANNEL_A, Constants.DRIVE_ENCODER_RIGHT_CHANNEL_B);
 
@@ -57,18 +65,12 @@ public class Drive extends SubsystemBase {
 
 		encLeft.setReverseDirection(true);
 		encRight.setReverseDirection(true);
-		if (RobotContainer.isFalconFx) {
+		
 			driveLeftA = new WPI_TalonFX(Constants.DRIVE_LEFT_CHANNEL_A);
 			driveLeftB = new WPI_TalonFX(Constants.DRIVE_LEFT_CHANNEL_B);
 			driveRightA = new WPI_TalonFX(Constants.DRIVE_RIGHT_CHANNEL_A);
 			driveRightB = new WPI_TalonFX(Constants.DRIVE_RIGHT_CHANNEL_B);
-		} else {
-			
-			driveLeftA = new CANSparkMax(Constants.DRIVE_LEFT_CHANNEL_A, MotorType.kBrushless);
-			driveLeftB = new CANSparkMax(Constants.DRIVE_LEFT_CHANNEL_B, MotorType.kBrushless);
-			driveRightA = new CANSparkMax(Constants.DRIVE_RIGHT_CHANNEL_A, MotorType.kBrushless);
-			driveRightB = new CANSparkMax(Constants.DRIVE_RIGHT_CHANNEL_B, MotorType.kBrushless);
-		}
+		
 
 		// TODO: Commented out PCM LED due to null exception
 		// led = new PCM_LED(Constants.SECONDARY_PCM_ID, Constants.LED_PCM_CHANNEL);
@@ -79,6 +81,23 @@ public class Drive extends SubsystemBase {
 		driveLeftA.setInverted(true);
 		driveLeftB.setInverted(true);
 
+		ArrayList<TalonFX> instruments = new ArrayList<>();
+		instruments.add(driveLeftA);
+		instruments.add(driveLeftB);
+		instruments.add(driveRightA);
+		instruments.add(driveRightB);
+		
+		band = new Orchestra(instruments);
+		band.loadMusic("ImperialMarch.chrp");
+	
+	}
+
+	public void playMusic() {
+		band.play();
+	}
+
+	public void stopMusic() {
+		band.stop();
 	}
 
 	// @Override
