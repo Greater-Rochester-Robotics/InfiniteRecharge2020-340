@@ -19,8 +19,11 @@ import edu.wpi.first.wpilibj2.command.button.Button;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.DriveXOne;
 import frc.robot.commands.ColorWheel.SpinToColor;
+import frc.robot.commands.Harvester.IntakeBalls;
 import frc.robot.commands.Harvester.PickHarvesterUp;
 import frc.robot.commands.Harvester.SetHarvesterDown;
+import frc.robot.commands.Harvester.SpitBalls;
+import frc.robot.commands.Harvester.StopIntake;
 import frc.robot.commands.LimelightCommands.AutoDistance;
 import frc.robot.commands.LimelightCommands.DriveAutoAlign;
 import frc.robot.commands.LimelightCommands.ObtainDistance;
@@ -102,7 +105,6 @@ public class RobotContainer {
   public static ColorWheel colorWheel;
   public static Limelight limelight;
 
-  public static final boolean isBrushedSnek = true;
   public static final boolean isFalconFx = true;
 
   /**
@@ -110,14 +112,14 @@ public class RobotContainer {
    */
   public RobotContainer() {
     // TODO: comment this out to drive
-    // drive = new Drive();
-    // shooter = new Shooter();
+    drive = new Drive();
+    shooter = new Shooter();
     // TODO: Pneumatics system, set that up
-    // compressor = new Compressor();
+    compressor = new Compressor();
     // TODO: commented out default drive for testing purposes
-    // CommandScheduler.getInstance().setDefaultCommand(drive, new DriveXOne());
+    CommandScheduler.getInstance().setDefaultCommand(drive, new DriveXOne());
     // colorWheel = new ColorWheel();
-    // harvester = new Harvester();
+     harvester = new Harvester();
     snekLoader = new SnekLoader();
     // limelight = new Limelight();
     // Configure the button bindings
@@ -133,15 +135,35 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
 
-    // driverRTButton.whenPressed(new SetHarvesterDown());
-    // driverLTButton.whenPressed(new PickHarvesterUp());
-    driverStart.whenPressed(new StopSnek());
-    driverA.whenPressed(new Load());
+    driverX.whenPressed(new IntakeBalls());
+    driverX.whenPressed(new Load());
+    driverX.whenReleased(new StopIntake());
+    driverX.whenReleased(new StopSnek());
+    driverY.whenPressed(new SpitBalls());
+    driverY.whenPressed(new Regurgitate());
+    driverY.whenReleased(new StopIntake());
+    driverY.whenReleased(new StopSnek());
+
+    driverA.whenPressed(new Shoot(4500));
+    driverA.whenPressed(new IntakeBalls());
+    driverA.whenReleased(new StopShoot());
     driverA.whenReleased(new StopSnek());
-    // driverB.whenPressed(new Regurgitate());
+    driverA.whenReleased(new StopIntake());
+
+    driverB.whenPressed(new Shoot(3500));
+    driverB.whenPressed(new IntakeBalls());
+    driverB.whenReleased(new StopShoot());
     driverB.whenReleased(new StopSnek());
-    // driverRB.whenPressed(new LowerCobraHood());
-    // driverLB.whenPressed(new RaiseCobraHood());
+    driverB.whenReleased(new StopIntake());
+    // driverStart.whenPressed(new StopSnek());
+    // driverA.whenPressed(new Load());
+    // driverA.whenReleased(new StopSnek());
+    // driverB.whenPressed(new Regurgitate());
+    // driverB.whenReleased(new StopSnek());
+    driverRB.whenPressed(new LowerCobraHood());
+    driverLB.whenPressed(new RaiseCobraHood());
+    driverRTButton.whenPressed(new SetHarvesterDown());
+    driverLTButton.whenPressed(new PickHarvesterUp());
 
   }
 

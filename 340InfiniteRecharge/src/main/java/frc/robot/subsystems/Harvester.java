@@ -28,8 +28,8 @@ public class Harvester extends SubsystemBase {
     harvesterPneu = new DoubleSolenoid(0,1);
   }
 
-  public void setAxleWheels(double speed) {
-    axleWheels.set(speed);
+  public void setAxleWheels(double volts) {
+    axleWheels.setVoltage(volts);
   }
 
   public void lowerHarvester(){

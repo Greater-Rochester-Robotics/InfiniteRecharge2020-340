@@ -29,7 +29,7 @@ public class SnekLoader extends SubsystemBase {
   private static CANDigitalInput[] handleSensors = new CANDigitalInput[5];
   private static CANEncoder[] handleEncoders = new CANEncoder[5];
   // If it is deemed necessary, uncomment all of ballsLoaded stuff
-  private static int ballsLoaded;
+  private int ballsLoaded;
   // private static boolean hadBall;
 
   public enum State {
@@ -48,25 +48,13 @@ public class SnekLoader extends SubsystemBase {
   public SnekLoader() {
     ballsLoaded = 0;
     // hadBall = false;
-    if (RobotContainer.isBrushedSnek) {
-      // This is here so we can support the prototype that does not have the neo550s
-      // on them and instead have the BAG motors.
-      handleMotors = new CANSparkMax[] {
-          // TODO:Need to set CAN Id for motors
-          new CANSparkMax(Constants.BALL_HANDLER_MOTOR_0, MotorType.kBrushed),
-          new CANSparkMax(Constants.BALL_HANDLER_MOTOR_1, MotorType.kBrushed),
-          new CANSparkMax(Constants.BALL_HANDLER_MOTOR_2, MotorType.kBrushed),
-          new CANSparkMax(Constants.BALL_HANDLER_MOTOR_3, MotorType.kBrushed),
-          new CANSparkMax(Constants.BALL_HANDLER_MOTOR_4, MotorType.kBrushed) };
-    } else {
-      handleMotors = new CANSparkMax[] {
-          // TODO:Need to set CAN Id for motors
-          new CANSparkMax(Constants.BALL_HANDLER_MOTOR_0, MotorType.kBrushless),
-          new CANSparkMax(Constants.BALL_HANDLER_MOTOR_1, MotorType.kBrushless),
-          new CANSparkMax(Constants.BALL_HANDLER_MOTOR_2, MotorType.kBrushless),
-          new CANSparkMax(Constants.BALL_HANDLER_MOTOR_3, MotorType.kBrushless),
-          new CANSparkMax(Constants.BALL_HANDLER_MOTOR_4, MotorType.kBrushless) };
-    }
+    handleMotors = new CANSparkMax[] {
+        // TODO:Need to set CAN Id for motors
+        new CANSparkMax(Constants.BALL_HANDLER_MOTOR_0, MotorType.kBrushless),
+        new CANSparkMax(Constants.BALL_HANDLER_MOTOR_1, MotorType.kBrushless),
+        new CANSparkMax(Constants.BALL_HANDLER_MOTOR_2, MotorType.kBrushless),
+        new CANSparkMax(Constants.BALL_HANDLER_MOTOR_3, MotorType.kBrushless),
+        new CANSparkMax(Constants.BALL_HANDLER_MOTOR_4, MotorType.kBrushless) };
 
     // handleSensors
     // sets default setup for motors
@@ -74,14 +62,13 @@ public class SnekLoader extends SubsystemBase {
       handleMotors[i].restoreFactoryDefaults();
       handleMotors[i].setIdleMode(IdleMode.kBrake);// set brake mode, so motors stop on a dime
       handleMotors[i].enableVoltageCompensation(12.0);// enable volatge compensation mode 12V
-      handleSensors[i] = handleMotors[i].getForwardLimitSwitch(LimitSwitchPolarity.kNormallyClosed);
-      handleSensors[i].enableLimitSwitch(false);// now disable limit switches, we'll turn these on later, one at a time
+      handleMotors[i].setInverted(false);//Reverses the direction of the wheels
+      handleMotors[i].enableVoltageCompensation(12.0);
+      handleSensors[i] = handleMotors[i].getForwardLimitSwitch(LimitSwitchPolarity.kNormallyOpen);
+      handleSensors[i].enableLimitSwitch(false);// now disable limit switches, we'll turn these on later, one at a tim
       handleEncoders[i] = handleMotors[i].getEncoder();
     }
-    for (int i = 0; i <= 3; i++) {
-      // inverts motors 0-3
-      handleMotors[i].setInverted(true);
-    }
+    handleMotors[4].setInverted(true);
   }
 
   /**
@@ -97,10 +84,10 @@ public class SnekLoader extends SubsystemBase {
     // ballsLoaded++;
     // }
     // if (isJammed() && getState() != State.kSpitBalls) {
-    //   // state = State.kOff;
-    //   SmartDashboard.putBoolean("isJammed", true);
+    // // state = State.kOff;
+    // SmartDashboard.putBoolean("isJammed", true);
     // } else {
-    //   SmartDashboard.putBoolean("isJammed", false);
+    // SmartDashboard.putBoolean("isJammed", false);
     // }
 
     // This method will be called once per scheduler run
@@ -120,7 +107,7 @@ public class SnekLoader extends SubsystemBase {
         break;
       }
     case kFillTo3:
-      speeds = new double[] { MOTOR_IN_SPEED0, MOTOR_IN_SPEED1, MOTOR_IN_SPEED2, .35, 0.0 };
+      speeds = new double[] { MOTOR_IN_SPEED0, MOTOR_IN_SPEED1, MOTOR_IN_SPEED2, MOTOR_IN_SPEED4, 0.0 };
       enableOneLimit(3);
       if (getHandleSensor(3)) {
         state = State.kFillTo2;
@@ -129,7 +116,7 @@ public class SnekLoader extends SubsystemBase {
         break;
       }
     case kFillTo2:
-      speeds = new double[] { MOTOR_IN_SPEED0, MOTOR_IN_SPEED1, .35, 0.0, 0.0 };
+      speeds = new double[] { MOTOR_IN_SPEED0, MOTOR_IN_SPEED1, MOTOR_IN_SPEED4, 0.0, 0.0 };
       enableOneLimit(2);
       if (getHandleSensor(2)) {
         state = State.kFillTo1;
@@ -138,7 +125,7 @@ public class SnekLoader extends SubsystemBase {
         break;
       }
     case kFillTo1:
-      speeds = new double[] { MOTOR_IN_SPEED0, .35, 0.0, 0.0, 0.0 };
+      speeds = new double[] { MOTOR_IN_SPEED0, MOTOR_IN_SPEED4, 0.0, 0.0, 0.0 };
       enableOneLimit(1);
       if (getHandleSensor(1)) {
         state = State.kFillTo0;
@@ -149,6 +136,7 @@ public class SnekLoader extends SubsystemBase {
     case kFillTo0:
       speeds = new double[] { MOTOR_IN_SPEED0, 0.0, 0.0, 0.0, 0.0 };
       enableOneLimit(0);
+      ballsLoaded = -1;
       if (getHandleSensor(0)) {
         ballsLoaded = 5;
         state = State.kOff;
@@ -156,7 +144,7 @@ public class SnekLoader extends SubsystemBase {
         ballsLoaded = 4;
         break;
       }
-      
+
     case kOff:
       speeds = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0 };
       enableOneLimit(-1);
@@ -187,14 +175,20 @@ public class SnekLoader extends SubsystemBase {
       break;
     }
     setAllHandleMotors(speeds);
-    SmartDashboard.putNumber("BallsLoaded", ballsLoaded);
+    SmartDashboard.putString("BallsLoaded", ""+ ballsLoaded);
     SmartDashboard.putString("State", state.name());
+    if(this.getCurrentCommand() != null){
+      SmartDashboard.putString("snek command", this.getCurrentCommand().getName());
+    } else {
+      SmartDashboard.putString("snek command", "none");
+    }
 
-    SmartDashboard.putBoolean("Handle Sensor 0", handleSensors[0].get());
-    SmartDashboard.putBoolean("Handle Sensor 1", handleSensors[1].get());
-    SmartDashboard.putBoolean("Handle Sensor 2", handleSensors[2].get());
-    SmartDashboard.putBoolean("Handle Sensor 3", handleSensors[3].get());
-    SmartDashboard.putBoolean("Handle Sensor 4", handleSensors[4].get());
+    // SmartDashboard.putBoolean("Handle Sensor 0", handleSensors[0].get());
+    // SmartDashboard.putBoolean("Handle Sensor 1", handleSensors[1].get());
+    // SmartDashboard.putBoolean("Handle Sensor 2", handleSensors[2].get());
+    // SmartDashboard.putBoolean("Handle Sensor 3", handleSensors[3].get());
+    // SmartDashboard.putBoolean("Handle Sensor 4", handleSensors[4].get());
+    // System.out.println("SnekLoaderPeriodic Done");
   }
 
   /**
@@ -255,7 +249,8 @@ public class SnekLoader extends SubsystemBase {
   public boolean isJammed() {
     boolean isJammed = false;
     for (int i = 0; i <= 4; i++) {
-      // isJammed = isJammed || ((handleMotors[i].get() != 0) && (handleEncoders[i].getVelocity() == 0));
+      // isJammed = isJammed || ((handleMotors[i].get() != 0) &&
+      // (handleEncoders[i].getVelocity() == 0));
     }
     return isJammed;
   }
