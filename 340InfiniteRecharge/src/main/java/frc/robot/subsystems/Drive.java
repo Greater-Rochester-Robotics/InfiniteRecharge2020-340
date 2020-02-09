@@ -12,6 +12,7 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import java.util.ArrayList;
 
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import com.ctre.phoenix.music.Orchestra;
@@ -80,6 +81,11 @@ public class Drive extends SubsystemBase {
 		// Negate all speeds to the left side to account for mirrored axes
 		driveLeftA.setInverted(true);
 		driveLeftB.setInverted(true);
+
+		driveLeftA.setNeutralMode(NeutralMode.Coast);
+		driveLeftB.setNeutralMode(NeutralMode.Coast);
+		driveRightA.setNeutralMode(NeutralMode.Coast);
+		driveRightB.setNeutralMode(NeutralMode.Coast);
 
 		ArrayList<TalonFX> instruments = new ArrayList<>();
 		instruments.add(driveLeftA);

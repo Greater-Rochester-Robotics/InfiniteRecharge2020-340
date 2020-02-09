@@ -183,11 +183,11 @@ public class SnekLoader extends SubsystemBase {
       SmartDashboard.putString("snek command", "none");
     }
 
-    // SmartDashboard.putBoolean("Handle Sensor 0", handleSensors[0].get());
-    // SmartDashboard.putBoolean("Handle Sensor 1", handleSensors[1].get());
-    // SmartDashboard.putBoolean("Handle Sensor 2", handleSensors[2].get());
-    // SmartDashboard.putBoolean("Handle Sensor 3", handleSensors[3].get());
-    // SmartDashboard.putBoolean("Handle Sensor 4", handleSensors[4].get());
+    SmartDashboard.putBoolean("Handle Sensor 0", handleSensors[0].get());
+    SmartDashboard.putBoolean("Handle Sensor 1", handleSensors[1].get());
+    SmartDashboard.putBoolean("Handle Sensor 2", handleSensors[2].get());
+    SmartDashboard.putBoolean("Handle Sensor 3", handleSensors[3].get());
+    SmartDashboard.putBoolean("Handle Sensor 4", handleSensors[4].get());
     // System.out.println("SnekLoaderPeriodic Done");
   }
 
