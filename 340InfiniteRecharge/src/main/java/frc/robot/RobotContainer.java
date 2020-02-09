@@ -155,7 +155,9 @@ public class RobotContainer {
     driverRB.whenReleased(new DriveXOne());
     driverLB.whenPressed(new AutoDistance());
     driverLB.whenReleased(new DriveXOne());
-  }
+    driverY.whenPressed(new ObtainDistance());
+
+    }
 
 
 
