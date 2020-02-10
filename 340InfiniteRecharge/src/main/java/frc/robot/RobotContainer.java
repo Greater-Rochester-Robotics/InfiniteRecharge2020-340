@@ -125,9 +125,9 @@ public class RobotContainer {
     // TODO: commented out default drive for testing purposes
     CommandScheduler.getInstance().setDefaultCommand(drive, new DriveXOne());
     // colorWheel = new ColorWheel();
-     harvester = new Harvester();
+    harvester = new Harvester();
     snekLoader = new SnekLoader();
-    // limelight = new Limelight();
+    limelight = new Limelight();
     // Configure the button bindings
     configureButtonBindings();
 
