@@ -27,6 +27,7 @@ public class Limelight extends SubsystemBase {
 
   public void periodic(){
     getDistance();
+    RobotContainer.limelight.setLightState(3);
   }
   public void setPipeline(int Pipeline){
 	  NetworkTableInstance.getDefault().getTable("limelight").getEntry("pipeline").setNumber(Pipeline);
@@ -59,8 +60,8 @@ public class Limelight extends SubsystemBase {
     double targetHeight = 98.25; //final value = 98.25
     double cameraAngle = 34;    //changeable
     double Distance = (targetHeight - cameraHeight) / Math.tan(Math.toRadians(cameraAngle + RobotContainer.limelight.verticalAngleToTarget())); // hopefully returns the distance to the target
-    System.out.println("Math = " + Math.tan( Math.toRadians(cameraAngle + RobotContainer.limelight.verticalAngleToTarget()) ) +"   distance = " + Distance);
-    
+    //System.out.println("Math = " + Math.tan( Math.toRadians(cameraAngle + RobotContainer.limelight.verticalAngleToTarget()) ) +"   distance = " + Distance);
+    SmartDashboard.putString("Distance", ""+Distance);
     System.out.println(Distance);
     return Distance;
     //d = (h2-h1) / tan(a1+a2)

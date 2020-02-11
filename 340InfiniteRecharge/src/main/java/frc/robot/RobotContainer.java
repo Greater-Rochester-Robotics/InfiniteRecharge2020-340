@@ -154,7 +154,7 @@ public class RobotContainer {
     driverY.whenReleased(new StopSnek());
 
     //Perfect speed from init line is 3350
-    driverA.whenPressed(new Shoot(3350));
+    driverA.whenPressed(new Shoot(3350,1));
     driverA.whenPressed(new IntakeBalls());
     driverA.whenReleased(new StopShoot());
     driverA.whenReleased(new StopSnek());
@@ -170,12 +170,12 @@ public class RobotContainer {
     // driverA.whenReleased(new StopSnek());
     // driverB.whenPressed(new Regurgitate());
     // driverB.whenReleased(new StopSnek());
-    driverRB.whenPressed(new LowerCobraHood());
-    driverLB.whenPressed(new RaiseCobraHood());
-    driverRTButton.whenPressed(new SetHarvesterDown());
-    driverLTButton.whenPressed(new PickHarvesterUp());
     // driverRB.whenPressed(new LowerCobraHood());
     // driverLB.whenPressed(new RaiseCobraHood());
+    // driverRTButton.whenPressed(new SetHarvesterDown());
+    // driverLTButton.whenPressed(new PickHarvesterUp());
+    driverRTButton.whenPressed(new LowerCobraHood());
+    driverLTButton.whenPressed(new RaiseCobraHood());
     // driverRB.whenPressed(new DriveAutoAlign());
     // driverRB.whenReleased(new DriveXOne());
     // driverLB.whenPressed(new AutoDistance());
