@@ -27,7 +27,7 @@ public class Limelight extends SubsystemBase {
 
   public void periodic(){
     getDistance();
-    RobotContainer.limelight.setLightState(3);
+    // RobotContainer.limelight.setLightState(3);
   }
   public void setPipeline(int Pipeline){
 	  NetworkTableInstance.getDefault().getTable("limelight").getEntry("pipeline").setNumber(Pipeline);
@@ -38,7 +38,7 @@ public class Limelight extends SubsystemBase {
   }
 
   public void setLightState(int LightState){
-    NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(LightState);  //controls if limelight is on or not
+    NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(LightState);  //controls if limelight is on or not // 0 is on, 1 is off
   }
 
   public boolean haveTarget(){
@@ -54,9 +54,13 @@ public class Limelight extends SubsystemBase {
   }
 
   public static int calcHoodShot(){
-    //distance equation: rpm = -0.00004x^3 -33.771x + 4919
-    // double rpm = -0.00004*Math.pow(getDistance(), 3) - 33.771*getDistance() +4919;
-    double rpm = 0.0;
+    double cameraHeight =  25.5;    //not final value
+    double targetHeight = 98; //final value = 98.25
+    double cameraAngle = 32.1;    //changeable
+    double distance = ((targetHeight - cameraHeight) / Math.tan(Math.toRadians(cameraAngle + RobotContainer.limelight.verticalAngleToTarget())))-12.5;
+    //distance equation: rpm = -0.0000401877572016x^3 +.220114087301592x^2 -33.7714947089957x + 4919.04761904768
+    double rpm = (-0.0000401877572016*Math.pow(distance, 3)) + (.220114087301592*Math.pow(distance,2)) - (33.7714947089957*distance)+4919.04761904768;
+    // double rpm = 0.0;
     SmartDashboard.putString("Expected Rpm", ""+rpm);
     return (int) rpm;
   }
@@ -67,11 +71,11 @@ public class Limelight extends SubsystemBase {
     double cameraHeight =  25.5;    //not final value
     double targetHeight = 98; //final value = 98.25
     double cameraAngle = 32.1;    //changeable
-    double Distance = ((targetHeight - cameraHeight) / Math.tan(Math.toRadians(cameraAngle + RobotContainer.limelight.verticalAngleToTarget())))-12.5; // Returns distance to target, 12.5 is distance camera is from front? of robot
+    double distance = ((targetHeight - cameraHeight) / Math.tan(Math.toRadians(cameraAngle + RobotContainer.limelight.verticalAngleToTarget())))-12.5; // Returns distance to target, 12.5 is distance camera is from front? of robot
     // System.out.println("Math = " + Math.tan( Math.toRadians(cameraAngle + RobotContainer.limelight.verticalAngleToTarget()) ) +"   distance = " + Distance);
-    SmartDashboard.putString("Distance", ""+Distance);
+    SmartDashboard.putString("Distance", ""+distance);
     // System.out.println(Distance);
-    return Distance;
+    return distance;
     //d = (h2-h1) / tan(a1+a2)
     //h2 = height of target above floor
     //h1 = height of camera above floorh 

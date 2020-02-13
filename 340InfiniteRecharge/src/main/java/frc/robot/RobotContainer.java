@@ -32,11 +32,13 @@ import frc.robot.commands.Harvester.SpitBalls;
 import frc.robot.commands.Harvester.StopIntake;
 import frc.robot.commands.LimelightCommands.AutoDistance;
 import frc.robot.commands.LimelightCommands.DriveAutoAlign;
+import frc.robot.commands.LimelightCommands.LimelightOff;
 import frc.robot.commands.LimelightCommands.ObtainDistance;
 import frc.robot.commands.Shooter.LowerCobraHood;
 import frc.robot.commands.Shooter.RaiseCobraHood;
 import frc.robot.commands.Shooter.Shoot;
 import frc.robot.commands.Shooter.SingleShot;
+import frc.robot.commands.Shooter.SmartLimeShot;
 import frc.robot.commands.Shooter.StopShoot;
 import frc.robot.commands.SnekLoader.Load;
 import frc.robot.commands.SnekLoader.Regurgitate;
@@ -140,8 +142,8 @@ public class RobotContainer {
    * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    driverBack.whenPressed(new PlayMusic());
-    driverBack.whenPressed(new StopMusic());
+    // driverBack.whenPressed(new PlayMusic());
+    // driverBack.whenPressed(new StopMusic());
 
 
     driverX.whenPressed(new IntakeBalls());
@@ -180,8 +182,13 @@ public class RobotContainer {
     // driverRB.whenReleased(new DriveXOne());
     // driverLB.whenPressed(new AutoDistance());
     // driverLB.whenReleased(new DriveXOne());
-    // driverY.whenPressed(new ObtainDistance());
-
+    driverBack.whenPressed(new ObtainDistance());
+    driverBack.whenReleased(new LimelightOff());
+    driverStart.whenPressed(new SmartLimeShot());
+    driverStart.whenPressed(new IntakeBalls());
+    driverStart.whenReleased(new StopShoot());
+    driverStart.whenReleased(new StopSnek());
+    driverStart.whenReleased(new StopIntake());
     }
 
 
