@@ -22,6 +22,8 @@ public class ObtainDistance extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    RobotContainer.limelight.setPipeline(0); //set pipeline to zero
+    RobotContainer.limelight.setLightState(0); //turns on? limelight led
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -33,6 +35,8 @@ public class ObtainDistance extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+    //Maybe make a command to turn limelight off separate?
+    // RobotContainer.limelight.setLightState(1); //turns off limelight led
   }
 
   // Returns true when the command should end.

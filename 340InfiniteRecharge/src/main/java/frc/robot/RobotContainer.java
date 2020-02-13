@@ -154,13 +154,13 @@ public class RobotContainer {
     driverY.whenReleased(new StopSnek());
 
     //Perfect speed from init line is 3350
-    driverA.whenPressed(new Shoot(3350));
+    driverA.whenPressed(new Shoot(2400));
     driverA.whenPressed(new IntakeBalls());
     driverA.whenReleased(new StopShoot());
     driverA.whenReleased(new StopSnek());
     driverA.whenReleased(new StopIntake());
 
-    driverB.whenPressed(new Shoot(2550));
+    driverB.whenPressed(new Shoot(2450));
     driverB.whenPressed(new IntakeBalls());
     driverB.whenReleased(new StopShoot());
     driverB.whenReleased(new StopSnek());

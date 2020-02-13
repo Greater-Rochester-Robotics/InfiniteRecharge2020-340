@@ -39,12 +39,12 @@ public class Shooter extends SubsystemBase {
    */
   public Shooter() {
     shooterWheel = new CANSparkMax(Constants.SHOOTER_WHEEL, MotorType.kBrushless);
-    shooterWheel.getPIDController().setP(0.00001);
+    shooterWheel.getPIDController().setP(0.001);
     // shooterWheel.getPIDController().setP(0.0);
     shooterWheel.getPIDController().setI(0.0);
     // shooterWheel.getPIDController().setD(0.000075);
-    shooterWheel.getPIDController().setD(0.000003);
-    shooterWheel.getPIDController().setFF(0.000185);
+    shooterWheel.getPIDController().setD(1);
+    shooterWheel.getPIDController().setFF(0.000187);
     shooterWheel.setInverted(true);
     shooterEncoder = shooterWheel.getEncoder();
     ballCounter = new DigitalInput(Constants.BALL_COUNTER_SENSOR);
