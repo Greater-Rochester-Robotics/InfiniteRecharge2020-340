@@ -42,7 +42,7 @@ public class DriveAutoAlign extends CommandBase {
 	  //add as needed
 	  System.out.println("DriveAutoAlign Started");
 	  RobotContainer.limelight.setPipeline(0); //set pipeline to zero
-	 
+		RobotContainer.limelight.setLightState(0);//Turns the LEDs from the limelight on
 	  RobotContainer.limelight.setCammode(0); //makes sure that its in robot looks around mode
 
   }
@@ -113,11 +113,7 @@ public class DriveAutoAlign extends CommandBase {
   public void end(boolean isFinished) { 
 	  System.out.println("DriveAutoAlign Ended");
 	Robot.robotContainer.setDriverRumble(0, 0);
-	
-	//return visual to driver camera if autonomous
-	if(DriverStation.getInstance().isAutonomous()){
-		RobotContainer.limelight.setCammode(1);
-	}
+	RobotContainer.limelight.setLightState(1); // Turns the LEDs on the limelight off so we don't get penalties
 	  //when right trigger is released
 	  //or when ready to score
 	  //turn off led (no blindness please)

@@ -178,8 +178,8 @@ public class RobotContainer {
     // driverLTButton.whenPressed(new PickHarvesterUp());
     driverRTButton.whenPressed(new LowerCobraHood());
     driverLTButton.whenPressed(new RaiseCobraHood());
-    // driverRB.whenPressed(new DriveAutoAlign());
-    // driverRB.whenReleased(new DriveXOne());
+    driverRB.whenPressed(new DriveAutoAlign()); // 20/2/13 is taking the robot too far to the left, just a little bit though
+    driverRB.whenReleased(new DriveXOne());
     // driverLB.whenPressed(new AutoDistance());
     // driverLB.whenReleased(new DriveXOne());
     driverBack.whenPressed(new ObtainDistance());
