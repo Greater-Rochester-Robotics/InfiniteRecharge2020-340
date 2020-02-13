@@ -27,6 +27,7 @@ public class Limelight extends SubsystemBase {
 
   public void periodic(){
     getDistance();
+    RobotContainer.limelight.setLightState(3);
   }
   public void setPipeline(int Pipeline){
 	  NetworkTableInstance.getDefault().getTable("limelight").getEntry("pipeline").setNumber(Pipeline);
