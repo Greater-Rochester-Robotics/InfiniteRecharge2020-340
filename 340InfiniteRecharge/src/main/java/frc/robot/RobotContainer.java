@@ -30,6 +30,7 @@ import frc.robot.commands.Harvester.PickHarvesterUp;
 import frc.robot.commands.Harvester.SetHarvesterDown;
 import frc.robot.commands.Harvester.SpitBalls;
 import frc.robot.commands.Harvester.StopIntake;
+import frc.robot.commands.LimelightCommands.AutoAlign;
 import frc.robot.commands.LimelightCommands.AutoDistance;
 import frc.robot.commands.LimelightCommands.DriveAutoAlign;
 import frc.robot.commands.LimelightCommands.LimelightOff;
@@ -178,8 +179,8 @@ public class RobotContainer {
     // driverLTButton.whenPressed(new PickHarvesterUp());
     driverRTButton.whenPressed(new LowerCobraHood());
     driverLTButton.whenPressed(new RaiseCobraHood());
-    driverRB.whenPressed(new DriveAutoAlign()); // 20/2/13 is taking the robot too far to the left, just a little bit though
-    driverRB.whenReleased(new DriveXOne());
+    // driverRB.whenPressed(new DriveAutoAlign()); // 20/2/13 is taking the robot too far to the left, just a little bit though
+    // driverRB.whenReleased(new DriveXOne());
     // driverLB.whenPressed(new AutoDistance());
     // driverLB.whenReleased(new DriveXOne());
     driverBack.whenPressed(new ObtainDistance());
@@ -189,6 +190,9 @@ public class RobotContainer {
     driverStart.whenReleased(new StopShoot());
     driverStart.whenReleased(new StopSnek());
     driverStart.whenReleased(new StopIntake());
+    driverRB.whenPressed(new AutoAlign());
+    driverRB.whenReleased(new DriveXOne());
+    driverRB.whenReleased(new LimelightOff());
     }
 
 
