@@ -30,6 +30,7 @@ import frc.robot.commands.Harvester.PickHarvesterUp;
 import frc.robot.commands.Harvester.SetHarvesterDown;
 import frc.robot.commands.Harvester.SpitBalls;
 import frc.robot.commands.Harvester.StopIntake;
+import frc.robot.commands.LimelightCommands.AutoAlign;
 import frc.robot.commands.LimelightCommands.AutoDistance;
 import frc.robot.commands.LimelightCommands.DriveAutoAlign;
 import frc.robot.commands.LimelightCommands.LimelightOff;
@@ -189,6 +190,9 @@ public class RobotContainer {
     driverStart.whenReleased(new StopShoot());
     driverStart.whenReleased(new StopSnek());
     driverStart.whenReleased(new StopIntake());
+    driverRB.whenPressed(new AutoAlign());
+    driverRB.whenReleased(new DriveXOne());
+    driverRB.whenReleased(new LimelightOff());
     }
 
 

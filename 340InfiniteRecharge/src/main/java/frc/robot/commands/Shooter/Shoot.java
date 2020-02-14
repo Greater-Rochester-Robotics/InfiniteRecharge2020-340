@@ -49,14 +49,14 @@ public class Shoot extends CommandBase {
   public void execute() {
     // Check speed if PID loop isn't working for the flywheel to spin up between
     // shots
-    SmartDashboard.putString("TEST", "Happy");
+    // SmartDashboard.putString("TEST", "Happy");
     if (!RobotContainer.shooter.isShooterAtSpeed()) {
-      SmartDashboard.putString("Speed?", "No");
+      // SmartDashboard.putString("Speed?", "No");
       RobotContainer.snekLoader.setState(State.kFillTo4);
       stateIndex=4;
       return;
     }
-    SmartDashboard.putString("Speed?", "Yes");
+    // SmartDashboard.putString("Speed?", "Yes");
     if ((stateIndex == 4)) {
       RobotContainer.snekLoader.setState(State.kShootBall4);
       stateIndex = 3;
@@ -73,7 +73,7 @@ public class Shoot extends CommandBase {
       RobotContainer.snekLoader.setState(State.kShootBall0);
       stateIndex = -1;
     }
-    SmartDashboard.putString("index", ""+stateIndex);
+    // SmartDashboard.putString("index", ""+stateIndex);
   }
 
   // Called once the command ends or is interrupted.
