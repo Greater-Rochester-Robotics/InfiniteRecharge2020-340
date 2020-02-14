@@ -19,9 +19,15 @@ public class AutoDistance extends CommandBase {
    */
 
    boolean hadTarget = false;
+   int distanceWanted = 0;
 
-  public AutoDistance() {
+  private AutoDistance() {
     // Use addRequirements() here to declare subsystem dependencies.
+    this(0);
+  }
+
+  public AutoDistance (int distance) { 
+    distanceWanted = distance;
     addRequirements(RobotContainer.drive);
   }
 
@@ -56,19 +62,19 @@ public class AutoDistance extends CommandBase {
       Robot.robotContainer.setDriverRumble(0, 0);
 
       // takes the distance we want from the target with the distance we are from the target to get us to the distance we want
-      // modify the distanceWanted variable to tell robot what distance you want it to go to in inches 
-      double distanceWanted = 60;
       double distanceOffset = RobotContainer.limelight.getDistance() - distanceWanted;
       double speeds = 0;
 
       if(Math.abs(distanceOffset) < 2){
         speeds = 0.0;
       }
+      else if(Math.abs(distanceOffset) > 2 && Math.abs(distanceOffset)< 8){
+        speeds = (Math.abs(distanceOffset)/distanceOffset * .1);
+      }
       else{
         //this variable is to modify the speed at which we attempt to get to the distance we want to be at.
-        double speedVariable = 0.2;
         //we divide distanceOffset 
-        speeds = (distanceOffset / 100) * speedVariable + .3;
+        speeds = (distanceOffset / 100) * .3 + (Math.abs(distanceOffset)/distanceOffset * .15);
       }
       
 
