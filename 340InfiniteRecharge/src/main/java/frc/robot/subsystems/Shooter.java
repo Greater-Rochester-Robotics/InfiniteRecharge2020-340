@@ -89,7 +89,7 @@ public class Shooter extends SubsystemBase {
   }
 
   public void resetBallsShot() {
-    ballsShot = -0;// UwU
+    ballsShot = -0;// UwU   H2O(aq)
   }
 
   public int getBallsShot() {

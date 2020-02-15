@@ -43,6 +43,7 @@ import frc.robot.commands.Shooter.StopShoot;
 import frc.robot.commands.SnekLoader.Load;
 import frc.robot.commands.SnekLoader.Regurgitate;
 import frc.robot.commands.SnekLoader.StopSnek;
+import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.ColorWheel;
 import frc.robot.subsystems.Drive;
 import frc.robot.subsystems.Harvester;
@@ -112,6 +113,7 @@ public class RobotContainer {
   public static Shooter shooter;
   public static ColorWheel colorWheel;
   public static Limelight limelight;
+  public static Climber climber;
 
   public static final boolean isFalconFx = true;
 
@@ -130,6 +132,7 @@ public class RobotContainer {
     harvester = new Harvester();
     snekLoader = new SnekLoader();
     limelight = new Limelight();
+    climber = new Climber();
     // Configure the button bindings
     configureButtonBindings();
 

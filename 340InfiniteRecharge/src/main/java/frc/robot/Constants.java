@@ -33,6 +33,9 @@ public final class Constants {
 
 	public static final int DRIVE_ENCODER_RIGHT_CHANNEL_A = 2;
 	public static final int DRIVE_ENCODER_RIGHT_CHANNEL_B = 3;
+
+	public static final int DRIVE_CANCODER_LEFT_CHANNEL = 0;
+	public static final int DRIVE_CANCODER_RIGHT_CHANNEL = 1;
 	
 	/* Sensors */
 	public static final int BALL_COUNTER_SENSOR = 4;
@@ -53,7 +56,8 @@ public final class Constants {
 	/////////////
 
 	/* TalonSRXs */
-
+	public static final int CLIMBER_LEFT_ARM = 31;
+	public static final int CLIMBER_RIGHT_ARM =32;
 	/* Falcon 500 */
 	public static final int DRIVE_LEFT_CHANNEL_A = 23; //front-left20
     public static final int DRIVE_LEFT_CHANNEL_B = 22; //back-left21

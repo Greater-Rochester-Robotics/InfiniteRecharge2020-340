@@ -9,6 +9,7 @@ package frc.robot.commands;
 
 import java.util.Set;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.Subsystem;
 import frc.robot.Robot;
@@ -38,7 +39,7 @@ public class DriveXOne extends CommandBase {
 
         // Dual-stick code from 2018 PowerUp
         // Gives precedence to LS, runs slower RS otherwise
-        
+        SmartDashboard.putString("Rotation Value", ""+ RobotContainer.drive.getRotation());
         if (Math.abs(Robot.robotContainer.getDriverAxis(Axis.LEFT_X)) >= .05
                 || Math.abs(Robot.robotContainer.getDriverAxis(Axis.LEFT_Y)) >= .05) {
             RobotContainer.drive.arcadeDrive(Robot.robotContainer.getDriverAxis(Axis.LEFT_Y) * .65,
@@ -52,6 +53,7 @@ public class DriveXOne extends CommandBase {
         }
 
         // System.out.println(Robot.drive.getRotation());
+        // System.out.println(RobotContainer.drive.getCanEncoder()); // prints value
     }
 
     @Override
