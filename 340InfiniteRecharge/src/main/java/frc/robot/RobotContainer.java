@@ -44,6 +44,7 @@ import frc.robot.commands.Shooter.StopShoot;
 import frc.robot.commands.SnekLoader.Load;
 import frc.robot.commands.SnekLoader.Regurgitate;
 import frc.robot.commands.SnekLoader.StopSnek;
+import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.ColorWheel;
 import frc.robot.subsystems.Drive;
 import frc.robot.subsystems.Harvester;
@@ -113,6 +114,7 @@ public class RobotContainer {
   public static Shooter shooter;
   public static ColorWheel colorWheel;
   public static Limelight limelight;
+  public static Climber climber;
 
   public static final boolean isFalconFx = true;
 
@@ -131,6 +133,7 @@ public class RobotContainer {
     harvester = new Harvester();
     snekLoader = new SnekLoader();
     limelight = new Limelight();
+    climber = new Climber();
     // Configure the button bindings
     configureButtonBindings();
 
@@ -179,10 +182,10 @@ public class RobotContainer {
     // driverLTButton.whenPressed(new PickHarvesterUp());
     driverRTButton.whenPressed(new LowerCobraHood());
     driverLTButton.whenPressed(new RaiseCobraHood());
-    // driverRB.whenPressed(new DriveAutoAlign()); // 20/2/13 is taking the robot too far to the left, just a little bit though
-    // driverRB.whenReleased(new DriveXOne());
-    // driverLB.whenPressed(new AutoDistance());
-    // driverLB.whenReleased(new DriveXOne());
+    driverRB.whenPressed(new DriveAutoAlign()); // 20/2/13 is taking the robot too far to the left, just a little bit though
+    driverRB.whenReleased(new DriveXOne());
+    driverLB.whenPressed(new AutoDistance(90));
+    driverLB.whenReleased(new DriveXOne());
     driverBack.whenPressed(new ObtainDistance());
     driverBack.whenReleased(new LimelightOff());
     driverStart.whenPressed(new SmartLimeShot());
