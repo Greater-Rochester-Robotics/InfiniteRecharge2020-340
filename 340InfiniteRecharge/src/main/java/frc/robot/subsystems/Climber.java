@@ -22,7 +22,7 @@ public class Climber extends SubsystemBase {
         leftArm = new TalonSRX(Constants.CLIMBER_LEFT_ARM);
         rightArm = new TalonSRX(Constants.CLIMBER_RIGHT_ARM);
 
-        rightArm.set(ControlMode.Follower, Constants.CLIMBER_LEFT_ARM);
+        // rightArm.set(ControlMode.Follower, Constants.CLIMBER_LEFT_ARM);
         // rightArm.setInverted(true);
   }
 
@@ -33,14 +33,28 @@ public class Climber extends SubsystemBase {
 
   public void climb() {
     leftArm.set(ControlMode.PercentOutput, .8);
+    rightArm.set(ControlMode.PercentOutput, .8);
   }
 
   public void descend() {
     leftArm.set(ControlMode.PercentOutput, -.8);
+    rightArm.set(ControlMode.PercentOutput, -.8);
   }
 
   public void stop() {
     leftArm.set(ControlMode.PercentOutput, 0);
+    rightArm.set(ControlMode.PercentOutput, 0);
+  }
+
+  public void leftDown() {
+    leftArm.set(ControlMode.PercentOutput, -.8);
+    rightArm.set(ControlMode.PercentOutput, 0);
+  }
+
+  public void rightDown() {
+    leftArm.set(ControlMode.PercentOutput, 0);
+    rightArm.set(ControlMode.PercentOutput, -.8);
+
   }
   
 }
