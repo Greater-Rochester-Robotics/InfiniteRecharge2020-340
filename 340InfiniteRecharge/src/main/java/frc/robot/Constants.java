@@ -53,7 +53,8 @@ public final class Constants {
 	/////////////
 
 	/* TalonSRXs */
-
+	public static final int CLIMBER_LEFT_ARM = 31;
+	public static final int CLIMBER_RIGHT_ARM =32;
 	/* Falcon 500 */
 	public static final int DRIVE_LEFT_CHANNEL_A = 23; //front-left20
     public static final int DRIVE_LEFT_CHANNEL_B = 22; //back-left21
