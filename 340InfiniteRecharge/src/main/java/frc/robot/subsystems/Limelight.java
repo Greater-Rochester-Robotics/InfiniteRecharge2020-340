@@ -22,11 +22,12 @@ public class Limelight extends SubsystemBase {
    * Creates a new Limelight.
    */
   public Limelight() {
-
+//y = -0.104167 for crosshair positioning
   }
 
   public void periodic(){
     getDistance();
+    SmartDashboard.putString("AngleToTarget", ""+angleToTarget());
     // RobotContainer.limelight.setLightState(3);
   }
   public void setPipeline(int Pipeline){
