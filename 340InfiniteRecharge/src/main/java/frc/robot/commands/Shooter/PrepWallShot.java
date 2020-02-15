@@ -5,24 +5,41 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.Climber;
+package frc.robot.commands.Shooter;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants;
 import frc.robot.RobotContainer;
+import frc.robot.subsystems.SnekLoader;
 
-public class Decend extends CommandBase {
+public class PrepWallShot extends CommandBase {
+  Timer tm;
+  double time;
   /**
-   * Creates a new Decend.
+   * Creates a new PrepWallShot.
    */
-  public Decend() {
-    addRequirements(RobotContainer.climber);
+
+   public PrepWallShot(){
+     this(1.5);
+   }
+
+  public PrepWallShot(double time) {
     // Use addRequirements() here to declare subsystem dependencies.
+    addRequirements(RobotContainer.shooter,RobotContainer.snekLoader);
+    this.time = time;
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    RobotContainer.climber.descend();
+    RobotContainer.shooter.setShooterWheel(2000);
+    RobotContainer.shooter.lowerHardStop();
+    RobotContainer.shooter.lowerHood();
+    RobotContainer.snekLoader.setState(SnekLoader.State.kFillTo4);
+    tm = new Timer();
+    tm.reset();
+    tm.start();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -33,12 +50,11 @@ public class Decend extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    RobotContainer.climber.stop();
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return (RobotContainer.shooter.isShooterAtSpeed() || tm.get() >= time);
   }
 }

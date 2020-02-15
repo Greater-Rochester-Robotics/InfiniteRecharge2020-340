@@ -54,7 +54,7 @@ public class Limelight extends SubsystemBase {
     return NetworkTableInstance.getDefault().getTable("limelight").getEntry("ty").getDouble(0); //returns the vertical angle offset
   }
 
-  public static int calcHoodShot(){
+  public static int calcHoodRPM(){
     double cameraHeight =  25.5;    //not final value
     double targetHeight = 98; //final value = 98
     double cameraAngle = 32.1;    //changeable

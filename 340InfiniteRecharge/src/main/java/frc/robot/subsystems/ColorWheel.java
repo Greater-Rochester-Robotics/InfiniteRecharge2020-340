@@ -9,6 +9,7 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.util.Color;
@@ -23,8 +24,8 @@ public class ColorWheel extends SubsystemBase {
    * Creates a new ColorWheel.
    * Reference: http://www.revrobotics.com/rev-31-1557/
    */
-  private final I2C.Port i2cPort = I2C.Port.kOnboard;
-  private final ColorSensorV3 m_colorSensor = new ColorSensorV3(i2cPort);
+  private final static I2C.Port i2cPort = I2C.Port.kOnboard;
+  private static final ColorSensorV3 m_colorSensor = new ColorSensorV3(i2cPort);
   // private static CANSparkMax colorWheelWheel;
 
   public enum ColorName{
@@ -87,6 +88,9 @@ public class ColorWheel extends SubsystemBase {
      * an object is the more light from the surroundings will bleed into the 
      * measurements and make it difficult to accurately determine its color.
      */
+      SmartDashboard.putString("Game Data",DriverStation.getInstance().getGameSpecificMessage());
+
+
     Color detectedColor = m_colorSensor.getColor();
 
     /**

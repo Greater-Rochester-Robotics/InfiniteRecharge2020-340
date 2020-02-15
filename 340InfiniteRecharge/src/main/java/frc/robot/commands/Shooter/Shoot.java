@@ -41,7 +41,7 @@ public class Shoot extends CommandBase {
     RobotContainer.shooter.resetBallsShot();
     stateIndex = 4;
     RobotContainer.shooter.setShooterWheel(speedRpm);
-    System.out.println("Shoot init");
+    // System.out.println("Shoot init");
   }
 
   // Called every time the scheduler runs while the command is scheduled.

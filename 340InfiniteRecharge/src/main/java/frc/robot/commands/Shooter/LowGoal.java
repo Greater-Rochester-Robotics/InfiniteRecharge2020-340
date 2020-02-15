@@ -7,24 +7,20 @@
 
 package frc.robot.commands.Shooter;
 
-import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import frc.robot.Constants;
-import frc.robot.commands.SnekLoader.StopSnek;
+import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
+import frc.robot.commands.Harvester.IntakeBalls;
+import frc.robot.commands.SnekLoader.Regurgitate;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/latest/docs/software/commandbased/convenience-features.html
-public class AutoTrenchShot extends SequentialCommandGroup {
+public class LowGoal extends ParallelCommandGroup {
   /**
-   * Creates a new AutoTrenchShot.
+   * Creates a new LowGoal.
    */
-  public AutoTrenchShot() {
+  public LowGoal() {
     // Add your commands in the super() call, e.g.
-    // super(new FooCommand(), new BarCommand());
-    super(new RaiseCobraHood(), 
-    /** put autoalign here */ 
-    new Shoot(Constants.TRENCH_SHOT_RPM,3), 
-    new StopShoot(), 
-    new StopSnek());
+    // super(new FooCommand(), new BarCommand());super();
+    super(new IntakeBalls(), new Regurgitate());
   }
 }

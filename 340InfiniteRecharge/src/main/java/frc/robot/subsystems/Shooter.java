@@ -32,7 +32,7 @@ public class Shooter extends SubsystemBase {
   private int ballsShot = 0;
   private int totalBallsShot = 0;
   private boolean ballWasPresent;
-  private DoubleSolenoid hoodMover;
+  private DoubleSolenoid hoodMover, hardStop;
 
   /**
    * Creates a new Shooter.
@@ -50,6 +50,7 @@ public class Shooter extends SubsystemBase {
     ballCounter = new DigitalInput(Constants.BALL_COUNTER_SENSOR);
     ballWasPresent = false;
     hoodMover = new DoubleSolenoid(2,3);
+    hardStop = new DoubleSolenoid(4,5);
     shooterWheel.enableVoltageCompensation(12.0);
   }
 
@@ -86,6 +87,14 @@ public class Shooter extends SubsystemBase {
 
   public void lowerHood() {
     hoodMover.set(Value.kReverse);
+  }
+
+  public void lowerHardStop(){
+    hardStop.set(Value.kForward);
+  }
+  
+  public void raiseHardStop(){
+    hardStop.set(Value.kReverse);
   }
 
   public void resetBallsShot() {

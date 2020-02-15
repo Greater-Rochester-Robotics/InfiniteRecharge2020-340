@@ -17,7 +17,7 @@ public class Load extends CommandBase {
    */
   public Load() {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(RobotContainer.snekLoader);
+    addRequirements(RobotContainer.snekLoader, RobotContainer.harvester);
   }
 
   // Called when the command is initially scheduled.
@@ -27,6 +27,8 @@ public class Load extends CommandBase {
     // RobotContainer.snekShooter.setAllLoadWheels(speds);
     // RobotContainer.snekShooter.setShooterWheel(1.0);
     RobotContainer.snekLoader.setState(State.kFillTo4);
+    RobotContainer.harvester.lowerHarvester();
+    RobotContainer.harvester.setAxleWheels(6.0);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -38,6 +40,8 @@ public class Load extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     RobotContainer.snekLoader.setState(State.kOff);
+    RobotContainer.harvester.raiseHarvester();
+    RobotContainer.harvester.setAxleWheels(0.0);
   }
 
   // Returns true when the command should end.
