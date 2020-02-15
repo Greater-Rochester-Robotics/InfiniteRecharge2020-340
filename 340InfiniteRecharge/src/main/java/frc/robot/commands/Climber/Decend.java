@@ -5,42 +5,40 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.LimelightCommands;
+package frc.robot.commands.Climber;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
 
-public class ObtainDistance extends CommandBase {
+public class Decend extends CommandBase {
   /**
-   * Creates a new GetDistance.
+   * Creates a new Decend.
    */
-  public ObtainDistance() {
+  public Decend() {
+    addRequirements(RobotContainer.climber);
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(RobotContainer.limelight);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    RobotContainer.limelight.setPipeline(0); //set pipeline to zero
-    RobotContainer.limelight.setLightState(0); //turns on limelight led
+    RobotContainer.climber.descend();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    RobotContainer.limelight.getDistance();
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    // RobotContainer.limelight.setLightState(1); //turns off limelight led
+    RobotContainer.climber.stop();
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return true;
+    return false;
   }
 }

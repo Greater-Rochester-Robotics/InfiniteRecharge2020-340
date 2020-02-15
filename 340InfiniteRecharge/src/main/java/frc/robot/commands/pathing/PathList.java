@@ -1,6 +1,8 @@
 package frc.robot.commands.pathing;
 
 
+
+
 import frc.robot.commands.pathing.PathSegment.Vec2;
 
 /**
@@ -13,21 +15,50 @@ import frc.robot.commands.pathing.PathSegment.Vec2;
 
 
 public class PathList {
+	public static final Path STRAIGHT_ON = new Path(x -> .4, new PathSegment(x -> 0.0, 50));
 	//Made path start sides based on looking from our driver station, not other team's
-	public static final class TRENCH_RUN {
-		//Needs to be tested to check if reversing speed actually worked
-		public static final Path RIGHT_LINE_ONE = new Path(x -> -.2, new PathSegment( 
-			/* {"start":{"x":148,"y":61},"mid1":{"x":241,"y":41},"mid2":{"x":233,"y":48},"end":{"x":337,"y":45}} */
-			new Vec2(148, 61), new Vec2(241, 41), new Vec2(233, 48), new Vec2(337, 45) 
-			, 191));
+	public static final class ENEMY_TRENCH_RUN {
+		//63in from left wall, 105in from back wall
+		public static final Path SHORT_ONE = new Path(x->.4, new PathSegment( 
+			/* {"start":{"x":136,"y":277},"mid1":{"x":227,"y":259},"mid2":{"x":276,"y":283},"end":{"x":276,"y":318}} */
+			new Vec2(136, 277), new Vec2(227, 259), new Vec2(276, 283), new Vec2(276, 318) 
+			, 164));
+		public static final Path SHORT_TWO = new Path(x->-.4,new PathSegment( 
+			/* {"start":{"x":276,"y":318},"mid1":{"x":276,"y":283},"mid2":{"x":217,"y":265},"end":{"x":148,"y":210}} */
+			new Vec2(276, 318), new Vec2(276, 283), new Vec2(217, 265), new Vec2(148, 210) 
+			, 172));
 
-		public static final Path INTIAL_LINE_SHOT = new Path(x -> .2, new PathSegment( 
-			/* {"start":{"x":337,"y":45},"mid1":{"x":233,"y":45},"mid2":{"x":241,"y":45},"end":{"x":150,"y":75}} */
-			new Vec2(337, 45), new Vec2(233, 45), new Vec2(241, 45), new Vec2(150, 75) 
-			, 192));
+			//95in from left wall, 115in from back wall
+			public static final Path LONG_ONE = new Path(x->.4, new PathSegment( 
+				/* {"start":{"x":145,"y":245},"mid1":{"x":237,"y":250},"mid2":{"x":269,"y":272},"end":{"x":277,"y":318}} */
+				new Vec2(145, 245), new Vec2(237, 250), new Vec2(269, 272), new Vec2(277, 318) 
+				, 166));
+			public static final Path LONG_TWO = new Path(x->-.4, new PathSegment( 
+				/* {"start":{"x":277,"y":318},"mid1":{"x":269,"y":272},"mid2":{"x":221,"y":110},"end":{"x":145,"y":110}} */
+				new Vec2(277, 318), new Vec2(269, 272), new Vec2(221, 110), new Vec2(145, 110) 
+				, 261));
+			public static final Path LONG_THREE = new Path(x->.4, new PathSegment( 
+				/* {"start":{"x":145,"y":110},"mid1":{"x":221,"y":110},"mid2":{"x":150,"y":38},"end":{"x":339,"y":44}} */
+				new Vec2(145, 110), new Vec2(221, 110), new Vec2(150, 38), new Vec2(339, 44) 
+				, 216));
+	}
+
+	public static final class TRENCH_RUN{
+		//31in from right wall, 115in from back wall
+		public static final Path TWO_BALL = new Path(x->.4,new PathSegment( 
+			/* {"start":{"x":146,"y":48},"mid1":{"x":217,"y":48},"mid2":{"x":217,"y":48},"end":{"x":298,"y":48}} */
+			new Vec2(146, 48), new Vec2(217, 48), new Vec2(217, 48), new Vec2(298, 48) 
+			, 152));
 
 	}
 
+	public static final class INIT_SHOT{
+			public static final Path LEFT_TURN = new Path(x -> .4, new PathSegment( 
+				/* {"start":{"x":145,"y":168},"mid1":{"x":181,"y":196},"mid2":{"x":195,"y":191},"end":{"x":215,"y":170}} */
+				new Vec2(145, 168), new Vec2(181, 196), new Vec2(195, 191), new Vec2(215, 170) 
+				, 81));
+
+	}
 
 
 }

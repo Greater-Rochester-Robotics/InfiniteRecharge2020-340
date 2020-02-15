@@ -56,12 +56,13 @@ public final class Constants {
 	/////////////
 
 	/* TalonSRXs */
-
+	public static final int CLIMBER_LEFT_ARM = 31;
+	public static final int CLIMBER_RIGHT_ARM =32;
 	/* Falcon 500 */
-	public static final int DRIVE_LEFT_CHANNEL_A = 20; //front-left
-    public static final int DRIVE_LEFT_CHANNEL_B = 21; //back-left
-	public static final int DRIVE_RIGHT_CHANNEL_A = 22; //back-right
-	public static final int DRIVE_RIGHT_CHANNEL_B = 23; //front-right
+	public static final int DRIVE_LEFT_CHANNEL_A = 23; //front-left20
+    public static final int DRIVE_LEFT_CHANNEL_B = 22; //back-left21
+	public static final int DRIVE_RIGHT_CHANNEL_A = 21; //back-right22
+	public static final int DRIVE_RIGHT_CHANNEL_B = 20; //front-right23
 
 	/* Spark MAXes */
 	public static final int SHOOTER_WHEEL = 24; //launching wheel for the prototype
