@@ -15,7 +15,29 @@ import frc.robot.commands.pathing.PathSegment.Vec2;
 
 
 public class PathList {
-	public static final Path STRAIGHT_ON = new Path(x -> .4, new PathSegment(x -> 0.0, 50));
+	public static final Path STRAIGHT_ON = new Path(x -> .2, new PathSegment(x -> 0.0, 15));
+
+	public static final class TEST_PATHING {
+		public static final Path U_SHAPE = new Path(x->.2, new PathSegment(
+			/* {"start":{"x":145,"y":168},"mid1":{"x":218,"y":112},"mid2":{"x":231,"y":220},"end":{"x":144,"y":193}} */
+			new Vec2(145, 168), new Vec2(218, 112), new Vec2(231, 220), new Vec2(144, 193)
+			, 150));
+
+		public static final Path SHORT_CURVE = new Path(x->.4,new PathSegment(
+/* {"start":{"x":145,"y":168},"mid1":{"x":157,"y":188},"mid2":{"x":171,"y":189},"end":{"x":187,"y":186}} */
+new Vec2(145, 168), new Vec2(157, 188), new Vec2(171, 189), new Vec2(187, 186)
+, 50));
+
+		public static final Path S_CURVE = new Path(x->.4,new PathSegment( 
+			/* {"start":{"x":145,"y":168},"mid1":{"x":172,"y":165},"mid2":{"x":171,"y":189},"end":{"x":220,"y":186}} */
+			new Vec2(145, 168), new Vec2(172, 165), new Vec2(171, 189), new Vec2(220, 186) 
+			, 79));
+		public static final Path S_CURVE_REVERSE = new Path(x->-.4,new PathSegment( 
+			/* {"start":{"x":220,"y":186},"mid1":{"x":171,"y":189},"mid2":{"x":172,"y":165},"end":{"x":145,"y":168}} */
+			new Vec2(220, 186), new Vec2(171, 189), new Vec2(172, 165), new Vec2(145, 168) 
+			, 79));
+
+	}
 	//Made path start sides based on looking from our driver station, not other team's
 	public static final class ENEMY_TRENCH_RUN {
 		//63in from left wall, 105in from back wall
@@ -53,7 +75,7 @@ public class PathList {
 	}
 
 	public static final class INIT_SHOT{
-			public static final Path LEFT_TURN = new Path(x -> .4, new PathSegment( 
+			public static final Path LEFT_TURN = new Path(x -> .1, new PathSegment( 
 				/* {"start":{"x":145,"y":168},"mid1":{"x":181,"y":196},"mid2":{"x":195,"y":191},"end":{"x":215,"y":170}} */
 				new Vec2(145, 168), new Vec2(181, 196), new Vec2(195, 191), new Vec2(215, 170) 
 				, 81));

@@ -109,8 +109,8 @@ public class RunPath extends CommandBase {
 			final double speed = leftSpeed;
 
 			final double ls = (leftSpeed + ((error) / (arcDivisor / Math.abs(speed))));
-			final double rs = (rightSpeed - (((error) / (arcDivisor / Math.abs(speed)))));
-			RobotContainer.drive.setDriveBoth(ls * .69/* < .15 ? .15 : ls *.69 */, rs * .69/* < .15 ? .15 : rs *.69 */);
+			final double rs = (rightSpeed - ((error) / (arcDivisor / Math.abs(speed))));
+			RobotContainer.drive.setDriveBoth(ls * .6/* < .15 ? .15 : ls *.69 */, rs * .6/* < .15 ? .15 : rs *.69 */);
 
 			// animate based off of distance, from 0.0 to 1.0
 			// if (animation != null) {
@@ -122,8 +122,8 @@ public class RunPath extends CommandBase {
 			// }
 
 		} else {
-			RobotContainer.drive.setDriveBoth(leftSpeed * .69/* < .15 ? .15 : leftSpeed *.69 */,
-					rightSpeed * .69/* < .15 ? .15 : rightSpeed *.69 */);
+			RobotContainer.drive.setDriveBoth(leftSpeed * .6/* < .15 ? .15 : leftSpeed *.69 */,
+					rightSpeed * .6/* < .15 ? .15 : rightSpeed *.69 */);
 		}
 	}
 

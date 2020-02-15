@@ -44,6 +44,8 @@ import frc.robot.commands.Shooter.StopShoot;
 import frc.robot.commands.SnekLoader.Load;
 import frc.robot.commands.SnekLoader.Regurgitate;
 import frc.robot.commands.SnekLoader.StopSnek;
+import frc.robot.commands.pathing.PathList;
+import frc.robot.commands.pathing.RunPath;
 import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.ColorWheel;
 import frc.robot.subsystems.Drive;
@@ -178,8 +180,8 @@ public class RobotContainer {
     // driverB.whenReleased(new StopSnek());
     // driverRB.whenPressed(new LowerCobraHood());
     // driverLB.whenPressed(new RaiseCobraHood());
-    // driverRTButton.whenPressed(new SetHarvesterDown());
-    // driverLTButton.whenPressed(new PickHarvesterUp());
+    // driverDRight.whenPressed(new SetHarvesterDown());
+    // driverDLeft.whenPressed(new PickHarvesterUp());
     driverRTButton.whenPressed(new LowerCobraHood());
     driverLTButton.whenPressed(new RaiseCobraHood());
     driverRB.whenPressed(new DriveAutoAlign()); // 20/2/13 is taking the robot too far to the left, just a little bit though
@@ -196,6 +198,18 @@ public class RobotContainer {
     driverRB.whenPressed(new AutoAlign());
     driverRB.whenReleased(new DriveXOne());
     driverRB.whenReleased(new LimelightOff());
+    driverDDown.whenPressed(new RunPath(PathList.TEST_PATHING.SHORT_CURVE));
+    driverDDown.whenReleased(new DriveXOne());
+
+
+    driverDUp.whenPressed(new RunPath(PathList.STRAIGHT_ON));
+    driverDUp.whenReleased(new DriveXOne());
+
+    driverDLeft.whenPressed(new RunPath(PathList.TEST_PATHING.S_CURVE));
+    driverDLeft.whenReleased(new DriveXOne());
+
+    driverDRight.whenPressed(new RunPath(PathList.TEST_PATHING.S_CURVE_REVERSE));
+    driverDRight.whenReleased(new DriveXOne());
     }
 
 

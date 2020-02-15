@@ -25,6 +25,6 @@ public class AutoInitialLineShot extends SequentialCommandGroup {
     // Add your commands in the super() call, e.g.
     // super(new FooCommand(), new BarCommand());
     //Needs revisions so make it more accurate. Make command to set the snek state machine to kFillTo3
-    super(new Shoot(), new SetHarvesterDown(), new IntakeBalls() ,new RunPath(PathList.TRENCH_RUN.RIGHT_LINE_ONE), new RunPath(PathList.TRENCH_RUN.INTIAL_LINE_SHOT));
+    // super(new Shoot(), new SetHarvesterDown(), new IntakeBalls() ,new RunPath(PathList.TRENCH_RUN.RIGHT_LINE_ONE), new RunPath(PathList.TRENCH_RUN.INTIAL_LINE_SHOT));
   }
 }

@@ -52,6 +52,8 @@ public class DriveXOne extends CommandBase {
             RobotContainer.drive.setDriveBoth(0);
         }
 
+        SmartDashboard.putString("distance left", ""+RobotContainer.drive.getLeftDistance());
+		SmartDashboard.putString("distance right", ""+RobotContainer.drive.getRightDistance());
         // System.out.println(Robot.drive.getRotation());
         // System.out.println(RobotContainer.drive.getCanEncoder()); // prints value
     }
