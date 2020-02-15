@@ -27,12 +27,13 @@ private ColorName wantedColor;
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    SmartDashboard.putString("Spinning", "Yes Speen");
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    SmartDashboard.putString("Spinning", "Yes Speen");
+    
     
     colorDetected = RobotContainer.colorWheel.getColor();
     if (DriverStation.getInstance().getGameSpecificMessage().length() > 0) {
@@ -43,13 +44,12 @@ private ColorName wantedColor;
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    
+    SmartDashboard.putString("Spinning", "No Speen");
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    SmartDashboard.putString("Spinning", "No Speen");
     
     return colorDetected.getTargetColor() == wantedColor;
   }
