@@ -32,7 +32,7 @@ private ColorName wantedColor;
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    SmartDashboard.putString("Spinning", "Yes Speen");
+    SmartDashboard.putString("Spinning", "Speen");
     
     colorDetected = RobotContainer.colorWheel.getColor();
     if (DriverStation.getInstance().getGameSpecificMessage().length() > 0) {
@@ -52,5 +52,6 @@ private ColorName wantedColor;
     SmartDashboard.putString("Spinning", "No Speen");
     
     return colorDetected.getTargetColor() == wantedColor;
+
   }
 }
