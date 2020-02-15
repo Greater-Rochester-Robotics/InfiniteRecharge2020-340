@@ -18,6 +18,7 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.button.Button;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.DriveXOne;
+import frc.robot.commands.GetSmol;
 import frc.robot.commands.PlayMusic;
 import frc.robot.commands.StopMusic;
 // import frc.robot.commands.ColorWheel.SpinToColor;
@@ -35,7 +36,10 @@ import frc.robot.commands.LimelightCommands.AutoDistance;
 import frc.robot.commands.LimelightCommands.DriveAutoAlign;
 import frc.robot.commands.LimelightCommands.LimelightOff;
 import frc.robot.commands.LimelightCommands.ObtainDistance;
+import frc.robot.commands.Shooter.LowGoal;
 import frc.robot.commands.Shooter.LowerCobraHood;
+import frc.robot.commands.Shooter.PrepHoodShot;
+import frc.robot.commands.Shooter.PrepWallShot;
 import frc.robot.commands.Shooter.RaiseCobraHood;
 import frc.robot.commands.Shooter.Shoot;
 import frc.robot.commands.Shooter.SingleShot;
@@ -150,27 +154,27 @@ public class RobotContainer {
     // driverBack.whenPressed(new StopMusic());
 
 
-    driverX.whenPressed(new IntakeBalls());
-    driverX.whenPressed(new Load());
-    driverX.whenReleased(new StopIntake());
-    driverX.whenReleased(new StopSnek());
-    driverY.whenPressed(new SpitBalls());
-    driverY.whenPressed(new Regurgitate());
-    driverY.whenReleased(new StopIntake());
-    driverY.whenReleased(new StopSnek());
+    // driverX.whenPressed(new IntakeBalls());
+    // driverX.whenPressed(new Load());
+    // driverX.whenReleased(new StopIntake());
+    // driverX.whenReleased(new StopSnek());
+    // driverY.whenPressed(new SpitBalls());
+    // driverY.whenPressed(new Regurgitate());
+    // driverY.whenReleased(new StopIntake());
+    // driverY.whenReleased(new StopSnek());
 
     //Perfect speed from init line is 3350
-    driverA.whenPressed(new Shoot(2400));
-    driverA.whenPressed(new IntakeBalls());
-    driverA.whenReleased(new StopShoot());
-    driverA.whenReleased(new StopSnek());
-    driverA.whenReleased(new StopIntake());
+    // driverA.whenPressed(new Shoot(2400));
+    // driverA.whenPressed(new IntakeBalls());
+    // driverA.whenReleased(new StopShoot());
+    // driverA.whenReleased(new StopSnek());
+    // driverA.whenReleased(new StopIntake());
 
-    driverB.whenPressed(new Shoot(2450));
-    driverB.whenPressed(new IntakeBalls());
-    driverB.whenReleased(new StopShoot());
-    driverB.whenReleased(new StopSnek());
-    driverB.whenReleased(new StopIntake());
+    // driverB.whenPressed(new Shoot(2450));
+    // driverB.whenPressed(new IntakeBalls());
+    // driverB.whenReleased(new StopShoot());
+    // driverB.whenReleased(new StopSnek());
+    // driverB.whenReleased(new StopIntake());
     // driverStart.whenPressed(new StopSnek());
     // driverA.whenPressed(new Load());
     // driverA.whenReleased(new StopSnek());
@@ -180,22 +184,47 @@ public class RobotContainer {
     // driverLB.whenPressed(new RaiseCobraHood());
     // driverRTButton.whenPressed(new SetHarvesterDown());
     // driverLTButton.whenPressed(new PickHarvesterUp());
-    driverRTButton.whenPressed(new LowerCobraHood());
-    driverLTButton.whenPressed(new RaiseCobraHood());
-    driverRB.whenPressed(new DriveAutoAlign()); // 20/2/13 is taking the robot too far to the left, just a little bit though
-    driverRB.whenReleased(new DriveXOne());
-    driverLB.whenPressed(new AutoDistance(90));
-    driverLB.whenReleased(new DriveXOne());
-    driverBack.whenPressed(new ObtainDistance());
-    driverBack.whenReleased(new LimelightOff());
-    driverStart.whenPressed(new SmartLimeShot());
-    driverStart.whenPressed(new IntakeBalls());
-    driverStart.whenReleased(new StopShoot());
-    driverStart.whenReleased(new StopSnek());
-    driverStart.whenReleased(new StopIntake());
-    driverRB.whenPressed(new AutoAlign());
-    driverRB.whenReleased(new DriveXOne());
-    driverRB.whenReleased(new LimelightOff());
+    // driverRTButton.whenPressed(new LowerCobraHood());
+    // driverLTButton.whenPressed(new RaiseCobraHood());
+    // driverRB.whenPressed(new DriveAutoAlign()); 
+    // driverRB.whenReleased(new DriveXOne());
+    // driverLB.whenPressed(new AutoDistance(90));
+    // driverLB.whenReleased(new DriveXOne());
+    // driverBack.whenPressed(new ObtainDistance());
+    // driverBack.whenReleased(new LimelightOff());
+    // driverStart.whenPressed(new SmartLimeShot());
+    // driverStart.whenPressed(new IntakeBalls());
+    // driverStart.whenReleased(new StopShoot());
+    // driverStart.whenReleased(new StopSnek());
+    // driverStart.whenReleased(new StopIntake());
+    // driverRB.whenPressed(new AutoAlign());
+    // driverRB.whenReleased(new DriveXOne());
+    // driverRB.whenReleased(new LimelightOff());
+
+    //Actual Comp button layout
+    driverA.whenPressed(new Load());
+    driverA.whenReleased(new GetSmol());
+    driverX.whenPressed(new Regurgitate());
+    driverX.whenPressed(new SpitBalls());
+    driverX.whenReleased(new GetSmol());
+    driverDUp.whenPressed(new PickHarvesterUp());
+    driverDDown.whenPressed(new SetHarvesterDown());
+    driverStart.whenPressed(new GetSmol());
+    driverBack.whenPressed(new StopShoot());
+    driverRB.whenPressed(new Shoot(Constants.INITIATION_SHOT_RPM));
+    driverRB.whenReleased(new GetSmol());
+    driverLB.whenPressed(new LowGoal());
+    driverLB.whenReleased(new GetSmol());
+    driverRTButton.whenPressed(new Shoot(Limelight.calcHoodRPM()));
+    driverRTButton.whenReleased(new GetSmol());
+    driverLTButton.whenPressed(new Shoot(Constants.WALL_SHOT_RPM));
+    driverLTButton.whenReleased(new GetSmol());
+
+    coDriverBack.whenPressed(new StopShoot());
+    coDriverLB.whenPressed(new LowGoal());
+    coDriverLB.whenReleased(new GetSmol());
+    coDriverRTButton.whenPressed(new PrepHoodShot(1.5));
+    coDriverLTButton.whenPressed(new PrepWallShot(1.5));
     }
 
 

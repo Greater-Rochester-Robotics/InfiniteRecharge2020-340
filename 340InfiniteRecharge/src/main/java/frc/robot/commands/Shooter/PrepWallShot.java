@@ -5,30 +5,41 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.SnekLoader;
+package frc.robot.commands.Shooter;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants;
 import frc.robot.RobotContainer;
-import frc.robot.subsystems.SnekLoader.State;
+import frc.robot.subsystems.SnekLoader;
 
-public class Load extends CommandBase {
+public class PrepWallShot extends CommandBase {
+  Timer tm;
+  double time;
   /**
-   * Creates a new Load.
+   * Creates a new PrepWallShot.
    */
-  public Load() {
+
+   public PrepWallShot(){
+     this(1.5);
+   }
+
+  public PrepWallShot(double time) {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(RobotContainer.snekLoader, RobotContainer.harvester);
+    addRequirements(RobotContainer.shooter,RobotContainer.snekLoader);
+    this.time = time;
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    // double[] speds = {-1.0,-0.5,0.0,0.5,1.0};
-    // RobotContainer.snekShooter.setAllLoadWheels(speds);
-    // RobotContainer.snekShooter.setShooterWheel(1.0);
-    RobotContainer.snekLoader.setState(State.kFillTo4);
-    RobotContainer.harvester.lowerHarvester();
-    RobotContainer.harvester.setAxleWheels(6.0);
+    RobotContainer.shooter.setShooterWheel(2000);
+    RobotContainer.shooter.lowerHardStop();
+    RobotContainer.shooter.lowerHood();
+    RobotContainer.snekLoader.setState(SnekLoader.State.kFillTo4);
+    tm = new Timer();
+    tm.reset();
+    tm.start();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -39,14 +50,11 @@ public class Load extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    RobotContainer.snekLoader.setState(State.kOff);
-    RobotContainer.harvester.raiseHarvester();
-    RobotContainer.harvester.setAxleWheels(0.0);
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return (RobotContainer.snekLoader.getState() == State.kOff);
+    return (RobotContainer.shooter.isShooterAtSpeed() || tm.get() >= time);
   }
 }

@@ -25,6 +25,6 @@ public class SmartLimeShot extends SequentialCommandGroup {
     // Add your commands in the super() call, e.g.
     // super(new FooCommand(), new BarCommand());
     //Make a new limelight command dealing with all of the shooting and getting of distance
-    super(new LimelightOn(), new RaiseCobraHood(), new Shoot(Limelight.calcHoodShot()), new LimelightOff());
+    super(new LimelightOn(), new RaiseCobraHood(), new Shoot(Limelight.calcHoodRPM()), new LimelightOff());
   }
 }
