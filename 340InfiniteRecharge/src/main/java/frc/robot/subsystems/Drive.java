@@ -7,19 +7,29 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.sensors.CANCoderConfiguration;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import java.util.ArrayList;
 
+import com.ctre.phoenix.ParamEnum;
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
+import com.ctre.phoenix.motorcontrol.can.TalonFXConfiguration;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import com.ctre.phoenix.music.Orchestra;
+import com.ctre.phoenix.sensors.CANCoder;
 
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
+import com.analog.adis16448.frc.ADIS16448_IMU;
+import com.analog.adis16448.frc.ADIS16448_IMU.IMUAxis;
+
 import edu.wpi.first.wpilibj.Encoder;
+//import edu.wpi.first.wpilibj.CANCoder;
 import edu.wpi.first.wpilibj.SpeedController;
+import edu.wpi.first.wpilibj.SPI.Port;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.PCM_LED;
 import frc.robot.RobotContainer;
@@ -37,11 +47,13 @@ public class Drive extends SubsystemBase {
 
 	// RIP IMU
 	// private static ADIS16448_IMU imu;
-	private static ADXRS450_Gyro gyro;
+	// private static ADXRS450_Gyro gyro; 
+	public static ADIS16448_IMU imu;
+	// private static CANCoder canLeft;
 	private static Encoder encLeft, encRight;
 	private static WPI_TalonFX driveLeftA, driveLeftB, driveRightA, driveRightB;
 	private static PCM_LED led;
-
+	private static CANCoderConfiguration canConfig;
 	Orchestra band;
 
 	/**
@@ -49,16 +61,47 @@ public class Drive extends SubsystemBase {
 	 * and the IMU with the Y-axis as yaw
 	 */
 	public Drive() {
-		//imu = new ADIS16448_IMU(ADIS16448_IMU.Axis.kZ); //The parameter here is the
+		
+		imu = new ADIS16448_IMU(IMUAxis.kZ, Port.kMXP, 4); //The parameter here is the
 		// axis the IMU interprets as being yaw. This will depend on how the RIO is
 		// oriented
 		// imu.calibrate();
 		// imu.reset();
 
-		// gyro = new ADXRS450_Gyro();
-		// gyro.calibrate();
+
 		encLeft = new Encoder(Constants.DRIVE_ENCODER_LEFT_CHANNEL_A, Constants.DRIVE_ENCODER_LEFT_CHANNEL_B);
 		encRight = new Encoder(Constants.DRIVE_ENCODER_RIGHT_CHANNEL_A, Constants.DRIVE_ENCODER_RIGHT_CHANNEL_B);
+
+		//encLeft = new CANCoder(Constants.DRIVE_ENCODER_LEFT_CHANNEL);
+		//encRight = new CANCoder(Constants.DRIVE_ENCODER_RIGHT_CHANNEL);
+
+		//encLeft.getPosition(); //Returns absolute OR relative angle
+		//encLeft.configGetParameter()
+		//ParamEnum
+		//CANCoderConfiguration variable = new CANCoderConfiguration();
+		//variable.unitString = "";
+		canConfig = new CANCoderConfiguration();
+		canConfig.unitString = "inches";
+		// canLeft = new CANCoder(Constants.DRIVE_CANCODER_LEFT_CHANNEL);
+		// canLeft.configAllSettings(canConfig);
+		
+		
+
+		
+		
+
+
+		/*
+		*	http://www.ctr-electronics.com/downloads/api/java/html/classcom_1_1ctre_1_1phoenix_1_1sensors_1_1_c_a_n_coder.html#abab03d930fe99ad2ac9677e03095c310
+		*	This link goes to the code for Falcon encoders
+		*	Gear ratio = 4:3
+		* 	Wheel circum 6in * pi
+		*	>Relative angle of rotation
+		* 	>Convert to distance
+		*/
+
+		//encLeft = new CANCoder(Constants.DRIVE_CANCODER_LEFT_CHANNEL);
+		//encRight = new CANCoder(Constants.DRIVE_CANCODER_RIGHT_CHANNEL);
 
 		// 256 ticks to 6pi inches = .0234375pi inches per tick
 		encLeft.setDistancePerPulse(.0234375 * Math.PI);
@@ -118,6 +161,9 @@ public class Drive extends SubsystemBase {
 		return encLeft.get();
 	}
 
+	// public double getCanEncoder() { 
+		// return canLeft.getPosition(); // Gets position of encoder
+	// }
 	/**
 	 * @return right encoder raw count
 	 */
@@ -239,7 +285,7 @@ public class Drive extends SubsystemBase {
 	 */
 	public double getRotation() {
 		// return imu.getAngleZ();
-		return gyro.getAngle();
+		return imu.getAngle();
 	}
 
 	/**
@@ -247,14 +293,14 @@ public class Drive extends SubsystemBase {
 	 */
 	public void gyroReset() {
 		// imu.reset();
-		gyro.reset();
+		imu.reset();
 	}
 
 	/**
 	 * Calibrate the gyro
 	 */
 	public void gyroCalibrate() {
-		gyro.calibrate();
+		imu.calibrate();
 	}
 
 	/**
