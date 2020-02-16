@@ -11,6 +11,7 @@ public class RunPath extends CommandBase {
 
 	private double leftSpeed = 0;
 	private double rightSpeed = 0;
+	private boolean resetGyro = true;
 
 	// private double length = -1;
 
@@ -45,6 +46,10 @@ public class RunPath extends CommandBase {
 		// this.schedule(false);
 	}
 
+	public RunPath(final Path path, boolean resetGyro) {
+		this(path, path.getSpeed());
+		this.resetGyro = resetGyro;
+	}
 	public RunPath(final Path path) {
 		this(path, path.getSpeed());
 	}
@@ -74,7 +79,9 @@ public class RunPath extends CommandBase {
 	public void initialize() {
 		RobotContainer.drive.setDriveBoth(leftSpeed * .15, rightSpeed * .15);
 		RobotContainer.drive.resetBothEncoders();
-		RobotContainer.drive.gyroReset();
+		if (this.resetGyro) {
+			RobotContainer.drive.gyroReset();
+		}
 		System.out.println("RUNPATH INIT");
 	}
 

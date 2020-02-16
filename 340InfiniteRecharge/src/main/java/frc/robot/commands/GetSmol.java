@@ -17,7 +17,7 @@ public class GetSmol extends CommandBase {
    */
   public GetSmol() {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(RobotContainer.shooter, RobotContainer.colorWheel,RobotContainer.snekLoader, RobotContainer.harvester, RobotContainer.limelight);
+    addRequirements(RobotContainer.shooter, RobotContainer.snekLoader, RobotContainer.harvester, RobotContainer.limelight);
   }
 
   // Called when the command is initially scheduled.

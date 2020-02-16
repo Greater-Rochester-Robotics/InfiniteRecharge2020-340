@@ -138,7 +138,7 @@ public class RobotContainer {
     compressor = new Compressor();
     // TODO: commented out default drive for testing purposes
     CommandScheduler.getInstance().setDefaultCommand(drive, new DriveXOne());
-    // colorWheel = new ColorWheel();
+    //colorWheel = new ColorWheel();
     harvester = new Harvester();
     snekLoader = new SnekLoader();
     limelight = new Limelight();
@@ -191,7 +191,7 @@ public class RobotContainer {
     // driverDLeft.whenPressed(new PickHarvesterUp());
     driverRTButton.whenPressed(new LowerCobraHood());
     driverLTButton.whenPressed(new RaiseCobraHood());
-    driverRB.whenPressed(new DriveAutoAlign()); // 20/2/13 is taking the robot too far to the left, just a little bit though
+    //driverRB.whenPressed(new DriveAutoAlign()); // 20/2/13 is taking the robot too far to the left, just a little bit though
     driverRB.whenReleased(new DriveXOne());
     driverLB.whenPressed(new AutoDistance(90));
     driverLB.whenReleased(new DriveXOne());
@@ -205,15 +205,16 @@ public class RobotContainer {
     driverRB.whenPressed(new AutoAlign());
     driverRB.whenReleased(new DriveXOne());
     driverRB.whenReleased(new LimelightOff());
-    driverDDown.whenPressed(new RunPath(PathList.TEST_PATHING.SHORT_CURVE));
-    driverDDown.whenReleased(new DriveXOne());
 
-
-    driverDUp.whenPressed(new RunPath(PathList.STRAIGHT_ON));
+    driverDLeft.whenPressed(new RunPath(PathList.ENEMY_TRENCH_RUN_SECOND.LONG_ONE));
+    driverDLeft.whenReleased(new DriveXOne());
+    
+    driverDUp.whenPressed(new RunPath(PathList.ENEMY_TRENCH_RUN_SECOND.LONG_TWO, false));
     driverDUp.whenReleased(new DriveXOne());
 
-    driverDLeft.whenPressed(new RunPath(PathList.TEST_PATHING.S_CURVE));
-    driverDLeft.whenReleased(new DriveXOne());
+    driverDDown.whenPressed(new RunPath(PathList.ENEMY_TRENCH_RUN_SECOND.LONG_THREE, false));
+    driverDDown.whenReleased(new DriveXOne());
+
 
     driverDRight.whenPressed(new RunPath(PathList.TEST_PATHING.S_CURVE_REVERSE));
     driverDRight.whenReleased(new DriveXOne());
@@ -246,7 +247,7 @@ public class RobotContainer {
     driverDDown.whenPressed(new SetHarvesterDown());
     driverStart.whenPressed(new GetSmol());
     driverBack.whenPressed(new StopShoot());
-    driverRB.whenPressed(new Shoot(Constants.INITIATION_SHOT_RPM));
+    //driverRB.whenPressed(new Shoot(Constants.INITIATION_SHOT_RPM));
     driverRB.whenReleased(new GetSmol());
     driverLB.whenPressed(new LowGoal());
     driverLB.whenReleased(new GetSmol());
@@ -255,7 +256,7 @@ public class RobotContainer {
     driverLTButton.whenPressed(new Shoot(Constants.WALL_SHOT_RPM));
     driverLTButton.whenReleased(new GetSmol());
 
-    coDriverY.whenPressed(new SpinToColor());
+    //coDriverY.whenPressed(new SpinToColor());
     coDriverDUp.whenPressed(new Ascend());
     coDriverDRight.whenPressed(new RightClimberArmDown());
     coDriverDLeft.whenPressed(new LeftClimberArmDown());
