@@ -73,6 +73,10 @@ public final class Constants {
 	public static final int BALL_HANDLER_MOTOR_4 = 29;
 	public static final int INTAKE_AXLE = 30;
 
+	/*	Victor SPXs 	*/
+	public static final int LEFT_CLIMBER = 18;
+	public static final int RIGHT_CLIMBER = 19;
+
 	/* Compressor/LED PCM */
 
 	public static final int SECONDARY_PCM_ID = 11;

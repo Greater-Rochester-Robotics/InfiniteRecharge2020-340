@@ -23,8 +23,8 @@ import com.ctre.phoenix.music.Orchestra;
 import com.ctre.phoenix.sensors.CANCoder;
 
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
-import com.analog.adis16448.frc.ADIS16448_IMU;
-import com.analog.adis16448.frc.ADIS16448_IMU.IMUAxis;
+// import com.analog.adis16448.frc.ADIS16448_IMU;
+// import com.analog.adis16448.frc.ADIS16448_IMU.IMUAxis;
 
 import edu.wpi.first.wpilibj.Encoder;
 //import edu.wpi.first.wpilibj.CANCoder;
@@ -48,7 +48,7 @@ public class Drive extends SubsystemBase {
 	// RIP IMU
 	// private static ADIS16448_IMU imu;
 	// private static ADXRS450_Gyro gyro; 
-	public static ADIS16448_IMU imu;
+	// public static ADIS16448_IMU imu;
 	// private static CANCoder canLeft;
 	private static Encoder encLeft, encRight;
 	private static WPI_TalonFX driveLeftA, driveLeftB, driveRightA, driveRightB;
@@ -62,7 +62,7 @@ public class Drive extends SubsystemBase {
 	 */
 	public Drive() {
 		
-		imu = new ADIS16448_IMU(IMUAxis.kZ, Port.kMXP, 4); //The parameter here is the
+		// imu = new ADIS16448_IMU(IMUAxis.kZ, Port.kMXP, 4); //The parameter here is the
 		// axis the IMU interprets as being yaw. This will depend on how the RIO is
 		// oriented
 		// imu.calibrate();
@@ -285,7 +285,7 @@ public class Drive extends SubsystemBase {
 	 */
 	public double getRotation() {
 		// return imu.getAngleZ();
-		return imu.getAngle();
+		return 0.0;// imu.getAngle();
 	}
 
 	/**
@@ -293,14 +293,14 @@ public class Drive extends SubsystemBase {
 	 */
 	public void gyroReset() {
 		// imu.reset();
-		imu.reset();
+		// imu.reset();
 	}
 
 	/**
 	 * Calibrate the gyro
 	 */
 	public void gyroCalibrate() {
-		imu.calibrate();
+		// imu.calibrate();
 	}
 
 	/**
