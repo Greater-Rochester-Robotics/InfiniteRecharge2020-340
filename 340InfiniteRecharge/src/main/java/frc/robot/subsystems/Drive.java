@@ -30,11 +30,13 @@ import edu.wpi.first.wpilibj.Encoder;
 //import edu.wpi.first.wpilibj.CANCoder;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.SPI.Port;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.PCM_LED;
 import frc.robot.RobotContainer;
 import frc.robot.Constants;
 import frc.robot.commands.DriveXOne;
+import frc.robot.commands.Shooter.SmartLimeShot;
 
 /**
  * <h1>Drive</h1> Moves the robot between two places. Always uses the Xbox ONE
@@ -48,7 +50,7 @@ public class Drive extends SubsystemBase {
 	// RIP IMU
 	// private static ADIS16448_IMU imu;
 	// private static ADXRS450_Gyro gyro; 
-	// public static ADIS16448_IMU imu;
+	public ADIS16448_IMU imu;
 	// private static CANCoder canLeft;
 	private static Encoder encLeft, encRight;
 	private static WPI_TalonFX driveLeftA, driveLeftB, driveRightA, driveRightB;
@@ -62,12 +64,11 @@ public class Drive extends SubsystemBase {
 	 */
 	public Drive() {
 		
-		// imu = new ADIS16448_IMU(IMUAxis.kZ, Port.kMXP, 4); //The parameter here is the
+		imu = new ADIS16448_IMU(IMUAxis.kX, Port.kMXP, 4); //The parameter here is the
 		// axis the IMU interprets as being yaw. This will depend on how the RIO is
 		// oriented
-		// imu.calibrate();
-		// imu.reset();
-
+		//imu.calibrate();
+		//imu.reset();
 
 		encLeft = new Encoder(Constants.DRIVE_ENCODER_LEFT_CHANNEL_A, Constants.DRIVE_ENCODER_LEFT_CHANNEL_B);
 		encRight = new Encoder(Constants.DRIVE_ENCODER_RIGHT_CHANNEL_A, Constants.DRIVE_ENCODER_RIGHT_CHANNEL_B);
@@ -125,10 +126,10 @@ public class Drive extends SubsystemBase {
 		driveLeftA.setInverted(true);
 		driveLeftB.setInverted(true);
 
-		driveLeftA.setNeutralMode(NeutralMode.Coast);
-		driveLeftB.setNeutralMode(NeutralMode.Coast);
-		driveRightA.setNeutralMode(NeutralMode.Coast);
-		driveRightB.setNeutralMode(NeutralMode.Coast);
+		driveLeftA.setNeutralMode(NeutralMode.Brake);
+		driveLeftB.setNeutralMode(NeutralMode.Brake);
+		driveRightA.setNeutralMode(NeutralMode.Brake);
+		driveRightB.setNeutralMode(NeutralMode.Brake);
 
 		ArrayList<TalonFX> instruments = new ArrayList<>();
 		instruments.add(driveLeftA);
@@ -269,6 +270,8 @@ public class Drive extends SubsystemBase {
 	 * Rails are independently sped
 	 */
 	public void setDriveBoth(double lSpeed, double rSpeed) {
+
+
 		setDriveLeft(lSpeed);
 		setDriveRight(rSpeed);
 	}
@@ -285,7 +288,7 @@ public class Drive extends SubsystemBase {
 	 */
 	public double getRotation() {
 		// return imu.getAngleZ();
-		return 0.0;// imu.getAngle();
+		return -imu.getAngle();
 	}
 
 	/**
@@ -373,5 +376,15 @@ public class Drive extends SubsystemBase {
 		}
 
 		setDriveBoth(leftSpeed * .2, rightSpeed * .2); // This new drivebase is too fast
+	}
+
+	@Override
+	public void periodic() {
+		SmartDashboard.putString("distance left", ""+this.getLeftDistance());
+		SmartDashboard.putString("distance right", ""+this.getRightDistance());
+		SmartDashboard.putString("AngleX", ""+imu.getGyroAngleX());
+		SmartDashboard.putString("AngleY", ""+imu.getGyroAngleY());
+		SmartDashboard.putString("AngleZ", ""+imu.getGyroAngleZ());
+		SmartDashboard.putString("Angle", ""+this.getRotation());
 	}
 }

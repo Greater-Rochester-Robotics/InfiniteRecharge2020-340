@@ -28,14 +28,14 @@ public final class Constants {
 	///////////////
 
 	/* Encoders */
-	public static final int DRIVE_ENCODER_LEFT_CHANNEL_A = 0;
-	public static final int DRIVE_ENCODER_LEFT_CHANNEL_B = 1;
+	public static final int DRIVE_ENCODER_LEFT_CHANNEL_A = 2;
+	public static final int DRIVE_ENCODER_LEFT_CHANNEL_B = 3;
 
-	public static final int DRIVE_ENCODER_RIGHT_CHANNEL_A = 2;
-	public static final int DRIVE_ENCODER_RIGHT_CHANNEL_B = 3;
+	public static final int DRIVE_ENCODER_RIGHT_CHANNEL_A = 1;
+	public static final int DRIVE_ENCODER_RIGHT_CHANNEL_B = 0;
 
-	public static final int DRIVE_CANCODER_LEFT_CHANNEL = 0;
-	public static final int DRIVE_CANCODER_RIGHT_CHANNEL = 1;
+	// public static final int DRIVE_CANCODER_LEFT_CHANNEL = 0;
+	// public static final int DRIVE_CANCODER_RIGHT_CHANNEL = 1;
 	
 	/* Sensors */
 	public static final int BALL_COUNTER_SENSOR = 4;

@@ -51,6 +51,8 @@ import frc.robot.commands.Shooter.StopShoot;
 import frc.robot.commands.SnekLoader.Load;
 import frc.robot.commands.SnekLoader.Regurgitate;
 import frc.robot.commands.SnekLoader.StopSnek;
+import frc.robot.commands.pathing.PathList;
+import frc.robot.commands.pathing.RunPath;
 import frc.robot.subsystems.Climber;
 // import frc.robot.subsystems.ColorWheel;
 import frc.robot.subsystems.Drive;
@@ -136,7 +138,7 @@ public class RobotContainer {
     compressor = new Compressor();
     // TODO: commented out default drive for testing purposes
     CommandScheduler.getInstance().setDefaultCommand(drive, new DriveXOne());
-    // colorWheel = new ColorWheel();
+    //colorWheel = new ColorWheel();
     harvester = new Harvester();
     snekLoader = new SnekLoader();
     limelight = new Limelight();

@@ -11,6 +11,7 @@ public class RunPath extends CommandBase {
 
 	private double leftSpeed = 0;
 	private double rightSpeed = 0;
+	private boolean resetGyro = true;
 
 	// private double length = -1;
 
@@ -45,6 +46,10 @@ public class RunPath extends CommandBase {
 		// this.schedule(false);
 	}
 
+	public RunPath(final Path path, boolean resetGyro) {
+		this(path, path.getSpeed());
+		this.resetGyro = resetGyro;
+	}
 	public RunPath(final Path path) {
 		this(path, path.getSpeed());
 	}
@@ -74,7 +79,9 @@ public class RunPath extends CommandBase {
 	public void initialize() {
 		RobotContainer.drive.setDriveBoth(leftSpeed * .15, rightSpeed * .15);
 		RobotContainer.drive.resetBothEncoders();
-		RobotContainer.drive.gyroReset();
+		if (this.resetGyro) {
+			RobotContainer.drive.gyroReset();
+		}
 		System.out.println("RUNPATH INIT");
 	}
 
@@ -109,8 +116,8 @@ public class RunPath extends CommandBase {
 			final double speed = leftSpeed;
 
 			final double ls = (leftSpeed + ((error) / (arcDivisor / Math.abs(speed))));
-			final double rs = (rightSpeed - (((error) / (arcDivisor / Math.abs(speed)))));
-			RobotContainer.drive.setDriveBoth(ls * .69/* < .15 ? .15 : ls *.69 */, rs * .69/* < .15 ? .15 : rs *.69 */);
+			final double rs = (rightSpeed - ((error) / (arcDivisor / Math.abs(speed))));
+			RobotContainer.drive.setDriveBoth(ls * .6/* < .15 ? .15 : ls *.69 */, rs * .6/* < .15 ? .15 : rs *.69 */);
 
 			// animate based off of distance, from 0.0 to 1.0
 			// if (animation != null) {
@@ -122,8 +129,8 @@ public class RunPath extends CommandBase {
 			// }
 
 		} else {
-			RobotContainer.drive.setDriveBoth(leftSpeed * .69/* < .15 ? .15 : leftSpeed *.69 */,
-					rightSpeed * .69/* < .15 ? .15 : rightSpeed *.69 */);
+			RobotContainer.drive.setDriveBoth(leftSpeed * .6/* < .15 ? .15 : leftSpeed *.69 */,
+					rightSpeed * .6/* < .15 ? .15 : rightSpeed *.69 */);
 		}
 	}
 
