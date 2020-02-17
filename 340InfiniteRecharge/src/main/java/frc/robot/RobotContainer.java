@@ -202,8 +202,8 @@ public class RobotContainer {
     // driverStart.whenReleased(new StopShoot());
     // driverStart.whenReleased(new StopSnek());
     // driverStart.whenReleased(new StopIntake());
-    // driverRB.whenPressed(new AutoAlign());
-    // driverRB.whenReleased(new DriveXOne());
+    driverRB.whenPressed(new AutoAlign());
+    driverRB.whenReleased(new DriveXOne());
     // driverRB.whenReleased(new LimelightOff());
 
     //Actual Comp button layout
