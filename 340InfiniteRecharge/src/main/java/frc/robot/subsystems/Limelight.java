@@ -74,7 +74,7 @@ public class Limelight extends SubsystemBase {
     //all distance values are in inches
     double cameraHeight =  25.5;    //not final value
     double targetHeight = 98; //final value = 98
-    double cameraAngle = 15;    //changeable
+    double cameraAngle = 15;    //changeable 
     double distance = ((targetHeight - cameraHeight) / Math.tan(Math.toRadians(cameraAngle + RobotContainer.limelight.verticalAngleToTarget())))-12.5; // Returns distance to target, 12.5 is distance camera is from front? of robot
     // System.out.println("Math = " + Math.tan( Math.toRadians(cameraAngle + RobotContainer.limelight.verticalAngleToTarget()) ) +"   distance = " + Distance);
     SmartDashboard.putString("Distance", ""+distance);

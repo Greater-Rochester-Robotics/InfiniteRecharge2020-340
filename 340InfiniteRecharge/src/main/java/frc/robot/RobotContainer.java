@@ -172,7 +172,7 @@ public class RobotContainer {
     driverY.whenReleased(new StopSnek());
 
 
-  
+
     driverA.whenPressed(new Shoot(4550));
     driverA.whenPressed(new IntakeBalls());
     driverA.whenReleased(new StopShoot());
