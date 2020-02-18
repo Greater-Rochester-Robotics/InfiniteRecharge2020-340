@@ -31,6 +31,8 @@ public class ObtainDistance extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    RobotContainer.drive.setLEDs(true); //also turn on PCM LEDs
+	  // constnagt.
     RobotContainer.limelight.getDistance();
   }
 

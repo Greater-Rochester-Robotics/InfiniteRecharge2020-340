@@ -13,8 +13,6 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import java.util.ArrayList;
 
-import com.analog.adis16448.frc.ADIS16448_IMU;
-import com.analog.adis16448.frc.ADIS16448_IMU.IMUAxis;
 import com.ctre.phoenix.ParamEnum;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
@@ -26,7 +24,7 @@ import com.ctre.phoenix.sensors.CANCoder;
 
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 // import com.analog.adis16448.frc.ADIS16448_IMU;
-// import com.analog.adis16448.frc.ADIS16448_IMU.IMUAxis;
+import com.analog.adis16448.frc.ADIS16448_IMU.IMUAxis;
 
 import edu.wpi.first.wpilibj.Encoder;
 //import edu.wpi.first.wpilibj.CANCoder;
@@ -120,7 +118,7 @@ public class Drive extends SubsystemBase {
 		
 
 		// TODO: Commented out PCM LED due to null exception
-		// led = new PCM_LED(Constants.SECONDARY_PCM_ID, Constants.LED_PCM_CHANNEL);
+		led = new PCM_LED(Constants.SECONDARY_PCM_ID, Constants.LED_PCM_CHANNEL);
 
 		// TODO: consider enslaving B motors to A motors
 
@@ -308,14 +306,14 @@ public class Drive extends SubsystemBase {
 		// imu.calibrate();
 	}
 
-	/**
-	 * Turns the LEDs on/off (for Limelight assitance)
-	 * 
-	 * @param isOn {@code true} to turn them on, {@code false} to turn them off
-	 */
-	// public void setLEDs(boolean isOn) {
-	// 	led.set(isOn);
-	// }
+	
+	  //Turns the LEDs on/off (for Limelight assitance)
+	  
+	  //@param isOn {@code true} to turn them on, {@code false} to turn them off
+	 
+	public void setLEDs(boolean isOn) {
+		led.set(isOn);
+	}
 
 	/**
 	 * One joystick drive mode. One stick axis speeds forward/backwards, the other
