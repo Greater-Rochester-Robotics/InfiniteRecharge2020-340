@@ -12,6 +12,8 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
 
 public class AutoAlign extends CommandBase {
+
+  private int numTimesWithinTolerance =0;
   /**
    * Creates a new AutoAlign.
    */
@@ -25,6 +27,7 @@ public class AutoAlign extends CommandBase {
   public void initialize() {
     RobotContainer.limelight.setLightState(0);// Turns the LEDs on
     RobotContainer.limelight.setPipeline(0);// Turns the limelight into hue mode?
+    numTimesWithinTolerance = 0;
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -36,11 +39,13 @@ public class AutoAlign extends CommandBase {
     double rotateValue = 0;
     if(Math.abs(RobotContainer.limelight.angleToTarget())>7.5){
       rotateValue = RobotContainer.limelight.angleToTarget()*.02;
-    } else if(Math.abs(RobotContainer.limelight.angleToTarget())>2 && Math.abs(RobotContainer.limelight.angleToTarget()) < 7.5){
-    rotateValue= (Math.abs(RobotContainer.limelight.angleToTarget())/RobotContainer.limelight.angleToTarget())*.14177013;
+    } else if(Math.abs(RobotContainer.limelight.angleToTarget())>1 && Math.abs(RobotContainer.limelight.angleToTarget()) < 7.5){
+      rotateValue= (Math.abs(RobotContainer.limelight.angleToTarget())/RobotContainer.limelight.angleToTarget())*.1;
     } else {
       rotateValue = 0;
+      numTimesWithinTolerance ++;
     }
+    SmartDashboard.putString("rotateValue", ""+ rotateValue);
 
     // write a function for rotateValue, so that it is driven by angleToTarget
     //Old code that might help align
@@ -70,6 +75,6 @@ public class AutoAlign extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return numTimesWithinTolerance >=25;
   }
 }
