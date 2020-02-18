@@ -7,6 +7,7 @@
 
 package frc.robot.commands.LimelightCommands;
 
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
 
@@ -24,11 +25,14 @@ public class ObtainDistance extends CommandBase {
   public void initialize() {
     RobotContainer.limelight.setPipeline(0); //set pipeline to zero
     RobotContainer.limelight.setLightState(0); //turns on limelight led
+
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    RobotContainer.drive.setLEDs(true); //also turn on PCM LEDs
+	  // constnagt.
     RobotContainer.limelight.getDistance();
   }
 

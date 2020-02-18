@@ -168,7 +168,7 @@ public class RobotContainer {
     driverY.whenReleased(new StopIntake());
     driverY.whenReleased(new StopSnek());
 
-    driverA.whenPressed(new Shoot(3350));
+    driverA.whenPressed(new Shoot(0));
     driverA.whenPressed(new IntakeBalls());
     driverA.whenReleased(new StopShoot());
     driverA.whenReleased(new StopSnek());
@@ -202,8 +202,8 @@ public class RobotContainer {
     // driverStart.whenReleased(new StopShoot());
     // driverStart.whenReleased(new StopSnek());
     // driverStart.whenReleased(new StopIntake());
-    // driverRB.whenPressed(new AutoAlign());
-    // driverRB.whenReleased(new DriveXOne());
+    driverRB.whenPressed(new AutoAlign());
+    driverRB.whenReleased(new DriveXOne());
     // driverRB.whenReleased(new LimelightOff());
 
     //Actual Comp button layout

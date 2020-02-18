@@ -16,15 +16,18 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.Solenoid;
 
 public class Limelight extends SubsystemBase {
+  
   /**
    * Creates a new Limelight.
    */
   public Limelight() {
+
+
 //y = -0.104167 for crosshair positioning
   }
-
   public void periodic(){
     getDistance();
     SmartDashboard.putString("AngleToTarget", ""+angleToTarget());
