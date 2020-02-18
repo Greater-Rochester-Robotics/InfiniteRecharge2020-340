@@ -106,6 +106,11 @@ public class PathList {
 			/* {"start":{"x":339,"y":47},"mid1":{"x":281,"y":50},"mid2":{"x":254,"y":34},"end":{"x":149,"y":79}} */
 			new Vec2(339, 47), new Vec2(281, 50), new Vec2(254, 34), new Vec2(149, 79) 
 			, 195));
+
+		public static final Path TEST_TRENCH = new Path( x -> .6, new PathSegment( 
+			/* {"start":{"x":73.5,"y":24.5},"mid1":{"x":258,"y":24},"mid2":{"x":96,"y":23.5},"end":{"x":136.5,"y":23}} */
+			new Vec2(74, 25), new Vec2(258, 24), new Vec2(96, 24), new Vec2(137, 23) 
+			, 132));
 	}
 
 
@@ -119,6 +124,8 @@ public class PathList {
 				new Vec2(145, 168), new Vec2(181, 196), new Vec2(195, 191), new Vec2(215, 170), 81));
 
 	}
+
+
 
 }
 

@@ -233,8 +233,10 @@ public class Drive extends SubsystemBase {
 		} else if (speed > 1) {
 			speed = 1;
 		}
-		driveLeftA.setVoltage(speed*12);
-		driveLeftB.setVoltage(speed*12);
+		driveLeftA.set(speed);
+		driveLeftB.set(speed);
+		// driveLeftA.setVoltage(speed*12);
+		// driveLeftB.setVoltage(speed*12);
 	}
 
 	/**
@@ -248,9 +250,10 @@ public class Drive extends SubsystemBase {
 		} else if (speed > 1) {
 			speed = 1;
 		}
-
-		driveRightA.setVoltage( speed*12);
-		driveRightB.setVoltage( speed*12);
+		driveRightA.set(speed);
+		driveRightB.set(speed);
+		// driveRightA.setVoltage( speed*12);
+		// driveRightB.setVoltage( speed*12);
 	}
 
 	/**

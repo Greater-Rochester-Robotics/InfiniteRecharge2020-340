@@ -95,8 +95,8 @@ public class RunPath extends CommandBase {
 
 		final double angle = Math.atan((nextSlope - currentSlope) / (1 + currentSlope * nextSlope)) * 180 / Math.PI;
 
-		System.out.println("m1: " + currentSlope + " m2: " + nextSlope + " dTheta: " + angle);
-		System.out.println("Encoder: " + getDistance() + " dydx: " + dydx(getDistance()));
+		// System.out.println("m1: " + currentSlope + " m2: " + nextSlope + " dTheta: " + angle);
+		// System.out.println("Encoder: " + getDistance() + " dydx: " + dydx(getDistance()));
 		return angle;
 	}
 

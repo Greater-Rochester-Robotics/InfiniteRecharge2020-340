@@ -25,6 +25,7 @@ import frc.robot.commands.Climber.Ascend;
 import frc.robot.commands.Climber.Descend;
 import frc.robot.commands.Climber.LeftClimberArmDown;
 import frc.robot.commands.Climber.RightClimberArmDown;
+import frc.robot.commands.Climber.Stop;
 // import frc.robot.commands.LimelightCommands.AutoDistance;
 // import frc.robot.commands.LimelightCommands.DriveAutoAlign;
 // import frc.robot.commands.LimelightCommands.ObtainDistance;
@@ -53,6 +54,8 @@ import frc.robot.commands.SnekLoader.Regurgitate;
 import frc.robot.commands.SnekLoader.StopSnek;
 import frc.robot.commands.pathing.PathList;
 import frc.robot.commands.pathing.RunPath;
+import frc.robot.commands.pathing.PathList.TRENCH_RUN;
+import frc.robot.commands.pathing.groups.AutoTrenchRun;
 import frc.robot.subsystems.Climber;
 // import frc.robot.subsystems.ColorWheel;
 import frc.robot.subsystems.Drive;
@@ -168,7 +171,9 @@ public class RobotContainer {
     driverY.whenReleased(new StopIntake());
     driverY.whenReleased(new StopSnek());
 
-    driverA.whenPressed(new Shoot(5000));
+
+  
+    driverA.whenPressed(new Shoot(4550));
     driverA.whenPressed(new IntakeBalls());
     driverA.whenReleased(new StopShoot());
     driverA.whenReleased(new StopSnek());
@@ -189,8 +194,8 @@ public class RobotContainer {
     driverLB.whenPressed(new RaiseCobraHood());
     driverRTButton.whenPressed(new SetHarvesterDown());
     driverLTButton.whenPressed(new PickHarvesterUp());
-    // driverRTButton.whenPressed(new LowerCobraHood());
-    // driverLTButton.whenPressed(new RaiseCobraHood());
+    //driverRTButton.whenPressed(new LowerCobraHood());
+    //driverLTButton.whenPressed(new RaiseCobraHood());
     // driverRB.whenPressed(new DriveAutoAlign()); 
     // driverRB.whenReleased(new DriveXOne());
     // driverLB.whenPressed(new AutoDistance(90));
@@ -202,9 +207,11 @@ public class RobotContainer {
     // driverStart.whenReleased(new StopShoot());
     // driverStart.whenReleased(new StopSnek());
     // driverStart.whenReleased(new StopIntake());
-    driverRB.whenPressed(new AutoAlign());
-    driverRB.whenReleased(new DriveXOne());
+    //driverRB.whenPressed(new AutoAlign());
+    //driverRB.whenReleased(new DriveXOne());
     // driverRB.whenReleased(new LimelightOff());
+    driverDDown.whenPressed(new AutoTrenchRun());
+    driverDDown.whenReleased(new Stop());
 
     //Actual Comp button layout
     // driverA.whenPressed(new Load());
