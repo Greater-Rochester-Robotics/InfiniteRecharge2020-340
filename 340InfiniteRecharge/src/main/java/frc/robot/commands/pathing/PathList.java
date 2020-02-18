@@ -83,14 +83,32 @@ public class PathList {
 
 	public static final class TRENCH_RUN {
 		// 31in from right wall, 115in from back wall
-		public static final Path TWO_BALL = new Path(x -> .4, new PathSegment(
-				/*
-				 * {"start":{"x":146,"y":48},"mid1":{"x":217,"y":48},"mid2":{"x":217,"y":48},
-				 * "end":{"x":298,"y":48}}
-				 */
-				new Vec2(146, 48), new Vec2(217, 48), new Vec2(217, 48), new Vec2(298, 48), 152));
+		public static final Path TWO_BALL = new Path(x -> .6, new PathSegment( 
+			/* {"start":{"x":147,"y":49},"mid1":{"x":258,"y":48},"mid2":{"x":192,"y":47},"end":{"x":273,"y":46}} */
+			new Vec2(147, 49), new Vec2(258, 48), new Vec2(192, 47), new Vec2(273, 46) 
+			, 127));
 
+		public static final Path THREE_BALL = new Path(x -> .6, new PathSegment( 
+			/* {"start":{"x":149,"y":79},"mid1":{"x":254,"y":34},"mid2":{"x":281,"y":50},"end":{"x":339,"y":47}} */
+			new Vec2(149, 79), new Vec2(254, 34), new Vec2(281, 50), new Vec2(339, 47) 
+			, 195));
+
+		public static final Path BACKWARDS_TWO_BALL = new Path(x -> -.6, new PathSegment( 
+			/* {"start":{"x":304,"y":45},"mid1":{"x":267,"y":58},"mid2":{"x":306,"y":45},"end":{"x":243,"y":67}} */
+			new Vec2(304, 45), new Vec2(267, 58), new Vec2(306, 45), new Vec2(243, 67) 
+			, 65));
+
+		public static final Path TWO_BALL_STEAL = new Path(x->.6,new PathSegment( 
+			/* {"start":{"x":301,"y":36},"mid1":{"x":357,"y":16},"mid2":{"x":338,"y":66},"end":{"x":402,"y":47}} */
+			new Vec2(301, 36), new Vec2(357, 16), new Vec2(338, 66), new Vec2(402, 47) 
+			, 108));
+		public static final Path BACKWARDS_THREE_BALL = new Path(x -> -.6, new PathSegment( 
+			/* {"start":{"x":339,"y":47},"mid1":{"x":281,"y":50},"mid2":{"x":254,"y":34},"end":{"x":149,"y":79}} */
+			new Vec2(339, 47), new Vec2(281, 50), new Vec2(254, 34), new Vec2(149, 79) 
+			, 195));
 	}
+
+
 
 	public static final class INIT_SHOT {
 		public static final Path LEFT_TURN = new Path(x -> .1, new PathSegment(
@@ -106,7 +124,7 @@ public class PathList {
 
 // 2019 paths, just for reference on how to set up, and write paths
 // /** The cargo front-side */
-// public static final Path STRAIGHT_ON = new Path(x -> .4, new PathSegment(x ->
+// public static final Path STRAIGHT_ON = new Path(x -> .4, ne= PathSegment(x ->
 // 0.0, 100));
 
 // public static final class LEFT_ROCKET {
