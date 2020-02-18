@@ -23,7 +23,7 @@ import com.ctre.phoenix.music.Orchestra;
 import com.ctre.phoenix.sensors.CANCoder;
 
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
-// import com.analog.adis16448.frc.ADIS16448_IMU;
+import com.analog.adis16448.frc.ADIS16448_IMU;
 import com.analog.adis16448.frc.ADIS16448_IMU.IMUAxis;
 
 import edu.wpi.first.wpilibj.Encoder;
@@ -54,7 +54,7 @@ public class Drive extends SubsystemBase {
 	// private static CANCoder canLeft;
 	private static Encoder encLeft, encRight;
 	private static WPI_TalonFX driveLeftA, driveLeftB, driveRightA, driveRightB;
-	private static PCM_LED led;
+	private static PCM_LED led,led2;
 	private static CANCoderConfiguration canConfig;
 	Orchestra band;
 
@@ -118,7 +118,8 @@ public class Drive extends SubsystemBase {
 		
 
 		// TODO: Commented out PCM LED due to null exception
-		led = new PCM_LED(Constants.SECONDARY_PCM_ID, Constants.LED_PCM_CHANNEL);
+		// led = new PCM_LED(Constants.SECONDARY_PCM_LED_LEFT, Constants.LED_PCM_CHANNEL_LEFT);
+		// led2 = new PCM_LED(Constants.SECONDARY_PCM_LED_RIGHT,Constants.LED_PCM_CHANNEL_RIGHT);
 
 		// TODO: consider enslaving B motors to A motors
 
@@ -312,7 +313,8 @@ public class Drive extends SubsystemBase {
 	  //@param isOn {@code true} to turn them on, {@code false} to turn them off
 	 
 	public void setLEDs(boolean isOn) {
-		led.set(isOn);
+		// led2.set(isOn);
+		// led.set(isOn);
 	}
 
 	/**
