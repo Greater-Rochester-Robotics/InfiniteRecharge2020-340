@@ -55,7 +55,7 @@ import frc.robot.commands.SnekLoader.StopSnek;
 import frc.robot.commands.pathing.PathList;
 import frc.robot.commands.pathing.RunPath;
 import frc.robot.subsystems.Climber;
-// import frc.robot.subsystems.ColorWheel;
+import frc.robot.subsystems.ColorWheel;
 import frc.robot.subsystems.Drive;
 import frc.robot.subsystems.Harvester;
 import frc.robot.subsystems.Shooter;
@@ -122,7 +122,7 @@ public class RobotContainer {
   public static Drive drive;
   public static Compressor compressor;
   public static Shooter shooter;
-  // public static ColorWheel colorWheel;
+  public static ColorWheel colorWheel;
   public static Limelight limelight;
   public static Climber climber;
 
@@ -139,7 +139,7 @@ public class RobotContainer {
     compressor = new Compressor();
     // TODO: commented out default drive for testing purposes
     CommandScheduler.getInstance().setDefaultCommand(drive, new DriveXOne());
-    //colorWheel = new ColorWheel();
+    colorWheel = new ColorWheel();
     harvester = new Harvester();
     snekLoader = new SnekLoader();
     limelight = new Limelight();
@@ -179,7 +179,7 @@ public class RobotContainer {
     driverLTButton.whenPressed(new Shoot(Constants.WALL_SHOT_RPM));
     driverLTButton.whenReleased(new GetSmol());
 
-    coDriverY.whenPressed(new SpinToColor());
+    // coDriverY.whenPressed(new SpinToColor());
     coDriverDUp.whenPressed(new Ascend());
     coDriverDRight.whenPressed(new RightClimberArmDown());
     coDriverDLeft.whenPressed(new LeftClimberArmDown());
