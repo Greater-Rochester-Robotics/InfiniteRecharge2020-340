@@ -216,12 +216,15 @@ public class RobotContainer {
     driverDDown.whenPressed(new SetHarvesterDown());
     driverStart.whenPressed(new GetSmol());
     driverBack.whenPressed(new StopShoot());
+    driverRB.whenPressed(new RaiseCobraHood());
     driverRB.whenPressed(new Shoot(Constants.INITIATION_SHOT_RPM));
     driverRB.whenReleased(new GetSmol());
     driverLB.whenPressed(new LowGoal());
     driverLB.whenReleased(new GetSmol());
+    driverRTButton.whenPressed(new RaiseCobraHood());
     driverRTButton.whenPressed(new Shoot(Limelight.calcHoodRPM()));
     driverRTButton.whenReleased(new GetSmol());
+    driverLTButton.whenPressed(new LowerCobraHood());
     driverLTButton.whenPressed(new Shoot(Constants.WALL_SHOT_RPM));
     driverLTButton.whenReleased(new GetSmol());
 
