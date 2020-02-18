@@ -63,7 +63,12 @@ public class Limelight extends SubsystemBase {
     double cameraAngle = 15;    //changeable 32.1
     double distance = ((targetHeight - cameraHeight) / Math.tan(Math.toRadians(cameraAngle + RobotContainer.limelight.verticalAngleToTarget())))-12.5;
     //distance equation: rpm = -0.0000401877572016x^3 +.220114087301592x^2 -33.7714947089957x + 4919.04761904768
-    double rpm = (-0.0000401877572016*Math.pow(distance, 3)) + (.220114087301592*Math.pow(distance,2)) - (33.7714947089957*distance)+4919.04761904768;
+    //Practice bot shooter value
+    // double rpm = (-0.0000401877572016*Math.pow(distance, 3)) + (.220114087301592*Math.pow(distance,2)) - (33.7714947089957*distance)+4919.04761904768;
+    //Comp bot second order
+    double rpm = (0.017721893539552*Math.pow(distance,2)) - (3.93099773315508*distance) + 3632.87661527619;
+    // Comp ot third order
+    // double rpm = (0.00020752004082*Math.pow(distance,3)) + (.126206323642523*Math.pow(distance,2)) - (21.8642389641682 * distance) +4567.12695742641;
     // double rpm = 0.0;
     SmartDashboard.putString("Expected Rpm", ""+rpm);
     return (int) rpm;

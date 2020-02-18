@@ -18,6 +18,7 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.button.Button;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.DriveXOne;
+import frc.robot.commands.FlipRobotDirection;
 import frc.robot.commands.GetSmol;
 import frc.robot.commands.PlayMusic;
 import frc.robot.commands.StopMusic;
@@ -46,6 +47,7 @@ import frc.robot.commands.Shooter.PrepHoodShot;
 import frc.robot.commands.Shooter.PrepWallShot;
 import frc.robot.commands.Shooter.RaiseCobraHood;
 import frc.robot.commands.Shooter.Shoot;
+import frc.robot.commands.Shooter.ShootWithLimelight;
 import frc.robot.commands.Shooter.SingleShot;
 import frc.robot.commands.Shooter.SmartLimeShot;
 import frc.robot.commands.Shooter.StopShoot;
@@ -57,7 +59,7 @@ import frc.robot.commands.pathing.RunPath;
 import frc.robot.commands.pathing.PathList.TRENCH_RUN;
 import frc.robot.commands.pathing.groups.AutoTrenchRun;
 import frc.robot.subsystems.Climber;
-// import frc.robot.subsystems.ColorWheel;
+import frc.robot.subsystems.ColorWheel;
 import frc.robot.subsystems.Drive;
 import frc.robot.subsystems.Harvester;
 import frc.robot.subsystems.Shooter;
@@ -124,7 +126,7 @@ public class RobotContainer {
   public static Drive drive;
   public static Compressor compressor;
   public static Shooter shooter;
-  // public static ColorWheel colorWheel;
+  public static ColorWheel colorWheel;
   public static Limelight limelight;
   public static Climber climber;
 
@@ -141,7 +143,7 @@ public class RobotContainer {
     compressor = new Compressor();
     // TODO: commented out default drive for testing purposes
     CommandScheduler.getInstance().setDefaultCommand(drive, new DriveXOne());
-    //colorWheel = new ColorWheel();
+    colorWheel = new ColorWheel();
     harvester = new Harvester();
     snekLoader = new SnekLoader();
     limelight = new Limelight();
@@ -158,90 +160,39 @@ public class RobotContainer {
    * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    // driverBack.whenPressed(new PlayMusic());
-    // driverBack.whenPressed(new StopMusic());
-
-
-    driverX.whenPressed(new IntakeBalls());
-    driverX.whenPressed(new Load());
-    driverX.whenReleased(new StopIntake());
-    driverX.whenReleased(new StopSnek());
-    driverY.whenPressed(new SpitBalls());
-    driverY.whenPressed(new Regurgitate());
-    driverY.whenReleased(new StopIntake());
-    driverY.whenReleased(new StopSnek());
-
-
-
-    driverA.whenPressed(new Shoot(4550));
-    driverA.whenPressed(new IntakeBalls());
-    driverA.whenReleased(new StopShoot());
-    driverA.whenReleased(new StopSnek());
-    driverA.whenReleased(new StopIntake());
-
-    driverB.whenPressed(new Shoot(2450));
-    driverB.whenPressed(new IntakeBalls());
-    driverB.whenReleased(new StopShoot());
-    driverB.whenReleased(new StopSnek());
-    driverB.whenReleased(new StopIntake());
-    driverStart.whenPressed(new StopSnek());
-    driverStart.whenPressed(new StopIntake());
-    // driverA.whenPressed(new Load());
-    // driverA.whenReleased(new StopSnek());
-    // driverB.whenPressed(new Regurgitate());
-    // driverB.whenReleased(new StopSnek());
-    driverRB.whenPressed(new LowerCobraHood());
-    driverLB.whenPressed(new RaiseCobraHood());
-    driverRTButton.whenPressed(new SetHarvesterDown());
-    driverLTButton.whenPressed(new PickHarvesterUp());
-    //driverRTButton.whenPressed(new LowerCobraHood());
-    //driverLTButton.whenPressed(new RaiseCobraHood());
-    // driverRB.whenPressed(new DriveAutoAlign()); 
-    // driverRB.whenReleased(new DriveXOne());
-    // driverLB.whenPressed(new AutoDistance(90));
-    // driverLB.whenReleased(new DriveXOne());
-    driverBack.whenPressed(new ObtainDistance());
-    driverBack.whenReleased(new LimelightOff());
-    // driverStart.whenPressed(new SmartLimeShot());
-    // driverStart.whenPressed(new IntakeBalls());
-    // driverStart.whenReleased(new StopShoot());
-    // driverStart.whenReleased(new StopSnek());
-    // driverStart.whenReleased(new StopIntake());
-    //driverRB.whenPressed(new AutoAlign());
-    //driverRB.whenReleased(new DriveXOne());
-    // driverRB.whenReleased(new LimelightOff());
-    driverDDown.whenPressed(new AutoTrenchRun());
-    driverDDown.whenReleased(new Stop());
+    // // driverBack.whenPressed(new PlayMusic());
+    // // driverBack.whenPressed(new StopMusic());
 
     //Actual Comp button layout
-    // driverA.whenPressed(new Load());
-    // driverA.whenReleased(new GetSmol());
-    // driverX.whenPressed(new Regurgitate());
-    // driverX.whenPressed(new SpitBalls());
-    // driverX.whenReleased(new GetSmol());
-    // driverDUp.whenPressed(new PickHarvesterUp());
-    // driverDDown.whenPressed(new SetHarvesterDown());
-    // driverStart.whenPressed(new GetSmol());
-    // driverBack.whenPressed(new StopShoot());
-    // driverRB.whenPressed(new Shoot(Constants.INITIATION_SHOT_RPM));
-    // driverRB.whenReleased(new GetSmol());
-    // driverLB.whenPressed(new LowGoal());
-    // driverLB.whenReleased(new GetSmol());
-    // driverRTButton.whenPressed(new Shoot(Limelight.calcHoodRPM()));
-    // driverRTButton.whenReleased(new GetSmol());
-    // driverLTButton.whenPressed(new Shoot(Constants.WALL_SHOT_RPM));
-    // driverLTButton.whenReleased(new GetSmol());
+    driverA.whenPressed(new Load());
+    driverA.whenReleased(new GetSmol());
+    driverX.whenPressed(new Regurgitate());
+    driverX.whenPressed(new SpitBalls());
+    driverX.whenReleased(new GetSmol());
+    driverDUp.whenPressed(new PickHarvesterUp());
+    driverDLeft.whenPressed(new FlipRobotDirection());
+    driverDDown.whenPressed(new SetHarvesterDown());
+    driverStart.whenPressed(new GetSmol());
+    driverBack.whenPressed(new StopShoot());
+    driverRB.whenPressed(new Shoot(Constants.INITIATION_SHOT_RPM));
+    driverRB.whenReleased(new GetSmol());
+    driverLB.whenPressed(new LowGoal());
+    driverLB.whenReleased(new GetSmol());
+    driverRTButton.whenPressed(new ShootWithLimelight());// New thing that Rob made, needs testing
+    driverRTButton.whenReleased(new GetSmol());
+    driverLTButton.whenPressed(new Shoot(Constants.WALL_SHOT_RPM));
+    driverLTButton.whenReleased(new GetSmol());
 
     // coDriverY.whenPressed(new SpinToColor());
-    // coDriverDUp.whenPressed(new Ascend());
-    // coDriverDRight.whenPressed(new RightClimberArmDown());
-    // coDriverDLeft.whenPressed(new LeftClimberArmDown());
-    // coDriverDDown.whenPressed(new Descend());
-    // coDriverBack.whenPressed(new StopShoot());
-    // coDriverLB.whenPressed(new LowGoal());
-    // coDriverLB.whenReleased(new GetSmol());
-    // coDriverRTButton.whenPressed(new PrepHoodShot(1.5));
-    // coDriverLTButton.whenPressed(new PrepWallShot(1.5));
+    coDriverDUp.whenPressed(new Ascend());
+    coDriverDRight.whenPressed(new RightClimberArmDown());
+    coDriverDLeft.whenPressed(new LeftClimberArmDown());
+    coDriverDDown.whenPressed(new Descend());
+    coDriverBack.whenPressed(new StopShoot());
+    coDriverLB.whenPressed(new LowGoal());
+    coDriverLB.whenReleased(new GetSmol());
+    coDriverRTButton.whenPressed(new PrepHoodShot(1.5));
+    coDriverLTButton.whenPressed(new PrepWallShot(1.5));
     }
 
 
