@@ -46,6 +46,7 @@ import frc.robot.commands.Shooter.PrepHoodShot;
 import frc.robot.commands.Shooter.PrepWallShot;
 import frc.robot.commands.Shooter.RaiseCobraHood;
 import frc.robot.commands.Shooter.Shoot;
+import frc.robot.commands.Shooter.ShootWithLimelight;
 import frc.robot.commands.Shooter.SingleShot;
 import frc.robot.commands.Shooter.SmartLimeShot;
 import frc.robot.commands.Shooter.StopShoot;
@@ -174,7 +175,7 @@ public class RobotContainer {
     driverRB.whenReleased(new GetSmol());
     driverLB.whenPressed(new LowGoal());
     driverLB.whenReleased(new GetSmol());
-    driverRTButton.whenPressed(new Shoot(Limelight.calcHoodRPM()));
+    driverRTButton.whenPressed(new ShootWithLimelight());// New thing that Rob made, needs testing
     driverRTButton.whenReleased(new GetSmol());
     driverLTButton.whenPressed(new Shoot(Constants.WALL_SHOT_RPM));
     driverLTButton.whenReleased(new GetSmol());
