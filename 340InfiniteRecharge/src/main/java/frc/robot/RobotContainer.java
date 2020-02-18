@@ -18,6 +18,7 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.button.Button;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.DriveXOne;
+import frc.robot.commands.FlipRobotDirection;
 import frc.robot.commands.GetSmol;
 import frc.robot.commands.PlayMusic;
 import frc.robot.commands.StopMusic;
@@ -155,56 +156,8 @@ public class RobotContainer {
    * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    // driverBack.whenPressed(new PlayMusic());
-    // driverBack.whenPressed(new StopMusic());
-
-
-    // driverX.whenPressed(new IntakeBalls());
-    // driverX.whenPressed(new Load());
-    // driverX.whenReleased(new StopIntake());
-    // driverX.whenReleased(new StopSnek());
-    // driverY.whenPressed(new SpitBalls());
-    // driverY.whenPressed(new Regurgitate());
-    // driverY.whenReleased(new StopIntake());
-    // driverY.whenReleased(new StopSnek());
-
-    // driverA.whenPressed(new Shoot(5000));
-    // driverA.whenPressed(new IntakeBalls());
-    // driverA.whenReleased(new StopShoot());
-    // driverA.whenReleased(new StopSnek());
-    // driverA.whenReleased(new StopIntake());
-
-    // driverB.whenPressed(new Shoot(2450));
-    // driverB.whenPressed(new IntakeBalls());
-    // driverB.whenReleased(new StopShoot());
-    // driverB.whenReleased(new StopSnek());
-    // driverB.whenReleased(new StopIntake());
-    // driverStart.whenPressed(new StopSnek());
-    // driverStart.whenPressed(new StopIntake());
-    // // driverA.whenPressed(new Load());
-    // // driverA.whenReleased(new StopSnek());
-    // // driverB.whenPressed(new Regurgitate());
-    // // driverB.whenReleased(new StopSnek());
-    // driverRB.whenPressed(new LowerCobraHood());
-    // driverLB.whenPressed(new RaiseCobraHood());
-    // driverRTButton.whenPressed(new SetHarvesterDown());
-    // driverLTButton.whenPressed(new PickHarvesterUp());
-    // // driverRTButton.whenPressed(new LowerCobraHood());
-    // // driverLTButton.whenPressed(new RaiseCobraHood());
-    // // driverRB.whenPressed(new DriveAutoAlign()); 
-    // // driverRB.whenReleased(new DriveXOne());
-    // // driverLB.whenPressed(new AutoDistance(90));
-    // // driverLB.whenReleased(new DriveXOne());
-    // driverBack.whenPressed(new ObtainDistance());
-    // driverBack.whenReleased(new LimelightOff());
-    // // driverStart.whenPressed(new SmartLimeShot());
-    // // driverStart.whenPressed(new IntakeBalls());
-    // // driverStart.whenReleased(new StopShoot());
-    // // driverStart.whenReleased(new StopSnek());
-    // // driverStart.whenReleased(new StopIntake());
-    // driverRB.whenPressed(new AutoAlign());
-    // driverRB.whenReleased(new DriveXOne());
-    // // driverRB.whenReleased(new LimelightOff());
+    // // driverBack.whenPressed(new PlayMusic());
+    // // driverBack.whenPressed(new StopMusic());
 
     //Actual Comp button layout
     driverA.whenPressed(new Load());
@@ -213,6 +166,7 @@ public class RobotContainer {
     driverX.whenPressed(new SpitBalls());
     driverX.whenReleased(new GetSmol());
     driverDUp.whenPressed(new PickHarvesterUp());
+    driverDLeft.whenPressed(new FlipRobotDirection());
     driverDDown.whenPressed(new SetHarvesterDown());
     driverStart.whenPressed(new GetSmol());
     driverBack.whenPressed(new StopShoot());
