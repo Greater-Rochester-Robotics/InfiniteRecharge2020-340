@@ -23,8 +23,8 @@ import com.ctre.phoenix.music.Orchestra;
 import com.ctre.phoenix.sensors.CANCoder;
 
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
-// import com.analog.adis16448.frc.ADIS16448_IMU;
-// import com.analog.adis16448.frc.ADIS16448_IMU.IMUAxis;
+import com.analog.adis16448.frc.ADIS16448_IMU;
+ import com.analog.adis16448.frc.ADIS16448_IMU.IMUAxis;
 
 import edu.wpi.first.wpilibj.Encoder;
 //import edu.wpi.first.wpilibj.CANCoder;
@@ -233,9 +233,8 @@ public class Drive extends SubsystemBase {
 		} else if (speed > 1) {
 			speed = 1;
 		}
-
-		driveLeftA.set(speed);
-		driveLeftB.set(speed);
+		driveLeftA.setVoltage(speed*12);
+		driveLeftB.setVoltage(speed*12);
 	}
 
 	/**
@@ -250,8 +249,8 @@ public class Drive extends SubsystemBase {
 			speed = 1;
 		}
 
-		driveRightA.set( speed);
-		driveRightB.set( speed);
+		driveRightA.setVoltage( speed*12);
+		driveRightB.setVoltage( speed*12);
 	}
 
 	/**
@@ -296,7 +295,7 @@ public class Drive extends SubsystemBase {
 	 */
 	public void gyroReset() {
 		// imu.reset();
-		// imu.reset();
+		imu.reset();
 	}
 
 	/**
