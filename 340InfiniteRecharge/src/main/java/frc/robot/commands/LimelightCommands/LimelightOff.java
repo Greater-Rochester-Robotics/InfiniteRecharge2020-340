@@ -28,6 +28,8 @@ public class LimelightOff extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    RobotContainer.drive.setLEDs(false); //also turn off PCM LEDs
+	  // disconstnagtly.
   }
 
   // Called once the command ends or is interrupted.

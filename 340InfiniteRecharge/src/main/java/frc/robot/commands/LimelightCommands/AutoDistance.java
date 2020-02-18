@@ -43,6 +43,8 @@ public class AutoDistance extends CommandBase {
   @Override
   public void execute() {
     RobotContainer.limelight.setLightState(3); //turns on limelight led
+    RobotContainer.drive.setLEDs(true); //also turn on PCM LEDs
+	  // constnagt.
     if(!RobotContainer.limelight.haveTarget() && !hadTarget) {
       //Rumble soft if NO target
       Robot.robotContainer.setDriverRumble(0.7, 0);

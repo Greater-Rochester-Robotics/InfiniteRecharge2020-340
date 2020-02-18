@@ -51,7 +51,7 @@ public class DriveAutoAlign extends CommandBase {
   @Override
   public void execute() {
 	RobotContainer.limelight.setLightState(3); //turns on limelight led boi
-	//  RobotContainer.drive.setLEDs(true); // also turn on PCM LEDs
+	RobotContainer.drive.setLEDs(true); // also turn on PCM LEDs
 	  // drive forward constnagt slow speed 
 	  // adjust angle robot is at as needed
 	  if(!RobotContainer.limelight.haveTarget() && !hadTarget) {
