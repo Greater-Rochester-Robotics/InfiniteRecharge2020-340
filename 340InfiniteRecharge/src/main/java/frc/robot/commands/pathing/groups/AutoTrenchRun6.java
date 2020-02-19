@@ -27,7 +27,7 @@ public class AutoTrenchRun6 extends SequentialCommandGroup {
     super(
       new SmartLimeShot(),
       race(new RunPath(TRENCH_RUN.THREE_BALL), new IntakeBalls()),
-      new RunPath(TRENCH_RUN.BACKWARDS_THREE_BALL),
+      // new RunPath(TRENCH_RUN.BACKWARDS_THREE_BALL),
       new AutoAlign(),
       new SmartLimeShot()
     );

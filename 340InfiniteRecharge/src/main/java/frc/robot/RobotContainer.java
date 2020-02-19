@@ -39,6 +39,7 @@ import frc.robot.commands.LimelightCommands.AutoAlign;
 import frc.robot.commands.LimelightCommands.AutoDistance;
 import frc.robot.commands.LimelightCommands.DriveAutoAlign;
 import frc.robot.commands.LimelightCommands.LimelightOff;
+import frc.robot.commands.LimelightCommands.LimelightOn;
 import frc.robot.commands.LimelightCommands.ObtainDistance;
 import frc.robot.commands.Shooter.FullInitShot;
 import frc.robot.commands.Shooter.FullWallShot;
@@ -58,6 +59,7 @@ import frc.robot.commands.pathing.PathList;
 import frc.robot.commands.pathing.RunPath;
 import frc.robot.commands.pathing.PathList.TRENCH_RUN;
 import frc.robot.commands.pathing.groups.AutoTrenchRun;
+import frc.robot.commands.pathing.groups.AutoTrenchRun6;
 import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.ColorWheel;
 import frc.robot.subsystems.Drive;
@@ -186,7 +188,8 @@ public class RobotContainer {
 
     driverDRight.whenPressed(new AutoTrenchRun());
 
-
+driverB.whenPressed(new LimelightOn());
+driverB.whenReleased(new LimelightOff());
     // coDriverY.whenPressed(new SpinToColor());
     // coDriverDUp.whenPressed(new Ascend());
     // coDriverDRight.whenPressed(new RightClimberArmDown());
