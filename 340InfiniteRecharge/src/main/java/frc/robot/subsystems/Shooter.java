@@ -9,7 +9,9 @@
 
 package frc.robot.subsystems;
 
+import com.fasterxml.jackson.annotation.JsonCreator.Mode;
 import com.revrobotics.CANEncoder;
+import com.revrobotics.CANError;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import com.revrobotics.ControlType;
@@ -39,11 +41,12 @@ public class Shooter extends SubsystemBase {
    */
   public Shooter() {
     shooterWheel = new CANSparkMax(Constants.SHOOTER_WHEEL, MotorType.kBrushless);
+    shooterWheel.setIdleMode(CANSparkMax.IdleMode.kCoast);
     shooterWheel.getPIDController().setP(0.0006);
     shooterWheel.getPIDController().setI(0.0);
     shooterWheel.getPIDController().setD(20);
     shooterWheel.getPIDController().setFF(0.0002);
-    //practice bot PIDF values
+    // practice bot PIDF values
     // shooterWheel.getPIDController().setP(0.001);
     // shooterWheel.getPIDController().setI(0.0);
     // shooterWheel.getPIDController().setD(1);
@@ -54,12 +57,13 @@ public class Shooter extends SubsystemBase {
     ballWasPresent = false;
     hoodMover = new Solenoid(2);
     hardStop = new Solenoid(4);
-    shooterWheel.enableVoltageCompensation(12.0);
+    // shooterWheel.enableVoltageCompensation(12.0);
   }
 
-  public void stop(){
+  public void stop() {
     shooterWheel.setVoltage(0);
   }
+
   // Returns RPM of shooterWheel
   public double getShooterVelocity() {
     return shooterEncoder.getVelocity();
@@ -71,16 +75,19 @@ public class Shooter extends SubsystemBase {
     // } else if (speed > 1) {
     // speed = 1;
     // }
-
-    //shooterWheel.getPIDController().setFF(speed * 1 + 0);
-    targetVelocity = speed;
-    shooterWheel.getPIDController().setReference(speed, ControlType.kVelocity);
-    // shooterWheel.set(speed);
+    if (speed < 1 && speed> -1) {
+      shooterWheel.setVoltage(0);
+    } else {
+      // shooterWheel.getPIDController().setFF(speed * 1 + 0);
+      targetVelocity = speed;
+      shooterWheel.getPIDController().setReference(speed, ControlType.kVelocity);
+      // shooterWheel.set(speed);
+    }
   }
 
   public boolean isShooterAtSpeed() {
-    return ((shooterEncoder.getVelocity() >= (targetVelocity*.98) -25)
-        && (shooterEncoder.getVelocity() <= (targetVelocity*1.02 )+100));
+    return ((shooterEncoder.getVelocity() >= (targetVelocity * .98) - 25)
+        && (shooterEncoder.getVelocity() <= (targetVelocity * 1.02) + 25));
 
   }
 
@@ -92,16 +99,16 @@ public class Shooter extends SubsystemBase {
     hoodMover.set(false);
   }
 
-  public void lowerHardStop(){
+  public void lowerHardStop() {
     hardStop.set(true);
   }
-  
-  public void raiseHardStop(){
+
+  public void raiseHardStop() {
     hardStop.set(false);
   }
 
   public void resetBallsShot() {
-    ballsShot = -0;// UwU   H2O(aq)
+    ballsShot = -0;// UwU H2O(aq)
   }
 
   public int getBallsShot() {
@@ -123,14 +130,14 @@ public class Shooter extends SubsystemBase {
       ballsShot++;
       totalBallsShot++;
     }
-    SmartDashboard.putString("Max Speed", ""+((targetVelocity*1.02)+25));
-    SmartDashboard.putString("Target Speed", ""+targetVelocity);
-    SmartDashboard.putString("Min Speed", ""+((targetVelocity*.98)-25));
+    SmartDashboard.putString("Max Speed", "" + ((targetVelocity * 1.02) + 25));
+    SmartDashboard.putString("Target Speed", "" + targetVelocity);
+    SmartDashboard.putString("Min Speed", "" + ((targetVelocity * .98) - 25));
     // SmartDashboard.putString("Balls Shot", ""+ballsShot);
-    SmartDashboard.putBoolean("Shooter Sensor", getShooterSensor());
-    SmartDashboard.putString("Flywheel Speed", ""+shooterEncoder.getVelocity());
+    // SmartDashboard.putBoolean("Shooter Sensor", getShooterSensor());
+    SmartDashboard.putString("Flywheel Speed", "" + shooterEncoder.getVelocity());
     // SmartDashboard.putString("Total Balls Shot In Match", ""+totalBallsShot);
-    if (this.getCurrentCommand() != null){
+    if (this.getCurrentCommand() != null) {
       SmartDashboard.putString("shooter command", this.getCurrentCommand().getName());
     } else {
       SmartDashboard.putString("shooter command", "none");

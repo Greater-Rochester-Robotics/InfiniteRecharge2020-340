@@ -28,9 +28,6 @@ public class Shoot extends CommandBase {
   public Shoot(int speed, int numToShoot) {
     this.ballsToShoot = numToShoot;
     speedRpm = speed;
-    System.out.println(
-      "constructed"
-    );
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(RobotContainer.shooter, RobotContainer.snekLoader);
   }
@@ -52,10 +49,12 @@ public class Shoot extends CommandBase {
     // SmartDashboard.putString("TEST", "Happy");
     if (!RobotContainer.shooter.isShooterAtSpeed()) {
       // SmartDashboard.putString("Speed?", "No");
-      RobotContainer.snekLoader.setState(State.kFillTo4);
-      stateIndex=4;
+      RobotContainer.snekLoader.setPause(true);
+      // RobotContainer.snekLoader.setState(State.kFillTo4);
+      // stateIndex=4;
       return;
     }
+    RobotContainer.snekLoader.setPause(false);
     // SmartDashboard.putString("Speed?", "Yes");
     if ((stateIndex == 4)) {
       RobotContainer.snekLoader.setState(State.kShootBall4);
@@ -79,7 +78,6 @@ public class Shoot extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(final boolean interrupted) {
-    System.out.println("Shoot() ended interrupted:" + interrupted);
     RobotContainer.shooter.stop();
     if ( interrupted){
     RobotContainer.snekLoader.setState(State.kOff);

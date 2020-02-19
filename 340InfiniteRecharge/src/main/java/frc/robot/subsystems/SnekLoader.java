@@ -30,6 +30,7 @@ public class SnekLoader extends SubsystemBase {
   private static CANEncoder[] handleEncoders = new CANEncoder[5];
   // If it is deemed necessary, uncomment all of ballsLoaded stuff
   private int ballsLoaded;
+  private boolean isPaused;
   // private static boolean hadBall;
 
   public enum State {
@@ -46,6 +47,7 @@ public class SnekLoader extends SubsystemBase {
   static final double MOTOR_IN_SPEED4 = 0.35;
 
   public SnekLoader() {
+    isPaused = false;
     ballsLoaded = 0;
     // hadBall = false;
     handleMotors = new CANSparkMax[] {
@@ -76,6 +78,14 @@ public class SnekLoader extends SubsystemBase {
    */
   public int getBallsLoaded() {
     return ballsLoaded;
+  }
+
+  public void setPause(boolean pause){
+    isPaused = pause;
+  }
+
+  public boolean getPause(){
+    return isPaused;
   }
 
   @Override
@@ -173,6 +183,9 @@ public class SnekLoader extends SubsystemBase {
       speeds = new double[] { 1.0, 1.0, 1.0, 1.0, 1.0 };
       enableOneLimit(-1);
       break;
+    }
+    if(isPaused){
+      speeds = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0 };
     }
     setAllHandleMotors(speeds);
     SmartDashboard.putString("BallsLoaded", ""+ ballsLoaded);
