@@ -34,11 +34,11 @@ public class AutoTrenchRun extends SequentialCommandGroup {
     // super(new FooCommand(), new BarCommand());
     super(
     new PrepHoodShot(0),
-    race(new RunPath(TRENCH_RUN.TWO_BALL), new Load())
-    // new StopIntake(),
-    // new StopSnek(), //race runs two commands in parallel and finishes when one command finishes
-    // // new RunPath(TRENCH_RUN.BACKWARDS_TWO_BALL), 
-    // new AutoAlign(), 
+    race(new RunPath(TRENCH_RUN.TEST_TRENCH_PATH_TWO), new Load()),
+    new StopIntake(),
+     new StopSnek(), //race runs two commands in parallel and finishes when one command finishes
+    new RunPath(TRENCH_RUN.BACKWARDS_TWO_BALL), 
+     new AutoAlign()
     // new SmartLimeShot(),
     // new LowerCobraHood(),
     // race(new RunPath(TRENCH_RUN.TWO_BALL_STEAL), new Load())

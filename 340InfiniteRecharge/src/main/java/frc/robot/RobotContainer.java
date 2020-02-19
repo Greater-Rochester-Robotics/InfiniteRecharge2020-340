@@ -100,6 +100,8 @@ public class RobotContainer {
   final Button driverLTButton = new JoyTriggerButton(driver, .3, Axis.LEFT_TRIGGER);
   final Button driverRTButton = new JoyTriggerButton(driver, .3, Axis.RIGHT_TRIGGER);
 
+  final Button driverDRightButton = new DPad(driver, DPad.Direction.RIGHT);
+
   ///////////////////////
   // CO-DRIVER BUTTONS //
   ///////////////////////
@@ -163,7 +165,7 @@ public class RobotContainer {
     // // driverBack.whenPressed(new PlayMusic());
     // // driverBack.whenPressed(new StopMusic());
 
-    //Actual Comp button layout
+    //Actual Comp button layout][\]
     driverA.whenPressed(new Load());
     driverA.whenReleased(new GetSmol());
     driverX.whenPressed(new Regurgitate());
@@ -182,6 +184,9 @@ public class RobotContainer {
     driverRTButton.whenReleased(new GetSmol());
     driverLTButton.whenPressed(new Shoot(Constants.WALL_SHOT_RPM));
     driverLTButton.whenReleased(new GetSmol());
+
+    driverDRight.whenPressed(new AutoTrenchRun());
+
 
     // coDriverY.whenPressed(new SpinToColor());
     coDriverDUp.whenPressed(new Ascend());

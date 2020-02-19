@@ -95,8 +95,8 @@ public class PathList {
 
 		public static final Path BACKWARDS_TWO_BALL = new Path(x -> -.6, new PathSegment( 
 			/* {"start":{"x":304,"y":45},"mid1":{"x":267,"y":58},"mid2":{"x":306,"y":45},"end":{"x":243,"y":67}} */
-			new Vec2(304, 45), new Vec2(267, 58), new Vec2(306, 45), new Vec2(243, 67) 
-			, 65));
+			new Vec2(122, 18), new Vec2(107, 23), new Vec2(122, 18), new Vec2(97, 27) 
+			, 26));
 
 		public static final Path TWO_BALL_STEAL = new Path(x->.6,new PathSegment( 
 			/* {"start":{"x":301,"y":36},"mid1":{"x":357,"y":16},"mid2":{"x":338,"y":66},"end":{"x":402,"y":47}} */
@@ -111,6 +111,11 @@ public class PathList {
 			/* {"start":{"x":73.5,"y":24.5},"mid1":{"x":258,"y":24},"mid2":{"x":96,"y":23.5},"end":{"x":136.5,"y":23}} */
 			new Vec2(74, 25), new Vec2(258, 24), new Vec2(96, 24), new Vec2(137, 23) 
 			, 132));
+
+		public static final Path TEST_TRENCH_PATH_TWO = new Path (x -> .6, new PathSegment( 
+			/* {"start":{"x":151.5,"y":47.5},"mid1":{"x":212,"y":47},"mid2":{"x":226,"y":44.5},"end":{"x":302.5,"y":44}} */
+			new Vec2(60, 18), new Vec2(85, 18), new Vec2(90, 17), new Vec2(120, 17) 
+			, 60));
 	}
 
 
