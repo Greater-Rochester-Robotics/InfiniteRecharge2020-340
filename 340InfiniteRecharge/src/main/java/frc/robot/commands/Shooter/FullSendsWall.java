@@ -8,48 +8,53 @@
 package frc.robot.commands.Shooter;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants;
 import frc.robot.RobotContainer;
-import edu.wpi.first.wpilibj.Timer;
 import frc.robot.subsystems.SnekLoader.State;
 
-public class SingleShot extends CommandBase {
+public class FullSendsWall extends CommandBase {
   /**
-   * Creates a new SingleShot.
+   * Creates a new FullSendsWall.
    */
-  public SingleShot() {
+  private boolean fullSend;
+  private int ballsToShoot;
+  public FullSendsWall() {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(RobotContainer.shooter,RobotContainer.snekLoader);
+    addRequirements(RobotContainer.shooter, RobotContainer.snekLoader);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    RobotContainer.shooter.setShooterWheel(5500);
+    ballsToShoot = RobotContainer.snekLoader.getBallsLoaded();
+    fullSend = false;
+    RobotContainer.shooter.setShooterWheel(Constants.WALL_SHOT_RPM+200);
+    RobotContainer.shooter.resetBallsShot();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if(!RobotContainer.snekLoader.getHandleSensor(4) && (!RobotContainer.shooter.getShooterSensor())){
-      RobotContainer.shooter.setShooterWheel(0.0);
-      RobotContainer.snekLoader.setState(State.kFillTo4);
-    }
-    else if(RobotContainer.shooter.isShooterAtSpeed()){
-      RobotContainer.snekLoader.setState(State.kShootBall4);
+    if(fullSend){
+      RobotContainer.snekLoader.setPause(false);
+      RobotContainer.snekLoader.setState(State.kShootBall0);
+    } else{
+      fullSend = (RobotContainer.shooter.isShooterAtSpeed());
+      RobotContainer.snekLoader.setPause(true);
     }
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    //If driver wants to press per shot don't enable this
-    // RobotContainer.snekLoader.setState(State.kOff);
-    // RobotContainer.shooter.setShooterWheel(0);
+    RobotContainer.shooter.stop();
+    RobotContainer.snekLoader.setPause(false);
+
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return (!RobotContainer.snekLoader.getHandleSensor(4));
+    return ((RobotContainer.shooter.getBallsShot() >= ballsToShoot) && ballsToShoot > 0);
   }
 }

@@ -18,7 +18,6 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.button.Button;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.DriveXOne;
-import frc.robot.commands.FlipRobotDirection;
 import frc.robot.commands.GetSmol;
 import frc.robot.commands.PlayMusic;
 import frc.robot.commands.StopMusic;
@@ -26,6 +25,7 @@ import frc.robot.commands.Climber.Ascend;
 import frc.robot.commands.Climber.Descend;
 import frc.robot.commands.Climber.LeftClimberArmDown;
 import frc.robot.commands.Climber.RightClimberArmDown;
+import frc.robot.commands.Climber.Stop;
 // import frc.robot.commands.LimelightCommands.AutoDistance;
 // import frc.robot.commands.LimelightCommands.DriveAutoAlign;
 // import frc.robot.commands.LimelightCommands.ObtainDistance;
@@ -40,13 +40,15 @@ import frc.robot.commands.LimelightCommands.AutoDistance;
 import frc.robot.commands.LimelightCommands.DriveAutoAlign;
 import frc.robot.commands.LimelightCommands.LimelightOff;
 import frc.robot.commands.LimelightCommands.ObtainDistance;
+import frc.robot.commands.Shooter.FullInitShot;
+import frc.robot.commands.Shooter.FullWallShot;
 import frc.robot.commands.Shooter.LowGoal;
 import frc.robot.commands.Shooter.LowerCobraHood;
 import frc.robot.commands.Shooter.PrepHoodShot;
 import frc.robot.commands.Shooter.PrepWallShot;
 import frc.robot.commands.Shooter.RaiseCobraHood;
 import frc.robot.commands.Shooter.Shoot;
-import frc.robot.commands.Shooter.SingleShot;
+import frc.robot.commands.Shooter.ShootWithLimelight;
 import frc.robot.commands.Shooter.SmartLimeShot;
 import frc.robot.commands.Shooter.StopShoot;
 import frc.robot.commands.SnekLoader.Load;
@@ -54,6 +56,8 @@ import frc.robot.commands.SnekLoader.Regurgitate;
 import frc.robot.commands.SnekLoader.StopSnek;
 import frc.robot.commands.pathing.PathList;
 import frc.robot.commands.pathing.RunPath;
+import frc.robot.commands.pathing.PathList.TRENCH_RUN;
+import frc.robot.commands.pathing.groups.AutoTrenchRun;
 import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.ColorWheel;
 import frc.robot.subsystems.Drive;
@@ -95,6 +99,8 @@ public class RobotContainer {
   final Button driverDRight = new DPad(   driver, DPad.Direction.RIGHT);
   final Button driverLTButton = new JoyTriggerButton(driver, .3, Axis.LEFT_TRIGGER);
   final Button driverRTButton = new JoyTriggerButton(driver, .3, Axis.RIGHT_TRIGGER);
+
+  final Button driverDRightButton = new DPad(driver, DPad.Direction.RIGHT);
 
   ///////////////////////
   // CO-DRIVER BUTTONS //
@@ -156,37 +162,37 @@ public class RobotContainer {
    * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    // // driverBack.whenPressed(new PlayMusic());
-    // // driverBack.whenPressed(new StopMusic());
+    // driverBack.whenPressed(new PlayMusic());
+    // driverBack.whenPressed(new StopMusic());
 
-    //Actual Comp button layout
+    //Actual Comp button layout][\]
     driverA.whenPressed(new Load());
     driverA.whenReleased(new GetSmol());
     driverX.whenPressed(new Regurgitate());
     driverX.whenPressed(new SpitBalls());
     driverX.whenReleased(new GetSmol());
     driverDUp.whenPressed(new PickHarvesterUp());
-    driverDLeft.whenPressed(new FlipRobotDirection());
     driverDDown.whenPressed(new SetHarvesterDown());
     driverStart.whenPressed(new GetSmol());
     driverBack.whenPressed(new StopShoot());
-    driverRB.whenPressed(new RaiseCobraHood());
-    driverRB.whenPressed(new Shoot(Constants.INITIATION_SHOT_RPM));
+    driverRB.whenPressed(new FullInitShot());
     driverRB.whenReleased(new GetSmol());
     driverLB.whenPressed(new LowGoal());
     driverLB.whenReleased(new GetSmol());
-    driverRTButton.whenPressed(new RaiseCobraHood());
-    driverRTButton.whenPressed(new Shoot(Limelight.calcHoodRPM()));
+    driverRTButton.whenPressed(new SmartLimeShot()); // New thing that Rob made, needs testing
     driverRTButton.whenReleased(new GetSmol());
-    driverLTButton.whenPressed(new LowerCobraHood());
-    driverLTButton.whenPressed(new Shoot(Constants.WALL_SHOT_RPM));
+    driverLTButton.whenPressed(new FullWallShot());
     driverLTButton.whenReleased(new GetSmol());
 
+    driverDRight.whenPressed(new AutoTrenchRun());
+
+
     // coDriverY.whenPressed(new SpinToColor());
-    coDriverDUp.whenPressed(new Ascend());
-    coDriverDRight.whenPressed(new RightClimberArmDown());
-    coDriverDLeft.whenPressed(new LeftClimberArmDown());
-    coDriverDDown.whenPressed(new Descend());
+    // coDriverDUp.whenPressed(new Ascend());
+    // coDriverDRight.whenPressed(new RightClimberArmDown());
+    // coDriverDLeft.whenPressed(new LeftClimberArmDown());
+    // coDriverDDown.whenPressed(new Descend());
+    coDriverA.whenPressed(new ObtainDistance());
     coDriverBack.whenPressed(new StopShoot());
     coDriverLB.whenPressed(new LowGoal());
     coDriverLB.whenReleased(new GetSmol());

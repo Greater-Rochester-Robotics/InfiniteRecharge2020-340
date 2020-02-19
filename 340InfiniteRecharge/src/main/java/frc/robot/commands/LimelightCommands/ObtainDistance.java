@@ -39,7 +39,7 @@ public class ObtainDistance extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    // RobotContainer.limelight.setLightState(1); //turns off limelight led
+    RobotContainer.limelight.setLightState(1); //turns off limelight led
   }
 
   // Returns true when the command should end.

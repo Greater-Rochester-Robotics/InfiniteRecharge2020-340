@@ -7,34 +7,31 @@
 
 package frc.robot.commands.Shooter;
 
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
 import frc.robot.subsystems.SnekLoader.State;
+import frc.robot.subsystems.Limelight;
 
-public class Shoot extends CommandBase {
+public class ShootWithLimelight extends CommandBase {
   private int stateIndex;
   private int ballsToShoot;
   private int speedRpm;
 
-  public Shoot() {
-    this(4500, -1);
-  }
-
-  public Shoot(int speed) {
-    this(speed, RobotContainer.snekLoader.getBallsLoaded());
-  }
-
-  public Shoot(int speed, int numToShoot) {
-    this.ballsToShoot = numToShoot;
-    speedRpm = speed;
+  public ShootWithLimelight() {
+    this.ballsToShoot = -1;
+    System.out.println(
+      "constructed"
+    );
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(RobotContainer.shooter, RobotContainer.snekLoader);
+    addRequirements(RobotContainer.shooter, RobotContainer.snekLoader,RobotContainer.limelight);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    RobotContainer.shooter.raiseHood();
+    RobotContainer.limelight.setLightState(0);
+    speedRpm = Limelight.calcHoodRPM();
     RobotContainer.shooter.resetBallsShot();
     stateIndex = 4;
     RobotContainer.shooter.setShooterWheel(speedRpm);
@@ -54,9 +51,7 @@ public class Shoot extends CommandBase {
       // stateIndex=4;
       return;
     }
-    
     RobotContainer.snekLoader.setPause(false);
-    
     // SmartDashboard.putString("Speed?", "Yes");
     if ((stateIndex == 4)) {
       RobotContainer.snekLoader.setState(State.kShootBall4);
@@ -80,6 +75,8 @@ public class Shoot extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(final boolean interrupted) {
+    RobotContainer.limelight.setLightState(1);
+    // System.out.println("Shoot() ended interrupted:" + interrupted);
     RobotContainer.shooter.stop();
     if ( interrupted){
     RobotContainer.snekLoader.setState(State.kOff);

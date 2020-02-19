@@ -39,7 +39,7 @@ public class DriveXOne extends CommandBase {
 
         // Dual-stick code from 2018 PowerUp
         // Gives precedence to LS, runs slower RS otherwise
-        SmartDashboard.putString("Rotation Value", ""+ RobotContainer.drive.getRotation());
+        // SmartDashboard.putString("Rotation Value", ""+ RobotContainer.drive.getRotation());
         if (Math.abs(Robot.robotContainer.getDriverAxis(Axis.LEFT_X)) >= .05
                 || Math.abs(Robot.robotContainer.getDriverAxis(Axis.LEFT_Y)) >= .05) {
             RobotContainer.drive.arcadeDrive(Robot.robotContainer.getDriverAxis(Axis.LEFT_Y) * .65,
@@ -52,8 +52,8 @@ public class DriveXOne extends CommandBase {
             RobotContainer.drive.setDriveBoth(0);
         }
 
-        SmartDashboard.putString("distance left", ""+RobotContainer.drive.getLeftDistance());
-		SmartDashboard.putString("distance right", ""+RobotContainer.drive.getRightDistance());
+        // SmartDashboard.putString("distance left", ""+RobotContainer.drive.getLeftDistance());
+		// SmartDashboard.putString("distance right", ""+RobotContainer.drive.getRightDistance());
         // System.out.println(Robot.drive.getRotation());
         // System.out.println(RobotContainer.drive.getCanEncoder()); // prints value
     }
