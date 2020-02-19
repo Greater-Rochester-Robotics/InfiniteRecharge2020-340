@@ -102,10 +102,6 @@ public class PathList {
 			/* {"start":{"x":301,"y":36},"mid1":{"x":357,"y":16},"mid2":{"x":338,"y":66},"end":{"x":402,"y":47}} */
 			new Vec2(301, 36), new Vec2(357, 16), new Vec2(338, 66), new Vec2(402, 47) 
 			, 108));
-		public static final Path BACKWARDS_THREE_BALL = new Path(x -> -.6, new PathSegment( 
-			/* {"start":{"x":339,"y":47},"mid1":{"x":281,"y":50},"mid2":{"x":254,"y":34},"end":{"x":149,"y":79}} */
-			new Vec2(339, 47), new Vec2(281, 50), new Vec2(254, 34), new Vec2(149, 79) 
-			, 195));
 
 		public static final Path TEST_TRENCH = new Path( x -> .6, new PathSegment( 
 			/* {"start":{"x":73.5,"y":24.5},"mid1":{"x":258,"y":24},"mid2":{"x":96,"y":23.5},"end":{"x":136.5,"y":23}} */
@@ -116,6 +112,17 @@ public class PathList {
 			/* {"start":{"x":151.5,"y":47.5},"mid1":{"x":212,"y":47},"mid2":{"x":226,"y":44.5},"end":{"x":302.5,"y":44}} */
 			new Vec2(60, 18), new Vec2(85, 18), new Vec2(90, 17), new Vec2(120, 17) 
 			, 60));
+
+		public static final Path TEST_TRENCH_PATH_THREE = new Path (x -> .6, new PathSegment( 
+			/* {"start":{"x":148.5,"y":46.5},"mid1":{"x":212,"y":47},"mid2":{"x":222,"y":46.5},"end":{"x":339.5,"y":45}} */
+			new Vec2(60, 19), new Vec2(85, 19), new Vec2(89, 19), new Vec2(136, 18) 
+			, 77));
+
+		public static final Path BACKWARDS_PATH_THREE = new Path (x -> .6, new PathSegment( 
+			/* {"start":{"x":339,"y":46},"mid1":{"x":306,"y":53},"mid2":{"x":277,"y":60},"end":{"x":243,"y":68}} */
+			new Vec2(136, 18), new Vec2(122, 21), new Vec2(111, 24), new Vec2(97, 27) 
+			, 40));
+
 	}
 
 
