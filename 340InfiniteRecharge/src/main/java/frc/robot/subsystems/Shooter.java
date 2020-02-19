@@ -42,20 +42,15 @@ public class Shooter extends SubsystemBase {
   public Shooter() {
     shooterWheel = new CANSparkMax(Constants.SHOOTER_WHEEL, MotorType.kBrushless);
     shooterWheel.setIdleMode(CANSparkMax.IdleMode.kCoast);
-    shooterWheel.getPIDController().setP(0.0006);
+    shooterWheel.getPIDController().setP(0.0006468); //PIDF changes are required
     shooterWheel.getPIDController().setI(0.0);
-    shooterWheel.getPIDController().setD(20);
-    shooterWheel.getPIDController().setFF(0.0002);
-    // practice bot PIDF values
+    shooterWheel.getPIDController().setD(3);
+    shooterWheel.getPIDController().setFF(0.00019);
+    //practice bot PIDF values
     // shooterWheel.getPIDController().setP(0.001);
     // shooterWheel.getPIDController().setI(0.0);
-    // shooterWheel.getPIDController().setD(20);
-    // shooterWheel.getPIDController().setFF(0.0002);
-    //practice bot PIDF values
-    shooterWheel.getPIDController().setP(0.001);
-    shooterWheel.getPIDController().setI(0.0);
-    shooterWheel.getPIDController().setD(1);
-    shooterWheel.getPIDController().setFF(0.000187);
+    // shooterWheel.getPIDController().setD(1);
+    // shooterWheel.getPIDController().setFF(0.000187);
     shooterWheel.setInverted(true);
     shooterEncoder = shooterWheel.getEncoder();
     ballCounter = new DigitalInput(Constants.BALL_COUNTER_SENSOR);
@@ -91,8 +86,8 @@ public class Shooter extends SubsystemBase {
   }
 
   public boolean isShooterAtSpeed() {
-    return ((shooterEncoder.getVelocity() >= (targetVelocity * .98) - 25)
-        && (shooterEncoder.getVelocity() <= (targetVelocity * 1.02) + 25));
+    return ((shooterEncoder.getVelocity() >= (targetVelocity * 1) - 25)
+        && (shooterEncoder.getVelocity() <= (targetVelocity * 1) + 25));
 
   }
 
@@ -135,9 +130,9 @@ public class Shooter extends SubsystemBase {
       ballsShot++;
       totalBallsShot++;
     }
-    SmartDashboard.putString("Max Speed", "" + ((targetVelocity * 1.02) + 25));
+    SmartDashboard.putString("Max Speed", "" + ((targetVelocity * 1) + 25));
     SmartDashboard.putString("Target Speed", "" + targetVelocity);
-    SmartDashboard.putString("Min Speed", "" + ((targetVelocity * .98) - 25));
+    SmartDashboard.putString("Min Speed", "" + ((targetVelocity * 1) - 25));
     // SmartDashboard.putString("Balls Shot", ""+ballsShot);
     // SmartDashboard.putBoolean("Shooter Sensor", getShooterSensor());
     SmartDashboard.putString("Flywheel Speed", "" + shooterEncoder.getVelocity());

@@ -8,38 +8,41 @@
 package frc.robot.commands.Shooter;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Constants;
 import frc.robot.RobotContainer;
+import frc.robot.subsystems.Limelight;
 import frc.robot.subsystems.SnekLoader.State;
 
-public class FullSendsWall extends CommandBase {
+public class FastBallWithHintOfLime extends CommandBase {
   /**
-   * Creates a new FullSendsWall.
+   * Creates a new FastBallWithAddedLime.
    */
+  private int speedRpm;
   private boolean fullSend;
   private int ballsToShoot;
-  public FullSendsWall() {
+  public FastBallWithHintOfLime() {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(RobotContainer.shooter, RobotContainer.snekLoader);
+    addRequirements(RobotContainer.shooter, RobotContainer.snekLoader,RobotContainer.limelight);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    ballsToShoot = RobotContainer.snekLoader.getBallsLoaded();
-    fullSend = false;
-    RobotContainer.shooter.setShooterWheel(Constants.WALL_SHOT_RPM+200);
+    RobotContainer.shooter.raiseHood();
+    RobotContainer.limelight.setLightState(0);
+    speedRpm = Limelight.calcHoodRPM();
     RobotContainer.shooter.resetBallsShot();
+    fullSend = false;
+    RobotContainer.shooter.setShooterWheel(speedRpm);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    fullSend = (RobotContainer.shooter.isShooterAtSpeed());
     if(fullSend){
       RobotContainer.snekLoader.setPause(false);
       RobotContainer.snekLoader.setState(State.kShootBall0);
     } else{
-      fullSend = (RobotContainer.shooter.isShooterAtSpeed());
       RobotContainer.snekLoader.setPause(true);
     }
   }
@@ -49,6 +52,7 @@ public class FullSendsWall extends CommandBase {
   public void end(boolean interrupted) {
     RobotContainer.shooter.stop();
     RobotContainer.snekLoader.setPause(false);
+    RobotContainer.limelight.setLightState(1);
   }
 
   // Returns true when the command should end.

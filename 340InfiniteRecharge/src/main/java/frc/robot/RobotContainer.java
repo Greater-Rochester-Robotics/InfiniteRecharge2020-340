@@ -39,6 +39,7 @@ import frc.robot.commands.LimelightCommands.AutoAlign;
 import frc.robot.commands.LimelightCommands.AutoDistance;
 import frc.robot.commands.LimelightCommands.DriveAutoAlign;
 import frc.robot.commands.LimelightCommands.LimelightOff;
+import frc.robot.commands.LimelightCommands.LimelightOn;
 import frc.robot.commands.LimelightCommands.ObtainDistance;
 import frc.robot.commands.Shooter.FullInitShot;
 import frc.robot.commands.Shooter.FullWallShot;
@@ -168,6 +169,8 @@ public class RobotContainer {
     //Actual Comp button layout][\]
     driverA.whenPressed(new Load());
     driverA.whenReleased(new GetSmol());
+    driverB.whenPressed(new LimelightOn());
+    driverB.whenReleased(new LimelightOff());
     driverX.whenPressed(new Regurgitate());
     driverX.whenPressed(new SpitBalls());
     driverX.whenReleased(new GetSmol());
@@ -179,12 +182,12 @@ public class RobotContainer {
     driverRB.whenReleased(new GetSmol());
     driverLB.whenPressed(new LowGoal());
     driverLB.whenReleased(new GetSmol());
-    driverRTButton.whenPressed(new SmartLimeShot()); // New thing that Rob made, needs testing
+    driverRTButton.whenPressed(new SmartLimeShot());
     driverRTButton.whenReleased(new GetSmol());
     driverLTButton.whenPressed(new FullWallShot());
     driverLTButton.whenReleased(new GetSmol());
 
-    driverDRight.whenPressed(new AutoTrenchRun());
+    // driverDRight.whenPressed(new AutoTrenchRun());
 
 
     // coDriverY.whenPressed(new SpinToColor());
