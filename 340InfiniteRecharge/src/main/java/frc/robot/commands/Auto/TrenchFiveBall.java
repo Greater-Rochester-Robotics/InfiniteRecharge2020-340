@@ -13,20 +13,16 @@ import frc.robot.commands.SnekLoader.Load;
 import frc.robot.commands.pathing.PathList;
 import frc.robot.commands.pathing.RunPath;
 
-// NOTE:  Consider using this command inline, rather than writing a subclass.  For more
-// information, see:
-// https://docs.wpilib.org/en/latest/docs/software/commandbased/convenience-features.html
-public class ColorWheelSteal extends SequentialCommandGroup {
+public class TrenchFiveBall extends SequentialCommandGroup {
   /**
-   * Creates a new ColorWheelSteal.
+   * Creates a new TrenchFiveBall.
    */
-  public ColorWheelSteal() {
-    // Add your commands in the super() call, e.g.
-    // super(new FooCommand(), new BarCommand());
+  public TrenchFiveBall() {
     super(
-    race(new RunPath(PathList.COLOR_WHEEL_STEAL.STAGE_ONE),new Load()),
-      new RunPath(PathList.COLOR_WHEEL_STEAL.STAGE_TWO),
-      new FullInitShot(),
-      new RunPath(PathList.COLOR_WHEEL_STEAL.STAGE_THREE));
+    race (new RunPath(PathList.TRENCH_FIVE_BALL.STEP_ONE),new Load()),
+      new RunPath(PathList.TRENCH_FIVE_BALL.STEP_TWO),
+      new FullInitShot()
+    );
   }
+
 }

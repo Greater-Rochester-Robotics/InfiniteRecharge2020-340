@@ -44,15 +44,37 @@ public class PathList {
 
 	}
 
+	public static final class EASY_SHOOT {
+		public static final Path THIRTY_SIX_INCH = new Path(x -> .7, new PathSegment( 
+			/* {"start":{"x":148,"y":246},"mid1":{"x":178,"y":246},"mid2":{"x":178,"y":246},"end":{"x":184,"y":246}} */
+			new Vec2(148, 246), new Vec2(178, 246), new Vec2(178, 246), new Vec2(184, 246) 
+			, 37));
+	}
+
+	public static final class TRENCH_FIVE_BALL {
+		public static final Path STEP_ONE = new Path(x -> .7, new PathSegment( 
+			/* {"start":{"x":150,"y":43},"mid1":{"x":203,"y":43},"mid2":{"x":203,"y":43},"end":{"x":278,"y":43}} */
+			new Vec2(150, 43), new Vec2(203, 43), new Vec2(203, 43), new Vec2(278, 43) 
+			, 129));
+		public static final Path STEP_TWO = new Path(x -> .7, new PathSegment( 
+			/* {"start":{"x":278,"y":43},"mid1":{"x":250,"y":59},"mid2":{"x":250,"y":59},"end":{"x":218,"y":79}} */
+			new Vec2(278, 43), new Vec2(250, 59), new Vec2(250, 59), new Vec2(218, 79) 
+			, 70));
+	}
+
 	public static final class COLOR_WHEEL_STEAL {
 		public static final Path STAGE_ONE = new Path(x -> .7, new PathSegment( 
-			/* {"start":{"x":150,"y":290},"mid1":{"x":203,"y":290},"mid2":{"x":204,"y":290},"end":{"x":258,"y":290}} */
-			new Vec2(150, 290), new Vec2(203, 290), new Vec2(204, 290), new Vec2(258, 290) 
-			, 109));
-		public static final Path STAGE_TWO = new Path(x -> -.7, new PathSegment( 
-			/* {"start":{"x":258,"y":290},"mid1":{"x":203,"y":290},"mid2":{"x":234,"y":250},"end":{"x":186,"y":218}} */
-			new Vec2(258, 290), new Vec2(203, 290), new Vec2(234, 250), new Vec2(186, 218) 
-			, 110));
+			/* {"start":{"x":150,"y":200},"mid1":{"x":222,"y":201},"mid2":{"x":216,"y":215},"end":{"x":268,"y":228}} */
+			new Vec2(150, 200), new Vec2(222, 201), new Vec2(216, 215), new Vec2(268, 228) 
+			, 123));
+		public static final Path STAGE_TWO = new Path(x -> .7, new PathSegment( 
+			/* {"start":{"x":278,"y":238},"mid1":{"x":221,"y":196},"mid2":{"x":201,"y":229},"end":{"x":150,"y":200}} */
+			new Vec2(278, 238), new Vec2(221, 196), new Vec2(201, 229), new Vec2(150, 200) 
+			, 136));
+		public static final Path STAGE_THREE = new Path(x -> .7, new PathSegment( 
+			/* {"start":{"x":150,"y":200},"mid1":{"x":117,"y":179},"mid2":{"x":119,"y":115},"end":{"x":150,"y":100}} */
+			new Vec2(150, 200), new Vec2(117, 179), new Vec2(119, 115), new Vec2(150, 100) 
+			, 117));
 	}
 //##########################################################################################################//
 //##########################################################################################################//

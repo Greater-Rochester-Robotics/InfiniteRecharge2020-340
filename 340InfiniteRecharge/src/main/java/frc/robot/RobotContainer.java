@@ -20,6 +20,8 @@ import frc.robot.commands.DriveXOne;
 import frc.robot.commands.GetSmol;
 import frc.robot.commands.PlayMusic;
 import frc.robot.commands.StopMusic;
+import frc.robot.commands.Auto.ColorWheelSteal;
+import frc.robot.commands.Auto.EasyShoot;
 import frc.robot.commands.Climber.Ascend;
 import frc.robot.commands.Climber.Descend;
 import frc.robot.commands.Climber.LeftClimberArmDown;
@@ -183,6 +185,11 @@ public class RobotContainer {
     driverLTButton.whenPressed(new FullWallShot());
     driverLTButton.whenReleased(new GetSmol());
 
+    driverDRight.whenPressed(new EasyShoot());
+    driverDLeft.whenPressed(new ColorWheelSteal());
+
+driverB.whenPressed(new LimelightOn());
+driverB.whenReleased(new LimelightOff());
     // coDriverY.whenPressed(new SpinToColor());
     // coDriverDUp.whenPressed(new Ascend());
     // coDriverDRight.whenPressed(new RightClimberArmDown());
