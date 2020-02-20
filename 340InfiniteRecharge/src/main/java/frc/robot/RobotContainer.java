@@ -21,6 +21,8 @@ import frc.robot.commands.DriveXOne;
 import frc.robot.commands.GetSmol;
 import frc.robot.commands.PlayMusic;
 import frc.robot.commands.StopMusic;
+import frc.robot.commands.Auto.ColorWheelSteal;
+import frc.robot.commands.Auto.EasyShoot;
 import frc.robot.commands.Climber.Ascend;
 import frc.robot.commands.Climber.Descend;
 import frc.robot.commands.Climber.LeftClimberArmDown;
@@ -59,7 +61,6 @@ import frc.robot.commands.pathing.PathList;
 import frc.robot.commands.pathing.RunPath;
 import frc.robot.commands.pathing.PathList.TRENCH_RUN;
 import frc.robot.commands.pathing.groups.AutoTrenchRun;
-import frc.robot.commands.pathing.groups.AutoTrenchRun6;
 import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.ColorWheel;
 import frc.robot.subsystems.Drive;
@@ -189,7 +190,8 @@ public class RobotContainer {
     driverLTButton.whenPressed(new FullWallShot());
     driverLTButton.whenReleased(new GetSmol());
 
-    driverDRight.whenPressed(new AutoTrenchRun());
+    driverDRight.whenPressed(new EasyShoot());
+    driverDLeft.whenPressed(new ColorWheelSteal());
 
 driverB.whenPressed(new LimelightOn());
 driverB.whenReleased(new LimelightOff());
