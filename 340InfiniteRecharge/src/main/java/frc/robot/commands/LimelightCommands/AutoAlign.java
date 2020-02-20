@@ -33,7 +33,6 @@ public class AutoAlign extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    System.out.println("AAAAAAAAAAAAAAAAAA");
     RobotContainer.drive.setLEDs(true); //also turn on PCM LEDs
 	  // constnagt.
     // double moveValue=RobotContainer.limelight.angleToTarget()*.1; //Need to test values to rotate
@@ -41,7 +40,7 @@ public class AutoAlign extends CommandBase {
     if(Math.abs(RobotContainer.limelight.angleToTarget())>7.5){
       rotateValue = RobotContainer.limelight.angleToTarget()*.02;
     } else if(Math.abs(RobotContainer.limelight.angleToTarget())>1 && Math.abs(RobotContainer.limelight.angleToTarget()) < 7.5){
-      rotateValue= (Math.abs(RobotContainer.limelight.angleToTarget())/RobotContainer.limelight.angleToTarget())*.1;
+      rotateValue= (Math.abs(RobotContainer.limelight.angleToTarget())/RobotContainer.limelight.angleToTarget())*.12;
     } else {
       rotateValue = 0;
       numTimesWithinTolerance ++;

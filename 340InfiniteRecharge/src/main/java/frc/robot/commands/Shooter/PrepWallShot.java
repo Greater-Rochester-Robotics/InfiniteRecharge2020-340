@@ -26,7 +26,7 @@ public class PrepWallShot extends CommandBase {
 
   public PrepWallShot(double time) {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(RobotContainer.shooter,RobotContainer.snekLoader);
+    addRequirements(RobotContainer.shooter,RobotContainer.snekLoader,RobotContainer.compressor);
     this.time = time;
   }
 
@@ -40,6 +40,7 @@ public class PrepWallShot extends CommandBase {
     tm = new Timer();
     tm.reset();
     tm.start();
+    RobotContainer.compressor.stopCompressor();
   }
 
   // Called every time the scheduler runs while the command is scheduled.

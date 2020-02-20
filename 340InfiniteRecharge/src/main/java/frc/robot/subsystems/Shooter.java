@@ -20,7 +20,6 @@ import com.revrobotics.EncoderType;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Solenoid;
-import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
@@ -31,10 +30,11 @@ public class Shooter extends SubsystemBase {
   private CANEncoder shooterEncoder;
   private double targetVelocity;
   private DigitalInput ballCounter;
+  private Solenoid hoodMover, hardStop;
+
   private int ballsShot = 0;
   private int totalBallsShot = 0;
   private boolean ballWasPresent;
-  private Solenoid hoodMover, hardStop;
 
   /**
    * Creates a new Shooter.
@@ -44,7 +44,7 @@ public class Shooter extends SubsystemBase {
     shooterWheel.setIdleMode(CANSparkMax.IdleMode.kCoast);
     shooterWheel.getPIDController().setP(0.0006468); //PIDF changes are required
     shooterWheel.getPIDController().setI(0.0);
-    shooterWheel.getPIDController().setD(3);
+    shooterWheel.getPIDController().setD(1.5);
     shooterWheel.getPIDController().setFF(0.00019);
     //practice bot PIDF values
     // shooterWheel.getPIDController().setP(0.001);

@@ -66,15 +66,8 @@ public class Limelight extends SubsystemBase {
     //distance equation: rpm = -0.0000401877572016x^3 +.220114087301592x^2 -33.7714947089957x + 4919.04761904768
     //Practice bot shooter value
     // double rpm = (-0.0000401877572016*Math.pow(distance, 3)) + (.220114087301592*Math.pow(distance,2)) - (33.7714947089957*distance)+4919.04761904768;
-    //Comp bot second order
-    if(distance < 170){
-      rpm = 3425.0;
-    }
-    // double rpm = (0.017721893539552*Math.pow(distance,2)) - (3.93099773315508*distance) + 3632.87661527619;
-    // Comp ot third order
-    else{
-     rpm = (0.00020752004082*Math.pow(distance,3)) + (.126206323642523*Math.pow(distance,2)) - (21.8642389641682 * distance) +4567.12695742641;
-    }
+   //Comp Bot Equation
+   rpm = -(.000007334124*Math.pow(distance,4))+(.005258407*Math.pow(distance,3))-(1.362595281*Math.pow(distance,2)) + (152.7787877 * distance) -2372.967082;
     // double rpm = 0.0;
     SmartDashboard.putString("Expected Rpm", ""+rpm);
     return (int) rpm;
