@@ -114,13 +114,13 @@ public class PathList {
 			, 60));
 
 		public static final Path TEST_TRENCH_PATH_THREE = new Path (x -> .6, new PathSegment( 
-			/* {"start":{"x":148.5,"y":46.5},"mid1":{"x":212,"y":47},"mid2":{"x":222,"y":46.5},"end":{"x":339.5,"y":45}} */
-			new Vec2(60, 19), new Vec2(85, 19), new Vec2(89, 19), new Vec2(136, 18) 
-			, 77));
+			/* {"start":{"x":148,"y":45},"mid1":{"x":210,"y":45},"mid2":{"x":210,"y":45},"end":{"x":316,"y":45}} */
+			new Vec2(148, 45), new Vec2(210, 45), new Vec2(210, 45), new Vec2(300, 45) 
+			, 152));
 
 		public static final Path BACKWARDS_PATH_THREE = new Path (x -> .6, new PathSegment( 
 			/* {"start":{"x":339,"y":46},"mid1":{"x":306,"y":53},"mid2":{"x":277,"y":60},"end":{"x":243,"y":68}} */
-			new Vec2(136, 18), new Vec2(122, 21), new Vec2(111, 24), new Vec2(97, 27) 
+			new Vec2(136, 18), new Vec2(122, 18), new Vec2(111, 18), new Vec2(97, 18) 
 			, 40));
 
 	}
