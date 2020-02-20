@@ -19,7 +19,7 @@ private ColorName wantedColor;
 
   public SpinToColor() {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(RobotContainer.colorWheel);
+    // addRequirements(RobotContainer.colorWheel);
   }
 
 
@@ -27,14 +27,14 @@ private ColorName wantedColor;
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    SmartDashboard.putString("Spinning", "Yes Speen");
+    // SmartDashboard.putBoolean("Spinning", true);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
     
-    colorDetected = RobotContainer.colorWheel.getColor();
+    // colorDetected = RobotContainer.colorWheel.getColor();
     if (DriverStation.getInstance().getGameSpecificMessage().length() > 0) {
       wantedColor = ColorName.valueOf (String.valueOf(DriverStation.getInstance().getGameSpecificMessage().charAt(0)));
     }
@@ -43,7 +43,7 @@ private ColorName wantedColor;
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    SmartDashboard.putString("Spinning", "No Speen");
+    // SmartDashboard.putBoolean("Spinning", false);
   }
 
   // Returns true when the command should end.

@@ -19,6 +19,7 @@ import com.revrobotics.EncoderType;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -33,7 +34,7 @@ public class Shooter extends SubsystemBase {
   private Solenoid hoodMover, hardStop;
 
   private int ballsShot = 0;
-  private int totalBallsShot = 0;
+  // private int totalBallsShot = 0;
   private boolean ballWasPresent;
 
   /**
@@ -58,6 +59,32 @@ public class Shooter extends SubsystemBase {
     hoodMover = new Solenoid(2);
     hardStop = new Solenoid(4);
     // shooterWheel.enableVoltageCompensation(12.0);
+  }
+
+  @Override
+  public void periodic() {
+    // if ballCounter sensor is false and ball sensor was true previously, add one
+    if (!getShooterSensor() && ballWasPresent) {
+      ballsShot++;
+      // totalBallsShot++;
+    }
+    ballWasPresent = getShooterSensor();
+
+
+    // SmartDashboard.putString("Balls Shot", ""+ballsShot);
+    // SmartDashboard.putBoolean("Shooter Sensor", getShooterSensor());
+    SmartDashboard.putString("Flywheel Speed", "" + Math.round(shooterEncoder.getVelocity()));
+    // SmartDashboard.putString("Total Balls Shot In Match", ""+totalBallsShot);
+    if(DriverStation.getInstance().isTest()){
+      // SmartDashboard.putString("Max Speed", "" + ((targetVelocity * 1) + 25));
+      SmartDashboard.putString("Target Speed", "" + targetVelocity);
+      // SmartDashboard.putString("Min Speed", "" + ((targetVelocity * 1) - 25));
+      if (this.getCurrentCommand() != null) {
+        SmartDashboard.putString("shooter command", this.getCurrentCommand().getName());
+      } else {
+        SmartDashboard.putString("shooter command", "none");
+      }
+    }
   }
 
   public void stop() {
@@ -120,28 +147,6 @@ public class Shooter extends SubsystemBase {
   }
 
   public int getTotalBallsShot() {
-    return totalBallsShot;
-  }
-
-  @Override
-  public void periodic() {
-    // if ballCounter sensor is false and ball sensor was true previously, add one
-    if (!getShooterSensor() && ballWasPresent) {
-      ballsShot++;
-      totalBallsShot++;
-    }
-    SmartDashboard.putString("Max Speed", "" + ((targetVelocity * 1) + 25));
-    SmartDashboard.putString("Target Speed", "" + targetVelocity);
-    SmartDashboard.putString("Min Speed", "" + ((targetVelocity * 1) - 25));
-    // SmartDashboard.putString("Balls Shot", ""+ballsShot);
-    // SmartDashboard.putBoolean("Shooter Sensor", getShooterSensor());
-    SmartDashboard.putString("Flywheel Speed", "" + shooterEncoder.getVelocity());
-    // SmartDashboard.putString("Total Balls Shot In Match", ""+totalBallsShot);
-    if (this.getCurrentCommand() != null) {
-      SmartDashboard.putString("shooter command", this.getCurrentCommand().getName());
-    } else {
-      SmartDashboard.putString("shooter command", "none");
-    }
-    ballWasPresent = getShooterSensor();
+    return 0; //totalBallsShot;
   }
 }

@@ -23,6 +23,8 @@ import com.ctre.phoenix.music.Orchestra;
 import com.ctre.phoenix.sensors.CANCoder;
 
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
+import edu.wpi.first.wpilibj.DriverStation;
+
 import com.analog.adis16448.frc.ADIS16448_IMU;
 import com.analog.adis16448.frc.ADIS16448_IMU.IMUAxis;
 import edu.wpi.first.wpilibj.Encoder;
@@ -383,11 +385,13 @@ public class Drive extends SubsystemBase {
 
 	@Override
 	public void periodic() {
-		SmartDashboard.putString("distance left", ""+this.getLeftDistance());
-		SmartDashboard.putString("distance right", ""+this.getRightDistance());
-		SmartDashboard.putString("AngleX", ""+imu.getGyroAngleX());
-		SmartDashboard.putString("AngleY", ""+imu.getGyroAngleY());
-		SmartDashboard.putString("AngleZ", ""+imu.getGyroAngleZ());
-		SmartDashboard.putString("Angle", ""+this.getRotation());
+		if(DriverStation.getInstance().isTest()){
+			SmartDashboard.putString("distance left", ""+this.getLeftDistance());
+			SmartDashboard.putString("distance right", ""+this.getRightDistance());
+			// SmartDashboard.putString("AngleX", ""+imu.getGyroAngleX());
+			// SmartDashboard.putString("AngleY", ""+imu.getGyroAngleY());
+			// SmartDashboard.putString("AngleZ", ""+imu.getGyroAngleZ());
+			SmartDashboard.putString("Angle", ""+this.getRotation());
+		}
 	}
 }

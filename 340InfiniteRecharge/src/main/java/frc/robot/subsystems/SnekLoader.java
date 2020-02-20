@@ -14,6 +14,7 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import com.revrobotics.CANDigitalInput.LimitSwitchPolarity;
 import com.revrobotics.CANSparkMax.IdleMode;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
@@ -93,12 +94,7 @@ public class SnekLoader extends SubsystemBase {
     // if (!hadBall && handleSensors[0].get()) {
     // ballsLoaded++;
     // }
-    // if (isJammed() && getState() != State.kSpitBalls) {
-    // // state = State.kOff;
-    // SmartDashboard.putBoolean("isJammed", true);
-    // } else {
-    // SmartDashboard.putBoolean("isJammed", false);
-    // }
+
 
     // This method will be called once per scheduler run
     double[] speeds = new double[5];
@@ -188,20 +184,28 @@ public class SnekLoader extends SubsystemBase {
       speeds = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0 };
     }
     setAllHandleMotors(speeds);
-    SmartDashboard.putString("BallsLoaded", ""+ ballsLoaded);
-    SmartDashboard.putString("State", state.name());
-    if(this.getCurrentCommand() != null){
-      SmartDashboard.putString("snek command", this.getCurrentCommand().getName());
+
+    //SmartDashboard Pushes
+    if (isJammed() && getState() != State.kSpitBalls) {
+      SmartDashboard.putBoolean("isJammed", true);
     } else {
-      SmartDashboard.putString("snek command", "none");
+      SmartDashboard.putBoolean("isJammed", false);
+    }
+    SmartDashboard.putBoolean("Ball 0", handleSensors[0].get());
+    SmartDashboard.putBoolean("Ball 1", handleSensors[1].get());
+    SmartDashboard.putBoolean("Ball 2", handleSensors[2].get());
+    SmartDashboard.putBoolean("Ball 3", handleSensors[3].get());
+    SmartDashboard.putBoolean("Ball 4", handleSensors[4].get());
+    if(DriverStation.getInstance().isTest()){
+      SmartDashboard.putString("BallsLoaded", ""+ ballsLoaded);
+      SmartDashboard.putString("State", state.name());
+      if(this.getCurrentCommand() != null){
+        SmartDashboard.putString("snek command", this.getCurrentCommand().getName());
+      } else {
+        SmartDashboard.putString("snek command", "none");
+      }
     }
 
-    SmartDashboard.putBoolean("Handle Sensor 0", handleSensors[0].get());
-    SmartDashboard.putBoolean("Handle Sensor 1", handleSensors[1].get());
-    SmartDashboard.putBoolean("Handle Sensor 2", handleSensors[2].get());
-    SmartDashboard.putBoolean("Handle Sensor 3", handleSensors[3].get());
-    SmartDashboard.putBoolean("Handle Sensor 4", handleSensors[4].get());
-    // System.out.println("SnekLoaderPeriodic Done");
   }
 
   /**
@@ -262,8 +266,9 @@ public class SnekLoader extends SubsystemBase {
   public boolean isJammed() {
     boolean isJammed = false;
     for (int i = 0; i <= 4; i++) {
-      // isJammed = isJammed || ((handleMotors[i].get() != 0) &&
-      // (handleEncoders[i].getVelocity() == 0));
+      isJammed = isJammed || 
+        ((handleMotors[i].get() != 0) && (handleEncoders[i].getVelocity() == 0))||
+        handleMotors[i].getOutputCurrent() > 40.0;
     }
     return isJammed;
   }

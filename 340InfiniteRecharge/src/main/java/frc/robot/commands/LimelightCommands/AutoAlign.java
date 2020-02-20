@@ -7,7 +7,6 @@
 
 package frc.robot.commands.LimelightCommands;
 
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
 
@@ -25,6 +24,7 @@ public class AutoAlign extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    RobotContainer.limelight.setStreamMode(0);
     RobotContainer.limelight.setLightState(0);// Turns the LEDs on
     RobotContainer.limelight.setPipeline(0);// Turns the limelight into hue mode?
     numTimesWithinTolerance = 0;
@@ -40,12 +40,12 @@ public class AutoAlign extends CommandBase {
     if(Math.abs(RobotContainer.limelight.angleToTarget())>7.5){
       rotateValue = RobotContainer.limelight.angleToTarget()*.02;
     } else if(Math.abs(RobotContainer.limelight.angleToTarget())>1 && Math.abs(RobotContainer.limelight.angleToTarget()) < 7.5){
-      rotateValue= (Math.abs(RobotContainer.limelight.angleToTarget())/RobotContainer.limelight.angleToTarget())*.12;
+      rotateValue= (Math.abs(RobotContainer.limelight.angleToTarget())/RobotContainer.limelight.angleToTarget())*.11;
     } else {
       rotateValue = 0;
       numTimesWithinTolerance ++;
     }
-    SmartDashboard.putString("rotateValue", ""+ rotateValue);
+
 
     // write a function for rotateValue, so that it is driven by angleToTarget
     //Old code that might help align

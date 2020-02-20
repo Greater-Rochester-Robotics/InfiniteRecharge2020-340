@@ -21,7 +21,7 @@ public class FastBallWithHintOfLime extends CommandBase {
   private int ballsToShoot;
   public FastBallWithHintOfLime() {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(RobotContainer.shooter, RobotContainer.snekLoader,RobotContainer.limelight,RobotContainer.compressor);
+    addRequirements(RobotContainer.shooter, RobotContainer.snekLoader,RobotContainer.limelight);
   }
 
   // Called when the command is initially scheduled.
@@ -33,7 +33,6 @@ public class FastBallWithHintOfLime extends CommandBase {
     RobotContainer.shooter.resetBallsShot();
     fullSend = false;
     RobotContainer.shooter.setShooterWheel(speedRpm);
-    RobotContainer.compressor.stopCompressor();
   }
 
   // Called every time the scheduler runs while the command is scheduled.

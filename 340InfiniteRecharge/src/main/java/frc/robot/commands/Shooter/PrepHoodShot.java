@@ -27,7 +27,7 @@ public class PrepHoodShot extends CommandBase {
 
   public PrepHoodShot(double time) {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(RobotContainer.shooter, RobotContainer.snekLoader,RobotContainer.compressor);
+    addRequirements(RobotContainer.shooter, RobotContainer.snekLoader);
     this.time = time;
   }
 
@@ -43,7 +43,6 @@ public class PrepHoodShot extends CommandBase {
     tm = new Timer();
     tm.reset();
     tm.start();
-    RobotContainer.compressor.stopCompressor();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
