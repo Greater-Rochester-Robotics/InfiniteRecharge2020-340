@@ -12,7 +12,7 @@ import frc.robot.commands.pathing.PathSegment.Vec2;
 // done!
 
 public class PathList {
-	public static final Path STRAIGHT_ON = new Path(x -> .2, new PathSegment(x -> 0.0, 15));
+	public static final Path STRAIGHT_ON = new Path(x -> .2, new PathSegment(x -> 0.0, 108));
 
 	public static final class TEST_PATHING {
 		public static final Path U_SHAPE = new Path(x -> .2, new PathSegment(
@@ -44,6 +44,21 @@ public class PathList {
 
 	}
 
+	public static final class COLOR_WHEEL_STEAL {
+		public static final Path STAGE_ONE = new Path(x -> .7, new PathSegment( 
+			/* {"start":{"x":150,"y":290},"mid1":{"x":203,"y":290},"mid2":{"x":204,"y":290},"end":{"x":258,"y":290}} */
+			new Vec2(150, 290), new Vec2(203, 290), new Vec2(204, 290), new Vec2(258, 290) 
+			, 109));
+		public static final Path STAGE_TWO = new Path(x -> -.7, new PathSegment( 
+			/* {"start":{"x":258,"y":290},"mid1":{"x":203,"y":290},"mid2":{"x":234,"y":250},"end":{"x":186,"y":218}} */
+			new Vec2(258, 290), new Vec2(203, 290), new Vec2(234, 250), new Vec2(186, 218) 
+			, 110));
+	}
+//##########################################################################################################//
+//##########################################################################################################//
+//####                     KEEP TRACK OF YOUR STUFF                                                    #####//
+//##########################################################################################################//
+//##########################################################################################################//
 	// Made path start sides based on looking from our driver station, not other
 	// team's
 	public static final class ENEMY_TRENCH_RUN {
@@ -114,13 +129,13 @@ public class PathList {
 			, 60));
 
 		public static final Path TEST_TRENCH_PATH_THREE = new Path (x -> .6, new PathSegment( 
-			/* {"start":{"x":148.5,"y":46.5},"mid1":{"x":212,"y":47},"mid2":{"x":222,"y":46.5},"end":{"x":339.5,"y":45}} */
-			new Vec2(60, 19), new Vec2(85, 19), new Vec2(89, 19), new Vec2(136, 18) 
-			, 77));
+			/* {"start":{"x":148,"y":45},"mid1":{"x":210,"y":45},"mid2":{"x":210,"y":45},"end":{"x":316,"y":45}} */
+			new Vec2(148, 45), new Vec2(210, 45), new Vec2(210, 45), new Vec2(300, 45) 
+			, 152));
 
 		public static final Path BACKWARDS_PATH_THREE = new Path (x -> .6, new PathSegment( 
 			/* {"start":{"x":339,"y":46},"mid1":{"x":306,"y":53},"mid2":{"x":277,"y":60},"end":{"x":243,"y":68}} */
-			new Vec2(136, 18), new Vec2(122, 21), new Vec2(111, 24), new Vec2(97, 27) 
+			new Vec2(136, 18), new Vec2(122, 18), new Vec2(111, 18), new Vec2(97, 18) 
 			, 40));
 
 	}

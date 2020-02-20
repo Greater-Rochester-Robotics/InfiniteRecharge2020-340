@@ -189,6 +189,10 @@ public class RobotContainer {
     driverLTButton.whenPressed(new FullWallShot());
     driverLTButton.whenReleased(new GetSmol());
 
+    driverDRight.whenPressed(new AutoTrenchRun());
+
+driverB.whenPressed(new LimelightOn());
+driverB.whenReleased(new LimelightOff());
     // coDriverY.whenPressed(new SpinToColor());
     // coDriverDUp.whenPressed(new Ascend());
     // coDriverDRight.whenPressed(new RightClimberArmDown());
