@@ -16,7 +16,6 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.button.Button;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import frc.robot.commands.CompressorOn;
 import frc.robot.commands.DriveXOne;
 import frc.robot.commands.GetSmol;
 import frc.robot.commands.PlayMusic;
@@ -67,7 +66,6 @@ import frc.robot.subsystems.Harvester;
 import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.SnekLoader;
 import frc.robot.subsystems.Limelight;
-import frc.robot.subsystems.OurCompressor;
 
 /**
  * This class is where the bulk of the robot should be declared. Since
@@ -130,29 +128,26 @@ public class RobotContainer {
   public static Harvester harvester;
   public static Drive drive;
   public static Shooter shooter;
-  public static ColorWheel colorWheel;
+  // public static ColorWheel colorWheel;
   public static Limelight limelight;
   public static Climber climber;
-  public static OurCompressor compressor;
 
   public static final boolean isFalconFx = true;
+  private static boolean testButtonsBound = false;
 
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
    */
   public RobotContainer() {
-    // TODO: comment this out to drive
     drive = new Drive();
-    shooter = new Shooter();
-    // TODO: commented out default drive for testing purposes
     CommandScheduler.getInstance().setDefaultCommand(drive, new DriveXOne());
-    colorWheel = new ColorWheel();
+    shooter = new Shooter();
+    // colorWheel = new ColorWheel();
     harvester = new Harvester();
     snekLoader = new SnekLoader();
     limelight = new Limelight();
     climber = new Climber();
-    compressor = new OurCompressor();
-    compressor.setDefaultCommand(new CompressorOn());
+
     // Configure the button bindings
     configureButtonBindings();
 
@@ -189,10 +184,6 @@ public class RobotContainer {
     driverLTButton.whenPressed(new FullWallShot());
     driverLTButton.whenReleased(new GetSmol());
 
-    driverDRight.whenPressed(new AutoTrenchRun());
-
-driverB.whenPressed(new LimelightOn());
-driverB.whenReleased(new LimelightOff());
     // coDriverY.whenPressed(new SpinToColor());
     // coDriverDUp.whenPressed(new Ascend());
     // coDriverDRight.whenPressed(new RightClimberArmDown());
@@ -204,6 +195,14 @@ driverB.whenReleased(new LimelightOff());
     coDriverLB.whenReleased(new GetSmol());
     coDriverRTButton.whenPressed(new PrepHoodShot(1.5));
     coDriverLTButton.whenPressed(new PrepWallShot(1.5));
+    }
+
+    public void bindTestButtons(){
+      if(!testButtonsBound){
+        testButtonsBound = true;
+        //put test buttons here for test controller
+        
+      }
     }
 
 

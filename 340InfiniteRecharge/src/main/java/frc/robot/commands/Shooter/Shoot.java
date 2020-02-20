@@ -29,7 +29,7 @@ public class Shoot extends CommandBase {
     this.ballsToShoot = numToShoot;
     speedRpm = speed;
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(RobotContainer.shooter, RobotContainer.snekLoader, RobotContainer.compressor);
+    addRequirements(RobotContainer.shooter, RobotContainer.snekLoader);
   }
 
   // Called when the command is initially scheduled.
@@ -39,7 +39,6 @@ public class Shoot extends CommandBase {
     stateIndex = 4;
     RobotContainer.shooter.setShooterWheel(speedRpm);
     // System.out.println("Shoot init");
-    RobotContainer.compressor.stopCompressor();
   }
 
   // Called every time the scheduler runs while the command is scheduled.

@@ -20,7 +20,7 @@ public class FullSendsWall extends CommandBase {
   private int ballsToShoot;
   public FullSendsWall() {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(RobotContainer.shooter, RobotContainer.snekLoader,RobotContainer.compressor);
+    addRequirements(RobotContainer.shooter, RobotContainer.snekLoader);
   }
 
   // Called when the command is initially scheduled.
@@ -30,7 +30,6 @@ public class FullSendsWall extends CommandBase {
     fullSend = false;
     RobotContainer.shooter.setShooterWheel(Constants.WALL_SHOT_RPM+200);
     RobotContainer.shooter.resetBallsShot();
-    RobotContainer.compressor.stopCompressor();
   }
 
   // Called every time the scheduler runs while the command is scheduled.

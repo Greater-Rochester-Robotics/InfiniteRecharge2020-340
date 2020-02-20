@@ -26,13 +26,20 @@ public class Limelight extends SubsystemBase {
   public Limelight() {
     setLightState(1);
 
-//y = -0.104167 for crosshair positioning
+    //y = -0.104167 for crosshair positioning
   }
+
   public void periodic(){
-    getDistance();
-    SmartDashboard.putString("AngleToTarget", ""+angleToTarget());
-    // RobotContainer.limelight.setLightState(3);
+    SmartDashboard.putString("Distance", ""+ getDistance());
+    if(DriverStation.getInstance().isTest()){
+      SmartDashboard.putString("AngleToTarget", ""+angleToTarget());
+    }
   }
+
+  public void setStreamMode(int Stream){
+    NetworkTableInstance.getDefault().getTable("limelight").getEntry("stream").setNumber(Stream);
+  }
+
   public void setPipeline(int Pipeline){
 	  NetworkTableInstance.getDefault().getTable("limelight").getEntry("pipeline").setNumber(Pipeline);
   }
@@ -69,7 +76,6 @@ public class Limelight extends SubsystemBase {
    //Comp Bot Equation
    rpm = -(.000007334124*Math.pow(distance,4))+(.005258407*Math.pow(distance,3))-(1.362595281*Math.pow(distance,2)) + (152.7787877 * distance) -2372.967082;
     // double rpm = 0.0;
-    SmartDashboard.putString("Expected Rpm", ""+rpm);
     return (int) rpm;
   }
 
@@ -81,7 +87,6 @@ public class Limelight extends SubsystemBase {
     double cameraAngle = 18;    //changeable 
     double distance = ((targetHeight - cameraHeight) / Math.tan(Math.toRadians(cameraAngle + RobotContainer.limelight.verticalAngleToTarget())))-12.5; // Returns distance to target, 12.5 is distance camera is from front? of robot
     // System.out.println("Math = " + Math.tan( Math.toRadians(cameraAngle + RobotContainer.limelight.verticalAngleToTarget()) ) +"   distance = " + Distance);
-    SmartDashboard.putString("Distance", ""+distance);
     // System.out.println(Distance);
     return distance;
     //d = (h2-h1) / tan(a1+a2)
