@@ -76,6 +76,7 @@ public class RunPath extends CommandBase {
 	}
 
 	// Called just before this Command runs the first time
+	@Override
 	public void initialize() {
 		RobotContainer.drive.setDriveBoth(leftSpeed * .15, rightSpeed * .15);
 		RobotContainer.drive.resetBothEncoders();
@@ -106,6 +107,7 @@ public class RunPath extends CommandBase {
 	}
 
 	// Called repeatedly when this Command is scheduled to run
+	@Override
 	public void execute() {
 		final double error = -deltaAngle(RobotContainer.drive.getRotation());
 
@@ -135,6 +137,7 @@ public class RunPath extends CommandBase {
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
+	@Override
 	public boolean isFinished() {
 		try {
 			// System.out.println(path.getPathAtDistance(RobotContainer.drive.getRightDistance()).getLength());
@@ -147,16 +150,11 @@ public class RunPath extends CommandBase {
     }
 
 	// Called once after isFinished returns true
-	protected void end() {
+	@Override
+	public void end(boolean interrupted) {
 		RobotContainer.drive.setDriveBoth(0, 0);
 		// if (animation != null)
 		// 	animation.reset();
 	}
 
-	// Called when another command which requires one or more of the same
-	// subsystems is scheduled to run
-	protected void interrupted() {
-		System.out.println("RUNPATH INTERRUPTED");
-		end();
-	}
 }

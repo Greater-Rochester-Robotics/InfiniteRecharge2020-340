@@ -12,7 +12,7 @@ import frc.robot.commands.pathing.PathSegment.Vec2;
 // done!
 
 public class PathList {
-	public static final Path STRAIGHT_ON = new Path(x -> .2, new PathSegment(x -> 0.0, 15));
+	public static final Path STRAIGHT_ON = new Path(x -> .2, new PathSegment(x -> 0.0, 108));
 
 	public static final class TEST_PATHING {
 		public static final Path U_SHAPE = new Path(x -> .2, new PathSegment(
@@ -44,6 +44,21 @@ public class PathList {
 
 	}
 
+	public static final class COLOR_WHEEL_STEAL {
+		public static final Path STAGE_ONE = new Path(x -> .7, new PathSegment( 
+			/* {"start":{"x":150,"y":290},"mid1":{"x":203,"y":290},"mid2":{"x":204,"y":290},"end":{"x":258,"y":290}} */
+			new Vec2(150, 290), new Vec2(203, 290), new Vec2(204, 290), new Vec2(258, 290) 
+			, 109));
+		public static final Path STAGE_TWO = new Path(x -> -.7, new PathSegment( 
+			/* {"start":{"x":258,"y":290},"mid1":{"x":203,"y":290},"mid2":{"x":234,"y":250},"end":{"x":186,"y":218}} */
+			new Vec2(258, 290), new Vec2(203, 290), new Vec2(234, 250), new Vec2(186, 218) 
+			, 110));
+	}
+//##########################################################################################################//
+//##########################################################################################################//
+//####                     KEEP TRACK OF YOUR STUFF                                                    #####//
+//##########################################################################################################//
+//##########################################################################################################//
 	// Made path start sides based on looking from our driver station, not other
 	// team's
 	public static final class ENEMY_TRENCH_RUN {
