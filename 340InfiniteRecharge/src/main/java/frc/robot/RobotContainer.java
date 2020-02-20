@@ -58,7 +58,6 @@ import frc.robot.commands.pathing.PathList;
 import frc.robot.commands.pathing.RunPath;
 import frc.robot.commands.pathing.PathList.TRENCH_RUN;
 import frc.robot.commands.pathing.groups.AutoTrenchRun;
-import frc.robot.commands.pathing.groups.AutoTrenchRun6;
 import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.ColorWheel;
 import frc.robot.subsystems.Drive;

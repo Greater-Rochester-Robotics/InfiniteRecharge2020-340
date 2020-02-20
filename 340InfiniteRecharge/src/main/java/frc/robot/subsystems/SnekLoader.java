@@ -196,8 +196,8 @@ public class SnekLoader extends SubsystemBase {
     SmartDashboard.putBoolean("Ball 2", handleSensors[2].get());
     SmartDashboard.putBoolean("Ball 3", handleSensors[3].get());
     SmartDashboard.putBoolean("Ball 4", handleSensors[4].get());
+    SmartDashboard.putString("BallsLoaded", ""+ ballsLoaded);
     if(DriverStation.getInstance().isTest()){
-      SmartDashboard.putString("BallsLoaded", ""+ ballsLoaded);
       SmartDashboard.putString("State", state.name());
       if(this.getCurrentCommand() != null){
         SmartDashboard.putString("snek command", this.getCurrentCommand().getName());

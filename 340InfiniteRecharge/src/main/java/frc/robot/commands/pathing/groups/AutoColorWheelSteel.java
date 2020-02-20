@@ -18,7 +18,7 @@ public class AutoColorWheelSteel extends CommandBase {
     // super(new FooCommand(), new BarCommand());
     super(
     
-    )
+    );
   }
 
   // Called when the command is initially scheduled.
