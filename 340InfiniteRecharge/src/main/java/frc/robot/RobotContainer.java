@@ -8,7 +8,6 @@
 //recursive todo reminding you to use todo to locate things
 package frc.robot;
 
-import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj.Joystick;
@@ -17,6 +16,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.button.Button;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import frc.robot.commands.CompressorOn;
 import frc.robot.commands.DriveXOne;
 import frc.robot.commands.GetSmol;
 import frc.robot.commands.PlayMusic;
@@ -67,6 +67,7 @@ import frc.robot.subsystems.Harvester;
 import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.SnekLoader;
 import frc.robot.subsystems.Limelight;
+import frc.robot.subsystems.OurCompressor;
 
 /**
  * This class is where the bulk of the robot should be declared. Since
@@ -128,11 +129,11 @@ public class RobotContainer {
   public static SnekLoader snekLoader;
   public static Harvester harvester;
   public static Drive drive;
-  public static Compressor compressor;
   public static Shooter shooter;
   public static ColorWheel colorWheel;
   public static Limelight limelight;
   public static Climber climber;
+  public static OurCompressor compressor;
 
   public static final boolean isFalconFx = true;
 
@@ -143,8 +144,6 @@ public class RobotContainer {
     // TODO: comment this out to drive
     drive = new Drive();
     shooter = new Shooter();
-    // TODO: Pneumatics system, set that up
-    compressor = new Compressor();
     // TODO: commented out default drive for testing purposes
     CommandScheduler.getInstance().setDefaultCommand(drive, new DriveXOne());
     colorWheel = new ColorWheel();
@@ -152,6 +151,8 @@ public class RobotContainer {
     snekLoader = new SnekLoader();
     limelight = new Limelight();
     climber = new Climber();
+    compressor = new OurCompressor();
+    compressor.setDefaultCommand(new CompressorOn());
     // Configure the button bindings
     configureButtonBindings();
 

@@ -5,60 +5,41 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.Shooter;
+package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
-import frc.robot.subsystems.Limelight;
-import frc.robot.subsystems.SnekLoader;
 
-public class PrepHoodShot extends CommandBase {
-
-  Timer tm;
-  double time;
+public class CompressorOn extends CommandBase {
+  Timer timer = new Timer();
   /**
-   * Creates a new PrepHoodShot.
+   * Creates a new CompressorOn.
    */
-  
-  public PrepHoodShot(){
-    this(1.5);
-  }
-
-  public PrepHoodShot(double time) {
+  public CompressorOn() {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(RobotContainer.shooter, RobotContainer.snekLoader,RobotContainer.compressor);
-    this.time = time;
+    addRequirements( RobotContainer.compressor);
   }
-
-  
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    RobotContainer.shooter.raiseHardStop();
-    RobotContainer.shooter.raiseHood();
-    RobotContainer.shooter.setShooterWheel(3000);
-    RobotContainer.snekLoader.setState(SnekLoader.State.kFillTo4);
-    tm = new Timer();
-    tm.reset();
-    tm.start();
-    RobotContainer.compressor.stopCompressor();
+    timer.reset();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    if(timer.get()>2){
+      RobotContainer.compressor.startCompressor();
+    }
   }
 
-  // Called once the command ends or is interrupted.
-  @Override
-  public void end(boolean interrupted) {
-  }
+ 
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return (RobotContainer.shooter.isShooterAtSpeed() || tm.get() >= time);
+    return false;
   }
 }
