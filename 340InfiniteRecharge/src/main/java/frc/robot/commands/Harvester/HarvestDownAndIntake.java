@@ -5,66 +5,41 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.SnekLoader;
+package frc.robot.commands.Harvester;
 
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
-import frc.robot.subsystems.SnekLoader.State;
 
-public class Load extends CommandBase {
-
-  Timer tm;
-  double time;
-
-  public Load(){
-    this(600);
-  }
+public class HarvestDownAndIntake extends CommandBase {
   /**
-   * Creates a new Load.
+   * Creates a new HarvestDownAndIntake.
    */
-  public Load(double time) {
+  public HarvestDownAndIntake() {
+    addRequirements(RobotContainer.harvester);
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(RobotContainer.snekLoader, RobotContainer.harvester);
-    this.time = time;
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    // double[] speds = {-1.0,-0.5,0.0,0.5,1.0};
-    // RobotContainer.snekShooter.setAllLoadWheels(speds);
-    // RobotContainer.snekShooter.setShooterWheel(1.0);
-
-    tm = new Timer();
-    tm.reset();
-    tm.start();
-
-
+    RobotContainer.harvester.lowerHarvester();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (tm.get() < time) {
-      RobotContainer.snekLoader.setState(State.kFillTo4);
-      RobotContainer.harvester.lowerHarvester();
-      RobotContainer.harvester.setAxleWheels(6.0);
-    }
+    RobotContainer.harvester.setAxleWheels(6.0);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    RobotContainer.snekLoader.setState(State.kOff);
-    RobotContainer.harvester.raiseHarvester();
     RobotContainer.harvester.setAxleWheels(0.0);
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    
-    return (RobotContainer.snekLoader.getState() == State.kOff || tm.get() >= time);
+    return false;
   }
 }

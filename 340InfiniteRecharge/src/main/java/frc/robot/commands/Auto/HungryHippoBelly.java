@@ -7,27 +7,23 @@
 
 package frc.robot.commands.Auto;
 
-import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import frc.robot.commands.Shooter.FullInitShot;
-import frc.robot.commands.Shooter.ResetBallsShot;
-import frc.robot.commands.SnekLoader.Load;
-import frc.robot.commands.pathing.PathList;
-import frc.robot.commands.pathing.RunPath;
+import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
+import frc.robot.commands.Harvester.HarvestDownAndIntake;
+import frc.robot.commands.Shooter.SmartLimeShot;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/latest/docs/software/commandbased/convenience-features.html
-public class ColorWheelSteal extends SequentialCommandGroup {
+public class HungryHippoBelly extends ParallelCommandGroup {
   /**
-   * Creates a new ColorWheelSteal.
+   * Creates a new HungryHippoBelly.
    */
-  public ColorWheelSteal() {
+  public HungryHippoBelly() {
     // Add your commands in the super() call, e.g.
-    // super(new FooCommand(), new BarCommand());
+    // super(new FooCommand(), new BarCommand());super();
     super(
-    race(new Load(), new RunPath(PathList.COLOR_WHEEL_STEAL.STAGE_ONE)),
-      new Load(1),
-      new RunPath(PathList.COLOR_WHEEL_STEAL.STAGE_TWO),
-      new FullInitShot());
+      new HarvestDownAndIntake(),
+      new SmartLimeShot()
+    );
   }
 }
