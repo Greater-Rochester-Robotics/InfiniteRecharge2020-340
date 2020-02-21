@@ -88,6 +88,12 @@ public class PathList {
 			new Vec2(150, 200), new Vec2(129, 195), new Vec2(128, 150), new Vec2(150, 150) 
 			, 117));
 	}
+	public static final class WALL_SHOT {
+		public static final Path SCOOTCH_BACK = new Path(x -> .7, new PathSegment( 
+			/* {"start":{"x":150,"y":200},"mid1":{"x":200,"y":202},"mid2":{"x":203,"y":228},"end":{"x":258,"y":240}} */
+			new Vec2(0, 0), new Vec2(6, 0), new Vec2(6, 0), new Vec2(12, 0) 
+			, 12));
+	}
 //##########################################################################################################//
 //##########################################################################################################//
 //####                     KEEP TRACK OF YOUR STUFF                                                    #####//
