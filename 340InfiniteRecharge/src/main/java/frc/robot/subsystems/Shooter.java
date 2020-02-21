@@ -71,8 +71,8 @@ public class Shooter extends SubsystemBase {
     ballWasPresent = getShooterSensor();
 
 
-    // SmartDashboard.putString("Balls Shot", ""+ballsShot);
-    // SmartDashboard.putBoolean("Shooter Sensor", getShooterSensor());
+    SmartDashboard.putString("Balls Shot", ""+ballsShot);
+    SmartDashboard.putBoolean("Shooter Sensor", getShooterSensor());
     SmartDashboard.putString("Flywheel Speed", "" + Math.round(shooterEncoder.getVelocity()));
     // SmartDashboard.putString("Total Balls Shot In Match", ""+totalBallsShot);
     if(DriverStation.getInstance().isTest()){
