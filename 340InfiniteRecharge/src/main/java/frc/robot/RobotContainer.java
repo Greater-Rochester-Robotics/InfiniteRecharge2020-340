@@ -22,6 +22,7 @@ import frc.robot.commands.PlayMusic;
 import frc.robot.commands.StopMusic;
 import frc.robot.commands.Auto.ColorWheelSteal;
 import frc.robot.commands.Auto.EasyShoot;
+import frc.robot.commands.Auto.HungryHippoShot;
 import frc.robot.commands.Auto.TrenchFiveBall;
 import frc.robot.commands.Climber.Ascend;
 import frc.robot.commands.Climber.Descend;
@@ -187,8 +188,8 @@ public class RobotContainer {
     driverLTButton.whenReleased(new GetSmol());
 
     driverDRight.whenPressed(new TrenchFiveBall());
-    driverDLeft.whenPressed(new ColorWheelSteal());
-    // driverDLeft.whenPressed(new RunPath(PathList.COLOR_WHEEL_STEAL.STAGE_ONE));
+    driverDLeft.whenPressed(new HungryHippoShot());
+
 
 
     // coDriverY.whenPressed(new SpinToColor());

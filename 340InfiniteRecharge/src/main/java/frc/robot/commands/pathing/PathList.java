@@ -49,6 +49,12 @@ public class PathList {
 				new Vec2(220, 186), new Vec2(171, 189), new Vec2(172, 165), new Vec2(145, 168), 79));
 
 	}
+	public static final class HUNGRY_HIPPO_SHOT {
+		public static final Path SCOOT_BACK = new Path(x -> -.6, new PathSegment( 
+			/* {"start":{"x":0,"y":0},"mid1":{"x":7,"y":0},"mid2":{"x":7,"y":0},"end":{"x":15,"y":0}} */
+			new Vec2(0, 0), new Vec2(7, 0), new Vec2(7, 0), new Vec2(15, 0) 
+			, 15));
+	}
 
 	public static final class EASY_SHOOT {
 		public static final Path THIRTY_SIX_INCH = new Path(x -> .7, new PathSegment( 
