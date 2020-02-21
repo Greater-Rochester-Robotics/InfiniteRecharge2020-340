@@ -86,7 +86,7 @@ public final class Constants {
 	///////////////
 
 	/* Shooter Speeds */
-	public static final int INITIATION_SHOT_RPM = 3425; //Put real value here for safe keeping, rpm:
+	public static final int INITIATION_SHOT_RPM = 3425; //Put real value here for safe keeping, rpm: 3425
 	public static final int WALL_SHOT_RPM = 2550;
 
 

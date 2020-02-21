@@ -34,7 +34,7 @@ public class Shooter extends SubsystemBase {
   private Solenoid hoodMover, hardStop;
 
   private int ballsShot = 0;
-  // private int totalBallsShot = 0;
+  private int totalBallsShot = 0;
   private boolean ballWasPresent;
 
   /**
@@ -43,9 +43,9 @@ public class Shooter extends SubsystemBase {
   public Shooter() {
     shooterWheel = new CANSparkMax(Constants.SHOOTER_WHEEL, MotorType.kBrushless);
     shooterWheel.setIdleMode(CANSparkMax.IdleMode.kCoast);
-    shooterWheel.getPIDController().setP(0.0006468); //PIDF changes are required
+    shooterWheel.getPIDController().setP(0.00075); //PIDF changes are required .00065
     shooterWheel.getPIDController().setI(0.0);
-    shooterWheel.getPIDController().setD(1.5);
+    shooterWheel.getPIDController().setD(2.0);
     shooterWheel.getPIDController().setFF(0.00019);
     //practice bot PIDF values
     // shooterWheel.getPIDController().setP(0.001);
@@ -59,6 +59,11 @@ public class Shooter extends SubsystemBase {
     hoodMover = new Solenoid(2);
     hardStop = new Solenoid(4);
     // shooterWheel.enableVoltageCompensation(12.0);
+    if (SmartDashboard.isPersistent("Total Balls Shot")){
+      totalBallsShot = Integer.valueOf(SmartDashboard.getString("Total Balls Shot","0"));
+    }else{
+      totalBallsShot = 0;
+    }
   }
 
   @Override
@@ -66,7 +71,7 @@ public class Shooter extends SubsystemBase {
     // if ballCounter sensor is false and ball sensor was true previously, add one
     if (!getShooterSensor() && ballWasPresent) {
       ballsShot++;
-      // totalBallsShot++;
+      totalBallsShot++;
     }
     ballWasPresent = getShooterSensor();
 
@@ -74,7 +79,12 @@ public class Shooter extends SubsystemBase {
     SmartDashboard.putString("Balls Shot", ""+ballsShot);
     SmartDashboard.putBoolean("Shooter Sensor", getShooterSensor());
     SmartDashboard.putString("Flywheel Speed", "" + Math.round(shooterEncoder.getVelocity()));
-    // SmartDashboard.putString("Total Balls Shot In Match", ""+totalBallsShot);
+    SmartDashboard.putString("Total Balls Shot", ""+totalBallsShot);
+    if(DriverStation.getInstance().isFMSAttached()){
+      SmartDashboard.setPersistent("Total Balls Shot");
+    }else{
+      SmartDashboard.clearPersistent("Total Balls Shot");
+    }
     if(DriverStation.getInstance().isTest()){
       // SmartDashboard.putString("Max Speed", "" + ((targetVelocity * 1) + 25));
       SmartDashboard.putString("Target Speed", "" + targetVelocity);
@@ -147,6 +157,6 @@ public class Shooter extends SubsystemBase {
   }
 
   public int getTotalBallsShot() {
-    return 0; //totalBallsShot;
+    return totalBallsShot;
   }
 }
