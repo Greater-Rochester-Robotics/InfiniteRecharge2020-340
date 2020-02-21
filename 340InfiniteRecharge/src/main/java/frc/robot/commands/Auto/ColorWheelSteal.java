@@ -24,9 +24,8 @@ public class ColorWheelSteal extends SequentialCommandGroup {
     // Add your commands in the super() call, e.g.
     // super(new FooCommand(), new BarCommand());
     super(
-    race(new RunPath(PathList.COLOR_WHEEL_STEAL.STAGE_ONE),new Load()),
+    race(new Load(), new RunPath(PathList.COLOR_WHEEL_STEAL.STAGE_ONE)),
       new RunPath(PathList.COLOR_WHEEL_STEAL.STAGE_TWO),
-      new FullInitShot(),
-      new RunPath(PathList.COLOR_WHEEL_STEAL.STAGE_THREE));
+      new FullInitShot());
   }
 }

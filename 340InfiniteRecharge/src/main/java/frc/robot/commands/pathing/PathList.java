@@ -15,6 +15,12 @@ public class PathList {
 	public static final Path STRAIGHT_ON = new Path(x -> .2, new PathSegment(x -> 0.0, 108));
 
 	public static final class TEST_PATHING {
+
+		public static final Path BACK_108_INCHES = new Path(x -> .7, new PathSegment( 
+			/* {"start":{"x":150,"y":200},"mid1":{"x":200,"y":200},"mid2":{"x":219,"y":200},"end":{"x":258,"y":200}} */
+			new Vec2(150, 200), new Vec2(200, 200), new Vec2(219, 200), new Vec2(258, 200) 
+			, 108));
+
 		public static final Path U_SHAPE = new Path(x -> .2, new PathSegment(
 				/*
 				 * {"start":{"x":145,"y":168},"mid1":{"x":218,"y":112},"mid2":{"x":231,"y":220},
@@ -64,16 +70,16 @@ public class PathList {
 
 	public static final class COLOR_WHEEL_STEAL {
 		public static final Path STAGE_ONE = new Path(x -> .7, new PathSegment( 
-			/* {"start":{"x":150,"y":200},"mid1":{"x":222,"y":201},"mid2":{"x":216,"y":215},"end":{"x":268,"y":228}} */
-			new Vec2(150, 200), new Vec2(222, 201), new Vec2(216, 215), new Vec2(268, 228) 
-			, 123));
-		public static final Path STAGE_TWO = new Path(x -> .7, new PathSegment( 
+			/* {"start":{"x":150,"y":200},"mid1":{"x":200,"y":202},"mid2":{"x":203,"y":228},"end":{"x":258,"y":240}} */
+			new Vec2(150, 200), new Vec2(200, 202), new Vec2(203, 228), new Vec2(264, 240) 
+			, 117));
+		public static final Path STAGE_TWO = new Path(x -> -.7, new PathSegment( 
 			/* {"start":{"x":278,"y":238},"mid1":{"x":221,"y":196},"mid2":{"x":201,"y":229},"end":{"x":150,"y":200}} */
 			new Vec2(278, 238), new Vec2(221, 196), new Vec2(201, 229), new Vec2(150, 200) 
 			, 136));
 		public static final Path STAGE_THREE = new Path(x -> .7, new PathSegment( 
-			/* {"start":{"x":150,"y":200},"mid1":{"x":117,"y":179},"mid2":{"x":119,"y":115},"end":{"x":150,"y":100}} */
-			new Vec2(150, 200), new Vec2(117, 179), new Vec2(119, 115), new Vec2(150, 100) 
+			/* {"start":{"x":150,"y":200},"mid1":{"x":117,"y":179},"mid2":{"x":119,"y":115},"end":{"x":150,"y":150}} */
+			new Vec2(150, 200), new Vec2(129, 195), new Vec2(128, 150), new Vec2(150, 150) 
 			, 117));
 	}
 //##########################################################################################################//

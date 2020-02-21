@@ -187,9 +187,9 @@ public class RobotContainer {
 
     driverDRight.whenPressed(new EasyShoot());
     driverDLeft.whenPressed(new ColorWheelSteal());
+    // driverDLeft.whenPressed(new RunPath(PathList.COLOR_WHEEL_STEAL.STAGE_ONE));
 
-driverB.whenPressed(new LimelightOn());
-driverB.whenReleased(new LimelightOff());
+
     // coDriverY.whenPressed(new SpinToColor());
     // coDriverDUp.whenPressed(new Ascend());
     // coDriverDRight.whenPressed(new RightClimberArmDown());
@@ -267,6 +267,6 @@ driverB.whenReleased(new LimelightOff());
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
     //Replace this to call the command groups that is wanted
-    return null;//new Command();
+    return new EasyShoot();//new Command();
   }
 }
