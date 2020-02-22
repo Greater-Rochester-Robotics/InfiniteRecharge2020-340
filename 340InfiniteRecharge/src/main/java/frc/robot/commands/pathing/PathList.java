@@ -84,9 +84,9 @@ public class PathList {
 			new Vec2(278, 43), new Vec2(253, 42), new Vec2(253, 42), new Vec2(241, 44) 
 			, 37));
 		public static final Path ZOOM = new Path(x -> .7, new PathSegment( 
-			/* {"start":{"x":240,"y":44},"mid1":{"x":252,"y":46},"mid2":{"x":252,"y":46},"end":{"x":400,"y":47}} */
-			new Vec2(240, 44), new Vec2(252, 46), new Vec2(252, 46), new Vec2(400, 47) 
-			, 161));
+			/* {"start":{"x":240,"y":44},"mid1":{"x":252,"y":44},"mid2":{"x":252,"y":44},"end":{"x":400,"y":44}} */
+			new Vec2(240, 44), new Vec2(252, 44), new Vec2(252, 44), new Vec2(400, 44) 
+			, 160));
 		public static final Path ZOOM_BACK = new Path(x -> -.7, new PathSegment( 
 			/* {"start":{"x":400,"y":43},"mid1":{"x":252,"y":43},"mid2":{"x":252,"y":43},"end":{"x":240,"y":43}} */
 			new Vec2(400, 43), new Vec2(252, 43), new Vec2(252, 43), new Vec2(240, 43) 
