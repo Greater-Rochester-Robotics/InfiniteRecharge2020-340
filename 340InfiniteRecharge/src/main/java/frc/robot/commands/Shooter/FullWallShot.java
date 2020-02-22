@@ -23,6 +23,6 @@ public class FullWallShot extends SequentialCommandGroup {
   public FullWallShot() {
     // Add your commands in the super() call, e.g.
     // super(new FooCommand(), new BarCommand());
-    super(new PrepWallShot(0), new FullSendsWall());
+    super(new PrepWallShot(), new FullSendsWall());
   }
 }

@@ -29,7 +29,7 @@ public class ColorWheelSteal extends Auto340Command {
     // super(new FooCommand(), new BarCommand());
     super(
     race(new Load(), new RunPath(PathList.COLOR_WHEEL_STEAL.STAGE_ONE)),
-      new Load(1),
+      new Load().withTimeout(1.0),
       new RunPath(PathList.COLOR_WHEEL_STEAL.STAGE_TWO),
       new AutoAlign(),
       new FastBallWithHintOfLime(),

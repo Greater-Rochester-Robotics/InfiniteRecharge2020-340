@@ -35,7 +35,7 @@ public class FullTrenchRun extends Auto340Command {
       new FullTrenchAutoShotTest(),
       new RotateToZero(),
     race (new RunPath(PathList.FULL_TRENCH_RUN.ZOOM), new Load()),
-    new Load(1),
+    new Load().withTimeout(1.0),
     new RunPath(PathList.FULL_TRENCH_RUN.ZOOM_BACK),
     new AutoAlign(),
     new FastBallWithHintOfLime()

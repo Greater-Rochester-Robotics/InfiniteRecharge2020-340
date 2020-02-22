@@ -23,7 +23,7 @@ public class FullTrenchAutoShotTest extends SequentialCommandGroup {
     // Add your commands in the super() call, e.g.
     // super(new FooCommand(), new BarCommand());
     super(
-      new LimelightOn(),new PrepHoodShot(0), new TimeShoot(4.0), new LimelightOff()
+      new LimelightOn(),new PrepHoodShot(), new Shoot().withTimeout(4.0), new LimelightOff()
     );
   }
 }
