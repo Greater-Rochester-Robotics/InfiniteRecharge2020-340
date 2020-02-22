@@ -21,6 +21,7 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.commands.Auto.Auto340Command;
 import frc.robot.commands.Auto.ColorWheelSteal;
 import frc.robot.commands.Auto.EasyShoot;
+import frc.robot.commands.Auto.FullTrenchRun;
 import frc.robot.commands.Auto.HungryHippoShot;
 import frc.robot.commands.Auto.TrenchFiveBall;
 
@@ -83,6 +84,8 @@ public class Robot extends TimedRobot {
     registerAutoMode(RobotContainer.autoChooser, "Hungry Hippo Shot", new HungryHippoShot());
 
     registerAutoMode(RobotContainer.autoChooser, "Trench Five Ball", new TrenchFiveBall());
+
+    registerAutoMode(RobotContainer.autoChooser, "Full Trench Run", new FullTrenchRun());
     SmartDashboard.putData(RobotContainer.autoChooser);
     // maybe the heck stuff here to make sure its only done once:
     //Shuffleboard.getTab("Competition").add(RobotContainer.autoChooser);
