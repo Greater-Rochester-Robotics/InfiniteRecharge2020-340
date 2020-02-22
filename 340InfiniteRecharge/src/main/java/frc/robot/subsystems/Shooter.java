@@ -43,7 +43,7 @@ public class Shooter extends SubsystemBase {
   public Shooter() {
     shooterWheel = new CANSparkMax(Constants.SHOOTER_WHEEL, MotorType.kBrushless);
     shooterWheel.setIdleMode(CANSparkMax.IdleMode.kCoast);
-    shooterWheel.getPIDController().setP(0.00075); //PIDF changes are required .00065
+    shooterWheel.getPIDController().setP(0.00075);
     shooterWheel.getPIDController().setI(0.0);
     shooterWheel.getPIDController().setD(2.0);
     shooterWheel.getPIDController().setFF(0.00019);

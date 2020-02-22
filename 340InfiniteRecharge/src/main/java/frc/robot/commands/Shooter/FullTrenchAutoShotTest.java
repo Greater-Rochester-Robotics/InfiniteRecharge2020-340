@@ -5,34 +5,25 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.Auto;
+package frc.robot.commands.Shooter;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import frc.robot.commands.GetSmol;
-import frc.robot.commands.LimelightCommands.AutoAlign;
-import frc.robot.commands.Shooter.FastBallWithHintOfLime;
-import frc.robot.commands.Shooter.FullInitShot;
-import frc.robot.commands.Shooter.ResetBallsShot;
-import frc.robot.commands.SnekLoader.Load;
-import frc.robot.commands.pathing.PathList;
-import frc.robot.commands.pathing.RunPath;
+import frc.robot.Constants;
+import frc.robot.commands.LimelightCommands.LimelightOff;
+import frc.robot.commands.LimelightCommands.LimelightOn;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/latest/docs/software/commandbased/convenience-features.html
-public class ColorWheelSteal extends SequentialCommandGroup {
+public class FullTrenchAutoShotTest extends SequentialCommandGroup {
   /**
-   * Creates a new ColorWheelSteal.
+   * Creates a new FullTrenchAutoShotTest.
    */
-  public ColorWheelSteal() {
+  public FullTrenchAutoShotTest() {
     // Add your commands in the super() call, e.g.
     // super(new FooCommand(), new BarCommand());
     super(
-    race(new Load(), new RunPath(PathList.COLOR_WHEEL_STEAL.STAGE_ONE)),
-      new Load(1),
-      new RunPath(PathList.COLOR_WHEEL_STEAL.STAGE_TWO),
-      new AutoAlign(),
-      new FastBallWithHintOfLime(),
-      new GetSmol());
+      new LimelightOn(),new PrepHoodShot(0), new TimeShoot(4.0), new LimelightOff()
+    );
   }
 }

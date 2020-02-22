@@ -39,18 +39,17 @@ public class Load extends CommandBase {
     tm = new Timer();
     tm.reset();
     tm.start();
-
+      RobotContainer.snekLoader.setState(State.kFillTo4);
+      RobotContainer.harvester.lowerHarvester();
+      RobotContainer.harvester.setAxleWheels(6.0);
 
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (tm.get() < time) {
-      RobotContainer.snekLoader.setState(State.kFillTo4);
-      RobotContainer.harvester.lowerHarvester();
-      RobotContainer.harvester.setAxleWheels(6.0);
-    }
+
+
   }
 
   // Called once the command ends or is interrupted.

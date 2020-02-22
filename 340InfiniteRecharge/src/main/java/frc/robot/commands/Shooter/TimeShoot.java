@@ -13,21 +13,29 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
 import frc.robot.subsystems.SnekLoader.State;
 
-public class Shoot extends CommandBase {
+public class TimeShoot extends CommandBase {
   private int stateIndex;
   private int ballsToShoot;
   private int speedRpm;
 
-  public Shoot() {
-    this(4500, -1);
+  Timer tm;
+  double time;
+
+  public TimeShoot() {
+    this(4500, -1, 4.0);
   }
-  public Shoot(int speed) {
-    this(speed, RobotContainer.snekLoader.getBallsLoaded());
+  public TimeShoot(double time){
+    this(4500, -1, time);
   }
 
-  public Shoot(int speed, int numToShoot) {
+  public TimeShoot(int speed) {
+    this( speed, RobotContainer.snekLoader.getBallsLoaded(), 4.0);
+  }
+
+  public TimeShoot(int speed, int numToShoot,double time) {
     this.ballsToShoot = numToShoot;
     speedRpm = speed;
+    this.time = time;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(RobotContainer.shooter, RobotContainer.snekLoader);
   }
@@ -39,11 +47,16 @@ public class Shoot extends CommandBase {
     stateIndex = 4;
     RobotContainer.shooter.setShooterWheel(speedRpm);
     // System.out.println("Shoot init");
+    tm = new Timer();
+    tm.reset();
+    tm.start();
+
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+  
     // Check speed if PID loop isn't working for the flywheel to spin up between
     // shots
     // SmartDashboard.putString("TEST", "Happy");
@@ -90,6 +103,6 @@ public class Shoot extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return ((RobotContainer.shooter.getBallsShot() >= ballsToShoot) && ballsToShoot > 0);
+    return ((RobotContainer.shooter.getBallsShot() >= ballsToShoot) && ballsToShoot > 0 || tm.get() >= time);
   }
 }

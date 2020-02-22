@@ -22,7 +22,9 @@ import frc.robot.commands.PlayMusic;
 import frc.robot.commands.StopMusic;
 import frc.robot.commands.Auto.ColorWheelSteal;
 import frc.robot.commands.Auto.EasyShoot;
+import frc.robot.commands.Auto.FullTrenchRun;
 import frc.robot.commands.Auto.HungryHippoShot;
+import frc.robot.commands.Auto.StepBackWallShot;
 import frc.robot.commands.Auto.TrenchFiveBall;
 import frc.robot.commands.Climber.Ascend;
 import frc.robot.commands.Climber.Descend;
@@ -188,7 +190,7 @@ public class RobotContainer {
     driverLTButton.whenReleased(new GetSmol());
 
     driverDRight.whenPressed(new TrenchFiveBall());
-    driverDLeft.whenPressed(new HungryHippoShot());
+    driverDLeft.whenPressed(new FullTrenchRun());
 
 
 
@@ -269,6 +271,6 @@ public class RobotContainer {
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
     //Replace this to call the command groups that is wanted
-    return new EasyShoot();//new Command();
+    return new ColorWheelSteal();//new Command();
   }
 }
