@@ -8,9 +8,21 @@
 package frc.robot;
 
 import edu.wpi.first.cameraserver.CameraServer;
+import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
+import edu.wpi.first.wpilibj.shuffleboard.ComplexWidget;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.commands.Auto.Auto340Command;
+import frc.robot.commands.Auto.ColorWheelSteal;
+import frc.robot.commands.Auto.EasyShoot;
+import frc.robot.commands.Auto.HungryHippoShot;
+import frc.robot.commands.Auto.TrenchFiveBall;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -24,7 +36,8 @@ public class Robot extends TimedRobot {
   
   public static RobotContainer robotContainer;
   private Command m_autonomousCommand;
-
+  private static boolean heck = true;
+  NetworkTableEntry autoEntry = null;
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -59,12 +72,35 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void disabledInit() {
-    
+    if (null == RobotContainer.autoChooser){
+      RobotContainer.autoChooser = new SendableChooser<>();
+    }
+    RobotContainer.autoChooser.setDefaultOption("Easy Shoot", "Easy Shoot");
+    RobotContainer.autoModes.put("Easy Shoot", new EasyShoot());
+
+    registerAutoMode(RobotContainer.autoChooser, "Color Wheel Steal", new ColorWheelSteal());
+
+    registerAutoMode(RobotContainer.autoChooser, "Hungry Hippo Shot", new HungryHippoShot());
+
+    registerAutoMode(RobotContainer.autoChooser, "Trench Five Ball", new TrenchFiveBall());
+    SmartDashboard.putData(RobotContainer.autoChooser);
+    // maybe the heck stuff here to make sure its only done once:
+    //Shuffleboard.getTab("Competition").add(RobotContainer.autoChooser);
+
+  }
+
+  private void registerAutoMode(SendableChooser<String> chooser, String auto, Auto340Command autoCmd) {
+    chooser.addOption(auto, auto);
+    RobotContainer.autoModes.put(auto, autoCmd);
   }
 
   @Override
   public void disabledPeriodic() {
-    robotContainer.limelight.setLightState(1);
+    RobotContainer.limelight.setLightState(1);
+    String mode = RobotContainer.autoChooser.getSelected();
+    SmartDashboard.putString("AutoInstrutions", RobotContainer.autoModes.get(mode).getSetupInstructions());
+    SmartDashboard.putString("AutoDescription", RobotContainer.autoModes.get(mode).getAutoDescription());
+    SmartDashboard.putString("Chosen Auto Mode", mode);
   }
 
   /**
@@ -103,6 +139,9 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void teleopPeriodic() {
+    String mode = RobotContainer.autoChooser.getSelected();
+    SmartDashboard.putString("Chosen Auto Mode", mode);
+
   }
 
   @Override

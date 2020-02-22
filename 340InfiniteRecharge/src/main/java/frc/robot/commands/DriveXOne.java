@@ -9,6 +9,8 @@ package frc.robot.commands;
 
 import java.util.Set;
 
+import com.ctre.phoenix.motorcontrol.NeutralMode;
+
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.Subsystem;
@@ -29,6 +31,10 @@ public class DriveXOne extends CommandBase {
         addRequirements(RobotContainer.drive);
     }
 
+    @Override
+    public void initialize() {
+        RobotContainer.drive.setBrakeMode(NeutralMode.Brake);
+    }
     /**
      * Left for full speed, right stick slow stick
      */
@@ -65,6 +71,7 @@ public class DriveXOne extends CommandBase {
 
     @Override
     public void end(boolean interrupted) {
+        RobotContainer.drive.setBrakeMode(NeutralMode.Brake);
         RobotContainer.drive.setDriveBoth(Constants.ZERO_SPEED); // Stop moving if this command ends for some reason (e.g.interrupt for climb)
     }
 

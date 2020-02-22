@@ -20,7 +20,7 @@ import frc.robot.commands.pathing.RunPath;
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/latest/docs/software/commandbased/convenience-features.html
-public class ColorWheelSteal extends SequentialCommandGroup {
+public class ColorWheelSteal extends Auto340Command {
   /**
    * Creates a new ColorWheelSteal.
    */
@@ -35,4 +35,14 @@ public class ColorWheelSteal extends SequentialCommandGroup {
       new FastBallWithHintOfLime(),
       new GetSmol());
   }
+public String getSetUpInstructions(){
+  return "Set up instruction: line up right bumper with trench line, parallel with wall, /n position robot so init line is between the back two robot wheels";
+}
+
+public String getAutoDescription(){
+  return "Drives forward and takes two balls from the enemy trench. Drives forward close /n to the init line and closer to the target. Aims, shoots.";
+}
+  
+
+
 }

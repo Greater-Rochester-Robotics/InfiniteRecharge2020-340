@@ -8,8 +8,15 @@
 //recursive todo reminding you to use todo to locate things
 package frc.robot;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.GenericHID.RumbleType;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -21,6 +28,7 @@ import frc.robot.commands.GetSmol;
 import frc.robot.commands.RotateToZero;
 import frc.robot.commands.PlayMusic;
 import frc.robot.commands.StopMusic;
+import frc.robot.commands.Auto.Auto340Command;
 import frc.robot.commands.Auto.ColorWheelSteal;
 import frc.robot.commands.Auto.EasyShoot;
 import frc.robot.commands.Auto.FullTrenchRun;
@@ -140,6 +148,9 @@ public class RobotContainer {
 
   public static final boolean isFalconFx = true;
   private static boolean testButtonsBound = false;
+  public static SendableChooser<String> autoChooser;
+  public static Map<String,Auto340Command> autoModes = new HashMap<>();
+  
 
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
@@ -270,8 +281,12 @@ public class RobotContainer {
    * @return the command to run in autonomous
    */
   public Command getAutonomousCommand() {
-    // An ExampleCommand will run in autonomous
-    //Replace this to call the command groups that is wanted
-    return new ColorWheelSteal();//new Command();
+    //  = Shuffleboard.getTab("Competition").get
+    String mode = RobotContainer.autoChooser.getSelected();
+    SmartDashboard.putString("Chosen Auto Mode", mode);
+    
+    return autoModes.getOrDefault(mode, new EasyShoot());//new Command();
+
+    // return new TrenchFiveBall();
   }
 }

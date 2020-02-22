@@ -8,8 +8,6 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.sensors.CANCoderConfiguration;
-import com.revrobotics.CANSparkMax;
-import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import java.util.ArrayList;
 
@@ -31,6 +29,11 @@ import edu.wpi.first.wpilibj.Encoder;
 //import edu.wpi.first.wpilibj.CANCoder;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.SPI.Port;
+import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
+import edu.wpi.first.wpilibj.shuffleboard.ComplexWidget;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.PCM_LED;
@@ -128,10 +131,6 @@ public class Drive extends SubsystemBase {
 		driveLeftA.setInverted(true);
 		driveLeftB.setInverted(true);
 
-		driveLeftA.setNeutralMode(NeutralMode.Brake);
-		driveLeftB.setNeutralMode(NeutralMode.Brake);
-		driveRightA.setNeutralMode(NeutralMode.Brake);
-		driveRightB.setNeutralMode(NeutralMode.Brake);
 
 		ArrayList<TalonFX> instruments = new ArrayList<>();
 		instruments.add(driveLeftA);
@@ -142,6 +141,13 @@ public class Drive extends SubsystemBase {
 		band = new Orchestra(instruments);
 		band.loadMusic("ImperialMarch.chrp");
 	
+	}
+	public void setBrakeMode(NeutralMode mode){
+		
+		driveLeftA.setNeutralMode(mode);
+		driveLeftB.setNeutralMode(mode);
+		driveRightA.setNeutralMode(mode);
+		driveRightB.setNeutralMode(mode);
 	}
 
 	public void playMusic() {
@@ -385,6 +391,8 @@ public class Drive extends SubsystemBase {
 
 	@Override
 	public void periodic() {
+
+
 		if(DriverStation.getInstance().isTest()){
 			SmartDashboard.putString("distance left", ""+this.getLeftDistance());
 			SmartDashboard.putString("distance right", ""+this.getRightDistance());

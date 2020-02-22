@@ -16,7 +16,7 @@ import frc.robot.commands.Shooter.ResetBallsShot;
 import frc.robot.commands.pathing.PathList;
 import frc.robot.commands.pathing.RunPath;
 
-public class EasyShoot extends SequentialCommandGroup {
+public class EasyShoot extends Auto340Command {
   /**
    * Creates a new EasyShoot.
    */
@@ -27,5 +27,12 @@ public class EasyShoot extends SequentialCommandGroup {
     (new ResetBallsShot(), new AutoAlign(),new FastBallWithHintOfLime(),new GetSmol(), new RunPath(PathList.EASY_SHOOT.THIRTY_SIX_INCH)
      );
 
+  }
+  public String getSetUpInstruction(){
+    return "Set up instructions: position so robot is pointed at the target, /n and can still drive over init line";
+  }
+
+  public String getAutoDescription(){
+    return "Aims, shoots, drives forward 3 feet";
   }
 }
