@@ -31,11 +31,12 @@ public class TrenchFiveBall extends Auto340Command {
       new GetSmol()
     );
   }
+  @Override
   public String getSetUpInstructions(){
-    return "Set up instructions: Line up with balls of allied trench run, parallel to the wall, /n position robot so init line is under the back bumper";
+    return "Set up instructions: Line up with balls of allied trench run, parallel to the wall, position robot so init line is under the back bumper";
   }
-
+  @Override
   public String getAutoDescription(){
-    return "Drives back and gets the closest two balls in the allied trench. Drives forward to /n front side of trench, aims and shoots.";
+    return "Drives back and gets the closest two balls in the allied trench. Drives forward to front side of trench, aims and shoots.";
   }
 }

@@ -27,6 +27,7 @@ import frc.robot.commands.DriveXOne;
 import frc.robot.commands.GetSmol;
 import frc.robot.commands.PlayMusic;
 import frc.robot.commands.StopMusic;
+import frc.robot.commands.ToggleTestMode;
 import frc.robot.commands.Auto.Auto340Command;
 import frc.robot.commands.Auto.ColorWheelSteal;
 import frc.robot.commands.Auto.EasyShoot;
@@ -146,7 +147,7 @@ public class RobotContainer {
   public static Climber climber;
 
   public static final boolean isFalconFx = true;
-  private static boolean testButtonsBound = false;
+  public static boolean testButtonsBound = false;
   public static SendableChooser<String> autoChooser;
   public static Map<String,Auto340Command> autoModes = new HashMap<>();
   
@@ -176,9 +177,13 @@ public class RobotContainer {
    * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
+    //Testing buttons
     // driverBack.whenPressed(new PlayMusic());
     // driverBack.whenPressed(new StopMusic());
-  
+    // driverDRight.whenPressed(new TrenchFiveBall());
+    // driverDLeft.whenPressed(new FullTrenchRun());
+    // driverY.whenPressed(new ToggleTestMode());
+
     //Actual Comp button layout
     driverA.whenPressed(new Load());
     driverA.whenReleased(new GetSmol());
@@ -200,8 +205,8 @@ public class RobotContainer {
     driverLTButton.whenPressed(new FullWallShot());
     driverLTButton.whenReleased(new GetSmol());
 
-    driverDRight.whenPressed(new TrenchFiveBall());
-    driverDLeft.whenPressed(new FullTrenchRun());
+
+
 
 
 

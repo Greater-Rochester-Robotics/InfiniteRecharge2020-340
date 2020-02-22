@@ -8,6 +8,7 @@
 package frc.robot.commands.Auto;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import frc.robot.commands.Shooter.FullSendsWall;
 import frc.robot.commands.Shooter.ShootWithLimelight;
 import frc.robot.commands.pathing.PathList;
 import frc.robot.commands.pathing.RunPath;
@@ -23,8 +24,8 @@ public class StepBackWallShot extends SequentialCommandGroup {
     // Add your commands in the super() call, e.g.
     // super(new FooCommand(), new BarCommand());
     super(
-      new RunPath(PathList.WALL_SHOT.SCOOTCH_BACK),
-      new ShootWithLimelight()
+      new RunPath(PathList.WALL_SHOT.SCOOTCH_BACK).withTimeout(.5),
+      new FullSendsWall()
     );
   }
 }
