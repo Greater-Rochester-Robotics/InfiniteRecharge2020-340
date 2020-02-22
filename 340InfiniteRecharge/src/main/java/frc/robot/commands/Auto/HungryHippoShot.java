@@ -17,7 +17,7 @@ import frc.robot.commands.pathing.RunPath;
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/latest/docs/software/commandbased/convenience-features.html
-public class HungryHippoShot extends SequentialCommandGroup {
+public class HungryHippoShot extends Auto340Command {
   /**
    * Creates a new HungryHippoShot.
    */
@@ -28,5 +28,11 @@ public class HungryHippoShot extends SequentialCommandGroup {
     // Add your commands in the super() call, e.g.
     // super(new FooCommand(), new BarCommand());super();
     );
+  }
+  public String getSetUpInstructions(){
+    return "Set up instructions: Set up on init line near allied target zone, position /n robot so init line is under back bumpers";
+  }
+  public String getAutoDescription(){
+    return "Drives forward, aims at target, continues to shoot and load. So teammates /n can feed us";
   }
 }
