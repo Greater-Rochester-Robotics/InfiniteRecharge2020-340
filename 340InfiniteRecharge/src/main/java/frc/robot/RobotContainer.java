@@ -25,6 +25,7 @@ import edu.wpi.first.wpilibj2.command.button.Button;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.DriveXOne;
 import frc.robot.commands.GetSmol;
+import frc.robot.commands.RotateToZero;
 import frc.robot.commands.PlayMusic;
 import frc.robot.commands.StopMusic;
 import frc.robot.commands.ToggleTestMode;
