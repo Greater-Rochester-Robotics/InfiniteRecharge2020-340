@@ -16,8 +16,8 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
 
 public class RotateToZero extends CommandBase {
-  public static final double FeedForward = 0.2;
-  public static final double kProportion = 0.05;
+  public static final double FeedForward = 0.1;
+  public static final double kProportion = 0.1;
   public static double error; /*= targetAngle - getRotation();*/
   // public ADIS16448_IMU imu;
   /**
@@ -44,7 +44,7 @@ public class RotateToZero extends CommandBase {
 
 	public double getRotation() {
 		// return imu.getAngleZ();
-		return -RobotContainer.drive.imu.getAngle();
+		return RobotContainer.drive.getRotation();
 	}
 
   public void turnToAngle(double targetAngle, double turnSpeed) {
@@ -55,7 +55,7 @@ public class RotateToZero extends CommandBase {
     } else {
       RobotContainer.drive.arcadeDrive(0.0, -FeedForward + (kProportion * error));
     }
-    SmartDashboard.putString("Rotation ammount", "" + (FeedForward + (kProportion * error)) );
+    SmartDashboard.putString("Rotation ammount", "" + (kProportion * error) );
   }
   // Called once the command ends or is interrupted.
   @Override
@@ -66,6 +66,6 @@ public class RotateToZero extends CommandBase {
   @Override
   public boolean isFinished() {
 
-    return error <= 0.002 && error >= -0.002;
+    return error <= 0.0015 && error >= -0.0015;
   }
 }
