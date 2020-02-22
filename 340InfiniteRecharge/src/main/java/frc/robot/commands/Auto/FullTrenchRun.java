@@ -8,6 +8,7 @@
 package frc.robot.commands.Auto;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import frc.robot.commands.Shooter.FastBallWithHintOfLime;
 import frc.robot.commands.Shooter.FullInitShot;
 import frc.robot.commands.Shooter.FullTrenchAutoShotTest;
 import frc.robot.commands.Shooter.ResetBallsShot;
@@ -30,7 +31,11 @@ public class FullTrenchRun extends SequentialCommandGroup {
     race (new RunPath(PathList.FULL_TRENCH_RUN.STEP_ONE),new Load()),
       new RunPath(PathList.FULL_TRENCH_RUN.STEP_TWO),
       new FullTrenchAutoShotTest(),
-    race (new RunPath(PathList.FULL_TRENCH_RUN.ZOOM), new Load())
+      
+    race (new RunPath(PathList.FULL_TRENCH_RUN.ZOOM), new Load()),
+    new Load(1),
+    new RunPath(PathList.FULL_TRENCH_RUN.ZOOM_BACK),
+    new FastBallWithHintOfLime()
     );
   }
 }
