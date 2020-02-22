@@ -35,12 +35,13 @@ public class ColorWheelSteal extends Auto340Command {
       new FastBallWithHintOfLime(),
       new GetSmol());
   }
+  @Override
 public String getSetUpInstructions(){
-  return "Set up instruction: line up right bumper with trench line, parallel with wall, /n position robot so init line is between the back two robot wheels";
+  return "Set up instruction: line up right bumper with trench line, parallel with wall, position robot so init line is between the back two robot wheels";
 }
-
+ @Override
 public String getAutoDescription(){
-  return "Drives forward and takes two balls from the enemy trench. Drives forward close /n to the init line and closer to the target. Aims, shoots.";
+  return "Drives forward and takes two balls from the enemy trench. Drives forward close to the init line and closer to the target. Aims, shoots.";
 }
   
 

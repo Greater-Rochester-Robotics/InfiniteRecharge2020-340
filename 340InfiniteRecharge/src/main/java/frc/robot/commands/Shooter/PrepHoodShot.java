@@ -9,6 +9,7 @@ package frc.robot.commands.Shooter;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants;
 import frc.robot.RobotContainer;
 import frc.robot.subsystems.Limelight;
 import frc.robot.subsystems.SnekLoader;
@@ -38,7 +39,7 @@ public class PrepHoodShot extends CommandBase {
   public void initialize() {
     RobotContainer.shooter.raiseHardStop();
     RobotContainer.shooter.raiseHood();
-    RobotContainer.shooter.setShooterWheel(3000);
+    RobotContainer.shooter.setShooterWheel(Constants.INITIATION_SHOT_RPM);
     RobotContainer.snekLoader.setState(SnekLoader.State.kFillTo4);
     tm = new Timer();
     tm.reset();

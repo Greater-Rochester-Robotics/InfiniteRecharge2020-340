@@ -29,10 +29,12 @@ public class HungryHippoShot extends Auto340Command {
     // super(new FooCommand(), new BarCommand());super();
     );
   }
+  @Override
   public String getSetUpInstructions(){
-    return "Set up instructions: Set up on init line near allied target zone, position /n robot so init line is under back bumpers";
+    return "Set up instructions: Set up on init line near allied target zone, position robot so init line is under back bumpers";
   }
+  @Override
   public String getAutoDescription(){
-    return "Drives forward, aims at target, continues to shoot and load. So teammates /n can feed us";
+    return "Drives forward, aims at target, continues to shoot and load. So teammates can feed us";
   }
 }

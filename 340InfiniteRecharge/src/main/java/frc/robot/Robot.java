@@ -37,7 +37,6 @@ public class Robot extends TimedRobot {
   
   public static RobotContainer robotContainer;
   private Command m_autonomousCommand;
-  private static boolean heck = true;
   NetworkTableEntry autoEntry = null;
 
   /**
@@ -49,7 +48,7 @@ public class Robot extends TimedRobot {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
     robotContainer = new RobotContainer();
-    CameraServer.getInstance().startAutomaticCapture();
+    CameraServer.getInstance().startAutomaticCapture().setResolution(150, 150);
   }
 
   /**
@@ -101,7 +100,7 @@ public class Robot extends TimedRobot {
   public void disabledPeriodic() {
     RobotContainer.limelight.setLightState(1);
     String mode = RobotContainer.autoChooser.getSelected();
-    SmartDashboard.putString("AutoInstrutions", RobotContainer.autoModes.get(mode).getSetupInstructions());
+    SmartDashboard.putString("AutoInstrutions", RobotContainer.autoModes.get(mode).getSetUpInstructions());
     SmartDashboard.putString("AutoDescription", RobotContainer.autoModes.get(mode).getAutoDescription());
     SmartDashboard.putString("Chosen Auto Mode", mode);
   }

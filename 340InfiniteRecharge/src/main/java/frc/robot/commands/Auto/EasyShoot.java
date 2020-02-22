@@ -28,10 +28,11 @@ public class EasyShoot extends Auto340Command {
      );
 
   }
-  public String getSetUpInstruction(){
-    return "Set up instructions: position so robot is pointed at the target, /n and can still drive over init line";
+  @Override
+  public String getSetUpInstructions(){
+    return "Set up instructions: position so robot is pointed at the target, and can still drive over init line";
   }
-
+  @Override
   public String getAutoDescription(){
     return "Aims, shoots, drives forward 3 feet";
   }

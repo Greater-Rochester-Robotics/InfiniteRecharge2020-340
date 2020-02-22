@@ -19,7 +19,7 @@ public Auto340Command(Command ... cmd){
   super(cmd);
 }
 
-  public String getSetupInstructions(){return "";};
+  public String getSetUpInstructions(){return "";};
 
   public String getAutoDescription(){return "";};
 }
