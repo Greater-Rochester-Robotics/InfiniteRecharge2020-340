@@ -73,6 +73,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void disabledInit() {
+    RobotContainer.limelight.setLightState(1);
     if (null == RobotContainer.autoChooser){
       RobotContainer.autoChooser = new SendableChooser<>();
     }
@@ -102,7 +103,6 @@ public class Robot extends TimedRobot {
 
   @Override
   public void disabledPeriodic() {
-    RobotContainer.limelight.setLightState(1);
     String mode = RobotContainer.autoChooser.getSelected();
     SmartDashboard.putString("AutoInstrutions", RobotContainer.autoModes.get(mode).getSetUpInstructions());
     SmartDashboard.putString("AutoDescription", RobotContainer.autoModes.get(mode).getAutoDescription());

@@ -7,29 +7,21 @@
 
 package frc.robot.commands.Shooter;
 
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.RobotContainer;
-import frc.robot.subsystems.Limelight;
 import frc.robot.subsystems.SnekLoader;
 
 public class PrepHoodShot extends CommandBase {
 
-  Timer tm;
-  double time;
   /**
    * Creates a new PrepHoodShot.
    */
-  
-  public PrepHoodShot(){
-    this(1.5);
-  }
 
-  public PrepHoodShot(double time) {
+
+  public PrepHoodShot() {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(RobotContainer.shooter, RobotContainer.snekLoader);
-    this.time = time;
   }
 
   
@@ -41,9 +33,6 @@ public class PrepHoodShot extends CommandBase {
     RobotContainer.shooter.raiseHood();
     RobotContainer.shooter.setShooterWheel(Constants.INITIATION_SHOT_RPM);
     RobotContainer.snekLoader.setState(SnekLoader.State.kFillTo4);
-    tm = new Timer();
-    tm.reset();
-    tm.start();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -59,6 +48,6 @@ public class PrepHoodShot extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return (RobotContainer.shooter.isShooterAtSpeed() || tm.get() >= time);
+    return (RobotContainer.shooter.isShooterAtSpeed());
   }
 }

@@ -24,6 +24,6 @@ public class FullInitShot extends SequentialCommandGroup {
   public FullInitShot() {
     // Add your commands in the super() call, e.g.
     // super(new FooCommand(), new BarCommand());
-    super(new LimelightOn(),new PrepHoodShot(0), new AutoAlign(), new Shoot(Constants.INITIATION_SHOT_RPM), new LimelightOff());
+    super(new LimelightOn(),new PrepHoodShot(), new AutoAlign(), new Shoot(Constants.INITIATION_SHOT_RPM), new LimelightOff());
   }
 }

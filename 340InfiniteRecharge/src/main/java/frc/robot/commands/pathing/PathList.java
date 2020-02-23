@@ -50,7 +50,7 @@ public class PathList {
 
 	}
 	public static final class HUNGRY_HIPPO_SHOT {
-		public static final Path SCOOT_BACK = new Path(x -> -.6, new PathSegment( 
+		public static final Path SCOOT_BACK = new Path(x -> -.7, new PathSegment( 
 			/* {"start":{"x":0,"y":0},"mid1":{"x":7,"y":0},"mid2":{"x":7,"y":0},"end":{"x":15,"y":0}} */
 			new Vec2(0, 0), new Vec2(7, 0), new Vec2(7, 0), new Vec2(15, 0) 
 			, 15));
@@ -94,7 +94,7 @@ public class PathList {
 	}
 
 	public static final class COLOR_WHEEL_STEAL {
-		public static final Path STAGE_ONE = new Path(x -> .6, new PathSegment( 
+		public static final Path STAGE_ONE = new Path(x -> .7, new PathSegment( 
 			/* {"start":{"x":150,"y":200},"mid1":{"x":200,"y":202},"mid2":{"x":203,"y":228},"end":{"x":258,"y":240}} */
 			new Vec2(150, 200), new Vec2(200, 202), new Vec2(203, 228), new Vec2(264, 240) 
 			, 117));
@@ -130,100 +130,6 @@ public class PathList {
 //####                     KEEP TRACK OF YOUR STUFF                                                    #####//
 //##########################################################################################################//
 //##########################################################################################################//
-	// Made path start sides based on looking from our driver station, not other
-	// team's
-	public static final class ENEMY_TRENCH_RUN {
-		// 96in from left wall, in from back wall
-		public static final Path SHORT_ONE = new Path(x -> .7, new PathSegment( 
-			/* {"start":{"x":143,"y":259},"mid1":{"x":223,"y":263},"mid2":{"x":205,"y":293},"end":{"x":250,"y":289}} */
-			new Vec2(143, 259), new Vec2(223, 263), new Vec2(205, 293), new Vec2(250, 289) 
-			, 114));
-		public static final Path SHORT_TWO = new Path(x -> -.7,new PathSegment( 
-			/* {"start":{"x":272,"y":314},"mid1":{"x":205,"y":293},"mid2":{"x":272,"y":145},"end":{"x":188,"y":141}} */
-			new Vec2(272, 314), new Vec2(205, 293), new Vec2(272, 145), new Vec2(188, 141) 
-			, 212));
-
-	}
-
-	public static final class ENEMY_TRENCH_RUN_SECOND {
-		// 95in from left wall, 115in from back wall
-		public static final Path LONG_ONE = new Path(x -> .4, new PathSegment(
-				/*
-				 * {"start":{"x":145,"y":245},"mid1":{"x":237,"y":250},"mid2":{"x":269,"y":272},
-				 * "end":{"x":277,"y":318}}
-				 */
-				new Vec2(145, 245), new Vec2(237, 250), new Vec2(269, 272), new Vec2(277, 318), 166));
-		public static final Path LONG_TWO = new Path(x -> -.4, new PathSegment(
-				/*
-				 * {"start":{"x":277,"y":318},"mid1":{"x":269,"y":272},"mid2":{"x":221,"y":110},
-				 * "end":{"x":145,"y":110}}
-				 */
-				new Vec2(277, 318), new Vec2(269, 272), new Vec2(221, 110), new Vec2(145, 110), 261));
-		public static final Path LONG_THREE = new Path(x -> .4, new PathSegment(
-				/*
-				 * {"start":{"x":145,"y":110},"mid1":{"x":221,"y":110},"mid2":{"x":150,"y":38},
-				 * "end":{"x":339,"y":44}}
-				 */
-				new Vec2(145, 110), new Vec2(221, 110), new Vec2(150, 38), new Vec2(339, 44), 216));
-	}
-
-	public static final class TRENCH_RUN {
-		// 31in from right wall, 115in from back wall
-		public static final Path TWO_BALL = new Path(x -> .6, new PathSegment( 
-			/* {"start":{"x":147,"y":49},"mid1":{"x":258,"y":48},"mid2":{"x":192,"y":47},"end":{"x":273,"y":46}} */
-			new Vec2(147, 49), new Vec2(258, 48), new Vec2(192, 47), new Vec2(273, 46) 
-			, 127));
-
-		public static final Path THREE_BALL = new Path(x -> .6, new PathSegment( 
-			/* {"start":{"x":149,"y":79},"mid1":{"x":254,"y":34},"mid2":{"x":281,"y":50},"end":{"x":339,"y":47}} */
-			new Vec2(149, 79), new Vec2(254, 34), new Vec2(281, 50), new Vec2(339, 47) 
-			, 195));
-
-		public static final Path BACKWARDS_TWO_BALL = new Path(x -> -.6, new PathSegment( 
-			/* {"start":{"x":304,"y":45},"mid1":{"x":267,"y":58},"mid2":{"x":306,"y":45},"end":{"x":243,"y":67}} */
-			new Vec2(122, 18), new Vec2(107, 23), new Vec2(122, 18), new Vec2(97, 27) 
-			, 26));
-
-		public static final Path TWO_BALL_STEAL = new Path(x->.6,new PathSegment( 
-			/* {"start":{"x":301,"y":36},"mid1":{"x":357,"y":16},"mid2":{"x":338,"y":66},"end":{"x":402,"y":47}} */
-			new Vec2(301, 36), new Vec2(357, 16), new Vec2(338, 66), new Vec2(402, 47) 
-			, 108));
-
-		public static final Path TEST_TRENCH = new Path( x -> .6, new PathSegment( 
-			/* {"start":{"x":73.5,"y":24.5},"mid1":{"x":258,"y":24},"mid2":{"x":96,"y":23.5},"end":{"x":136.5,"y":23}} */
-			new Vec2(74, 25), new Vec2(258, 24), new Vec2(96, 24), new Vec2(137, 23) 
-			, 132));
-
-		public static final Path TEST_TRENCH_PATH_TWO = new Path (x -> .6, new PathSegment( 
-			/* {"start":{"x":151.5,"y":47.5},"mid1":{"x":212,"y":47},"mid2":{"x":226,"y":44.5},"end":{"x":302.5,"y":44}} */
-			new Vec2(60, 18), new Vec2(85, 18), new Vec2(90, 17), new Vec2(120, 17) 
-			, 60));
-
-		public static final Path TEST_TRENCH_PATH_THREE = new Path (x -> .6, new PathSegment( 
-			/* {"start":{"x":148,"y":45},"mid1":{"x":210,"y":45},"mid2":{"x":210,"y":45},"end":{"x":316,"y":45}} */
-			new Vec2(148, 45), new Vec2(210, 45), new Vec2(210, 45), new Vec2(300, 45) 
-			, 152));
-
-		public static final Path BACKWARDS_PATH_THREE = new Path (x -> .6, new PathSegment( 
-			/* {"start":{"x":339,"y":46},"mid1":{"x":306,"y":53},"mid2":{"x":277,"y":60},"end":{"x":243,"y":68}} */
-			new Vec2(136, 18), new Vec2(122, 18), new Vec2(111, 18), new Vec2(97, 18) 
-			, 40));
-
-	}
-
-
-
-	public static final class INIT_SHOT {
-		public static final Path LEFT_TURN = new Path(x -> .1, new PathSegment(
-				/*
-				 * {"start":{"x":145,"y":168},"mid1":{"x":181,"y":196},"mid2":{"x":195,"y":191},
-				 * "end":{"x":215,"y":170}}
-				 */
-				new Vec2(145, 168), new Vec2(181, 196), new Vec2(195, 191), new Vec2(215, 170), 81));
-
-	}
-
-
 
 }
 
