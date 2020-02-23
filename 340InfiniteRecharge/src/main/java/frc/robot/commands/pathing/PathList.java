@@ -75,22 +75,22 @@ public class PathList {
 	}
 
 	public static final class FULL_TRENCH_RUN {
-		public static final Path STEP_ONE = new Path(x -> .7, new PathSegment( 
+		public static final Path STEP_ONE = new Path(x -> .8, new PathSegment( 
 			/* {"start":{"x":150,"y":43},"mid1":{"x":203,"y":43},"mid2":{"x":203,"y":43},"end":{"x":278,"y":43}} */
 			new Vec2(150, 43), new Vec2(203, 43), new Vec2(203, 43), new Vec2(278, 43) 
 			, 129));
-		public static final Path STEP_TWO = new Path(x -> -.7, new PathSegment( 
+		public static final Path STEP_TWO = new Path(x -> -1.0, new PathSegment( 
 			/* {"start":{"x":278,"y":43},"mid1":{"x":253,"y":42},"mid2":{"x":253,"y":42},"end":{"x":241,"y":44}} */
-			new Vec2(278, 43), new Vec2(253, 42), new Vec2(253, 42), new Vec2(241, 44) 
-			, 37));
-		public static final Path ZOOM = new Path(x -> .7, new PathSegment( 
+			new Vec2(278, 43), new Vec2(253, 42), new Vec2(253, 42), new Vec2(214, 44) 
+			, 64));
+		public static final Path ZOOM = new Path(x -> .8, new PathSegment( 
 			/* {"start":{"x":240,"y":44},"mid1":{"x":252,"y":44},"mid2":{"x":252,"y":44},"end":{"x":400,"y":44}} */
-			new Vec2(240, 44), new Vec2(252, 44), new Vec2(252, 44), new Vec2(400, 44) 
-			, 160));
-		public static final Path ZOOM_BACK = new Path(x -> -.7, new PathSegment( 
+			new Vec2(240, 44), new Vec2(252, 44), new Vec2(252, 44), new Vec2(476, 44) 
+			, 184));
+		public static final Path ZOOM_BACK = new Path(x -> -1.0, new PathSegment( 
 			/* {"start":{"x":400,"y":43},"mid1":{"x":252,"y":43},"mid2":{"x":252,"y":43},"end":{"x":240,"y":43}} */
-			new Vec2(400, 43), new Vec2(252, 43), new Vec2(252, 43), new Vec2(240, 43) 
-			, 160));
+			new Vec2(400, 44), new Vec2(252, 45), new Vec2(252, 45), new Vec2(230, 47) 
+			, 170));
 	}
 
 	public static final class COLOR_WHEEL_STEAL {

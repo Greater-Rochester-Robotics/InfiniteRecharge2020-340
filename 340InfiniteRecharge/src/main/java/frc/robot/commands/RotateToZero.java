@@ -16,8 +16,8 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
 
 public class RotateToZero extends CommandBase {
-  public static final double FeedForward = 0.1;
-  public static final double kProportion = 0.1;
+  public static final double FeedForward = 0.13;
+  public static final double kProportion = 0.15;
   public static double error; /*= targetAngle - getRotation();*/
   // public ADIS16448_IMU imu;
   /**
@@ -66,6 +66,6 @@ public class RotateToZero extends CommandBase {
   @Override
   public boolean isFinished() {
 
-    return error <= 0.0015 && error >= -0.0015;
+    return (error * 360) <= 1 && (error * 360) >= -1;
   }
 }

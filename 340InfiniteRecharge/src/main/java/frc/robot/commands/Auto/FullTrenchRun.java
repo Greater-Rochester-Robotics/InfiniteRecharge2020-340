@@ -13,6 +13,7 @@ import frc.robot.commands.LimelightCommands.AutoAlign;
 import frc.robot.commands.Shooter.FastBallWithHintOfLime;
 import frc.robot.commands.Shooter.FullInitShot;
 import frc.robot.commands.Shooter.FullTrenchAutoShotTest;
+import frc.robot.commands.Shooter.PrepHoodShot;
 import frc.robot.commands.Shooter.ResetBallsShot;
 import frc.robot.commands.SnekLoader.Load;
 import frc.robot.commands.pathing.PathList;
@@ -32,10 +33,11 @@ public class FullTrenchRun extends Auto340Command {
     new ResetBallsShot(),
     race (new RunPath(PathList.FULL_TRENCH_RUN.STEP_ONE),new Load()),
       new RunPath(PathList.FULL_TRENCH_RUN.STEP_TWO),
-      new FastBallWithHintOfLime().withTimeout(4.0),
+      new AutoAlign(),
+      new FastBallWithHintOfLime().withTimeout(3.0),
       new RotateToZero(),
     race (new RunPath(PathList.FULL_TRENCH_RUN.ZOOM), new Load()),
-    new Load().withTimeout(1.0),
+    new Load().withTimeout(0.5),
     new RunPath(PathList.FULL_TRENCH_RUN.ZOOM_BACK),
     new AutoAlign(),
     new FastBallWithHintOfLime()

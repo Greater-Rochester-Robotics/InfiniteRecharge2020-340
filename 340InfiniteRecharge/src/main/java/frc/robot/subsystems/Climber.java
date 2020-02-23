@@ -65,6 +65,10 @@ public class Climber extends SubsystemBase {
   public void rightStop() {
     rightArm.set(ControlMode.PercentOutput, 0.0);
   }
+  public void hardStop(){
+    leftArm.set(ControlMode.PercentOutput, -0.20);
+    rightArm.set(ControlMode.PercentOutput, -0.20);
+  }
 
   public void leftArmContract() {
     leftArm.set(ControlMode.PercentOutput, Constants.CLIMBER_CONTRACT_SPEED);
