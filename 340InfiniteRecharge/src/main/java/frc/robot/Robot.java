@@ -24,6 +24,7 @@ import frc.robot.commands.Auto.EasyShoot;
 import frc.robot.commands.Auto.FullTrenchRun;
 import frc.robot.commands.Auto.HungryHippoShot;
 import frc.robot.commands.Auto.TrenchFiveBall;
+import frc.robot.commands.Auto.TwoBallShot;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -85,6 +86,9 @@ public class Robot extends TimedRobot {
     registerAutoMode(RobotContainer.autoChooser, "Trench Five Ball", new TrenchFiveBall());
 
     registerAutoMode(RobotContainer.autoChooser, "Full Trench Run", new FullTrenchRun());
+
+    registerAutoMode(RobotContainer.autoChooser, "Two Ball Shot", new TwoBallShot());
+    
     SmartDashboard.putData(RobotContainer.autoChooser);
     // maybe the heck stuff here to make sure its only done once:
     //Shuffleboard.getTab("Competition").add(RobotContainer.autoChooser);

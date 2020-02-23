@@ -113,6 +113,18 @@ public class PathList {
 			new Vec2(0, 0), new Vec2(6, 0), new Vec2(6, 0), new Vec2(12, 0) 
 			, 12));
 	}
+	
+	public static final class TWO_BALL_CORNER_SHOT {
+		public static final Path SCOOT = new Path(x -> .6, new PathSegment( 
+			/* {"start":{"x":0,"y":0},"mid1":{"x":6,"y":0},"mid2":{"x":6,"y":0},"end":{"x":36,"y":0}} */
+			new Vec2(0, 0), new Vec2(6, 0), new Vec2(6, 0), new Vec2(36, 0) 
+			, 36));
+		public static final Path REVERSE_SCOOT = new Path(x -> -.7, new PathSegment( 
+			/* {"start":{"x":0,"y":0},"mid1":{"x":6,"y":0},"mid2":{"x":6,"y":0},"end":{"x":36,"y":0}} */
+			new Vec2(0, 0), new Vec2(6, 0), new Vec2(6, 0), new Vec2(36, 0) 
+			, 36));
+	}
+
 //##########################################################################################################//
 //##########################################################################################################//
 //####                     KEEP TRACK OF YOUR STUFF                                                    #####//
