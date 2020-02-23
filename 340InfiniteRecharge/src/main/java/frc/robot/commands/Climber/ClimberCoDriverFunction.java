@@ -19,27 +19,28 @@ public class ClimberCoDriverFunction extends CommandBase {
    */
   public ClimberCoDriverFunction() {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(RobotContainer.climber);
+    addRequirements(RobotContainer.climber, RobotContainer.harvester);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    RobotContainer.harvester.lowerHarvester();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
 
-    if(Robot.robotContainer.getCoDriverAxis(Axis.LEFT_TRIGGER)>.3){
+    if(Robot.robotContainer.getCoDriverAxis(Axis.RIGHT_TRIGGER)>.3){
       RobotContainer.climber.leftArmContract();
-    }else if(Robot.robotContainer.getCoDriverButton(5)){
+    }else if(Robot.robotContainer.getCoDriverButton(6)){
       RobotContainer.climber.leftArmExtend();
     }else{
       RobotContainer.climber.leftStop();
     }
 
-    if(Robot.robotContainer.getCoDriverAxis(Axis.RIGHT_TRIGGER)>.3){
+    if(Robot.robotContainer.getCoDriverAxis(Axis.LEFT_TRIGGER)>.3){
       RobotContainer.climber.rightArmContract();
     }else if(Robot.robotContainer.getCoDriverButton(5)){
       RobotContainer.climber.rightArmExtend();

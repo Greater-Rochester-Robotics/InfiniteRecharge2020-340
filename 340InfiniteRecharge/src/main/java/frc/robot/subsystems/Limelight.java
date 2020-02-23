@@ -25,8 +25,8 @@ public class Limelight extends SubsystemBase {
    * Creates a new Limelight.
    */
   public Limelight() {
-    setLightState(1);
     led = new PCM_LED(0, 7);
+    setLightState(1);
     //y = -0.104167 for crosshair positioning
   }
 
@@ -51,7 +51,7 @@ public class Limelight extends SubsystemBase {
 
   public void setLightState(int LightState){
     NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(LightState);  //controls if limelight is on or not // 3 is on, 1 is off
-    // led.set(3 == LightState);
+    led.set(3 == LightState);
   }
 
   public boolean haveTarget(){

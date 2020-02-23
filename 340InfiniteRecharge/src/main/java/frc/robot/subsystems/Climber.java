@@ -8,6 +8,7 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
@@ -21,14 +22,17 @@ public class Climber extends SubsystemBase {
    * Creates a new Climber.
    */
   public Climber() {
-        leftArm = new VictorSPX(Constants.CLIMBER_LEFT_ARM);
-        rightArm = new VictorSPX(Constants.CLIMBER_RIGHT_ARM);
+        leftArm = new VictorSPX(Constants.LEFT_CLIMBER);
+        rightArm = new VictorSPX(Constants.RIGHT_CLIMBER);
         rightArm.setInverted(true);
         // rightArm.set(ControlMode.Follower, Constants.CLIMBER_LEFT_ARM);
         leftArm.configVoltageCompSaturation(12.8);
         leftArm.enableVoltageCompensation(true);
         rightArm.configVoltageCompSaturation(12.8);
         rightArm.enableVoltageCompensation(true);
+
+        leftArm.setNeutralMode(NeutralMode.Brake);
+        rightArm.setNeutralMode(NeutralMode.Brake);
   }
 
   @Override

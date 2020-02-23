@@ -55,9 +55,9 @@ public final class Constants {
 	// CAN IDs //
 	/////////////
 
-	/* TalonSRXs */
-	public static final int CLIMBER_LEFT_ARM = 31;
-	public static final int CLIMBER_RIGHT_ARM =32;
+	// /* TalonSRXs */
+	// public static final int CLIMBER_LEFT_ARM = 31;
+	// public static final int CLIMBER_RIGHT_ARM =32;
 	/* Falcon 500 */
 	public static final int DRIVE_LEFT_CHANNEL_A = 23; //front-left20
     public static final int DRIVE_LEFT_CHANNEL_B = 22; //back-left21
@@ -90,8 +90,8 @@ public final class Constants {
 	public static final int WALL_SHOT_RPM = 2550;
 
 	/*	Climber Speeds	*/
-	public static final double CLIMBER_CONTRACT_SPEED = .8;
-	public static final double CLIMBER_EXTEND_SPEED = -.4;
+	public static final double CLIMBER_CONTRACT_SPEED = -.4;
+	public static final double CLIMBER_EXTEND_SPEED = .4;
 
 	/* The Titular Zero Speed */
 	public static final double ZERO_SPEED = 0.0;

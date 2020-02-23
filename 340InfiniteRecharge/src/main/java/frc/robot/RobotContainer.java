@@ -175,23 +175,13 @@ public class RobotContainer {
     driverLTButton.whenPressed(new FullWallShot());
     driverLTButton.whenReleased(new GetSmol());
 
-
-
-
-
-
-    // coDriverY.whenPressed(new SpinToColor());
-    // coDriverDUp.whileHeld(new Ascend());
-    // coDriverDRight.whileHeld(new RightClimberArmDown());
-    // coDriverDLeft.whileHeld(new LeftClimberArmDown());
-    coDriverDDown.whileHeld(new ClimberCoDriverFunction());
     coDriverA.whenPressed(new ObtainDistance());
     coDriverBack.whenPressed(new StopShoot());
-    // coDriverLB.whenPressed(new LowGoal());
-    // coDriverLB.whenReleased(new GetSmol());
-    // coDriverRTButton.whenPressed(new PrepHoodShot().withTimeout(1.5));
-    // coDriverLTButton.whenPressed(new PrepWallShot().withTimeout(1.5));
-
+    coDriverLB.and(coDriverDDown.negate()).whenActive(new LowGoal());
+    coDriverLB.and(coDriverDDown.negate()).whenInactive(new GetSmol());
+    coDriverRTButton.and(coDriverDDown.negate()).whenActive(new PrepHoodShot().withTimeout(1.5));
+    coDriverLTButton.and(coDriverDDown.negate()).whenActive(new PrepWallShot().withTimeout(1.5));
+    coDriverDDown.whileHeld(new ClimberCoDriverFunction());
     
     }
 
