@@ -25,6 +25,9 @@ import frc.robot.commands.DriveXOne;
 import frc.robot.commands.GetSmol;
 import frc.robot.commands.Auto.Auto340Command;
 import frc.robot.commands.Auto.EasyShoot;
+import frc.robot.commands.Climber.ClimberCoDriverFunction;
+import frc.robot.commands.Climber.LeftClimberArmDown;
+import frc.robot.commands.Climber.RightClimberArmDown;
 import frc.robot.commands.Harvester.PickHarvesterUp;
 import frc.robot.commands.Harvester.SetHarvesterDown;
 import frc.robot.commands.Harvester.SpitBalls;
@@ -129,6 +132,7 @@ public class RobotContainer {
     harvester = new Harvester();
     snekLoader = new SnekLoader();
     limelight = new Limelight();
+    limelight.setStreamMode(0);
     climber = new Climber();
 
     // Configure the button bindings
@@ -177,16 +181,18 @@ public class RobotContainer {
 
 
     // coDriverY.whenPressed(new SpinToColor());
-    // coDriverDUp.whenPressed(new Ascend());
-    // coDriverDRight.whenPressed(new RightClimberArmDown());
-    // coDriverDLeft.whenPressed(new LeftClimberArmDown());
-    // coDriverDDown.whenPressed(new Descend());
+    // coDriverDUp.whileHeld(new Ascend());
+    // coDriverDRight.whileHeld(new RightClimberArmDown());
+    // coDriverDLeft.whileHeld(new LeftClimberArmDown());
+    coDriverDDown.whileHeld(new ClimberCoDriverFunction());
     coDriverA.whenPressed(new ObtainDistance());
     coDriverBack.whenPressed(new StopShoot());
-    coDriverLB.whenPressed(new LowGoal());
-    coDriverLB.whenReleased(new GetSmol());
-    coDriverRTButton.whenPressed(new PrepHoodShot().withTimeout(1.5));
-    coDriverLTButton.whenPressed(new PrepWallShot().withTimeout(1.5));
+    // coDriverLB.whenPressed(new LowGoal());
+    // coDriverLB.whenReleased(new GetSmol());
+    // coDriverRTButton.whenPressed(new PrepHoodShot().withTimeout(1.5));
+    // coDriverLTButton.whenPressed(new PrepWallShot().withTimeout(1.5));
+
+    
     }
 
     public void bindTestButtons(){
@@ -242,8 +248,11 @@ public class RobotContainer {
 	 */
 	public double getCoDriverAxis(Axis axis) {
 		return (coDriver.getRawAxis(axis.getAxisNumber()) < -.1 || coDriver.getRawAxis(axis.getAxisNumber()) > .1 ) ? coDriver.getRawAxis(axis.getAxisNumber()) : 0;
-	}
-
+  }
+  
+  public boolean getCoDriverButton(int buttonNum){
+    return coDriver.getRawButton(buttonNum);
+  }
 
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.

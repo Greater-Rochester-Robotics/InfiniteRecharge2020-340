@@ -30,7 +30,7 @@ public class ShootWithLimelight extends CommandBase {
   @Override
   public void initialize() {
     RobotContainer.shooter.raiseHood();
-    RobotContainer.limelight.setLightState(0);
+    RobotContainer.limelight.setLightState(3);
     speedRpm = Limelight.calcHoodRPM();
     RobotContainer.shooter.resetBallsShot();
     stateIndex = 4;

@@ -33,7 +33,7 @@ public class Harvester extends SubsystemBase {
   }
 
   public void lowerHarvester(){
-    RobotContainer.limelight.setStreamMode(2);
+    // RobotContainer.limelight.setStreamMode(2);
     harvesterPneu.set(Value.kForward);
   }
 

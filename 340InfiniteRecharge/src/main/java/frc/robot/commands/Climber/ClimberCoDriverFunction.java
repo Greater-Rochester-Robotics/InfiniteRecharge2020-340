@@ -7,27 +7,45 @@
 
 package frc.robot.commands.Climber;
 
+import edu.wpi.first.wpilibj.Joystick.AxisType;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Robot;
 import frc.robot.RobotContainer;
+import frc.robot.RobotContainer.Axis;
 
-public class Ascend extends CommandBase {
+public class ClimberCoDriverFunction extends CommandBase {
   /**
-   * Creates a new Climb.
+   * Creates a new ClimberCoDriverFunction.
    */
-  public Ascend() {
-    addRequirements(RobotContainer.climber);
+  public ClimberCoDriverFunction() {
     // Use addRequirements() here to declare subsystem dependencies.
+    addRequirements(RobotContainer.climber);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    RobotContainer.climber.climb();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+
+    if(Robot.robotContainer.getCoDriverAxis(Axis.LEFT_TRIGGER)>.3){
+      RobotContainer.climber.leftArmContract();
+    }else if(Robot.robotContainer.getCoDriverButton(5)){
+      RobotContainer.climber.leftArmExtend();
+    }else{
+      RobotContainer.climber.leftStop();
+    }
+
+    if(Robot.robotContainer.getCoDriverAxis(Axis.RIGHT_TRIGGER)>.3){
+      RobotContainer.climber.rightArmContract();
+    }else if(Robot.robotContainer.getCoDriverButton(5)){
+      RobotContainer.climber.rightArmExtend();
+    }else{
+      RobotContainer.climber.rightStop();
+    }
   }
 
   // Called once the command ends or is interrupted.

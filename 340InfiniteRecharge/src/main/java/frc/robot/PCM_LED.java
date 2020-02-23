@@ -17,7 +17,7 @@ public class PCM_LED extends Solenoid {
 	/**
 	 * Makes LEDs powered via PCM
 	 * @param canID the CAN ID of the PCM in use. Default is probably 0
-	 * @param channel the PCM channel in use
+	 * @param channel thee PCM channl in use
 	 */
 	public PCM_LED(final int canID, final int channel) {
 		super(canID, channel);

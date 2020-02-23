@@ -41,7 +41,7 @@ public class DriveAutoAlign extends CommandBase {
 	  //add as needed
 	  System.out.println("DriveAutoAlign Started");
 	  RobotContainer.limelight.setPipeline(0); //set pipeline to zero
-		RobotContainer.limelight.setLightState(0);//Turns the LEDs from the limelight on
+		RobotContainer.limelight.setLightState(3);//Turns the LEDs from the limelight on
 	  RobotContainer.limelight.setCammode(0); //makes sure that its in robot looks around mode
 
   }

@@ -33,7 +33,7 @@ public class FastBallWithHintOfLime extends CommandBase {
     timer.reset();
     timer.start();
     RobotContainer.shooter.raiseHood();
-    RobotContainer.limelight.setLightState(0);
+    RobotContainer.limelight.setLightState(3);
     speedRpm = Limelight.calcHoodRPM();
     RobotContainer.shooter.resetBallsShot();
     fullSend = false;

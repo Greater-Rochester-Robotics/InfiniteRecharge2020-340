@@ -8,6 +8,7 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.PCM_LED;
 import frc.robot.Robot;
 import frc.robot.RobotContainer;
 import frc.robot.RobotContainer.Axis;
@@ -19,13 +20,13 @@ import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Solenoid;
 
 public class Limelight extends SubsystemBase {
-  
+  PCM_LED led;
   /**
    * Creates a new Limelight.
    */
   public Limelight() {
     setLightState(1);
-
+    led = new PCM_LED(0, 7);
     //y = -0.104167 for crosshair positioning
   }
 
@@ -49,7 +50,8 @@ public class Limelight extends SubsystemBase {
   }
 
   public void setLightState(int LightState){
-    NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(LightState);  //controls if limelight is on or not // 0 is on, 1 is off
+    NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(LightState);  //controls if limelight is on or not // 3 is on, 1 is off
+    // led.set(3 == LightState);
   }
 
   public boolean haveTarget(){

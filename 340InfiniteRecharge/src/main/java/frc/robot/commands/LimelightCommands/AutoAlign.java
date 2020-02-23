@@ -25,7 +25,7 @@ public class AutoAlign extends CommandBase {
   @Override
   public void initialize() {
     RobotContainer.limelight.setStreamMode(0);
-    RobotContainer.limelight.setLightState(0);// Turns the LEDs on
+    RobotContainer.limelight.setLightState(3);// Turns the LEDs on
     RobotContainer.limelight.setPipeline(0);// Turns the limelight into hue mode?
     numTimesWithinTolerance = 0;
   }
