@@ -32,13 +32,13 @@ public class FullTrenchRun extends Auto340Command {
     super(
     new ResetBallsShot(),
     race (new RunPath(PathList.FULL_TRENCH_RUN.STEP_ONE),new Load()),
-      new RunPath(PathList.FULL_TRENCH_RUN.STEP_TWO),
+    parallel(new RunPath(PathList.FULL_TRENCH_RUN.STEP_TWO), new PrepHoodShot()),  
       new AutoAlign(),
       new FastBallWithHintOfLime().withTimeout(3.0),
       new RotateToZero(),
     race (new RunPath(PathList.FULL_TRENCH_RUN.ZOOM), new Load()),
     new Load().withTimeout(0.5),
-    new RunPath(PathList.FULL_TRENCH_RUN.ZOOM_BACK),
+    parallel(new RunPath(PathList.FULL_TRENCH_RUN.ZOOM_BACK), new PrepHoodShot()), 
     new AutoAlign(),
     new FastBallWithHintOfLime()
     );

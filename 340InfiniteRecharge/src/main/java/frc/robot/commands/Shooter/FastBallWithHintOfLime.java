@@ -7,7 +7,6 @@
 
 package frc.robot.commands.Shooter;
 
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
 import frc.robot.subsystems.Limelight;
@@ -17,7 +16,6 @@ public class FastBallWithHintOfLime extends CommandBase {
   /**
    * Creates a new FastBallWithAddedLime.
    */
-  Timer timer;
   private int speedRpm;
   private boolean fullSend;
   private int ballsToShoot;
@@ -29,9 +27,6 @@ public class FastBallWithHintOfLime extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    timer = new Timer();
-    timer.reset();
-    timer.start();
     RobotContainer.shooter.raiseHood();
     RobotContainer.limelight.setLightState(3);
     speedRpm = Limelight.calcHoodRPM();
@@ -64,6 +59,6 @@ public class FastBallWithHintOfLime extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return (((RobotContainer.shooter.getBallsShot() >= ballsToShoot) && ballsToShoot > 0)|| timer.get() >= 4.20);
+    return (((RobotContainer.shooter.getBallsShot() >= ballsToShoot) && ballsToShoot > 0));
   }
 }
