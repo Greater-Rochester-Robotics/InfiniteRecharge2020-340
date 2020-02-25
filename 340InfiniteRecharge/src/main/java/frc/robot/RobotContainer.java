@@ -185,7 +185,7 @@ public class RobotContainer {
     coDriverLB.and(coDriverDDown.negate()).whenInactive(new GetSmol());
     coDriverRTButton.and(coDriverDDown.negate()).whenActive(new PrepHoodShot().withTimeout(1.5));
     coDriverLTButton.and(coDriverDDown.negate()).whenActive(new PrepWallShot().withTimeout(1.5));
-    coDriverDDown.whileHeld(new ClimberCoDriverFunction());
+    coDriverDDown.toggleWhenPressed(new ClimberCoDriverFunction());
     
     }
 
