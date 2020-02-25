@@ -37,6 +37,7 @@ import frc.robot.commands.LimelightCommands.LimelightOff;
 import frc.robot.commands.LimelightCommands.LimelightOn;
 import frc.robot.commands.LimelightCommands.ObtainDistance;
 import frc.robot.commands.Shooter.FullInitShot;
+import frc.robot.commands.Shooter.FullTrenchAutoShotTest;
 import frc.robot.commands.Shooter.FullWallShot;
 import frc.robot.commands.Shooter.LowGoal;
 import frc.robot.commands.Shooter.PrepHoodShot;
@@ -168,6 +169,7 @@ public class RobotContainer {
     driverDDown.whenPressed(new SetHarvesterDown());
     driverDLeft.whenPressed(new ClimberHardStop());
     driverDLeft.whenReleased(new Stop());
+    driverDRight.whenPressed(new FullTrenchAutoShotTest()); 
     driverStart.whenPressed(new GetSmol());
     driverBack.whenPressed(new StopShoot());
     driverRB.whenPressed(new FullInitShot());
