@@ -185,7 +185,8 @@ public class RobotContainer {
     coDriverLB.and(coDriverDDown.negate()).whenInactive(new GetSmol());
     coDriverRTButton.and(coDriverDDown.negate()).whenActive(new PrepHoodShot().withTimeout(1.5));
     coDriverLTButton.and(coDriverDDown.negate()).whenActive(new PrepWallShot().withTimeout(1.5));
-    coDriverDDown.toggleWhenPressed(new ClimberCoDriverFunction());
+    coDriverDDown.whileHeld(new ClimberCoDriverFunction());
+    // coDriverDDown.toggleWhenPressed(new ClimberCoDriverFunction());
     
     }
 
@@ -243,6 +244,15 @@ public class RobotContainer {
 	public double getCoDriverAxis(Axis axis) {
 		return (coDriver.getRawAxis(axis.getAxisNumber()) < -.1 || coDriver.getRawAxis(axis.getAxisNumber()) > .1 ) ? coDriver.getRawAxis(axis.getAxisNumber()) : 0;
   }
+  /**
+	 * Accessor method to set codriver rumble function
+	 * @param leftRumble
+	 * @param rightRumble
+	 */
+	public void setCoDriverRumble (double leftRumble, double rightRumble){
+		driver.setRumble(RumbleType.kLeftRumble, leftRumble);
+		driver.setRumble(RumbleType.kRightRumble, rightRumble);
+	}
   
   public boolean getCoDriverButton(int buttonNum){
     return coDriver.getRawButton(buttonNum);

@@ -31,6 +31,7 @@ public class ClimberCoDriverFunction extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    Robot.robotContainer.setCoDriverRumble(.5, .5);
 
     if(Robot.robotContainer.getCoDriverAxis(Axis.RIGHT_TRIGGER)>.3){
       RobotContainer.climber.leftArmContract();
@@ -52,6 +53,7 @@ public class ClimberCoDriverFunction extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+    Robot.robotContainer.setCoDriverRumble(0, 0);
     RobotContainer.climber.stop();
   }
 
