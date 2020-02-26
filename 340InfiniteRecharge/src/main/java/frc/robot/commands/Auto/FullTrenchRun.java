@@ -8,6 +8,7 @@
 package frc.robot.commands.Auto;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import frc.robot.commands.GetSmol;
 import frc.robot.commands.RotateToZero;
 import frc.robot.commands.LimelightCommands.AutoAlign;
 import frc.robot.commands.Shooter.FastBallWithHintOfLime;
@@ -35,11 +36,12 @@ public class FullTrenchRun extends Auto340Command {
     parallel(new RunPath(PathList.FULL_TRENCH_RUN.STEP_TWO), new PrepHoodShot()),  
       new AutoAlign(),
       new FastBallWithHintOfLime().withTimeout(3.0),
+      new GetSmol(),
       new RotateToZero(),
     race (new RunPath(PathList.FULL_TRENCH_RUN.ZOOM), new Load()),
     new Load().withTimeout(0.5),
-    parallel(new RunPath(PathList.FULL_TRENCH_RUN.ZOOM_BACK), new PrepHoodShot()), 
-    new AutoAlign(),
+    new RunPath(PathList.FULL_TRENCH_RUN.ZOOM_BACK), 
+    parallel(new AutoAlign(), new PrepHoodShot()),
     new FastBallWithHintOfLime()
     );
   }
