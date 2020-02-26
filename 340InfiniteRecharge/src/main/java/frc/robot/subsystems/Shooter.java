@@ -56,7 +56,7 @@ public class Shooter extends SubsystemBase {
     shooterEncoder = shooterWheel.getEncoder();
     ballCounter = new DigitalInput(Constants.BALL_COUNTER_SENSOR);
     ballWasPresent = false;
-    hoodMover = new Solenoid(2);
+    hoodMover = new Solenoid(Constants.SHOOTER_HOOD_SOLENOID_CHANNEL);
     hardStop = new Solenoid(4);
     // shooterWheel.enableVoltageCompensation(12.0);
     if (SmartDashboard.isPersistent("Total Balls Shot")){

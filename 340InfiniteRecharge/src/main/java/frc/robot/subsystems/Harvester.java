@@ -25,7 +25,7 @@ public class Harvester extends SubsystemBase {
    */
   public Harvester() {
     axleWheels = new CANSparkMax(Constants.INTAKE_AXLE, MotorType.kBrushless);
-    harvesterPneu = new DoubleSolenoid(0,1);
+    harvesterPneu = new DoubleSolenoid(Constants.HARVESTER_FWD_CHANNEL,Constants.HARVESTER_REV_CHANNEL);
   }
 
   public void setAxleWheels(double volts) {

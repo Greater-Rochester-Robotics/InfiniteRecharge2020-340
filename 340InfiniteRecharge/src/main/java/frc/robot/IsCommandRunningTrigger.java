@@ -20,12 +20,12 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
  *  Good for using with another trigger with .and(). Also
  *  good for use with .negate(). 
  * 
- * This is a work in progress and has several way to operate started and commented out.
+ * This works, it could be better and has some ways commented out.
  * 
  * @author Rob-Heslin
  */
 public class IsCommandRunningTrigger extends Trigger{
-    private CommandBase command;
+    // private CommandBase command;
     private SubsystemBase subsystem;
     // private String subsystemName;
     private String commandName;
@@ -38,24 +38,30 @@ public class IsCommandRunningTrigger extends Trigger{
      * 
      * @param command A copy of the Command we are interested in.
      */
-	public IsCommandRunningTrigger(CommandBase command) {
-        this.command = command;
-        // Set<Subsystem> requirements = command.getRequirements();
-        // this.subsystemName = command.getSubsystem();
-        this.commandName = command.getName();
-    }
+	// public IsCommandRunningTrigger(CommandBase command) {
+    //     this.command = command;
+    //     Set<Subsystem> requirements = command.getRequirements();
+    //     // this.subsystemName = command.getSubsystem();
+    //     this.commandName = command.getName();
+    // }
     
     public IsCommandRunningTrigger(SubsystemBase subsystem, CommandBase command) {
-        this.command = command;
+        // System.out.println("Subsystem: " + subsystem.getName() + "Command: " + command.getName());
+        this.commandName = command.getName();
         this.subsystem = subsystem;
         // this.subsystemName = command.getSubsystem();
         // this.commandName = command.getName();
     }
 
     public boolean get(){
-        // String currentCommand = subsystem.getCurrentCommand().getName();
-        // boolean output = currentCommand.contains(commandName);
+        if(this.subsystem.getCurrentCommand() == null){
+            return false;
+        }
+        else{
+            String currentCommand = this.subsystem.getCurrentCommand().getName();
+            return currentCommand.contains(commandName);
+        }
 
-        return CommandScheduler.getInstance().isScheduled(this.command);
+        // return CommandScheduler.getInstance().isScheduled(this.command);
     }
 }

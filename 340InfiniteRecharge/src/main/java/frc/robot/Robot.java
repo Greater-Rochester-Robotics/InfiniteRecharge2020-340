@@ -25,6 +25,7 @@ import frc.robot.commands.Auto.FullTrenchRun;
 import frc.robot.commands.Auto.HungryHippoShot;
 import frc.robot.commands.Auto.TrenchFiveBall;
 import frc.robot.commands.Auto.TwoBallShot;
+import frc.robot.commands.Climber.ClimberCoDriverFunction;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to

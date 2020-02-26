@@ -110,6 +110,8 @@ public class RobotContainer {
   final Button coDriverLTButton = new JoyTriggerButton(coDriver, .7, Axis.LEFT_TRIGGER);
   final Button coDriverRTButton = new JoyTriggerButton(coDriver, .7, Axis.RIGHT_TRIGGER);
 
+  IsCommandRunningTrigger isClimberRunning;
+
   public static SnekLoader snekLoader;
   public static Harvester harvester;
   public static Drive drive;
@@ -137,7 +139,7 @@ public class RobotContainer {
     limelight = new Limelight();
     limelight.setStreamMode(0);
     climber = new Climber();
-
+    isClimberRunning = new IsCommandRunningTrigger(climber, new ClimberCoDriverFunction());
     // Configure the button bindings
     configureButtonBindings();
 
@@ -183,12 +185,12 @@ public class RobotContainer {
 
     coDriverA.whenPressed(new ObtainDistance());
     coDriverBack.whenPressed(new StopShoot());
-    coDriverLB.and(coDriverDDown.negate()).whenActive(new LowGoal());
-    coDriverLB.and(coDriverDDown.negate()).whenInactive(new GetSmol());
-    coDriverRTButton.and(coDriverDDown.negate()).whenActive(new PrepHoodShot().withTimeout(1.5));
-    coDriverLTButton.and(coDriverDDown.negate()).whenActive(new PrepWallShot().withTimeout(1.5));
-    coDriverDDown.whileHeld(new ClimberCoDriverFunction());
-    // coDriverDDown.toggleWhenPressed(new ClimberCoDriverFunction());
+    coDriverLB.and(isClimberRunning.negate()).whenActive(new LowGoal());
+    coDriverLB.and(isClimberRunning.negate()).whenInactive(new GetSmol());
+    coDriverRTButton.and(isClimberRunning.negate()).whenActive(new PrepHoodShot().withTimeout(1.5));
+    coDriverLTButton.and(isClimberRunning.negate()).whenActive(new PrepWallShot().withTimeout(1.5));
+  
+    coDriverDDown.toggleWhenPressed(new ClimberCoDriverFunction());
     
     }
 
@@ -252,8 +254,8 @@ public class RobotContainer {
 	 * @param rightRumble
 	 */
 	public void setCoDriverRumble (double leftRumble, double rightRumble){
-		driver.setRumble(RumbleType.kLeftRumble, leftRumble);
-		driver.setRumble(RumbleType.kRightRumble, rightRumble);
+		coDriver.setRumble(RumbleType.kLeftRumble, leftRumble);
+		coDriver.setRumble(RumbleType.kRightRumble, rightRumble);
 	}
   
   public boolean getCoDriverButton(int buttonNum){

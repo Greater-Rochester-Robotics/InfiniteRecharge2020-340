@@ -22,7 +22,7 @@ public class RightClimberArmDown extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    RobotContainer.climber.rightArmContract();
+    // RobotContainer.climber.rightArmContract();
     
   }
 

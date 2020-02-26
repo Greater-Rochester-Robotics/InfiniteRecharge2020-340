@@ -45,17 +45,19 @@ public final class Constants {
 	// PNEUMATIC CHANNELS //
 	////////////////////////
 
-	/* Solenoids */
+	/* Solenoids/LED PCM */
+	public static final int HARVESTER_FWD_CHANNEL = 0;
+	public static final int HARVESTER_REV_CHANNEL = 1;
+	public static final int SHOOTER_HOOD_SOLENOID_CHANNEL = 2;
+	public static final int CLIMBER_BRAKE_CHANNEL = 6;//TODO: FIX number
+	public static final int SECONDARY_PCM_ID = 11;//does not exist
 
-
-    /* LEDs */
-	public static final int LED_PCM_CHANNEL = 10;
 
 	/////////////
 	// CAN IDs //
 	/////////////
 
-	// /* TalonSRXs */
+	// /* TalonSRXs - we don't have any TalonSRX's*/
 	// public static final int CLIMBER_LEFT_ARM = 31;
 	// public static final int CLIMBER_RIGHT_ARM =32;
 	/* Falcon 500 */
@@ -76,10 +78,6 @@ public final class Constants {
 	/*	Victor SPXs 	*/
 	public static final int LEFT_CLIMBER = 18;
 	public static final int RIGHT_CLIMBER = 19;
-
-	/* Compressor/LED PCM */
-
-	public static final int SECONDARY_PCM_ID = 11;
 
 	///////////////
 	// CONSTANTS //

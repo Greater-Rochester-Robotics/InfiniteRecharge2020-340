@@ -9,15 +9,15 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class Climber extends SubsystemBase {
-    // private static TalonSRX leftArm , rightArm;
     private static VictorSPX leftArm, rightArm;
+    private static Solenoid brakeSolenoid;
   /**
    * Creates a new Climber.
    */
@@ -33,6 +33,8 @@ public class Climber extends SubsystemBase {
 
         leftArm.setNeutralMode(NeutralMode.Brake);
         rightArm.setNeutralMode(NeutralMode.Brake);
+
+        brakeSolenoid = new Solenoid(Constants.CLIMBER_BRAKE_CHANNEL);
   }
 
   @Override
@@ -67,7 +69,7 @@ public class Climber extends SubsystemBase {
   }
   public void hardStop(){
     leftArm.set(ControlMode.PercentOutput, -0.20);
-    rightArm.set(ControlMode.PercentOutput, -0.20);
+    rightArm.set(ControlMode.PercentOutput, -0.20); 
   }
 
   public void leftArmContract() {
@@ -79,4 +81,11 @@ public class Climber extends SubsystemBase {
 
   }
   
+  public void engageBrake(){
+    brakeSolenoid.set(false);
+  }
+
+  public void releaseBrake(){
+    brakeSolenoid.set(true);
+  }
 }

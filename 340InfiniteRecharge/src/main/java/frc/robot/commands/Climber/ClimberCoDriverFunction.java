@@ -26,6 +26,7 @@ public class ClimberCoDriverFunction extends CommandBase {
   @Override
   public void initialize() {
     RobotContainer.harvester.lowerHarvester();
+    RobotContainer.climber.releaseBrake();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -55,6 +56,7 @@ public class ClimberCoDriverFunction extends CommandBase {
   public void end(boolean interrupted) {
     Robot.robotContainer.setCoDriverRumble(0, 0);
     RobotContainer.climber.stop();
+    RobotContainer.climber.engageBrake();
   }
 
   // Returns true when the command should end.
