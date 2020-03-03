@@ -12,6 +12,7 @@ import frc.robot.commands.GetSmol;
 import frc.robot.commands.LimelightCommands.AutoAlign;
 import frc.robot.commands.Shooter.FastBallWithHintOfLime;
 import frc.robot.commands.Shooter.FullInitShot;
+import frc.robot.commands.Shooter.PrepHoodShot;
 import frc.robot.commands.Shooter.ResetBallsShot;
 import frc.robot.commands.SnekLoader.Load;
 import frc.robot.commands.pathing.PathList;
@@ -25,7 +26,7 @@ public class TrenchFiveBall extends Auto340Command {
   public TrenchFiveBall() {
     super(new ResetBallsShot(),
     race (new RunPath(PathList.TRENCH_FIVE_BALL.STEP_ONE),new Load()),
-      new RunPath(PathList.TRENCH_FIVE_BALL.STEP_TWO),
+      parallel(new RunPath(PathList.TRENCH_FIVE_BALL.STEP_TWO), new PrepHoodShot()),
       new AutoAlign(),
       new FastBallWithHintOfLime(),
       new GetSmol()

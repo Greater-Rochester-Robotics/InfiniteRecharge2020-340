@@ -66,6 +66,6 @@ public class RotateToZero extends CommandBase {
   @Override
   public boolean isFinished() {
 
-    return (error * 360) <= 1 && (error * 360) >= -1;
+    return (error * 360) <= .25 && (error * 360) >= -.25;
   }
 }

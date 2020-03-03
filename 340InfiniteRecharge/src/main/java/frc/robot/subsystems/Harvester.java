@@ -18,7 +18,9 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 public class Harvester extends SubsystemBase {
   private CANSparkMax axleWheels;
+  // private CANEncoder axleEncoder;
   private DoubleSolenoid harvesterPneu;
+  // private boolean harvesterJammed = false; 
 
   /**
    * Creates a new Intake.
@@ -26,6 +28,7 @@ public class Harvester extends SubsystemBase {
   public Harvester() {
     axleWheels = new CANSparkMax(Constants.INTAKE_AXLE, MotorType.kBrushless);
     harvesterPneu = new DoubleSolenoid(Constants.HARVESTER_FWD_CHANNEL,Constants.HARVESTER_REV_CHANNEL);
+    // axleEncoder = axleWheels.getEncoder();
   }
 
   public void setAxleWheels(double volts) {
@@ -41,5 +44,30 @@ public class Harvester extends SubsystemBase {
     harvesterPneu.set(Value.kReverse);
   }
 
+  // public boolean isHarvesterJammed() {
+  //   boolean isJammed = false;
+  //   for (int i = 0; i <= 4; i++) {
+  //     isJammed = isJammed || 
+  //       ((axleWheels.get() != 0) && (axleEncoder.getVelocity() == 0))||
+  //       axleWheels.getOutputCurrent() > 40.0;
+  //   }
+  //   return isJammed;
+  // }
 
+//   @Override
+//   public void periodic() {
+//     harvesterJammed = false;
+//     if(this.getCurrentCommand() != null){
+//     if (isHarvesterJammed() && (this.getCurrentCommand().getName().equals("Load"))) {
+//       SmartDashboard.putBoolean("isHarvesterJammed", true);
+//       harvesterJammed = true;
+//     } else {
+//       SmartDashboard.putBoolean("isHarvesterJammed", false);
+//       harvesterJammed = false;
+//     }
+//   }
+// }
+// public boolean stopIntakeQ(){
+//     return harvesterJammed;
+//   }
 }

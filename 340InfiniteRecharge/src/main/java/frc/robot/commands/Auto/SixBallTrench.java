@@ -9,9 +9,9 @@ package frc.robot.commands.Auto;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.GetSmol;
+import frc.robot.commands.RotateToZero;
 import frc.robot.commands.LimelightCommands.AutoAlign;
 import frc.robot.commands.Shooter.FastBallWithHintOfLime;
-import frc.robot.commands.Shooter.FullInitShot;
 import frc.robot.commands.Shooter.PrepHoodShot;
 import frc.robot.commands.Shooter.ResetBallsShot;
 import frc.robot.commands.SnekLoader.Load;
@@ -21,30 +21,34 @@ import frc.robot.commands.pathing.RunPath;
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/latest/docs/software/commandbased/convenience-features.html
-public class ColorWheelSteal extends Auto340Command {
+public class SixBallTrench extends Auto340Command {
   /**
-   * Creates a new ColorWheelSteal.
+   * Creates a new SixBallTrench.
    */
-  public ColorWheelSteal() {
+  public SixBallTrench() {
     // Add your commands in the super() call, e.g.
     // super(new FooCommand(), new BarCommand());
-    super(
-    race(new Load(), new RunPath(PathList.COLOR_WHEEL_STEAL.STAGE_ONE)),
-      new Load().withTimeout(1.0),
-      parallel(new RunPath(PathList.COLOR_WHEEL_STEAL.STAGE_TWO), new PrepHoodShot()),
-      new AutoAlign(),
-      new FastBallWithHintOfLime(),
-      new GetSmol());
+    super(new ResetBallsShot(),
+      parallel(new PrepHoodShot(),new AutoAlign()),
+    new FastBallWithHintOfLime().withTimeout(3.0),
+    new GetSmol(),
+    new RotateToZero(),
+    race (new RunPath(PathList.TRENCH_SIX_BALL.GRAB_THREE), new Load()),
+    race(new RunPath(PathList.TRENCH_SIX_BALL.POSITION_SHOOT_THREE), new PrepHoodShot())
+    // new AutoAlign(),
+    // new FastBallWithHintOfLime().withTimeout(2.0),
+    // new GetSmol()
+    );
   }
-  @Override
-public String getSetUpInstructions(){
-  return "Set up instruction: line up right bumper with trench line, parallel with wall, position robot so init line is between the back two robot wheels";
+
+  public String getSetUpInstructions(){
+    return "";
+
+
 }
- @Override
-public String getAutoDescription(){
-  return "Drives forward and takes two balls from the enemy trench. Drives forward close to the init line and closer to the target. Aims, shoots.";
-}
+
+  public String getAutoDescription(){
+    return "";
   
-
-
+  }
 }

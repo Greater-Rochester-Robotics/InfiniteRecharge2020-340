@@ -84,12 +84,12 @@ public final class Constants {
 	///////////////
 
 	/* Shooter Speeds */
-	public static final int INITIATION_SHOT_RPM = 3425; //Put real value here for safe keeping, rpm: 3425
+	public static final int INITIATION_SHOT_RPM = 3500; //Put real value here for safe keeping, rpm: 3425
 	public static final int WALL_SHOT_RPM = 2550;
 
 	/*	Climber Speeds	*/
-	public static final double CLIMBER_CONTRACT_SPEED = -.4;
-	public static final double CLIMBER_EXTEND_SPEED = .4;
+	public static final double CLIMBER_CONTRACT_SPEED = -.55;
+	public static final double CLIMBER_EXTEND_SPEED = .6;
 
 	/* The Titular Zero Speed */
 	public static final double ZERO_SPEED = 0.0;

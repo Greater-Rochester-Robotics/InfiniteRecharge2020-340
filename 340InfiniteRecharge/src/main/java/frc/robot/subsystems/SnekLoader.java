@@ -7,6 +7,10 @@
 
 package frc.robot.subsystems;
 
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+
 import com.revrobotics.CANDigitalInput;
 import com.revrobotics.CANEncoder;
 import com.revrobotics.CANSparkMax;
@@ -33,6 +37,8 @@ public class SnekLoader extends SubsystemBase {
   private int ballsLoaded;
   private boolean isPaused;
   // private static boolean hadBall;
+  double[] speeds = new double[5];
+  int smartCount = 0;
 
   public enum State {
     kFillTo4, kFillTo3, kFillTo2, kFillTo1, kFillTo0, kOff, kShootBall4, kShootBall3, kShootBall2, kShootBall1,
@@ -97,7 +103,6 @@ public class SnekLoader extends SubsystemBase {
 
 
     // This method will be called once per scheduler run
-    double[] speeds = new double[5];
     switch (state) {
     case kSpitBalls:
       speeds = new double[] { -1.0, -.85, -.7, -.6, -.5 };
@@ -176,9 +181,11 @@ public class SnekLoader extends SubsystemBase {
       enableOneLimit(-1);
       break;
     case kShootBall0:
-      speeds = new double[] { .2, .5, .7, .85, 1.0 };
+      speeds = new double[] { .3, .5, .75, .9, 1.0 };
       enableOneLimit(-1);
       break;
+    default:
+        speeds = new double[] {0.0,0.0,0.0,0.0,0.0};
     }
     if(isPaused){
       speeds = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0 };
@@ -186,25 +193,30 @@ public class SnekLoader extends SubsystemBase {
     setAllHandleMotors(speeds);
 
     //SmartDashboard Pushes
+    if(smartCount == 1){
+      smartCount = 0;
     if (isJammed() && getState() != State.kSpitBalls) {
       SmartDashboard.putBoolean("isJammed", true);
     } else {
       SmartDashboard.putBoolean("isJammed", false);
     }
+    
     SmartDashboard.putBoolean("Ball 0", handleSensors[0].get());
     SmartDashboard.putBoolean("Ball 1", handleSensors[1].get());
     SmartDashboard.putBoolean("Ball 2", handleSensors[2].get());
     SmartDashboard.putBoolean("Ball 3", handleSensors[3].get());
-    SmartDashboard.putBoolean("Ball 4", handleSensors[4].get());
-    SmartDashboard.putString("BallsLoaded", ""+ ballsLoaded);
-    if(DriverStation.getInstance().isTest()){
-      SmartDashboard.putString("State", state.name());
-      if(this.getCurrentCommand() != null){
-        SmartDashboard.putString("snek command", this.getCurrentCommand().getName());
-      } else {
-        SmartDashboard.putString("snek command", "none");
-      }
+      SmartDashboard.putBoolean("Ball 4", handleSensors[4].get());
+      SmartDashboard.putString("BallsLoaded", ""+ ballsLoaded);
     }
+    smartCount++;
+    // if(DriverStation.getInstance().isTest()){
+    //   SmartDashboard.putString("State", state.name());
+    //   if(this.getCurrentCommand() != null){
+    //     SmartDashboard.putString("snek command", this.getCurrentCommand().getName());
+    //   } else {
+    //     SmartDashboard.putString("snek command", "none");
+    //   }
+    // }
 
   }
 
@@ -233,6 +245,18 @@ public class SnekLoader extends SubsystemBase {
    * @return boolean
    */
   public boolean getHandleSensor(int sensor) {
+    // PrintWriter writer;
+    // try {
+    //   writer = new PrintWriter("output.txt", "UTF-8");
+    //   writer.println(handleSensors[sensor].get());
+    //   writer.close();
+    // } catch (FileNotFoundException e) {
+    //   // TODO Auto-generated catch block
+    //   e.printStackTrace();
+    // } catch (UnsupportedEncodingException e) {
+    //   // TODO Auto-generated catch block
+    //   e.printStackTrace();
+    // }
     return handleSensors[sensor].get();
   }
 

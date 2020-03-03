@@ -32,9 +32,9 @@ public class Limelight extends SubsystemBase {
 
   public void periodic(){
     SmartDashboard.putString("Distance", ""+ getDistance());
-    if(DriverStation.getInstance().isTest()){
-      SmartDashboard.putString("AngleToTarget", ""+angleToTarget());
-    }
+    // if(DriverStation.getInstance().isTest()){
+    //   SmartDashboard.putString("AngleToTarget", ""+angleToTarget());
+    // }
   }
 
   public void setStreamMode(int Stream){

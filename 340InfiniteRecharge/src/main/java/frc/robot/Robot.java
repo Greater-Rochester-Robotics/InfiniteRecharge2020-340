@@ -23,6 +23,7 @@ import frc.robot.commands.Auto.ColorWheelSteal;
 import frc.robot.commands.Auto.EasyShoot;
 import frc.robot.commands.Auto.FullTrenchRun;
 import frc.robot.commands.Auto.HungryHippoShot;
+import frc.robot.commands.Auto.SixBallTrench;
 import frc.robot.commands.Auto.TrenchFiveBall;
 import frc.robot.commands.Auto.TwoBallShot;
 import frc.robot.commands.Climber.ClimberCoDriverFunction;
@@ -50,7 +51,8 @@ public class Robot extends TimedRobot {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
     robotContainer = new RobotContainer();
-    // CameraServer.getInstance().startAutomaticCapture().setResolution(150, 150);
+    // String configJson = "{\"width\":40,\"height\":40,\"fps\":10}";//\"pixel format\":\"MJPEG\",
+    CameraServer.getInstance().startAutomaticCapture();//.setConfigJson(configJson);//setResolution(150, 150);
   }
 
   /**
@@ -90,6 +92,8 @@ public class Robot extends TimedRobot {
     registerAutoMode(RobotContainer.autoChooser, "Full Trench Run", new FullTrenchRun());
 
     registerAutoMode(RobotContainer.autoChooser, "Two Ball Shot", new TwoBallShot());
+
+    registerAutoMode(RobotContainer.autoChooser, "Six Ball Trench", new SixBallTrench());
     
     SmartDashboard.putData(RobotContainer.autoChooser);
     // maybe the heck stuff here to make sure its only done once:
@@ -104,9 +108,9 @@ public class Robot extends TimedRobot {
 
   @Override
   public void disabledPeriodic() {
+    RobotContainer.limelight.setLightState(1);
     String mode = RobotContainer.autoChooser.getSelected();
-    SmartDashboard.putString("AutoInstrutions", RobotContainer.autoModes.get(mode).getSetUpInstructions());
-    SmartDashboard.putString("AutoDescription", RobotContainer.autoModes.get(mode).getAutoDescription());
+    // SmartDashboard.putString("AutoInstrutions", RobotContainer.autoModes.get(mode6+).getAutoDescription());
     SmartDashboard.putString("Chosen Auto Mode", mode);
   }
 
@@ -116,7 +120,7 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousInit() {
     m_autonomousCommand = robotContainer.getAutonomousCommand();
-
+    System.out.println(m_autonomousCommand.getClass().getName() + "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB");
     // schedule the autonomous command (example)
     if (m_autonomousCommand != null) {
       m_autonomousCommand.schedule();
@@ -146,8 +150,8 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void teleopPeriodic() {
-    String mode = RobotContainer.autoChooser.getSelected();
-    SmartDashboard.putString("Chosen Auto Mode", mode);
+    // String mode = RobotContainer.autoChooser.getSelected();
+    // SmartDashboard.putString("Chosen Auto Mode", mode);
 
   }
 
@@ -155,7 +159,7 @@ public class Robot extends TimedRobot {
   public void testInit() {
     // Cancels all running commands at the start of test mode.
     CommandScheduler.getInstance().cancelAll();
-    robotContainer.bindTestButtons();
+    // robotContainer.bindTestButtons();
   }
 
   /**

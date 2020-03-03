@@ -49,6 +49,6 @@ public class Load extends CommandBase {
   @Override
   public boolean isFinished() {
     
-    return (RobotContainer.snekLoader.getState() == State.kOff);
+    return (RobotContainer.snekLoader.getState() == State.kOff);//|| RobotContainer.harvester.stopIntakeQ()
   }
 }

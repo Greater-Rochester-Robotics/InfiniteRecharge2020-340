@@ -27,10 +27,12 @@ public class FastBallWithHintOfLime extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    RobotContainer.shooter.resetBallsShot();
+    ballsToShoot = RobotContainer.snekLoader.getBallsLoaded();
     RobotContainer.shooter.raiseHood();
     RobotContainer.limelight.setLightState(3);
     speedRpm = Limelight.calcHoodRPM();
-    RobotContainer.shooter.resetBallsShot();
+    
     fullSend = false;
     RobotContainer.shooter.setShooterWheel(speedRpm);
   }
