@@ -7,12 +7,13 @@
 
 package frc.robot.commands.SnekLoader;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
 import frc.robot.subsystems.SnekLoader.State;
 
 public class Load extends CommandBase {
-
+Timer tm = new Timer();
   /**
    * Creates a new Load.
    */
@@ -27,6 +28,9 @@ public class Load extends CommandBase {
       RobotContainer.snekLoader.setState(State.kFillTo4);
       RobotContainer.harvester.lowerHarvester();
       RobotContainer.harvester.setAxleWheels(6.0);
+      RobotContainer.harvester.setHarvesterJammed(false);
+      tm.reset();
+      tm.start();
 
   }
 
@@ -49,6 +53,6 @@ public class Load extends CommandBase {
   @Override
   public boolean isFinished() {
     
-    return (RobotContainer.snekLoader.getState() == State.kOff);//|| RobotContainer.harvester.stopIntakeQ()
+    return (RobotContainer.snekLoader.getState() == State.kOff || (tm.get() > 0.5 && RobotContainer.harvester.stopIntakeQ()));//|| RobotContainer.harvester.stopIntakeQ()
   }
 }
