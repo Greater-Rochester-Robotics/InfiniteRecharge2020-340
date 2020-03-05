@@ -280,7 +280,6 @@ public class RobotContainer {
     // = Shuffleboard.getTab("Competition").get
     String mode = RobotContainer.autoChooser.getSelected();
     SmartDashboard.putString("Chosen Auto Mode", mode);
-    System.out.println("AAAAAAAAAAAAAAA  "+mode+"  AAAAAAAAAAAAAAAA");
     return autoModes.getOrDefault(mode, new EasyShoot());//new Command();
 
     // return new TrenchFiveBall();
