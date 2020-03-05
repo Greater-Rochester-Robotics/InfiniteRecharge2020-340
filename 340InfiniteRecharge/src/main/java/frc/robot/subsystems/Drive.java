@@ -21,6 +21,7 @@ import com.ctre.phoenix.music.Orchestra;
 import com.ctre.phoenix.sensors.CANCoder;
 
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
+import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.DriverStation;
 
 import com.analog.adis16448.frc.ADIS16448_IMU;
@@ -62,12 +63,16 @@ public class Drive extends SubsystemBase {
 	private static CANCoderConfiguration canConfig;
 	Orchestra band;
 
+	// factor to convert sensor values to a distance in inches
+	private static final double kValueToInches = 0.0009766 * 25.4;
+	private AnalogInput ultrasonic;
+
 	/**
 	 * Set up the Sparks and encoders with the ports specified in {@link Constants},
 	 * and the IMU with the Y-axis as yaw
 	 */
 	public Drive() {
-		
+		ultrasonic = new AnalogInput(Constants.ULTRASONIC_PORT);
 		imu = new ADIS16448_IMU(IMUAxis.kX, Port.kMXP, 4); //The parameter here is the
 		// axis the IMU interprets as being yaw. This will depend on how the RIO is
 		// oriented
@@ -228,6 +233,10 @@ public class Drive extends SubsystemBase {
 	public void resetBothEncoders() {
 		encLeft.reset();
 		encRight.reset();
+	}
+
+	public double getDistance() {
+		return ultrasonic.getAverageVoltage() / kValueToInches * 2.76;
 	}
 
 	/**
@@ -391,16 +400,10 @@ public class Drive extends SubsystemBase {
 
 	@Override
 	public void periodic() {
-
-
-		// if(DriverStation.getInstance().isTest()){
-		// 	SmartDashboard.putString("distance left", ""+this.getLeftDistance());
-		// 	SmartDashboard.putString("distance right", ""+this.getRightDistance());
 			SmartDashboard.putString("AngleX", ""+imu.getGyroAngleX());
 			SmartDashboard.putString("AngleY", ""+imu.getGyroAngleY());
 			SmartDashboard.putString("AngleZ", ""+imu.getGyroAngleZ());
 			SmartDashboard.putString("Angle", ""+this.getRotation());
-			
-		// }
+		
 	}
 }
