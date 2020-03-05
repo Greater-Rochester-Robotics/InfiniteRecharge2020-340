@@ -40,6 +40,8 @@ public final class Constants {
 	/* Sensors */
 	public static final int BALL_COUNTER_SENSOR = 4;
 
+	/* Analog Channels*/
+	public static final int ULTRASONIC_PORT = 0;
 
 	////////////////////////
 	// PNEUMATIC CHANNELS //

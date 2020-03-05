@@ -21,22 +21,21 @@ import frc.robot.commands.pathing.RunPath;
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/latest/docs/software/commandbased/convenience-features.html
-public class ColorWheelSteal extends Auto340Command {
+public class TheEighthHokage extends Auto340Command {
   /**
    * Creates a new ColorWheelSteal.
    */
-  public ColorWheelSteal() {
+  public TheEighthHokage() {
     // Add your commands in the super() call, e.g.
     // super(new FooCommand(), new BarCommand());
     super(
-    race(new Load(), new RunPath(PathList.COLOR_WHEEL_STEAL.STAGE_ONE)),
+    race(new Load(), new RunPath(PathList.THE_EIGHTH_HOKAGE.STAGE_ONE)),
       new Load().withTimeout(1.0),
-      new RunPath(PathList.COLOR_WHEEL_STEAL.STAGE_TWO),
+      new RunPath(PathList.THE_EIGHTH_HOKAGE.STAGE_TWO),
       new AutoAlign(),
       new FastBallWithHintOfLime(),
-      new GetSmol(),
       new RotateToZero(),
-      new RunPath(PathList.COLOR_WHEEL_STEAL.STAGE_THREE)
+      new RunPath(PathList.THE_EIGHTH_HOKAGE.STAGE_THREE)
       );
   }
   @Override
