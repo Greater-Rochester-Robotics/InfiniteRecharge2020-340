@@ -8,6 +8,7 @@
 //recursive todo reminding you to use todo to locate things
 package frc.robot;
 
+import java.io.Console;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -21,6 +22,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.button.Button;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import frc.robot.commands.DriveGyroReset;
 import frc.robot.commands.DriveXOne;
 import frc.robot.commands.GetSmol;
 import frc.robot.commands.Auto.Auto340Command;
@@ -42,8 +44,10 @@ import frc.robot.commands.Shooter.FullWallShot;
 import frc.robot.commands.Shooter.LowGoal;
 import frc.robot.commands.Shooter.PrepHoodShot;
 import frc.robot.commands.Shooter.PrepWallShot;
+import frc.robot.commands.Shooter.RaiseCobraHood;
 import frc.robot.commands.Shooter.SmartLimeShot;
 import frc.robot.commands.Shooter.StopShoot;
+import frc.robot.commands.SnekLoader.ChoochedLoad;
 import frc.robot.commands.SnekLoader.Load;
 import frc.robot.commands.SnekLoader.Regurgitate;
 import frc.robot.subsystems.Climber;
@@ -83,7 +87,7 @@ public class RobotContainer {
   final Button driverDUp = new DPad(driver, DPad.Direction.UP);
   final Button driverDDown = new DPad(driver, DPad.Direction.DOWN);
   final Button driverDLeft = new DPad(driver, DPad.Direction.LEFT);
-  final Button driverDRight = new DPad(   driver, DPad.Direction.RIGHT);
+  final Button driverDRight = new DPad(driver, DPad.Direction.RIGHT);
   final Button driverLTButton = new JoyTriggerButton(driver, .3, Axis.LEFT_TRIGGER);
   final Button driverRTButton = new JoyTriggerButton(driver, .3, Axis.RIGHT_TRIGGER);
 
@@ -123,8 +127,7 @@ public class RobotContainer {
   public static final boolean isFalconFx = true;
   public static boolean testButtonsBound = false;
   public static SendableChooser<String> autoChooser;
-  public static Map<String,Auto340Command> autoModes = new HashMap<>();
-  
+  public static Map<String, Auto340Command> autoModes = new HashMap<>();
 
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
@@ -138,6 +141,7 @@ public class RobotContainer {
     snekLoader = new SnekLoader();
     limelight = new Limelight();
     limelight.setStreamMode(0);
+    limelight.setLightState(1);
     climber = new Climber();
     isClimberRunning = new IsCommandRunningTrigger(climber, new ClimberCoDriverFunction());
     // Configure the button bindings
@@ -146,32 +150,34 @@ public class RobotContainer {
   }
 
   /**
-   * Use this method to define your button->command mappings.  Buttons can be created by
-   * instantiating a {@link GenericHID} or one of its subclasses ({@link
-   * edu.wpi.first.wpilibj.Joystick} or {@link XboxController}), and then passing it to a
-   * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
+   * Use this method to define your button->command mappings. Buttons can be
+   * created by instantiating a {@link GenericHID} or one of its subclasses
+   * ({@link edu.wpi.first.wpilibj.Joystick} or {@link XboxController}), and then
+   * passing it to a {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    //Testing buttons
+    // Testing buttons
     // driverBack.whenPressed(new PlayMusic());
     // driverBack.whenPressed(new StopMusic());
     // driverDRight.whenPressed(new TrenchFiveBall());
     // driverDLeft.whenPressed(new FullTrenchRun());
     // driverY.whenPressed(new ToggleTestMode());
 
-    //Actual Comp button layout
+    /* Actual Comp button layout */
     driverA.whenPressed(new Load());
     driverA.whenReleased(new GetSmol());
     driverB.whenPressed(new LimelightOn());
     driverB.whenReleased(new LimelightOff());
     driverX.whenPressed(new Regurgitate());
-    driverX.whenPressed(new SpitBalls());
+    // driverX.whenPressed(new SpitBalls()); //Was making bad noises when it wasn't
+    // lowered
     driverX.whenReleased(new GetSmol());
+    driverY.whenPressed(new ChoochedLoad());
+    driverY.whenReleased(new GetSmol());
     driverDUp.whenPressed(new PickHarvesterUp());
     driverDDown.whenPressed(new SetHarvesterDown());
-    driverDLeft.whenPressed(new ClimberHardStop());
-    driverDLeft.whenReleased(new Stop());
-    driverDRight.whenPressed(new FullTrenchAutoShotTest()); 
+    driverDLeft.whileHeld(new ClimberHardStop());
+    driverDRight.whenPressed(new RaiseCobraHood());
     driverStart.whenPressed(new GetSmol());
     driverBack.whenPressed(new StopShoot());
     driverRB.whenPressed(new FullInitShot());
@@ -183,82 +189,85 @@ public class RobotContainer {
     driverLTButton.whenPressed(new FullWallShot());
     driverLTButton.whenReleased(new GetSmol());
 
-    coDriverA.whenPressed(new ObtainDistance());
+    coDriverY.whenPressed(new DriveGyroReset());
+    coDriverB.whenPressed(new ObtainDistance());
     coDriverBack.whenPressed(new StopShoot());
     coDriverLB.and(isClimberRunning.negate()).whenActive(new LowGoal());
     coDriverLB.and(isClimberRunning.negate()).whenInactive(new GetSmol());
     coDriverRTButton.and(isClimberRunning.negate()).whenActive(new PrepHoodShot().withTimeout(1.5));
     coDriverLTButton.and(isClimberRunning.negate()).whenActive(new PrepWallShot().withTimeout(1.5));
-  
+
     coDriverDDown.toggleWhenPressed(new ClimberCoDriverFunction());
-    
+
+  }
+
+  public void bindTestButtons() {
+    if (!testButtonsBound) {
+      testButtonsBound = true;
+      // put test buttons here for test controller
+
     }
-
-    public void bindTestButtons(){
-      if(!testButtonsBound){
-        testButtonsBound = true;
-        //put test buttons here for test controller
-        
-      }
-    }
-
-
+  }
 
   public enum Axis {
-		LEFT_X(0),
-		LEFT_Y(1),
-		LEFT_TRIGGER(2),
-		RIGHT_TRIGGER(3),
-		RIGHT_X(4),
-		RIGHT_Y(5);
+    LEFT_X(0), LEFT_Y(1), LEFT_TRIGGER(2), RIGHT_TRIGGER(3), RIGHT_X(4), RIGHT_Y(5);
 
-		private int axis;
+    private int axis;
 
-		private Axis(int axis) {
-			this.axis = axis;
-		}
+    private Axis(int axis) {
+      this.axis = axis;
+    }
 
-		public int getAxisNumber() {
-			return axis;
-		}
+    public int getAxisNumber() {
+      return axis;
+    }
   }
-  /**
-	 * 
-	 * @param axis
-	 * @return
-	 */
-	public double getDriverAxis(Axis axis) {
-		return (driver.getRawAxis(axis.getAxisNumber()) < -.1 || driver.getRawAxis(axis.getAxisNumber()) > .1 ) ? driver.getRawAxis(axis.getAxisNumber()) : 0;
-	}
 
-	/**
-	 * Accessor method to set driver rumble function
-	 * @param leftRumble
-	 * @param rightRumble
-	 */
-	public void setDriverRumble (double leftRumble, double rightRumble){
-		driver.setRumble(RumbleType.kLeftRumble, leftRumble);
-		driver.setRumble(RumbleType.kRightRumble, rightRumble);
-	}
-	/**
-	 * 
-	 * @param axis
-	 * @return
-	 */
-	public double getCoDriverAxis(Axis axis) {
-		return (coDriver.getRawAxis(axis.getAxisNumber()) < -.1 || coDriver.getRawAxis(axis.getAxisNumber()) > .1 ) ? coDriver.getRawAxis(axis.getAxisNumber()) : 0;
-  }
   /**
-	 * Accessor method to set codriver rumble function
-	 * @param leftRumble
-	 * @param rightRumble
-	 */
-	public void setCoDriverRumble (double leftRumble, double rightRumble){
-		coDriver.setRumble(RumbleType.kLeftRumble, leftRumble);
-		coDriver.setRumble(RumbleType.kRightRumble, rightRumble);
-	}
-  
-  public boolean getCoDriverButton(int buttonNum){
+   * 
+   * @param axis
+   * @return
+   */
+  public double getDriverAxis(Axis axis) {
+    return (driver.getRawAxis(axis.getAxisNumber()) < -.1 || driver.getRawAxis(axis.getAxisNumber()) > .1)
+        ? driver.getRawAxis(axis.getAxisNumber())
+        : 0;
+  }
+
+  /**
+   * Accessor method to set driver rumble function
+   * 
+   * @param leftRumble
+   * @param rightRumble
+   */
+  public void setDriverRumble(double leftRumble, double rightRumble) {
+    driver.setRumble(RumbleType.kLeftRumble, leftRumble);
+    driver.setRumble(RumbleType.kRightRumble, rightRumble);
+  }
+
+  /**
+   * 
+   * @param axis
+   * @return
+   */
+  public double getCoDriverAxis(Axis axis) {
+    return (coDriver.getRawAxis(axis.getAxisNumber()) < -.1 || coDriver.getRawAxis(axis.getAxisNumber()) > .1)
+        ? coDriver.getRawAxis(axis.getAxisNumber())
+        : 0;
+  }
+
+  /**
+   * Accessor method to set codriver rumble function
+   * 
+   * @param leftRumble
+   * @param rightRumble
+   */
+  public void setCoDriverRumble(double leftRumble, double rightRumble) {
+    coDriver.setRumble(RumbleType.kLeftRumble, leftRumble);
+    coDriver.setRumble(RumbleType.kRightRumble, rightRumble);
+  }
+
+  public boolean getCoDriverButton(int buttonNum) {
     return coDriver.getRawButton(buttonNum);
   }
 
@@ -268,10 +277,9 @@ public class RobotContainer {
    * @return the command to run in autonomous
    */
   public Command getAutonomousCommand() {
-    //  = Shuffleboard.getTab("Competition").get
+    // = Shuffleboard.getTab("Competition").get
     String mode = RobotContainer.autoChooser.getSelected();
     SmartDashboard.putString("Chosen Auto Mode", mode);
-    
     return autoModes.getOrDefault(mode, new EasyShoot());//new Command();
 
     // return new TrenchFiveBall();

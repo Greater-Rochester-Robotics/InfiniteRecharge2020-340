@@ -36,7 +36,7 @@ public class AutoDistance extends CommandBase {
   public void initialize() {
     System.out.println("AutoDistance Started");
 	  RobotContainer.limelight.setPipeline(0); //set pipeline to zero
-	  RobotContainer.limelight.setCammode(0); //makes sure that its in robot looks around mode
+	  RobotContainer.limelight.setCammode(2); //makes sure that its in robot looks around mode
   }
 
   // Called every time the scheduler runs while the command is scheduled.

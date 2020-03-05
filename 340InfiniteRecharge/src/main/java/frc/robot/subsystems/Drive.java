@@ -400,17 +400,10 @@ public class Drive extends SubsystemBase {
 
 	@Override
 	public void periodic() {
-
-
-		if(DriverStation.getInstance().isTest()){
-			SmartDashboard.putNumber("Ultra Distance", getDistance());
-			SmartDashboard.putString("distance left", ""+this.getLeftDistance());
-			SmartDashboard.putString("distance right", ""+this.getRightDistance());
-			// SmartDashboard.putString("AngleX", ""+imu.getGyroAngleX());
-			// SmartDashboard.putString("AngleY", ""+imu.getGyroAngleY());
-			// SmartDashboard.putString("AngleZ", ""+imu.getGyroAngleZ());
+			SmartDashboard.putString("AngleX", ""+imu.getGyroAngleX());
+			SmartDashboard.putString("AngleY", ""+imu.getGyroAngleY());
+			SmartDashboard.putString("AngleZ", ""+imu.getGyroAngleZ());
 			SmartDashboard.putString("Angle", ""+this.getRotation());
-			
-		}
+		
 	}
 }

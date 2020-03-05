@@ -12,6 +12,7 @@ import frc.robot.commands.GetSmol;
 import frc.robot.commands.LimelightCommands.AutoAlign;
 import frc.robot.commands.Shooter.FastBallWithHintOfLime;
 import frc.robot.commands.Shooter.FullInitShot;
+import frc.robot.commands.Shooter.PrepHoodShot;
 import frc.robot.commands.Shooter.ResetBallsShot;
 import frc.robot.commands.pathing.PathList;
 import frc.robot.commands.pathing.RunPath;
@@ -24,7 +25,7 @@ public class EasyShoot extends Auto340Command {
      // Add your commands in the super() call, e.g.
     // super(new FooCommand(), new BarCommand());
     super
-    (new ResetBallsShot(), new AutoAlign(),new FastBallWithHintOfLime(),new GetSmol(), new RunPath(PathList.EASY_SHOOT.THIRTY_SIX_INCH)
+    (new ResetBallsShot(),new PrepHoodShot(), new AutoAlign(),new FastBallWithHintOfLime().withTimeout(2.5),new GetSmol(), new RunPath(PathList.EASY_SHOOT.THIRTY_SIX_INCH)
      );
 
   }

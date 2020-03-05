@@ -33,6 +33,7 @@ public class ClimberHardStop extends CommandBase {
   // Called once after isFinished returns true
   @Override
   public void end(boolean isFinished) {
+    RobotContainer.climber.stop();
   }
 
   // Returns true when the command should end.

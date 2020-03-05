@@ -9,6 +9,13 @@
 
 package frc.robot.subsystems;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+import java.nio.file.Files;
+
 import com.fasterxml.jackson.annotation.JsonCreator.Mode;
 import com.revrobotics.CANEncoder;
 import com.revrobotics.CANError;
@@ -36,18 +43,20 @@ public class Shooter extends SubsystemBase {
   private int ballsShot = 0;
   private int totalBallsShot = 0;
   private boolean ballWasPresent;
+  int smartCount = 0;
 
   /**
    * Creates a new Shooter.
    */
   public Shooter() {
+
     shooterWheel = new CANSparkMax(Constants.SHOOTER_WHEEL, MotorType.kBrushless);
     shooterWheel.setIdleMode(CANSparkMax.IdleMode.kCoast);
     shooterWheel.getPIDController().setP(0.00075);
     shooterWheel.getPIDController().setI(0.0);
     shooterWheel.getPIDController().setD(2.0);
     shooterWheel.getPIDController().setFF(0.00019);
-    //practice bot PIDF values
+    // practice bot PIDF values
     // shooterWheel.getPIDController().setP(0.001);
     // shooterWheel.getPIDController().setI(0.0);
     // shooterWheel.getPIDController().setD(1);
@@ -59,9 +68,9 @@ public class Shooter extends SubsystemBase {
     hoodMover = new Solenoid(Constants.SHOOTER_HOOD_SOLENOID_CHANNEL);
     hardStop = new Solenoid(4);
     // shooterWheel.enableVoltageCompensation(12.0);
-    if (SmartDashboard.isPersistent("Total Balls Shot")){
-      totalBallsShot = Integer.valueOf(SmartDashboard.getString("Total Balls Shot","0"));
-    }else{
+    if (SmartDashboard.isPersistent("Total Balls Shot")) {
+      totalBallsShot = Integer.valueOf(SmartDashboard.getString("Total Balls Shot", "0"));
+    } else {
       totalBallsShot = 0;
     }
   }
@@ -75,26 +84,30 @@ public class Shooter extends SubsystemBase {
     }
     ballWasPresent = getShooterSensor();
 
-
-    SmartDashboard.putString("Balls Shot", ""+ballsShot);
-    SmartDashboard.putBoolean("Shooter Sensor", getShooterSensor());
-    SmartDashboard.putString("Flywheel Speed", "" + Math.round(shooterEncoder.getVelocity()));
-    SmartDashboard.putString("Total Balls Shot", ""+totalBallsShot);
-    if(DriverStation.getInstance().isFMSAttached()){
-      SmartDashboard.setPersistent("Total Balls Shot");
-    }else{
-      SmartDashboard.clearPersistent("Total Balls Shot");
-    }
-    if(DriverStation.getInstance().isTest()){
-      // SmartDashboard.putString("Max Speed", "" + ((targetVelocity * 1) + 25));
-      SmartDashboard.putString("Target Speed", "" + targetVelocity);
-      // SmartDashboard.putString("Min Speed", "" + ((targetVelocity * 1) - 25));
-      if (this.getCurrentCommand() != null) {
-        SmartDashboard.putString("shooter command", this.getCurrentCommand().getName());
+    if (smartCount == 1) {
+      smartCount = 0;
+      SmartDashboard.putString("Balls Shot", "" + ballsShot);
+      SmartDashboard.putBoolean("Shooter Sensor", getShooterSensor());
+      SmartDashboard.putString("Flywheel Speed", "" + Math.round(shooterEncoder.getVelocity()));
+      SmartDashboard.putString("Total Balls Shot", "" + totalBallsShot);
+      if (DriverStation.getInstance().isFMSAttached()) {
+        SmartDashboard.setPersistent("Total Balls Shot");
       } else {
-        SmartDashboard.putString("shooter command", "none");
+        SmartDashboard.clearPersistent("Total Balls Shot");
       }
     }
+    smartCount++;
+    // if(DriverStation.getInstance().isTest()){
+    // // SmartDashboard.putString("Max Speed", "" + ((targetVelocity * 1) + 25));
+    // SmartDashboard.putString("Target Speed", "" + targetVelocity);
+    // // SmartDashboard.putString("Min Speed", "" + ((targetVelocity * 1) - 25));
+    // if (this.getCurrentCommand() != null) {
+    // SmartDashboard.putString("shooter command",
+    // this.getCurrentCommand().getName());
+    // } else {
+    // SmartDashboard.putString("shooter command", "none");
+    // }
+    // }
   }
 
   public void stop() {
@@ -112,7 +125,7 @@ public class Shooter extends SubsystemBase {
     // } else if (speed > 1) {
     // speed = 1;
     // }
-    if (speed < 1 && speed> -1) {
+    if (speed < 1 && speed > -1) {
       shooterWheel.setVoltage(0);
     } else {
       // shooterWheel.getPIDController().setFF(speed * 1 + 0);
@@ -153,6 +166,18 @@ public class Shooter extends SubsystemBase {
   }
 
   public boolean getShooterSensor() {
+    // PrintWriter writer;
+    // try {
+    //   writer = new PrintWriter("output.txt", "UTF-8");
+    //   writer.println(ballCounter.get());
+    //   writer.close();
+    // } catch (FileNotFoundException e) {
+    //   // TODO Auto-generated catch block
+    //   e.printStackTrace();
+    // } catch (UnsupportedEncodingException e) {
+    //   // TODO Auto-generated catch block
+    //   e.printStackTrace();
+    // }
     return (!ballCounter.get());
   }
 
