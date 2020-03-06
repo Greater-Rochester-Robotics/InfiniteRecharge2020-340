@@ -3,6 +3,8 @@ package frc.robot.commands.pathing;
 import java.util.function.Function;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.Robot;
 import frc.robot.RobotContainer;
 
 
@@ -12,7 +14,7 @@ public class RunPath extends CommandBase {
 	private double leftSpeed = 0;
 	private double rightSpeed = 0;
 	private boolean resetGyro = true;
-
+	private boolean die = false;
 	// private double length = -1;
 
 	// private boolean reset = true;
@@ -109,27 +111,41 @@ public class RunPath extends CommandBase {
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	public void execute() {
-		final double error = -deltaAngle(RobotContainer.drive.getRotation());
 
 		leftSpeed = speed();
 		rightSpeed = speed();
 		// System.out.println("error: " + error);
+		
 		if (Math.abs(getDistance()) > 3) {
-			final double speed = leftSpeed;
+			if(RobotContainer.drive.getLeftDistance() != 0.0 && RobotContainer.drive.getRightDistance() != 0.0){
+				final double error = -deltaAngle(RobotContainer.drive.getRotation());
+				if(Math.abs(error) < 90){
+					final double speed = leftSpeed;
+					final double ls = (leftSpeed + ((error) / (arcDivisor / Math.abs(speed))));
+					final double rs = (rightSpeed - ((error) / (arcDivisor / Math.abs(speed))));
+					RobotContainer.drive.setDriveBoth(ls * .6/* < .15 ? .15 : ls *.69 */, rs * .6/* < .15 ? .15 : rs *.69 */);
 
-			final double ls = (leftSpeed + ((error) / (arcDivisor / Math.abs(speed))));
-			final double rs = (rightSpeed - ((error) / (arcDivisor / Math.abs(speed))));
-			RobotContainer.drive.setDriveBoth(ls * .6/* < .15 ? .15 : ls *.69 */, rs * .6/* < .15 ? .15 : rs *.69 */);
+					// animate based off of distance, from 0.0 to 1.0
+					// if (animation != null) {
+					// animation.animate(getDistance() / path.getTotalLength());
 
-			// animate based off of distance, from 0.0 to 1.0
-			// if (animation != null) {
-			// animation.animate(getDistance() / path.getTotalLength());
+					// for (Keyframe kf : animation) {
+					// // addSequential(kf.getCommandConsumer().getCommand());
+					// }
+					// }
 
-			// for (Keyframe kf : animation) {
-			// // addSequential(kf.getCommandConsumer().getCommand());
-			// }
-			// }
-
+				}
+				else{
+					RobotContainer.drive.setDriveBoth(0,0);
+					die = true;
+					System.err.println("Stopping path robot spinning");	
+				}
+			}
+			else{
+				RobotContainer.drive.setDriveBoth(0,0);
+				die = true;
+				System.err.println("Stopping path encoder unplugged");
+			}
 		} else {
 			RobotContainer.drive.setDriveBoth(leftSpeed * .6/* < .15 ? .15 : leftSpeed *.69 */,
 					rightSpeed * .6/* < .15 ? .15 : rightSpeed *.69 */);
@@ -141,7 +157,7 @@ public class RunPath extends CommandBase {
 	public boolean isFinished() {
 		try {
 			// System.out.println(path.getPathAtDistance(RobotContainer.drive.getRightDistance()).getLength());
-			return Math.abs(getDistance()) > (path.getTotalLength());
+			return Math.abs(getDistance()) > (path.getTotalLength())||die;
 		} catch (final Exception e) {
             System.err.println("Unexpected error in RunPath.isFinished()");
             System.err.println(e);
