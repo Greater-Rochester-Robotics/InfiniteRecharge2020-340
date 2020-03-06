@@ -235,7 +235,7 @@ public class Drive extends SubsystemBase {
 		encRight.reset();
 	}
 
-	public double getDistance() {
+	public double getSonicDistance() {
 		return ultrasonic.getAverageVoltage() / kValueToInches * 2.76;
 	}
 

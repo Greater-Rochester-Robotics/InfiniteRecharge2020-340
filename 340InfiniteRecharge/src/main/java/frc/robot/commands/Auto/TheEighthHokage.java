@@ -23,7 +23,7 @@ import frc.robot.commands.pathing.RunPath;
 // https://docs.wpilib.org/en/latest/docs/software/commandbased/convenience-features.html
 public class TheEighthHokage extends Auto340Command {
   /**
-   * Creates a new ColorWheelSteal.
+   * Assigns a Eighth Hokage to protect the village.
    */
   public TheEighthHokage() {
     // Add your commands in the super() call, e.g.

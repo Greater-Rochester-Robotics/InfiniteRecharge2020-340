@@ -36,8 +36,7 @@ public class ColorWheelSteal extends Auto340Command {
       new AutoAlign(),
       new FastBallWithHintOfLime(),
       new GetSmol(),
-      new RotateToZero(),
-      new RunPath(PathList.COLOR_WHEEL_STEAL.STAGE_THREE)
+      new RotateToZero()
       );
   }
   @Override

@@ -12,6 +12,8 @@ import frc.robot.RobotContainer;
 
 public class DriveToProximityDistance extends CommandBase {
   double distance;
+  double offset;
+
   /**
    * Creates a new DriveToProximityDistance.
    */
@@ -24,12 +26,18 @@ public class DriveToProximityDistance extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    RobotContainer.drive.setDriveBoth(-0.5);
+    offset = distance - RobotContainer.drive.getSonicDistance();
+    if (Math.abs(offset) < 12) {
+      RobotContainer.drive.setDriveBoth(0.4);
+    } else if (Math.abs(offset) <= 12) {
+      RobotContainer.drive.setDriveBoth(Math.pow(offset, 0.5) * 0.1);
+    }
   }
 
   // Called once the command ends or is interrupted.
@@ -41,7 +49,8 @@ public class DriveToProximityDistance extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return (RobotContainer.drive.getDistance() <= 1 + distance) &&
-      (RobotContainer.drive.getDistance() >= distance - 1);
+    return (RobotContainer.drive.getSonicDistance() <= 1 + distance) &&
+      (RobotContainer.drive.getSonicDistance() >= distance - 1);
+
   }
 }
