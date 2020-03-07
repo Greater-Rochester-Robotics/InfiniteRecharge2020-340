@@ -24,6 +24,7 @@ import frc.robot.commands.Auto.EasyShoot;
 import frc.robot.commands.Auto.FullTrenchRun;
 import frc.robot.commands.Auto.HungryHippoShot;
 import frc.robot.commands.Auto.SixBallTrench;
+import frc.robot.commands.Auto.TheEighthHokage;
 import frc.robot.commands.Auto.TrenchFiveBall;
 import frc.robot.commands.Auto.TwoBallShot;
 import frc.robot.commands.Climber.ClimberCoDriverFunction;
@@ -94,6 +95,8 @@ public class Robot extends TimedRobot {
     registerAutoMode(RobotContainer.autoChooser, "Two Ball Shot", new TwoBallShot());
 
     registerAutoMode(RobotContainer.autoChooser, "Six Ball Trench", new SixBallTrench());
+    
+    registerAutoMode(RobotContainer.autoChooser, "Magic Eight Ball", new TheEighthHokage());
     
     SmartDashboard.putData(RobotContainer.autoChooser);
     // maybe the heck stuff here to make sure its only done once:

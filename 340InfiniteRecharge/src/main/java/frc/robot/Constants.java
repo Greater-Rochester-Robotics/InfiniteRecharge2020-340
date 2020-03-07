@@ -90,7 +90,7 @@ public final class Constants {
 	public static final int WALL_SHOT_RPM = 2550;
 
 	/*	Climber Speeds	*/
-	public static final double CLIMBER_CONTRACT_SPEED = -.55;
+	public static final double CLIMBER_CONTRACT_SPEED = -.75;
 	public static final double CLIMBER_EXTEND_SPEED = .6;
 
 	/* The Titular Zero Speed */

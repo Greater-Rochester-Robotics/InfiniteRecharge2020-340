@@ -34,10 +34,10 @@ public class SixBallTrench extends Auto340Command {
     new GetSmol(),
     new RotateToZero(),
     race (new RunPath(PathList.TRENCH_SIX_BALL.GRAB_THREE), new Load()),
-    race(new RunPath(PathList.TRENCH_SIX_BALL.POSITION_SHOOT_THREE), new PrepHoodShot())
-    // new AutoAlign(),
-    // new FastBallWithHintOfLime().withTimeout(2.0),
-    // new GetSmol()
+    parallel (new RunPath(PathList.TRENCH_SIX_BALL.POSITION_SHOOT_THREE), new PrepHoodShot()),
+    new AutoAlign(),
+    new FastBallWithHintOfLime().withTimeout(3.5),
+    new GetSmol()
     );
   }
 

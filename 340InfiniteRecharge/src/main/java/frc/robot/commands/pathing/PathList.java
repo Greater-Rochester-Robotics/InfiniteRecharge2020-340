@@ -69,10 +69,10 @@ public class PathList {
 			new Vec2(150, 43), new Vec2(203, 43), new Vec2(203, 43), new Vec2(250, 43) 
 			, 178));
 
-		public static final Path POSITION_SHOOT_THREE = new Path(x ->-.7, new PathSegment( 
-			/* {"start":{"x":278,"y":43},"mid1":{"x":253,"y":43},"mid2":{"x":253,"y":43},"end":{"x":241,"y":43}} */
-			new Vec2(250, 43), new Vec2(200, 43), new Vec2(200, 43), new Vec2(150, 43) 
-			, 148));
+		public static final Path POSITION_SHOOT_THREE = new Path(x -> -.7, new PathSegment( 
+			/* {"start":{"x":250,"y":43},"mid1":{"x":203,"y":43},"mid2":{"x":203,"y":43},"end":{"x":100,"y":43}} */
+			new Vec2(250, 43), new Vec2(203, 43), new Vec2(203, 43), new Vec2(100, 43) 
+			, 150));
 	}
 
 	public static final class TRENCH_FIVE_BALL {
@@ -111,14 +111,14 @@ public class PathList {
 	}
 
 	public static final class THE_EIGHTH_HOKAGE {
-		public static final Path STAGE_ONE = new Path(x -> .7, new PathSegment( 
+		public static final Path STAGE_ONE = new Path(x -> x<.7 ? .7 : x<.85 ? .35 : .2, new PathSegment( 
 			/* {"start":{"x":150,"y":200},"mid1":{"x":200,"y":202},"mid2":{"x":203,"y":228},"end":{"x:264,""y":240}} */
 			new Vec2(150, 200), new Vec2(200, 202), new Vec2(203, 228), new Vec2(264, 240) 
 			, 117));
 		public static final Path STAGE_TWO = new Path(x -> -.7, new PathSegment( 
-			/* {"start":{"x":264,"y":240},"mid1":{"x":192,"y":221},"mid2":{"x":261,"y":175},"end":{"x":171,"y":152}} */
-			new Vec2(278, 238), new Vec2(192, 221), new Vec2(261, 175), new Vec2(185, 150) 
-			, 139));
+			/* {"start":{"x":278,"y":238},"mid1":{"x":185,"y":219},"mid2":{"x":249,"y":128},"end":{"x":170,"y":120}} */
+			new Vec2(278, 238), new Vec2(185, 219), new Vec2(249, 128), new Vec2(170, 120) 
+			, 175));
 		public static final Path STAGE_THREE /*in testing*/ = new Path(x -> .7, new PathSegment( 
 			/* {"start":{"x":184,"y":176},"mid1":{"x":215,"y":176},"mid2":{"x":215,"y":176},"end":{"x":245,"y":176}} */
 			new Vec2(184, 176), new Vec2(215, 176), new Vec2(215, 176), new Vec2(245, 176) 

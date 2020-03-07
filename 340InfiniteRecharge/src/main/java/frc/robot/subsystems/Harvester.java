@@ -50,7 +50,7 @@ public class Harvester extends SubsystemBase {
     boolean isJammed = false;
       isJammed =
         ((axleWheels.get() != 0) && (axleEncoder.getVelocity() == 0))||
-        axleWheels.getOutputCurrent() > 40.0;
+        axleWheels.getOutputCurrent() > 60.0;
     return isJammed;
   }
 

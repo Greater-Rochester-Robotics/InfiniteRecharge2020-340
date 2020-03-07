@@ -7,14 +7,11 @@
 
 package frc.robot.commands.Auto;
 
-import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.GetSmol;
 import frc.robot.commands.RotateToZero;
 import frc.robot.commands.LimelightCommands.AutoAlign;
 import frc.robot.commands.Shooter.FastBallWithHintOfLime;
-import frc.robot.commands.Shooter.FullInitShot;
 import frc.robot.commands.Shooter.PrepHoodShot;
-import frc.robot.commands.Shooter.ResetBallsShot;
 import frc.robot.commands.SnekLoader.Load;
 import frc.robot.commands.pathing.PathList;
 import frc.robot.commands.pathing.RunPath;
