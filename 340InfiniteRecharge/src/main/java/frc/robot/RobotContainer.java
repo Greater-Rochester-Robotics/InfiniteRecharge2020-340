@@ -25,6 +25,7 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.DriveGyroReset;
 import frc.robot.commands.DriveXOne;
 import frc.robot.commands.GetSmol;
+import frc.robot.commands.RotateToZero;
 import frc.robot.commands.Auto.Auto340Command;
 import frc.robot.commands.Auto.EasyShoot;
 import frc.robot.commands.Climber.ClimberCoDriverFunction;
@@ -195,6 +196,7 @@ public class RobotContainer {
     coDriverY.whenPressed(new DriveGyroReset());
     coDriverB.whenPressed(new PrepHoodShot().withTimeout(1.5));
     coDriverX.whenPressed(new PrepWallShot().withTimeout(1.5));
+    coDriverDLeft.whenPressed(new RotateToZero());
     coDriverBack.whenPressed(new StopShoot());
     
 
