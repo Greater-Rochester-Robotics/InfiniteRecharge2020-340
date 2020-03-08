@@ -112,22 +112,22 @@ public class PathList {
 	}
 
 	public static final class THE_EIGHTH_HOKAGE {
-		public static final Path STAGE_ONE = new Path(x -> x<.7 ? .7 : x<.85 ? .35 : .2, new PathSegment( 
-			/* {"start":{"x":150,"y":200},"mid1":{"x":200,"y":202},"mid2":{"x":203,"y":228},"end":{"x:264,""y":240}} */
-			new Vec2(150, 200), new Vec2(200, 202), new Vec2(203, 228), new Vec2(264, 240) 
-			, 117));
-		public static final Path STAGE_TWO = new Path(x -> -.7, new PathSegment( 
-			/* {"start":{"x":278,"y":238},"mid1":{"x":185,"y":219},"mid2":{"x":249,"y":128},"end":{"x":170,"y":120}} */
-			new Vec2(278, 238), new Vec2(185, 219), new Vec2(249, 128), new Vec2(170, 120) 
-			, 175));
-		public static final Path STAGE_THREE = new Path(x -> .4, new PathSegment( 
-			/* {"start":{"x":184,"y":176},"mid1":{"x":210,"y":175},"mid2":{"x":210,"y":175},"end":{"x":233,"y":182}} */
-			new Vec2(184, 176), new Vec2(210, 175), new Vec2(210, 175), new Vec2(233, 182) 
-			, 50));
-		public static final Path STAGE_FOUR = new Path(x -> -.7, new PathSegment( 
-			/* {"start":{"x":233,"y":170},"mid1":{"x":210,"y":175},"mid2":{"x":210,"y":175},"end":{"x":184,"y":176}} */
-			new Vec2(233, 170), new Vec2(210, 175), new Vec2(210, 175), new Vec2(184, 176) 
-			, 50));
+		public static final Path STAGE_ONE = new Path(x -> x<.7 ? .8 : x<.85 ? .35 : .2, new PathSegment( 
+			/* {"start":{"x":150,"y":200},"mid1":{"x":200,"y":202},"mid2":{"x":217,"y":220},"end":{"x":264,"y":240}} */
+			new Vec2(150, 200), new Vec2(200, 202), new Vec2(217, 220), new Vec2(264, 240) 
+			, 122));
+		public static final Path STAGE_TWO = new Path(x -> -.85, new PathSegment( 
+			/* {"start":{"x":278,"y":238},"mid1":{"x":185,"y":219},"mid2":{"x":257,"y":166},"end":{"x":150,"y":159}} */
+			new Vec2(278, 238), new Vec2(185, 219), new Vec2(257, 166), new Vec2(150, 159) 
+			, 161));
+		public static final Path STAGE_THREE = new Path(x -> x<.7 ? .75 : x<.85 ? .35 : .2, new PathSegment( 
+			/* {"start":{"x":184,"y":176},"mid1":{"x":202,"y":176},"mid2":{"x":202,"y":176},"end":{"x":239,"y":176}} */
+			new Vec2(184, 176), new Vec2(202, 176), new Vec2(202, 176), new Vec2(239, 176) 
+			, 55));
+		public static final Path STAGE_FOUR = new Path(x -> -.85, new PathSegment( 
+			/* {"start":{"x":239,"y":176},"mid1":{"x":202,"y":176},"mid2":{"x":202,"y":176},"end":{"x":184,"y":176}} */
+			new Vec2(239, 176), new Vec2(202, 176), new Vec2(202, 176), new Vec2(184, 176) 
+			, 56));
 	}
 
 	public static final class COLOR_WHEEL_STEAL {
