@@ -35,6 +35,7 @@ public class TheEighthHokage extends Auto340Command {
     race(new Load(), new RunPath(PathList.THE_EIGHTH_HOKAGE.STAGE_THREE)),
     new Load().withTimeout(1.0),
     new RunPath(PathList.THE_EIGHTH_HOKAGE.STAGE_FOUR),
+    new AutoAlign(),
     new FastBallWithHintOfLime()
       );
   }
