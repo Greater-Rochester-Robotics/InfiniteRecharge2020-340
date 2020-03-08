@@ -30,9 +30,12 @@ public class TheEighthHokage extends Auto340Command {
       new Load().withTimeout(1.0),
       parallel(new RunPath(PathList.THE_EIGHTH_HOKAGE.STAGE_TWO), new PrepHoodShot()),
       new AutoAlign(),
-      new FastBallWithHintOfLime(),
+      new FastBallWithHintOfLime().withTimeout(3.0),
       new RotateToZero(),
-    race(new Load(), new RunPath(PathList.THE_EIGHTH_HOKAGE.STAGE_THREE))
+    race(new Load(), new RunPath(PathList.THE_EIGHTH_HOKAGE.STAGE_THREE)),
+    new Load().withTimeout(1.0),
+    new RunPath(PathList.THE_EIGHTH_HOKAGE.STAGE_FOUR),
+    new FastBallWithHintOfLime()
       );
   }
   @Override

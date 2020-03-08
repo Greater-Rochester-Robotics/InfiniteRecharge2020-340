@@ -13,6 +13,7 @@ import frc.robot.commands.pathing.PathSegment.Vec2;
 
 public class PathList {
 	public static final Path STRAIGHT_ON = new Path(x -> .2, new PathSegment(x -> 0.0, 108));
+	public static final Path STRAIGHT_ON_20INCHES = new Path(x -> -.2, new PathSegment(x -> 0.0, 20));
 
 	public static final class TEST_PATHING {
 
@@ -119,10 +120,14 @@ public class PathList {
 			/* {"start":{"x":278,"y":238},"mid1":{"x":185,"y":219},"mid2":{"x":249,"y":128},"end":{"x":170,"y":120}} */
 			new Vec2(278, 238), new Vec2(185, 219), new Vec2(249, 128), new Vec2(170, 120) 
 			, 175));
-		public static final Path STAGE_THREE /*in testing*/ = new Path(x -> .7, new PathSegment( 
-			/* {"start":{"x":184,"y":176},"mid1":{"x":215,"y":176},"mid2":{"x":215,"y":176},"end":{"x":245,"y":176}} */
-			new Vec2(184, 176), new Vec2(215, 176), new Vec2(215, 176), new Vec2(245, 176) 
-			, 61));
+		public static final Path STAGE_THREE = new Path(x -> .4, new PathSegment( 
+			/* {"start":{"x":184,"y":176},"mid1":{"x":210,"y":175},"mid2":{"x":210,"y":175},"end":{"x":233,"y":170}} */
+			new Vec2(184, 176), new Vec2(210, 175), new Vec2(210, 175), new Vec2(233, 170) 
+			, 50));
+		public static final Path STAGE_FOUR = new Path(x -> -.7, new PathSegment( 
+			/* {"start":{"x":233,"y":170},"mid1":{"x":210,"y":175},"mid2":{"x":210,"y":175},"end":{"x":184,"y":176}} */
+			new Vec2(233, 170), new Vec2(210, 175), new Vec2(210, 175), new Vec2(184, 176) 
+			, 50));
 	}
 
 	public static final class COLOR_WHEEL_STEAL {

@@ -191,6 +191,7 @@ public class RobotContainer {
 
     coDriverY.whenPressed(new DriveGyroReset());
     coDriverB.whenPressed(new ObtainDistance());
+    coDriverX.whenPressed(new PrepWallShot().withTimeout(1.5));
     coDriverBack.whenPressed(new StopShoot());
     coDriverLB.and(isClimberRunning.negate()).whenActive(new LowGoal());
     coDriverLB.and(isClimberRunning.negate()).whenInactive(new GetSmol());
