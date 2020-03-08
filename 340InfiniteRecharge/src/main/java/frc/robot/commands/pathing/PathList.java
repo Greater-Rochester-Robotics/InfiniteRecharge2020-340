@@ -121,8 +121,8 @@ public class PathList {
 			new Vec2(278, 238), new Vec2(185, 219), new Vec2(249, 128), new Vec2(170, 120) 
 			, 175));
 		public static final Path STAGE_THREE = new Path(x -> .4, new PathSegment( 
-			/* {"start":{"x":184,"y":176},"mid1":{"x":210,"y":175},"mid2":{"x":210,"y":175},"end":{"x":233,"y":170}} */
-			new Vec2(184, 176), new Vec2(210, 175), new Vec2(210, 175), new Vec2(233, 170) 
+			/* {"start":{"x":184,"y":176},"mid1":{"x":210,"y":175},"mid2":{"x":210,"y":175},"end":{"x":233,"y":182}} */
+			new Vec2(184, 176), new Vec2(210, 175), new Vec2(210, 175), new Vec2(233, 182) 
 			, 50));
 		public static final Path STAGE_FOUR = new Path(x -> -.7, new PathSegment( 
 			/* {"start":{"x":233,"y":170},"mid1":{"x":210,"y":175},"mid2":{"x":210,"y":175},"end":{"x":184,"y":176}} */

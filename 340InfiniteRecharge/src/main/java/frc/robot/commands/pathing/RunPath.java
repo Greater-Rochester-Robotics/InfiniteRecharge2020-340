@@ -2,6 +2,7 @@ package frc.robot.commands.pathing;
 
 import java.util.function.Function;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.Robot;
@@ -118,8 +119,9 @@ public class RunPath extends CommandBase {
 		
 		if (Math.abs(getDistance()) > 3) {
 			if(RobotContainer.drive.getLeftDistance() != 0.0 && RobotContainer.drive.getRightDistance() != 0.0){
-				final double error = -deltaAngle(RobotContainer.drive.getRotation());
-				if(Math.abs(error) < 90){
+				final double error = -deltaAngle(RobotContainer.drive.getRotation()); //may be radians
+				SmartDashboard.putString("Path error", "" + error);
+				if(Math.abs(error) < 180){
 					final double speed = leftSpeed;
 					final double ls = (leftSpeed + ((error) / (arcDivisor / Math.abs(speed))));
 					final double rs = (rightSpeed - ((error) / (arcDivisor / Math.abs(speed))));
