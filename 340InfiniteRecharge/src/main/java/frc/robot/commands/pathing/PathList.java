@@ -121,9 +121,21 @@ public class PathList {
 			new Vec2(278, 238), new Vec2(185, 219), new Vec2(257, 166), new Vec2(150, 159) 
 			, 161));
 		public static final Path STAGE_THREE = new Path(x -> x<.7 ? .75 : x<.85 ? .35 : .2, new PathSegment( 
-			/* {"start":{"x":184,"y":176},"mid1":{"x":202,"y":176},"mid2":{"x":202,"y":176},"end":{"x":239,"y":176}} */
-			new Vec2(184, 176), new Vec2(202, 176), new Vec2(202, 176), new Vec2(239, 176) 
-			, 55));
+			/* {"start":{"x":184,"y":176},"mid1":{"x":202,"y":176},"mid2":{"x":202,"y":176},"end":{"x":236,"y":176}} */
+			new Vec2(184, 176), new Vec2(202, 176), new Vec2(202, 176), new Vec2(236, 176) 
+			, 52));
+		public static final Path STAGE_THREE_POINT_ONE = new Path (x -> -.85, new PathSegment( 
+			/* {"start":{"x":233,"y":176},"mid1":{"x":220,"y":176},"mid2":{"x":220,"y":176},"end":{"x":202,"y":176}} */
+			new Vec2(233, 176), new Vec2(220, 176), new Vec2(220, 176), new Vec2(202, 176) 
+			, 31));
+		public static final Path STAGE_THREE_POINT_TWO = new Path (x -> x<.7 ? .75 : x<.85 ? .35 : .2, new PathSegment( 
+			/* {"start":{"x":208,"y":176},"mid1":{"x":230,"y":184},"mid2":{"x":242,"y":188},"end":{"x":257,"y":194}} */
+			new Vec2(208, 176), new Vec2(230, 184), new Vec2(242, 188), new Vec2(257, 194) 
+			, 53));
+		public static final Path STAGE_THREE_POINT_THREE = new Path (x -> -.85, new PathSegment( 
+			/* {"start":{"x":257,"y":194},"mid1":{"x":242,"y":188},"mid2":{"x":230,"y":184},"end":{"x":208,"y":176}} */
+			new Vec2(257, 194), new Vec2(242, 188), new Vec2(230, 184), new Vec2(208, 176) 
+			, 53));
 		public static final Path STAGE_FOUR = new Path(x -> -.85, new PathSegment( 
 			/* {"start":{"x":239,"y":176},"mid1":{"x":202,"y":176},"mid2":{"x":202,"y":176},"end":{"x":184,"y":176}} */
 			new Vec2(239, 176), new Vec2(202, 176), new Vec2(202, 176), new Vec2(184, 176) 
