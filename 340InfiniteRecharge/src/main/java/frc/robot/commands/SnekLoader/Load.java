@@ -13,12 +13,16 @@ import frc.robot.RobotContainer;
 import frc.robot.subsystems.SnekLoader.State;
 
 public class Load extends CommandBase {
-Timer tm = new Timer();
+private boolean ron;
   /**
    * Creates a new Load.
    */
-  public Load() {
+  public Load(){
+    this(true);
+  }
+  public Load(boolean raise) {
     // Use addRequirements() here to declare subsystem dependencies.
+    ron = raise;
     addRequirements(RobotContainer.snekLoader, RobotContainer.harvester);
   }
 
@@ -29,10 +33,9 @@ Timer tm = new Timer();
       RobotContainer.harvester.lowerHarvester();
       RobotContainer.harvester.setAxleWheels(6.0);
       RobotContainer.harvester.setHarvesterJammed(false);
-      tm.reset();
-      tm.start();
 
   }
+
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
@@ -44,8 +47,10 @@ Timer tm = new Timer();
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+    if(ron){
+      RobotContainer.harvester.raiseHarvester();
+    }
     RobotContainer.snekLoader.setState(State.kOff);
-    RobotContainer.harvester.raiseHarvester();
     RobotContainer.harvester.setAxleWheels(0.0);
   }
 
@@ -53,6 +58,6 @@ Timer tm = new Timer();
   @Override
   public boolean isFinished() {
     
-    return (RobotContainer.snekLoader.getState() == State.kOff || (tm.get() > 0.5 && RobotContainer.harvester.stopIntakeQ()));//|| RobotContainer.harvester.stopIntakeQ()
+    return (RobotContainer.snekLoader.getState() == State.kOff || (RobotContainer.harvester.stopIntakeQ()));//|| RobotContainer.harvester.stopIntakeQ()
   }
 }

@@ -10,7 +10,7 @@ package frc.robot.commands.Auto;
 import frc.robot.commands.RotateToZero;
 import frc.robot.commands.LimelightCommands.AutoAlign;
 import frc.robot.commands.Shooter.FastBallWithHintOfLime;
-import frc.robot.commands.Shooter.NewPrepPlus;
+import frc.robot.commands.Shooter.SpinUpShooterWheel;
 import frc.robot.commands.Shooter.PrepHoodShot;
 import frc.robot.commands.SnekLoader.Load;
 import frc.robot.commands.pathing.PathList;
@@ -27,17 +27,17 @@ public class TheEighthHokage extends Auto340Command {
     // Add your commands in the super() call, e.g.
     // super(new FooCommand(), new BarCommand());
     super(
-    race(new Load(), new RunPath(PathList.THE_EIGHTH_HOKAGE.STAGE_ONE)),
-      new Load().withTimeout(0.5),
+    race(new Load(false), new RunPath(PathList.THE_EIGHTH_HOKAGE.STAGE_ONE)),
+      new Load(false).withTimeout(0.5),
       parallel(new RunPath(PathList.THE_EIGHTH_HOKAGE.STAGE_TWO), new PrepHoodShot()),
       new AutoAlign(),
       new FastBallWithHintOfLime().withTimeout(3.0),
       new RotateToZero(-23.0).withTimeout(1.5),
-    race(new NewPrepPlus(), new RunPath(PathList.THE_EIGHTH_HOKAGE.STAGE_THREE)),
+    race(new SpinUpShooterWheel(), new RunPath(PathList.THE_EIGHTH_HOKAGE.STAGE_THREE), new Load(false)),
     // race(new NewPrepPlus(), new RunPath(PathList.THE_EIGHTH_HOKAGE.STAGE_THREE_POINT_ONE)),
     // race(new NewPrepPlus(), new RunPath(PathList.THE_EIGHTH_HOKAGE.STAGE_THREE_POINT_TWO)),
     // race(new NewPrepPlus(), new RunPath(PathList.THE_EIGHTH_HOKAGE.STAGE_THREE_POINT_THREE)),
-    race(new NewPrepPlus(), new RunPath(PathList.THE_EIGHTH_HOKAGE.STAGE_FOUR)),
+    race(new SpinUpShooterWheel(), new RunPath(PathList.THE_EIGHTH_HOKAGE.STAGE_FOUR), new Load(false)),
     new AutoAlign(),
     new FastBallWithHintOfLime()
       );

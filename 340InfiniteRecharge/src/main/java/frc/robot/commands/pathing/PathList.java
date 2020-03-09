@@ -122,8 +122,8 @@ public class PathList {
 			, 161));
 		public static final Path STAGE_THREE = new Path(x -> x<.7 ? .75 : x<.85 ? .35 : .2, new PathSegment( 
 			/* {"start":{"x":184,"y":176},"mid1":{"x":202,"y":176},"mid2":{"x":202,"y":176},"end":{"x":236,"y":176}} */
-			new Vec2(184, 176), new Vec2(202, 176), new Vec2(202, 176), new Vec2(236, 176) 
-			, 52));
+			new Vec2(184, 176), new Vec2(202, 176), new Vec2(202, 176), new Vec2(230, 176) 
+			, 46));
 		public static final Path STAGE_THREE_POINT_ONE = new Path (x -> -.85, new PathSegment( 
 			/* {"start":{"x":233,"y":176},"mid1":{"x":220,"y":176},"mid2":{"x":220,"y":176},"end":{"x":208,"y":176}} */
 			new Vec2(233, 176), new Vec2(220, 176), new Vec2(220, 176), new Vec2(208, 176) 
@@ -139,7 +139,7 @@ public class PathList {
 		public static final Path STAGE_FOUR = new Path(x -> -.85, new PathSegment( 
 			/* {"start":{"x":239,"y":176},"mid1":{"x":202,"y":176},"mid2":{"x":202,"y":176},"end":{"x":184,"y":176}} */
 			new Vec2(239, 176), new Vec2(202, 176), new Vec2(202, 176), new Vec2(184, 176) 
-			, 56));
+			, 60));
 	}
 
 	public static final class COLOR_WHEEL_STEAL {

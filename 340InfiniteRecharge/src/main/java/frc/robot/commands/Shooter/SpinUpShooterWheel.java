@@ -13,16 +13,16 @@ import frc.robot.RobotContainer;
 import frc.robot.subsystems.SnekLoader;
 import frc.robot.subsystems.Harvester;
 
-public class NewPrepPlus extends CommandBase {
+public class SpinUpShooterWheel extends CommandBase {
 
   /**
    * Creates a new PrepHoodShot.
    */
 
 
-  public NewPrepPlus() {
+  public SpinUpShooterWheel() {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(RobotContainer.shooter, RobotContainer.snekLoader, RobotContainer.harvester);
+    addRequirements(RobotContainer.shooter);
   }
 
   
@@ -30,12 +30,7 @@ public class NewPrepPlus extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    RobotContainer.shooter.raiseHardStop();
-    RobotContainer.shooter.raiseHood();
     RobotContainer.shooter.setShooterWheel(Constants.INITIATION_SHOT_RPM);
-    RobotContainer.snekLoader.setState(SnekLoader.State.kFillTo4);
-    RobotContainer.harvester.lowerHarvester();
-    RobotContainer.harvester.setAxleWheels(6.0);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -46,8 +41,6 @@ public class NewPrepPlus extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    RobotContainer.harvester.setAxleWheels(0.0);
-    RobotContainer.harvester.raiseHarvester();
   }
 
   // Returns true when the command should end.
