@@ -30,7 +30,7 @@ public class Harvester extends SubsystemBase {
   public Harvester() {
     
     axleWheels = new CANSparkMax(Constants.INTAKE_AXLE, MotorType.kBrushless);
-    axleWheels.setSmartCurrentLimit(50, 60);
+    axleWheels.setSmartCurrentLimit(45, 60);
     harvesterPneu = new DoubleSolenoid(Constants.HARVESTER_FWD_CHANNEL,Constants.HARVESTER_REV_CHANNEL);
     axleEncoder = axleWheels.getEncoder();
   }
@@ -52,7 +52,7 @@ public class Harvester extends SubsystemBase {
     boolean isJammed = false;
       isJammed =
         ((axleWheels.get() != 0) && (axleEncoder.getVelocity() == 0))||
-        axleWheels.getOutputCurrent() > 45.0;
+        (axleWheels.getOutputCurrent() > 40.0 && axleEncoder.getVelocity() < 1500);
     return isJammed;
   }
 
@@ -60,7 +60,7 @@ public class Harvester extends SubsystemBase {
   public void periodic() {
     harvesterJammed = false;
     if(this.getCurrentCommand() != null){
-      SmartDashboard.putString("harvester current", "" + axleWheels.getOutputCurrent());
+      SmartDashboard.putString("harvester speed", "" + axleEncoder.getVelocity());
     if (isHarvesterJammed() ) {//&& (this.getCurrentCommand().getName().equals("Load"))
       SmartDashboard.putBoolean("isHarvesterJammed", true);
       harvesterJammed = true;
