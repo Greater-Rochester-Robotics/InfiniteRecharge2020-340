@@ -65,15 +65,12 @@ public class PathList {
 	}
 
 	public static final class TRENCH_SIX_BALL {
-		public static final Path GRAB_THREE = new Path(x -> .7, new PathSegment( 
+		public static final Path GRAB_THREE = new Path(x -> .6, new PathSegment( 
 			/* {"start":{"x":150,"y":43},"mid1":{"x":203,"y":43},"mid2":{"x":203,"y":43},"end":{"x":278,"y":43}} */
 			new Vec2(150, 43), new Vec2(203, 43), new Vec2(203, 43), new Vec2(250, 43) 
 			, 178));
 
-		public static final Path POSITION_SHOOT_THREE = new Path(x -> -.7, new PathSegment( 
-			/* {"start":{"x":250,"y":43},"mid1":{"x":203,"y":43},"mid2":{"x":203,"y":43},"end":{"x":100,"y":43}} */
-			new Vec2(250, 43), new Vec2(203, 43), new Vec2(203, 43), new Vec2(100, 43) 
-			, 150));
+		public static final Path POSITION_SHOOT_THREE = new Path(x -> -.85, new PathSegment(x -> 0.0, 174));
 	}
 
 	public static final class TRENCH_FIVE_BALL {

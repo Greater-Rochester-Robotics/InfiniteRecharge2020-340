@@ -8,6 +8,7 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants;
 import frc.robot.PCM_LED;
 import frc.robot.Robot;
 import frc.robot.RobotContainer;
@@ -77,6 +78,11 @@ public class Limelight extends SubsystemBase {
     // double rpm = (-0.0000401877572016*Math.pow(distance, 3)) + (.220114087301592*Math.pow(distance,2)) - (33.7714947089957*distance)+4919.04761904768;
    //Comp Bot Equation
    rpm = -(.000007334124*Math.pow(distance,4))+(.005258407*Math.pow(distance,3))-(1.362595281*Math.pow(distance,2)) + (152.7787877 * distance) -2372.967082;
+   rpm *= Constants.RPM_MUL_FACTOR;
+   rpm += Constants.RPM_ADD_FACTOR; 
+   if (rpm > 0 ){
+    rpm = Math.min(rpm, 5000.0); 
+   }
     // double rpm = 0.0;
     return (int) rpm;
   }
