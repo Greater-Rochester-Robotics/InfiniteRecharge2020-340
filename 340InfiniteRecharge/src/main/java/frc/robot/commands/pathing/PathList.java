@@ -120,10 +120,7 @@ public class PathList {
 			/* {"start":{"x":278,"y":238},"mid1":{"x":185,"y":219},"mid2":{"x":257,"y":166},"end":{"x":150,"y":159}} */
 			new Vec2(278, 238), new Vec2(185, 219), new Vec2(257, 166), new Vec2(150, 159) 
 			, 161));
-		public static final Path STAGE_THREE = new Path(x -> x<.7 ? .75 : x<.85 ? .35 : .2, new PathSegment( 
-			/* {"start":{"x":184,"y":176},"mid1":{"x":202,"y":176},"mid2":{"x":202,"y":176},"end":{"x":236,"y":176}} */
-			new Vec2(184, 176), new Vec2(202, 176), new Vec2(202, 176), new Vec2(230, 176) 
-			, 46));
+		public static final Path STAGE_THREE = new Path(x -> x<.7 ? .8: x<.75 ? .3 : .15, new PathSegment(x -> 0.0, 45));
 		public static final Path STAGE_THREE_POINT_ONE = new Path (x -> -.85, new PathSegment( 
 			/* {"start":{"x":233,"y":176},"mid1":{"x":220,"y":176},"mid2":{"x":220,"y":176},"end":{"x":208,"y":176}} */
 			new Vec2(233, 176), new Vec2(220, 176), new Vec2(220, 176), new Vec2(208, 176) 

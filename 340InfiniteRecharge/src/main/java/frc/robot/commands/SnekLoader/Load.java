@@ -13,6 +13,7 @@ import frc.robot.RobotContainer;
 import frc.robot.subsystems.SnekLoader.State;
 
 public class Load extends CommandBase {
+  Timer tm = new Timer();
 private boolean ron;
   /**
    * Creates a new Load.
@@ -33,7 +34,8 @@ private boolean ron;
       RobotContainer.harvester.lowerHarvester();
       RobotContainer.harvester.setAxleWheels(6.0);
       RobotContainer.harvester.setHarvesterJammed(false);
-
+    tm.reset();
+    tm.start();
   }
 
 
@@ -58,6 +60,6 @@ private boolean ron;
   @Override
   public boolean isFinished() {
     
-    return (RobotContainer.snekLoader.getState() == State.kOff || (RobotContainer.harvester.stopIntakeQ()));//|| RobotContainer.harvester.stopIntakeQ()
+    return (RobotContainer.snekLoader.getState() == State.kOff || (tm.get() > 0.25 &&RobotContainer.harvester.stopIntakeQ()));//|| RobotContainer.harvester.stopIntakeQ()
   }
 }

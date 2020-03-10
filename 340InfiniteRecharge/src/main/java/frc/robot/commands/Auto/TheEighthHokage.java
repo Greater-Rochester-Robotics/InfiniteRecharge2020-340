@@ -7,6 +7,7 @@
 
 package frc.robot.commands.Auto;
 
+import frc.robot.commands.GetSmol;
 import frc.robot.commands.RotateToZero;
 import frc.robot.commands.LimelightCommands.AutoAlign;
 import frc.robot.commands.Shooter.FastBallWithHintOfLime;
@@ -33,13 +34,14 @@ public class TheEighthHokage extends Auto340Command {
       new AutoAlign(),
       new FastBallWithHintOfLime().withTimeout(3.0),
       new RotateToZero(-23.0).withTimeout(1.5),
-    race(new SpinUpShooterWheel(), new RunPath(PathList.THE_EIGHTH_HOKAGE.STAGE_THREE), new Load(false)),
+    race( new Load(false),new SpinUpShooterWheel(), new RunPath(PathList.THE_EIGHTH_HOKAGE.STAGE_THREE)),
     // race(new NewPrepPlus(), new RunPath(PathList.THE_EIGHTH_HOKAGE.STAGE_THREE_POINT_ONE)),
     // race(new NewPrepPlus(), new RunPath(PathList.THE_EIGHTH_HOKAGE.STAGE_THREE_POINT_TWO)),
     // race(new NewPrepPlus(), new RunPath(PathList.THE_EIGHTH_HOKAGE.STAGE_THREE_POINT_THREE)),
-    race(new SpinUpShooterWheel(), new RunPath(PathList.THE_EIGHTH_HOKAGE.STAGE_FOUR), new Load(false)),
+    race(new Load(false), new SpinUpShooterWheel(), new RunPath(PathList.THE_EIGHTH_HOKAGE.STAGE_FOUR) ),
     new AutoAlign(),
-    new FastBallWithHintOfLime()
+    new FastBallWithHintOfLime().withTimeout(4.0),
+    new GetSmol()
       );
   }
   @Override
