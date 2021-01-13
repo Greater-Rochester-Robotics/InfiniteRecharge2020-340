@@ -19,8 +19,10 @@ import com.revrobotics.CANDigitalInput.LimitSwitchPolarity;
 import com.revrobotics.CANSparkMax.IdleMode;
 
 import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.Constants;
 import frc.robot.RobotContainer;
 
@@ -182,7 +184,7 @@ public class SnekLoader extends SubsystemBase {
       enableOneLimit(-1);
       break;
     case kShootBall0:
-      speeds = new double[] { .3, .5, .75, .9, 1.0 };
+      speeds = new double[] { .40, .65, .85, 1.0, 1.0 }; //.3,.5,.75,1.0,1.0
       enableOneLimit(-1);
       break;
     default:
@@ -279,7 +281,7 @@ public class SnekLoader extends SubsystemBase {
    */
   private void setAllHandleMotors(double[] speeds) {
     for (int i = 0; i <= 4; i++) {
-      handleMotors[i].set(speeds[i]);
+        handleMotors[i].set(speeds[i]);
     }
   }
 
