@@ -273,19 +273,29 @@ public static final class AUTONAV_BOUNCE_PATH {
 		}
 public static final class AUTONAV_BARREL {
 			public static final Path FIRST_CURVE = new Path(x -> .4, new PathSegment( 
-				/* {"start":{"x":86,"y":237},"mid1":{"x":167,"y":238},"mid2":{"x":195,"y":101},"end":{"x":326,"y":210}} */
-				new Vec2(86, 237), new Vec2(167, 238), new Vec2(195, 101), new Vec2(326, 210) 
-				, 270));
+				/* {"start":{"x":86,"y":237},"mid1":{"x":169,"y":237},"mid2":{"x":133,"y":178},"end":{"x":261,"y":178}} */
+				new Vec2(86, 237), new Vec2(169, 237), new Vec2(133, 178), new Vec2(261, 178) 
+				, 191));
+
+			public static final Path INTO_CIRCLE = new Path(x -> .4, new PathSegment( 
+				/* {"start":{"x":316,"y":272},"mid1":{"x":351,"y":272},"mid2":{"x":394,"y":285},"end":{"x":420,"y":315}} */
+				new Vec2(316, 272), new Vec2(351, 272), new Vec2(394, 285), new Vec2(420, 315) 
+				, 116));
 
 			public static final Path CIRCLE = new Path(x -> .4, new PathSegment( 
 				/* {"start":{"x":327,"y":210},"mid1":{"x":420,"y":315},"mid2":{"x":420,"y":90},"end":{"x":327,"y":210}} */
 				new Vec2(327, 210), new Vec2(420, 315), new Vec2(420, 90), new Vec2(327, 210) 
 				, 206));
 			
+			public static final Path OUT_OF_CIRCLE = new Path(x -> .4, new PathSegment( 
+				/* {"start":{"x":311,"y":191},"mid1":{"x":313,"y":220},"mid2":{"x":260,"y":238},"end":{"x":205,"y":238}} */
+				new Vec2(311, 191), new Vec2(313, 220), new Vec2(260, 238), new Vec2(205, 238) 
+				, 126));
+			
 			public static final Path SECOND_CURVE = new Path(x -> .4, new PathSegment( 
-				/* {"start":{"x":326,"y":210},"mid1":{"x":171,"y":294},"mid2":{"x":145,"y":163},"end":{"x":90,"y":166}} */
-				new Vec2(326, 210), new Vec2(171, 294), new Vec2(145, 163), new Vec2(90, 166) 
-				, 263));
+				/* {"start":{"x":234,"y":237},"mid1":{"x":164,"y":237},"mid2":{"x":145,"y":166},"end":{"x":90,"y":166}} */
+				new Vec2(234, 237), new Vec2(164, 237), new Vec2(145, 166), new Vec2(90, 166) 
+				, 165));
 			}
 
 public static final class THREE_LOOPS {
