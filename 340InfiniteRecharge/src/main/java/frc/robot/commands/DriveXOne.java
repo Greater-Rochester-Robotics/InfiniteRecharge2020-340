@@ -48,8 +48,8 @@ public class DriveXOne extends CommandBase {
         // SmartDashboard.putString("Rotation Value", ""+ RobotContainer.drive.getRotation());
         if (Math.abs(Robot.robotContainer.getDriverAxis(Axis.LEFT_X)) >= .05
                 || Math.abs(Robot.robotContainer.getDriverAxis(Axis.LEFT_Y)) >= .05) {
-            RobotContainer.drive.arcadeDrive(Robot.robotContainer.getDriverAxis(Axis.LEFT_Y) * .65,
-                    Robot.robotContainer.getDriverAxis(Axis.LEFT_X) * .7569);
+            RobotContainer.drive.arcadeDrive(Robot.robotContainer.getDriverAxis(Axis.LEFT_Y) * .85,
+                    Robot.robotContainer.getDriverAxis(Axis.LEFT_X) * .95);
         } else if (Math.abs(Robot.robotContainer.getDriverAxis(Axis.RIGHT_X)) >= .15
                 || Math.abs(Robot.robotContainer.getDriverAxis(Axis.RIGHT_Y)) >= .15) {
                     RobotContainer.drive.arcadeDrive(Robot.robotContainer.getDriverAxis(Axis.RIGHT_Y) * .3,

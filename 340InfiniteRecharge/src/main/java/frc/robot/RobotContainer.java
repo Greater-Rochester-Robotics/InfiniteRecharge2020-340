@@ -167,11 +167,10 @@ public class RobotContainer {
     /* Actual Comp button layout */
     driverA.whenPressed(new Load());
     driverA.whenReleased(new GetSmol());
+    
     driverB.whenPressed(new LimelightOn());
     driverB.whenReleased(new LimelightOff());
     driverX.whenPressed(new Regurgitate());
-    // driverX.whenPressed(new SpitBalls()); //Was making bad noises when it wasn't
-    // lowered
     driverX.whenReleased(new GetSmol());
     driverY.whenPressed(new ChoochedLoad());
     driverY.whenReleased(new GetSmol());
